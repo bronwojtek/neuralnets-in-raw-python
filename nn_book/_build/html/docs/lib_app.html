@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Concluding remarks" href="conclusion.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/koh.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Explaining neural networks in raw Python: lectures in Jupyter</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mcp.html">
+   MCP Neuron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="memory.html">
+   Models of memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="perceptron.html">
+   Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_layers.html">
+   More layers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backprop.html">
+   Back propagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpol.html">
+   Interpolation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rectification.html">
+   Rectification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unsupervised.html">
+   Unsupervised learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="som.html">
+   Self Organizing Maps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Concluding remarks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/lib_app.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/nn_book/docs/lib_app.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-library-package">
+   <strong>
+    neural
+   </strong>
+   library package
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#func-py-package">
+     <strong>
+      func.py
+     </strong>
+     package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      func.py
+     </strong>
+     package
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="appendix">
+<span id="app-lab"></span><h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="neural-library-package">
+<h2><strong>neural</strong> library package<a class="headerlink" href="#neural-library-package" title="Permalink to this headline">¶</a></h2>
+<p>The structure of the library tree is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lib_nn
+└── neural
+    ├── __init__.py
+    ├── draw.py
+    └── func.py
+</pre></div>
+</div>
+<div class="section" id="func-py-package">
+<h3><strong><a class="reference external" href="http://func.py">func.py</a></strong> package<a class="headerlink" href="#func-py-package" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Contains functions repeatedy used in the lecture</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; step &quot;&quot;&quot;</span> <span class="c1"># komentarz w potrójnym cudzysłowie</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+        
+<span class="k">def</span> <span class="nf">neuron</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">step</span><span class="p">):</span> <span class="c1"># (in the neural library)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MCP neuron</span>
+
+<span class="sd">    x: array of inputs  [x1, x2,...,xn]</span>
+<span class="sd">    w: array of weights [w0, w1, w2,...,wn]</span>
+<span class="sd">    f: activation function, with step as default</span>
+<span class="sd">    </span>
+<span class="sd">    return: signal=weighted sum w0 + x1 w1 + x2 w2 +...+ xn wn = x.w</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">w</span><span class="p">))</span> <span class="c1"># insert x0=1, signal s=x.w, output f(s)</span>
+    
+<span class="k">def</span> <span class="nf">sig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; sigmoid &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">/</span><span class="n">T</span><span class="p">))</span>
+    
+<span class="k">def</span> <span class="nf">dsig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;derivative of sigmoid&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sig</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sig</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">/</span><span class="n">T</span>
+    
+<span class="k">def</span> <span class="nf">lin</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; linear function &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">s</span>
+    
+<span class="k">def</span> <span class="nf">dlin</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; derivative of linear function &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span>
+    
+<span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; ReLU function &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">drelu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; derivative of ReLU function &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+        
+<span class="k">def</span> <span class="nf">lrelu</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; leaky ReLU function &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">s</span>
+
+<span class="k">def</span> <span class="nf">dlrelu</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; derivative of leaky ReLU function &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+        
+<span class="k">def</span> <span class="nf">softplus</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; softplus function &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">dsoftplus</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; derivative softplus function &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">eucl</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span> <span class="c1"># square of the Euclidean distance</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Squqre of Euclidean distance between to points in 2-dim. space</span>
+<span class="sd">    </span>
+<span class="sd">    input: p1, p1 - arrays in the format [x1,x2]</span>
+<span class="sd">    return: square of Euclidean distance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">l2</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;for separating line&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">-</span><span class="n">w1</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">rn</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    random number from [-0.5,0.5]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span>
+    
+<span class="k">def</span> <span class="nf">point_c</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    random point from a cirle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="o">**</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
+    
+<span class="k">def</span> <span class="nf">point</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    random point from [0,1]x[0,1]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
+    
+<span class="k">def</span> <span class="nf">set_ran_w</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set weights randomly</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    s - scale factor: each weight is in the range [-0.s, 0.5s]</span>
+<span class="sd">    </span>
+<span class="sd">    return:</span>
+<span class="sd">    w - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="p">[[</span><span class="n">s</span><span class="o">*</span><span class="n">rn</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)]})</span>
+    <span class="k">return</span> <span class="n">w</span>
+
+
+<span class="k">def</span> <span class="nf">set_val_w</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set weights to a constant value</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    a - value for each weight</span>
+<span class="sd">    </span>
+<span class="sd">    return:</span>
+<span class="sd">    w - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="p">[[</span><span class="n">a</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)]})</span>
+    <span class="k">return</span> <span class="n">w</span>
+    
+
+<span class="k">def</span> <span class="nf">feed_forward</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">x_in</span><span class="p">,</span> <span class="n">ff</span><span class="o">=</span><span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Feed-forward propagation</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    we - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    </span>
+<span class="sd">    x_in - input vector of length n_0 (bias not included)</span>
+<span class="sd">    </span>
+<span class="sd">    ff - activation function (default: step)</span>
+<span class="sd">    </span>
+<span class="sd">    return:</span>
+<span class="sd">    x - dictionary of signals leaving subsequent layers in the format</span>
+<span class="sd">    {0: array[n_0+1],...,l-1: array[n_(l-1)+1], l: array[nl]}</span>
+<span class="sd">    (the output layer carries no bias)</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>                   <span class="c1"># number of neuron layers</span>
+    <span class="n">x_in</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># input, with the bias node inserted</span>
+    
+    <span class="n">x</span><span class="o">=</span><span class="p">{}</span>                          <span class="c1"># empty dictionary</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_in</span><span class="p">)})</span> <span class="c1"># add input signal</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>        <span class="c1"># loop over layers till before last one</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># signal, matrix multiplication</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">ff</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])]</span> <span class="c1"># output from activation</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)})</span> <span class="c1"># add bias node and update x</span>
+
+    <span class="c1"># the last layer - no adding of the bias node</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">ff</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">])</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="p">])]</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">l</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>          <span class="c1"># update x</span>
+          
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">back_prop</span><span class="p">(</span><span class="n">fe</span><span class="p">,</span><span class="n">la</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">dsig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    fe - array of features</span>
+<span class="sd">    la - array of labels</span>
+<span class="sd">    p  - index of the used data point</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers</span>
+<span class="sd">    we - disctionary of weights</span>
+<span class="sd">    eps - learning speed</span>
+<span class="sd">    f   - activation function</span>
+<span class="sd">    df  - derivaive of f</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># number of neuron layers (= index of the output layer)</span>
+    <span class="n">nl</span><span class="o">=</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>    <span class="c1"># number of neurons in the otput layer</span>
+   
+    <span class="n">x</span><span class="o">=</span><span class="n">feed_forward</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">we</span><span class="p">,</span><span class="n">fe</span><span class="p">[</span><span class="n">p</span><span class="p">],</span><span class="n">ff</span><span class="o">=</span><span class="n">f</span><span class="p">)</span> <span class="c1"># feed-forward of point p</span>
+   
+    <span class="c1"># formulas from the derivation in a one-to-one notation:</span>
+    
+    <span class="n">D</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">gam</span><span class="p">]</span><span class="o">-</span><span class="n">la</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">gam</span><span class="p">])</span><span class="o">*</span>
+                    <span class="n">df</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">])[</span><span class="n">gam</span><span class="p">])</span> <span class="k">for</span> <span class="n">gam</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nl</span><span class="p">)]})</span>
+    <span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">-=</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="p">)):</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">j</span><span class="p">:</span> <span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))]})</span>
+        <span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-=</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">feed_forward_o</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">x_in</span><span class="p">,</span> <span class="n">ff</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">ffo</span><span class="o">=</span><span class="n">lin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Feed-forward propagation with different output activation</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    we - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    </span>
+<span class="sd">    x_in - input vector of length n_0 (bias not included)</span>
+<span class="sd">    </span>
+<span class="sd">    f  - activation function (default: sigmoid)</span>
+<span class="sd">    fo - activation function in the output layer (default: linear)</span>
+<span class="sd">    </span>
+<span class="sd">    return:</span>
+<span class="sd">    x - dictionary of signals leaving subsequent layers in the format</span>
+<span class="sd">    {0: array[n_0+1],...,l-1: array[n_(l-1)+1], l: array[nl]}</span>
+<span class="sd">    (the output layer carries no bias)</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>                   <span class="c1"># number of neuron layers</span>
+    <span class="n">x_in</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># input, with the bias node inserted</span>
+    
+    <span class="n">x</span><span class="o">=</span><span class="p">{}</span>                          <span class="c1"># empty dictionary</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_in</span><span class="p">)})</span> <span class="c1"># add input signal</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>        <span class="c1"># loop over layers till before last one</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># signal, matrix multiplication</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">ff</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])]</span> <span class="c1"># output from activation</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)})</span> <span class="c1"># add bias node and update x</span>
+
+    <span class="c1"># the last layer - no adding of the bias node</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">ffo</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">])</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="p">])]</span> <span class="c1"># output activation function</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">l</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>                    <span class="c1"># update x</span>
+          
+    <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="k">def</span> <span class="nf">back_prop_o</span><span class="p">(</span><span class="n">fe</span><span class="p">,</span><span class="n">la</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">dsig</span><span class="p">,</span> <span class="n">fo</span><span class="o">=</span><span class="n">lin</span><span class="p">,</span> <span class="n">dfo</span><span class="o">=</span><span class="n">dlin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    fe - array of features</span>
+<span class="sd">    la - array of labels</span>
+<span class="sd">    p  - index of the used data point</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers</span>
+<span class="sd">    we - disctionary of weights</span>
+<span class="sd">    eps - learning speed</span>
+<span class="sd">    f   - activation function</span>
+<span class="sd">    df  - derivaive of f</span>
+<span class="sd">    fo  - activation function in the output layer (default: linear)</span>
+<span class="sd">    dfo - derivative of fo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># number of neuron layers (= index of the output layer)</span>
+    <span class="n">nl</span><span class="o">=</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>    <span class="c1"># number of neurons in the otput layer</span>
+   
+    <span class="n">x</span><span class="o">=</span><span class="n">feed_forward_o</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">we</span><span class="p">,</span><span class="n">fe</span><span class="p">[</span><span class="n">p</span><span class="p">],</span><span class="n">ff</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">ffo</span><span class="o">=</span><span class="n">fo</span><span class="p">)</span> <span class="c1"># feed-forward of point p</span>
+   
+    <span class="c1"># formulas from the derivation in a one-to-one notation:</span>
+    
+    <span class="n">D</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">gam</span><span class="p">]</span><span class="o">-</span><span class="n">la</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">gam</span><span class="p">])</span><span class="o">*</span>
+                   <span class="n">dfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">])[</span><span class="n">gam</span><span class="p">])</span> <span class="k">for</span> <span class="n">gam</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nl</span><span class="p">)]})</span>
+    
+    <span class="n">we</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">-=</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="p">)):</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">j</span><span class="p">:</span> <span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))]})</span>
+        <span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-=</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+    
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><strong><a class="reference external" href="http://func.py">func.py</a></strong> package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plotting functions used in the lecture.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;activation function&#39;</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;signal&#39;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;response&#39;</span><span class="p">,</span>
+         <span class="n">start</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper on matplotlib.pyplot library.</span>
+<span class="sd">    Plots functions passed as *args.</span>
+<span class="sd">    Functions need to accept a single number argument and return a single number.</span>
+<span class="sd">    Example usage: plot(lambda x: x * x)</span>
+<span class="sd">                   plot(func.step,func.sig)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># defines range and detail level of the plot</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+
+    <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">x_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fun</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">data_to_plot</span> <span class="o">=</span> <span class="p">[</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">data_to_plot</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ff</span><span class="p">;</span>
+
+
+<span class="k">def</span> <span class="nf">plot_net_simp</span><span class="p">(</span><span class="n">n_layer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw the network architecture without bias nores</span>
+<span class="sd">    </span>
+<span class="sd">    input: array of numbers of nodes in subsequent layers [n0, n1, n2,...]</span>
+<span class="sd">    return: graphics object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l_layer</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">n_layer</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># input nodes</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">n_layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># neuron layer nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l_layer</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            
+<span class="c1"># bias nodes</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">[</span><span class="n">l_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">l_layer</span><span class="p">],[</span><span class="n">n_layer</span><span class="p">[</span><span class="n">l_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n_layer</span><span class="p">[</span><span class="n">l_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># edges</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l_layer</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="n">n_layer</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ff</span><span class="p">;</span>
+
+
+<span class="k">def</span> <span class="nf">plot_net</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw network without bias nodes</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    return: graphics object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># input nodes</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># neuron layer nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># bias nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># edges</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># the last edge on the right</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.7</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ff</span><span class="p">;</span>
+
+
+<span class="k">def</span> <span class="nf">plot_net_w</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">we</span><span class="p">,</span><span class="n">wid</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw the network architecture with weights</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    we - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    </span>
+<span class="sd">    wid - controls the width of the lines</span>
+<span class="sd">    </span>
+<span class="sd">    return: graphics object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    
+<span class="c1"># input nodes</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># neuron layer nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># bias nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># edges</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">th</span><span class="o">=</span><span class="n">wid</span><span class="o">*</span><span class="n">we</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">th</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span>
+                <span class="n">th</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">th</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">col</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="n">th</span><span class="p">)</span>
+ 
+<span class="c1"># the last edge on the right</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.7</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ff</span><span class="p">;</span>
+
+
+<span class="k">def</span> <span class="nf">plot_net_w_x</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">we</span><span class="p">,</span><span class="n">wid</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw the network architecture with weights and signals</span>
+<span class="sd">    </span>
+<span class="sd">    input:</span>
+<span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
+<span class="sd">    (from input layer 0 to output layer l, bias nodes not counted)</span>
+<span class="sd">    </span>
+<span class="sd">    we - dictionary of weights for neuron layers 1, 2,...,l in the format</span>
+<span class="sd">    {1: array[n_0+1,n_1],...,l: array[n_(l-1)+1,n_l]}</span>
+<span class="sd">    </span>
+<span class="sd">    wid - controls the width of the lines</span>
+<span class="sd">    </span>
+<span class="sd">    x - dictionary the the signal in the format</span>
+<span class="sd">    {0: array[n_0+1],...,l-1: array[n_(l-1)+1], l: array[nl]}</span>
+<span class="sd">    </span>
+<span class="sd">    return: graphics object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    
+<span class="c1"># input layer</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">lab</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># intermediate layer</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">lab</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># output layer</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">lab</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># bias nodes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># edges</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">th</span><span class="o">=</span><span class="n">wid</span><span class="o">*</span><span class="n">we</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">th</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">col</span><span class="o">=</span><span class="s1">&#39;red&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span>
+                <span class="n">th</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">th</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">col</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="n">th</span><span class="p">)</span>
+ 
+<span class="c1"># the last edge on the right</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.7</span><span class="p">],[</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="p">(</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ff</span><span class="p">;</span>
+    
+    
+<span class="k">def</span> <span class="nf">l2</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">-</span><span class="n">w1</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">]</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="conclusion.html" title="previous page">Concluding remarks</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Wojciech Broniowski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

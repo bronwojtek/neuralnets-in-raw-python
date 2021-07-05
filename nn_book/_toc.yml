@@ -1,0 +1,16 @@
+format: jb-book
+root: docs/index
+chapters:
+- file: docs/intro
+- file: docs/mcp
+- file: docs/memory
+- file: docs/perceptron
+- file: docs/more_layers
+- file: docs/backprop
+- file: docs/interpol
+- file: docs/rectification
+- file: docs/unsupervised
+- file: docs/som
+- file: docs/conclusion
+- file: docs/lib_app
+# - file: docs/refs

@@ -1,0 +1,78 @@
+\selectlanguage *{english}
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Purpose of these lectures}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Biological inspiration}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Feed\sphinxhyphen {}forward networks}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Why Python}{6}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Imported packages}{7}{subsection.1.4.1}%
+\contentsline {chapter}{\numberline {2}MCP Neuron}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Definition}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}MCP neuron in Python}{11}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Boolean functions}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Problem with XOR}{15}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}XOR from composition of AND, NAND and OR}{16}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}XOR composed from NAND}{16}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}Models of memory}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Heteroassociative memory}{19}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Pair associations}{19}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Memory matrix}{21}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Applying a filter}{22}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Autoassociative memory}{25}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Self\sphinxhyphen {}associations}{25}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Distorting the image}{25}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Restoring the symbols}{26}{subsection.3.2.3}%
+\contentsline {chapter}{\numberline {4}Perceptron}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Supervised learning}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Binary classifier}{30}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Sample with a known classification rule}{30}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Sample with an unknown classification rule}{32}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Perceptron algorithm}{33}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Testing the classifier}{35}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}More layers}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Two layers of neurons}{37}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Three or more layers of neurons}{38}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Feeding forward in Python}{39}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Visualization}{43}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Classifier with three neuron layers}{43}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Back propagation}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Minimizing the error}{47}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Continuous activation function}{49}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Steepest descent}{53}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Backprop algorithm}{55}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Code for backprop}{57}{subsection.6.4.1}%
+\contentsline {section}{\numberline {6.5}Example with the circle}{58}{section.6.5}%
+\contentsline {section}{\numberline {6.6}General remarks}{61}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Interpolation}{63}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Simulated data}{63}{section.7.1}%
+\contentsline {section}{\numberline {7.2}ANNs for interpolation}{64}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Backprop for one\sphinxhyphen {}dimensional functions}{66}{subsection.7.2.1}%
+\contentsline {section}{\numberline {7.3}Remarks}{67}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Rectification}{69}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Interpolation with ReLU}{70}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Classifiers with rectification}{71}{section.8.2}%
+\contentsline {section}{\numberline {8.3}General remarks on backprop}{72}{section.8.3}%
+\contentsline {chapter}{\numberline {9}Unsupervised learning}{75}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Clusters of points}{75}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Naive clusterization}{77}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Clustering scale}{81}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Interpretation via steepest descent}{84}{subsection.9.3.1}%
+\contentsline {section}{\numberline {9.4}Interpretation via neural networks}{84}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Representation with spherical coordinates}{85}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Scalar product maximization}{86}{subsection.9.4.2}%
+\contentsline {chapter}{\numberline {10}Self Organizing Maps}{89}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{90}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Mapping of a 1\sphinxhyphen {}dim. network of neurons into 2\sphinxhyphen {}dim. data}{90}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Remarks:}{93}{subsection.10.2.1}%
+\contentsline {section}{\numberline {10.3}Color map}{93}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}Comments}{95}{subsection.10.3.1}%
+\contentsline {section}{\numberline {10.4}Unified distance matrix}{95}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Mapping colors on a line}{98}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Mapping two\sphinxhyphen {}dimensional data into a two\sphinxhyphen {}dimensional network}{100}{section.10.6}%
+\contentsline {subsection}{\numberline {10.6.1}Wikipedia articles’ similarity}{102}{subsection.10.6.1}%
+\contentsline {section}{\numberline {10.7}Lateral inhibition}{102}{section.10.7}%
+\contentsline {chapter}{\numberline {11}Concluding remarks}{105}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Appendix}{107}{chapter.12}%
+\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} library package}{107}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} package}{107}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {func.py} package}{113}{subsection.12.1.2}%
+\contentsline {chapter}{Bibliography}{119}{chapter*.3}%

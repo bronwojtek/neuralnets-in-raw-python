@@ -1,0 +1,46 @@
+title: "Explaining neural networks in raw Python: lectures in Jupyter"
+author: "Wojciech Broniowski"
+email: "Wojciech.Broniowski@ifj.edu.pl"
+release: "IFJ"
+logo: 'koh.png'
+
+# Short description about the book
+description: >-
+  Basic of neural networks in python
+
+execute:
+#  execute_notebooks           : auto
+  execute_notebooks           : off
+
+  timeout: -1
+
+# HTML-specific settings
+html:
+  home_page_in_navbar         : false
+
+# Interact link settings
+notebook_interface            : "notebook"
+
+# Launch button settings
+repository:
+#  url                         : https://github.com/executablebooks/nn_scratch
+  path_to_book                : "nn_book"
+
+binder:
+#  binderhub_url               : "https://mybinder.org"
+  text                        : "Launch binder"
+
+# LaTeX settings
+bibtex_bibfiles:
+   - _bibliography/references.bib
+   
+latex:
+  latex_engine                : "pdflatex"
+  use_jupyterbook_latex       : true # use jupyterbook-latex for pdf builds as default
+
+  latex_documents:
+    targetname: book.tex
+    
+sphinx:
+  config:
+    latex_toplevel_sectioning: 'section'
