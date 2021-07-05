@@ -4,7 +4,7 @@
 # (app-lab)=
 # # Appendix
 
-# ## **neural** library package
+# ## **neural** package
 
 # The structure of the library tree is as follows:
 
@@ -16,7 +16,7 @@
 #     └── func.py
 # ```
 
-# ### **func.py** package
+# ### **func.py** module
 
 # ````
 # """
@@ -326,7 +326,7 @@
 #     
 # ````
 
-# ### **func.py** package
+# ### **draw.py** module
 
 # ````
 # """

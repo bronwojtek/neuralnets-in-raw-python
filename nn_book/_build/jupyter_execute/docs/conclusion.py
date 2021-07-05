@@ -9,6 +9,9 @@
 # Neurological impossiblity of backprop.
 # 
 # 
+# HCP - Human Connectome Project http://www.humanconnectomeproject.org/
+# 
+# 
 # 
 # Initial conditions for minimization, basen of convergence, learning stategy, improvements of steepest descent ...
 # 

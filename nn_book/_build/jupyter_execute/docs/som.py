@@ -103,7 +103,7 @@ def phi(i,k,d):                       # proximity function
 
 # looks like this around $k=50$ and for the width parameter $\delta=5$:
 
-# In[5]:
+# In[4]:
 
 
 k=50
@@ -123,7 +123,7 @@ plt.ylabel('$\phi(i,k=$'+str(k)+'$,\delta)$',fontsize=11);
 
 # At $|k-i|=\delta$ it drops to $~60\%$ of the central value, and at $|k-i|=3\delta$ to $~1\%$, a tiny fraction. Hence $\delta$ controls the size of the neighborhood of the winner. The neuron farther away from the winner than $3\delta$ are practically left unupdated. 
 
-# In[6]:
+# In[5]:
 
 
 W=np.array([func.point_c() for _ in range(num)]) # random initialization of weights
@@ -142,14 +142,14 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # The line connects the subsequent neurons ... They are chaotically scattered around the region.
 
-# In[7]:
+# In[6]:
 
 
 eps=.5   # initial learning speed (0.5)
 de = 10  # initial neighborhood distance (10)
 
 
-# In[8]:
+# In[7]:
 
 
 # Kohonen's algorithm
@@ -168,7 +168,7 @@ for _ in range(50): # rounds
              # update of the neuron locations
 
 
-# In[9]:
+# In[8]:
 
 
 fk=plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -193,7 +193,7 @@ plt.ylabel('$x_2$',fontsize=11);
 # 
 # We can also look at the mapping from the "point of view" of the neurons:
 
-# In[10]:
+# In[9]:
 
 
 for i in range(10):
@@ -238,21 +238,21 @@ for i in range(10):
 
 # Now an example of mapping a two-dimensional neuron array into 3-dimensional data
 
-# In[11]:
+# In[10]:
 
 
 def dist3(p1,p2): 
     return (p1[0]-p2[0])**2+(p1[1]-p2[1])**2+(p1[2]-p2[2])**2
 
 
-# In[12]:
+# In[11]:
 
 
 def phi2(ix,iy,kx,ky,d): # Gaussian in 2D
     return np.exp(-((ix-kx)**2+(iy-ky)**2)/(d**2)) 
 
 
-# In[13]:
+# In[12]:
 
 
 ns=30  # run also for 3, 4, 5, 30, 500
@@ -274,7 +274,7 @@ for i in range(ns):
     plt.scatter(i/ns,0,color=samp[i], s=25000/ns**2); 
 
 
-# In[14]:
+# In[13]:
 
 
 size=40  # neuron array of size x size (40 x 40)
@@ -299,7 +299,7 @@ plt.xlabel('$x$',fontsize=11)
 plt.ylabel('$y$',fontsize=11);
 
 
-# In[15]:
+# In[14]:
 
 
 eps=.5   
@@ -309,7 +309,7 @@ rep= 1   # repeats without changing eps and de (4,1)
 
 # Do step by step
 
-# In[16]:
+# In[15]:
 
 
 for _ in range(100):  # rounds
@@ -334,7 +334,7 @@ for _ in range(100):  # rounds
          
 
 
-# In[17]:
+# In[16]:
 
 
 fig0=plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -369,7 +369,7 @@ plt.ylabel('$y$',fontsize=11);
 
 # ## Unified distance matrix
 
-# In[18]:
+# In[17]:
 
 
 siz=size-1 
@@ -399,7 +399,7 @@ plt.xlabel('$x$',fontsize=11)
 plt.ylabel('$y$',fontsize=11);
 
 
-# In[19]:
+# In[18]:
 
 
 fig = plt.figure(figsize=(4,4),dpi=120)
@@ -426,13 +426,13 @@ plt.title("U-matrix",fontsize=11);
 
 # Distance map for a given (new) data point (i.e. using a classifier)
 
-# In[20]:
+# In[19]:
 
 
 nd=[np.random.random(),np.random.random(),np.random.random()]
 
 
-# In[21]:
+# In[20]:
 
 
 plt.figure(figsize=(6.5,1.5))
@@ -443,7 +443,7 @@ plt.scatter(0,0,color=nd, s=5000);
 
 # Classification of the point according to the previously obtained map
 
-# In[22]:
+# In[21]:
 
 
 tad=np.zeros((size,size))
@@ -463,7 +463,7 @@ print("Closest neuron coordinates: (",in_x/size,in_y/size,")")
 print("Distance: ",np.round(da,3))
 
 
-# In[23]:
+# In[22]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -489,7 +489,7 @@ plt.ylabel('$y$',fontsize=11);
 
 # Reduction of three dimensions into one
 
-# In[24]:
+# In[23]:
 
 
 ns=5  # do for 3, 4, 5
@@ -508,7 +508,7 @@ for i in range(ns):
     plt.scatter(i/ns,0,color=samp[i], s=25000/ns**2);
 
 
-# In[25]:
+# In[24]:
 
 
 si=40  # 1D array of si neurons
@@ -527,7 +527,7 @@ for i in range(si):
     plt.scatter(i/si,0,color=tab2[i], s=25000/si**2); 
 
 
-# In[26]:
+# In[25]:
 
 
 eps=.5    
@@ -535,7 +535,7 @@ de = 20
 rep= 1    
 
 
-# In[27]:
+# In[26]:
 
 
 for _ in range(100): 
@@ -561,7 +561,7 @@ for i in range(si):
 
 # Smooth transition between colors.
 
-# In[28]:
+# In[27]:
 
 
 si2=si-1
@@ -588,7 +588,7 @@ plt.ylabel('distance from neighbor',fontsize=11);
 
 # ## Mapping two-dimensional data into a two-dimensional network
 
-# In[29]:
+# In[28]:
 
 
 def point():
@@ -597,14 +597,14 @@ def point():
     return np.array([x,y])
 
 
-# In[30]:
+# In[29]:
 
 
 n=10
 sam=np.array([func.point() for _ in range(n*n)])
 
 
-# In[31]:
+# In[30]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -629,7 +629,7 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);    
 
 
-# In[32]:
+# In[31]:
 
 
 eps=.5   # początkowa szybkość uczenia (0.5)
@@ -638,7 +638,7 @@ nr=400
 rep= 300 # powtórzenia po próbce bez zmiany eps i de
 
 
-# In[33]:
+# In[32]:
 
 
 for _ in range(nr):  # rundy z uaktualnieniem eps i de (100)
@@ -662,7 +662,7 @@ for _ in range(nr):  # rundy z uaktualnieniem eps i de (100)
    
 
 
-# In[34]:
+# In[33]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -702,7 +702,7 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # Reduction from very many parameters into 2. U-matrix.
 
-# In[35]:
+# In[34]:
 
 
 Image(filename="images/Self_oraganizing_map_cartography.jpg",width=620)
@@ -744,7 +744,7 @@ Image(filename="images/Self_oraganizing_map_cartography.jpg",width=620)
 # 
 # i.e. attenuation is strongest for close neighbors and it decreases with distance with a characteristic scale $b$.
 
-# In[36]:
+# In[35]:
 
 
 ns = 30;       # number of neurons
@@ -760,7 +760,7 @@ for i in range(ns):
     
 
 
-# In[37]:
+# In[36]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
@@ -775,7 +775,7 @@ plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$F(i,15)$',fontsize=11);    
 
 
-# In[38]:
+# In[37]:
 
 
 s = np.array([2**2/((i - ns/2)**2 + 2**2) for i in range(ns)]) # Lorentzian function
@@ -785,7 +785,7 @@ y=np.dot(invF,s)                      # multiplication
 y=y/y[15]                             # normalization 
 
 
-# In[39]:
+# In[38]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
@@ -797,7 +797,8 @@ plt.xlabel('neuron number',fontsize=11)
 plt.ylabel('signal',fontsize=11);    
 
 
-# HCP - Human Connectome Project http://www.humanconnectomeproject.org/
+# Pyramidal neurons
+# 
 
 # ```{admonition} Exercises
 # :class: warning

@@ -72,7 +72,7 @@
 \contentsline {section}{\numberline {10.7}Lateral inhibition}{102}{section.10.7}%
 \contentsline {chapter}{\numberline {11}Concluding remarks}{105}{chapter.11}%
 \contentsline {chapter}{\numberline {12}Appendix}{107}{chapter.12}%
-\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} library package}{107}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} package}{107}{subsection.12.1.1}%
-\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {func.py} package}{113}{subsection.12.1.2}%
+\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{107}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{107}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{113}{subsection.12.1.2}%
 \contentsline {chapter}{Bibliography}{119}{chapter*.3}%

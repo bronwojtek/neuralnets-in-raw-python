@@ -72,7 +72,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 04, 2021}
+\date{Jul 05, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -4323,16 +4323,16 @@ We can also look at the mapping from the “point of view” of the neurons:
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-  0 0.315 0.5 
-  1 0.309 0.467 0.034
-  2 0.338 0.415 0.06
-  3 0.412 0.396 0.076
-  4 0.456 0.396 0.044
-  5 0.493 0.386 0.038
-  6 0.55 0.387 0.057
-  7 0.585 0.432 0.057
-  8 0.595 0.473 0.042
-  9 0.624 0.482 0.031
+  0 0.503 0.304 
+  1 0.507 0.33 0.026
+  2 0.545 0.36 0.048
+  3 0.591 0.398 0.06
+  4 0.597 0.423 0.025
+  5 0.555 0.423 0.042
+  6 0.51 0.42 0.045
+  7 0.496 0.464 0.046
+  8 0.504 0.525 0.062
+  9 0.515 0.566 0.042
 \end{sphinxVerbatim}
 
 
@@ -4586,8 +4586,8 @@ Classification of the point according to the previously obtained map
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Closest neuron coordinates: ( 0.35 0.525 )
-Distance:  0.082
+Closest neuron coordinates: ( 0.575 0.55 )
+Distance:  0.118
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{som_51_0}.png}
@@ -4828,7 +4828,7 @@ i.e. attenuation is strongest for close neighbors and it decreases with distance
 \noindent\sphinxincludegraphics{{som_84_0}.png}
 
 \sphinxAtStartPar
-HCP \sphinxhyphen{} Human Connectome Project \sphinxurl{http://www.humanconnectomeproject.org/}
+Pyramidal neurons
 
 \begin{sphinxadmonition}{note}{Exercises}
 
@@ -4844,6 +4844,9 @@ Construct a Kohonen mapping form a 2D shape (square, cicle, 2 disjoint squares) 
 
 \sphinxAtStartPar
 Neurological impossiblity of backprop.
+
+\sphinxAtStartPar
+HCP \sphinxhyphen{} Human Connectome Project \sphinxurl{http://www.humanconnectomeproject.org/}
 
 \sphinxAtStartPar
 Initial conditions for minimization, basen of convergence, learning stategy, improvements of steepest descent …
@@ -4863,8 +4866,8 @@ The references provided in the text as hyperlinks are not repeated in the list b
 \chapter{Appendix}
 \label{\detokenize{docs/lib_app:appendix}}\label{\detokenize{docs/lib_app:app-lab}}\label{\detokenize{docs/lib_app::doc}}
 
-\section{\sphinxstylestrong{neural} library package}
-\label{\detokenize{docs/lib_app:neural-library-package}}
+\section{\sphinxstylestrong{neural} package}
+\label{\detokenize{docs/lib_app:neural-package}}
 \sphinxAtStartPar
 The structure of the library tree is as follows:
 
@@ -4877,8 +4880,8 @@ lib\PYGZus{}nn
 \end{sphinxVerbatim}
 
 
-\subsection{\sphinxstylestrong{func.py} package}
-\label{\detokenize{docs/lib_app:func-py-package}}
+\subsection{\sphinxstylestrong{func.py} module}
+\label{\detokenize{docs/lib_app:func-py-module}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 \PYG{l+s+sd}{Contains functions repeatedy used in the lecture}
@@ -5188,8 +5191,8 @@ lib\PYGZus{}nn
 \end{sphinxVerbatim}
 
 
-\subsection{\sphinxstylestrong{func.py} package}
-\label{\detokenize{docs/lib_app:id1}}
+\subsection{\sphinxstylestrong{draw.py} module}
+\label{\detokenize{docs/lib_app:draw-py-module}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 \PYG{l+s+sd}{Plotting functions used in the lecture.}
