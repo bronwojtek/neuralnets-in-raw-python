@@ -72,7 +72,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 05, 2021}
+\date{Jul 06, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -3483,7 +3483,7 @@ Use various rectified activation functions for the binary classifiers and test t
 
 
 \chapter{Unsupervised learning}
-\label{\detokenize{docs/unsupervised:unsupervised-learning}}\label{\detokenize{docs/unsupervised::doc}}
+\label{\detokenize{docs/unsupervised:unsupervised-learning}}\label{\detokenize{docs/unsupervised:un-lab}}\label{\detokenize{docs/unsupervised::doc}}
 \begin{sphinxadmonition}{note}{Motto}
 
 \sphinxAtStartPar
@@ -4149,22 +4149,17 @@ One\sphinxhyphen{}dimensional data variant: Consider the problem of clustering p
 \chapter{Self Organizing Maps}
 \label{\detokenize{docs/som:self-organizing-maps}}\label{\detokenize{docs/som::doc}}
 \sphinxAtStartPar
-A very important and ingenious application of unsupervised learning are the so\sphinxhyphen{}called \sphinxstylestrong{Kohonen nets} (\sphinxhref{https://en.wikipedia.org/wiki/Teuvo\_Kohonen}{Teuvo Kohonen}, i.e. \sphinxstylestrong{self\sphinxhyphen{}organizing mappings preserving topology}. Consider a mapping
-\begin{equation*}
-\begin{split} N \to D = f (N), \end{split}
-\end{equation*}
-\sphinxAtStartPar
-where  \(N\) is a discrete \(k\)\sphinxhyphen{}dimensional set (grid) of neurons and \(D\) is a set of \(n\)\sphinxhyphen{}dimensional input data (continuous or discrete). Since \(N\) is discrete, each neuron carrries an index consisting of \(k\) natural numbers, denoted as \(\bar {i} = (i_1, i_2, ..., i_k)\). Typically, the dimensions satisfy \(n \ge k\). When \(n > k\), one talks about \sphinxstylestrong{reduction of dimensionality}, as the input space \(D\) has more dimensions than the space of neurons.
+A very important and ingenious application of unsupervised learning are the so\sphinxhyphen{}called \sphinxstylestrong{Kohonen nets} (\sphinxhref{https://en.wikipedia.org/wiki/Teuvo\_Kohonen}{Teuvo Kohonen}, i.e. \sphinxstylestrong{self\sphinxhyphen{}organizing mappings (SOM)}. Consider a mapping between a set of \(n\)\sphinxhyphen{}dimensional input data \(D\) (continuous or discrete) and a \sphinxstylestrong{discrete} \(k\)\sphinxhyphen{}dimensional set (\sphinxstylestrong{grid}) of neurons. Since \(N\) is descrete, each neuron carrries an index consisting of \(k\) natural numbers, denoted as \(\bar {i} = (i_1, i_2, ..., i_k)\). Typically, the dimensions satisfy \(n \ge k\). When \(n > k\), one talks about \sphinxstylestrong{reduction of dimensionality}, as the input space \(D\) has more dimensions than the grid of neurons.
 
 \sphinxAtStartPar
-Two examples of such networks are visualized in \{numref{]}\sphinxcode{\sphinxupquote{koh\sphinxhyphen{}fig}}.
+Two examples of such networks are visualized in \{numref{]}\sphinxcode{\sphinxupquote{koh\sphinxhyphen{}fig}}. The left panel shows a 2\sphinxhyphen{}dim. input space \(D\), and a one dimensional grid on neurons. The input point \((x_1,x_2)\) enters all the neuron of the grid, and one of them (with best\sphinxhyphen{}suited weights) becomes the winner (red dot). The gray oval indicates the neighborhood of the winner. The right panel shows an analogous situation for the case of a 3\sphinxhyphen{}dim. input and 2\sphinxhyphen{}dim. grid of neurons. Here, for clarity, we only indicated the edges entering the winner, but they also enter all the other neurons, as in the left panel.
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
-\noindent\sphinxincludegraphics[width=500\sphinxpxdimen]{{koh}.png}
-\caption{Example of Kohonen networks. Left: 1\sphinxhyphen{}dim. grid of neurons \(N\) and 2\sphinxhyphen{}dim. input space \(D\). Right: 2\sphinxhyphen{}dim. grid of neurons \(N\) and 3\sphinxhyphen{}dim. input space \(D\). The gray oval indicates the neighborhood of the winner neuron.}\label{\detokenize{docs/som:koh-fig}}\end{figure}
+\noindent\sphinxincludegraphics[width=500\sphinxpxdimen]{{koha}.png}
+\caption{Example of Kohonen networks. Left: 1\sphinxhyphen{}dim. grid of neurons \(N\) and 2\sphinxhyphen{}dim. input space \(D\). Right: 2\sphinxhyphen{}dim. grid of neurons \(N\) and 3\sphinxhyphen{}dim. input space \(D\). The red dot indicates the winner, and the gray oval marks its neighborhood.}\label{\detokenize{docs/som:koh-fig}}\end{figure}
 
 \sphinxAtStartPar
 One defines the neuron \sphinxstylestrong{proximity function}, \(\phi (\bar {i}, \bar {j})\), which assigns, to a pair of neurons, a real number depending on their relative position in the grid. This function must decrease with the distance between the neuron indices. A popular choice is a Gaussian,
@@ -4172,20 +4167,15 @@ One defines the neuron \sphinxstylestrong{proximity function}, \(\phi (\bar {i},
 \begin{split} \phi(\bar{i}, \bar{j})=\exp\left [ -\frac{(i_1-j_1)^2+...+(i_k-j_k)^2}{2 \delta^2} \right ] ,\end{split}
 \end{equation*}
 \sphinxAtStartPar
-where \(\delta\) is the \sphinxstylestrong{neighborhood radius}.
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxAtStartPar
-Kohonen networks have the property that when two neurons \(\bar{i}\) and \(\bar{j}\) are close to each oher, then also their mappings into \(D\) are close, i.e. \(f(\bar{i})\) is close to \(f(\bar{j})\). This feature leads, as we will see, to \sphinxstylestrong{preservation of topology}. Loosly speaking, when \(n=k\), shapes in the input space are carried over to shapes in the neuron grid.
-\end{sphinxadmonition}
+where \(\delta\) is the \sphinxstylestrong{neighborhood radius}. For a 1\sphinxhyphen{}dim. grid it becomes \( \phi(i,j)=\exp\left [ -\frac{(i-j)^2}{2 \delta^2} \right ]\).
 
 
 \section{Kohonen’s algorithm}
 \label{\detokenize{docs/som:kohonen-s-algorithm}}
 \sphinxAtStartPar
-The set up of Kohonen’s algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron has weights, which are elements of \(D\), i.e. form \(n\)\sphinxhyphen{}dimensional vectors. One may simply think of this as placing the neurons in some locations in \(D\). When an input point \(P\) form \(D\) is fed into the network, one looks for a closest neuron, the \sphinxstylestrong{winner}, exactly as in the algorithm from section {\hyperref[\detokenize{docs/unsupervised:inn-sec}]{\sphinxcrossref{\DUrole{std,std-ref}{Interpretation via neural networks}}}}. However, here comes an important differeence. Not only the winner is attracted a bit towards \(P\), but also its neighbors, to a lesser and lesser extent the farther they are from the winner.
+The set up of Kohonen’s algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron has weights, which are elements of \(D\), i.e. form \(n\)\sphinxhyphen{}dimensional vectors. One may simply think of this as placing the neurons in some locations in \(D\). When an input point \(P\) form \(D\) is fed into the network, one looks for a closest neuron, which becomes the \sphinxstylestrong{winner}, exactly as in the algorithm from section {\hyperref[\detokenize{docs/unsupervised:inn-sec}]{\sphinxcrossref{\DUrole{std,std-ref}{Interpretation via neural networks}}}}. However, here comes an important differeence: Not only the winner is attracted a bit towards \(P\), but also its neighbors, to a lesser and lesser extent the farther they are from the winner.
 
-\begin{sphinxadmonition}{note}{Winner\sphinxhyphen{}take most strategy}
+\begin{sphinxadmonition}{note}{Winner\sphinxhyphen{}take\sphinxhyphen{}most strategy}
 
 \sphinxAtStartPar
 Kohonen’s algorithm involves the “winner take most” strategy, where not only the winner neuron is updated (as in the winner\sphinxhyphen{}take\sphinxhyphen{}all case), but also its neighbors. The neighbors update is strongest for the nearest neighbors, and gradually weakens with the distance from the winner.
@@ -4196,7 +4186,7 @@ Kohonen’s algorithm involves the “winner take most” strategy, where not on
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Initialize (for instance randomly) \(n\)\sphinxhyphen{}dimensional weights \(w_i\) for all the \(m\) neurons. Set an initial neighborhood radius \( \delta \) and the learning speed \( \varepsilon \).
+Initialize (for instance randomly) \(n\)\sphinxhyphen{}dimensional weights \(w_i\), \(i-1,\dots,m\) for all the \(m\) neurons in the grid. Set an initial neighborhood radius \( \delta \) and an initial learning speed \( \varepsilon \).
 
 \item {} 
 \sphinxAtStartPar
@@ -4208,7 +4198,7 @@ Find the \( \bar {l} \) neuron (the winner) for which the distance from \(P\) is
 
 \item {} 
 \sphinxAtStartPar
-The weights of the winner and its neighbors are updated according to the \sphinxstylestrong{winner take most} recipe:
+The weights of the winner and its neighbors are updated according to the \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}most} recipe:
 
 \end{enumerate}
 \begin{equation*}
@@ -4228,13 +4218,13 @@ Repeat from \(1.\) in rounds, until a satisfactory result is obtained or the max
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-The way the reduction of \( \varepsilon \) and \( \delta \) is done is important for the desired outcome of the algorithm (see homework problems).
+The way the reduction of \( \varepsilon \) and \( \delta \) is done is very important for the desired outcome of the algorithm (see exercises).
 
 
-\section{Mapping of a 1\sphinxhyphen{}dim. network of neurons into 2\sphinxhyphen{}dim. data}
-\label{\detokenize{docs/som:mapping-of-a-1-dim-network-of-neurons-into-2-dim-data}}
+\subsection{2\sphinxhyphen{}dim. data and 1\sphinxhyphen{}dim. neuron grid}
+\label{\detokenize{docs/som:dim-data-and-1-dim-neuron-grid}}
 \sphinxAtStartPar
-Let us see how the procedure works on a simple example. We will map a grid of \sphinxstylestrong{num} neurons into (our favorite!) circle. So we have here the reduction of dimensions: \(n=2\), \(k=1\).
+Let us see how the procedure works on a simple example. We map a grid of \sphinxstylestrong{num} neurons into (our favorite!) circle. So we have here the reduction of dimensions: \(n=2\), \(k=1\).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{100} \PYG{c+c1}{\PYGZsh{} number of neurons}
@@ -4249,29 +4239,21 @@ The proximity function
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-looks like this around \(k=50\) and for the width parameter \(\delta=5\):
+looks as follows around \(k=50\) and for the width parameter \(\delta=5\):
 
-\noindent\sphinxincludegraphics{{som_17_0}.png}
+\noindent\sphinxincludegraphics{{som_16_0}.png}
 
 \sphinxAtStartPar
-At \(|k-i|=\delta\) it drops to \(~60\%\) of the central value, and at \(|k-i|=3\delta\) to \(~1\%\), a tiny fraction. Hence \(\delta\) controls the size of the neighborhood of the winner. The neuron farther away from the winner than \(3\delta\) are practically left unupdated.
+As a feature of the Gaussian, at \(|k-i|=\delta\) it drops to \(~60\%\) of the central value, and at \(|k-i|=3\delta\) to \(~1\%\), a tiny fraction. Hence \(\delta\) controls the size of the neighborhood of the winner. The neuron farther away from the winner than \(3\delta\) are practically left unupdated.
+
+\sphinxAtStartPar
+We initiate the network by by placing the grid on the plane (on the square \([0,1]\times [0,1]\)), with a random location of each neuron. The line is drawn to guide the eye along the neuron indices: \(1,2,3,\dots m\),  which are chaotically distributed.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{W}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{point\PYGZus{}c}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random initialization of weights}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Initial mapping}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)} 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{W}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{W}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mf}{0.7}\PYG{p}{)}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}1\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}    
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_19_0}.png}
+\noindent\sphinxincludegraphics{{som_20_0}.png}
 
 \sphinxAtStartPar
 The line connects the subsequent neurons … They are chaotically scattered around the region.
@@ -4279,230 +4261,246 @@ The line connects the subsequent neurons … They are chaotically scattered arou
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}   \PYG{c+c1}{\PYGZsh{} initial learning speed (0.5)}
 \PYG{n}{de} \PYG{o}{=} \PYG{l+m+mi}{10}  \PYG{c+c1}{\PYGZsh{} initial neighborhood distance (10)}
+\PYG{n}{ste}\PYG{o}{=}\PYG{l+m+mi}{0}    \PYG{c+c1}{\PYGZsh{} inital number of caried out steps}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} Kohonen\PYGZsq{}s algorithm}
-\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
-    \PYG{n}{eps}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{l+m+mf}{.98} \PYG{c+c1}{\PYGZsh{} learning speed drops}
-    \PYG{n}{de}\PYG{o}{=}\PYG{n}{de}\PYG{o}{*}\PYG{l+m+mf}{.95}   \PYG{c+c1}{\PYGZsh{} and so does the neighborhood distance}
-    \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} loop over points}
+\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{l+m+mf}{.98}      \PYG{c+c1}{\PYGZsh{} dicrease learning speed}
+    \PYG{n}{de}\PYG{o}{=}\PYG{n}{de}\PYG{o}{*}\PYG{l+m+mf}{.95}        \PYG{c+c1}{\PYGZsh{} ... and the neighborhood distance}
+    \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} loop over points}
         \PYG{n}{p}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{point\PYGZus{}c}\PYG{p}{(}\PYG{p}{)}        \PYG{c+c1}{\PYGZsh{} random point}
+        \PYG{n}{ste}\PYG{o}{=}\PYG{n}{ste}\PYG{o}{+}\PYG{l+m+mi}{1}               \PYG{c+c1}{\PYGZsh{} steps}
         \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{W}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}\PYG{p}{]} 
-         \PYG{c+c1}{\PYGZsh{} array of Euclidean disances from the neuron locations}
-\PYG{c+c1}{\PYGZsh{}        print(np.round(dist,3))}
+         \PYG{c+c1}{\PYGZsh{} array of squares of Euclidean disances between p and the neuron locations}
         \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} index of the winner}
-\PYG{c+c1}{\PYGZsh{}        print(ind\PYGZus{}min)}
-        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}\PYG{p}{:} 
+        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} for all the neurons}
             \PYG{n}{W}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{n}{phi}\PYG{p}{(}\PYG{n}{ind\PYGZus{}min}\PYG{p}{,}\PYG{n}{k}\PYG{p}{,}\PYG{n}{de}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{W}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{)} 
-             \PYG{c+c1}{\PYGZsh{} update of the neuron locations}
+             \PYG{c+c1}{\PYGZsh{} update of the neuron locations (weights), depending on proximity}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_23_0}.png}
+\sphinxAtStartPar
+As the algorith progresses (see \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}) the neuron grid first “straightens up”, and then gradually fills the whole space \(D\) (circle) in such a way that the neurons with adjacent indices are located close to each other.
+Figuratively speaking, a new point \(x\) attracts towerds itself the nearest neuron (the winner), and to a weaker extent its neighbors. At the beginning of the algorithm the neighborhood distance \sphinxstylestrong{de} is large, so large chunks of the nighboring point in input grid are pulled together, and the arrangement looks as the top right corner of \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}. At later stages \sphinxstylestrong{de} is smaller, so only the winner and possibly its immediate neighbors are attracted to a new point.
+After completion, individual neurons “specialize” (are close to) in a certain data area.
 
 \sphinxAtStartPar
-Figuratively speaking, the point \( x \) attracts the nearest neuron and (to a weaker extent) its neighbors. After several learning steps, individual neurons “specialize” (are close to) in a certain data area. It is the key feature that is responsible for the above\sphinxhyphen{}mentioned preservation of topology.
+In the present example, after about 20000 steps the result practically stops to change.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=800\sphinxpxdimen]{{kaall}.png}
+\caption{Progress of Kohonen’s algorithm. The line, drawn to guide the eye, connects neurons with adjaceny indices.}\label{\detokenize{docs/som:kohstory-fig}}\end{figure}
+
+\begin{sphinxadmonition}{note}{Kohonen network as a classifier}
 
 \sphinxAtStartPar
-The above visualization draws the neurons in the input space that serves as the “background” here.
+Having the trained network, we may use it as classifier similarly as in chapter \{\textbackslash{}ref\}\sphinxcode{\sphinxupquote{un\sphinxhyphen{}lab}}. We label a point from \(D\) with the index of the nearest neuron.
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
-We can also look at the mapping from the “point of view” of the neurons:
+The plots in \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}} are plotted in coordinates \((x_1,x_2)\), that is, from the “point of view” of the \(D\)\sphinxhyphen{}space. One may also look at the result from the point of view of the \(N\)\sphinxhyphen{}space, i.e. plot \(x_1\) and \(x_2\) as functions of the neuron index \(i\):
+
+\noindent\sphinxincludegraphics{{som_30_0}.png}
+
+\sphinxAtStartPar
+We note that the jumps in the above plotted curves are small. This can be seen quntitatively in the histogram below, where the average distance is about 0.07.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{i}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{end}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-    \PYG{k}{if} \PYG{n}{i}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
-        \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
-    \PYG{k}{else}\PYG{p}{:}
-        \PYG{n+nb}{print}\PYG{p}{(}\PYG{p}{)}
-        
-\PYG{c+c1}{\PYGZsh{} N \PYGZhy{}\PYGZgt{} D  \PYGZhy{} our function      }
-        
-\PYG{c+c1}{\PYGZsh{} i   x   y    distance from neuron (i\PYGZhy{}1)}
+\PYG{n}{dd}\PYG{o}{=}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{W}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{num}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}
+        \PYG{c+c1}{\PYGZsh{} array of distances between subsequent neurons in the grid}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.8}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{distance}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{distribution}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{hist}\PYG{p}{(}\PYG{n}{dd}\PYG{p}{,} \PYG{n}{bins}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{density}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{;}   \PYG{c+c1}{\PYGZsh{} histogram}
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-  0 0.503 0.304 
-  1 0.507 0.33 0.026
-  2 0.545 0.36 0.048
-  3 0.591 0.398 0.06
-  4 0.597 0.423 0.025
-  5 0.555 0.423 0.042
-  6 0.51 0.42 0.045
-  7 0.496 0.464 0.046
-  8 0.504 0.525 0.062
-  9 0.515 0.566 0.042
-\end{sphinxVerbatim}
+\noindent\sphinxincludegraphics{{som_32_0}.png}
 
-
-\subsection{Remarks:}
-\label{\detokenize{docs/som:remarks}}\begin{itemize}
+\begin{sphinxadmonition}{note}{Remarks}
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstylestrong{Dimensional reduction}! We obtain a situation in which the data space with the dimension \( n \) (here \( n = 2 \)) is “sampled” by a discrete set of neurons with a \(k\)\sphinxhyphen{}dimensional index (here \( k = 1 <n \)).
+We took a situation in which the data space with the dimension \(n = 2\) is “sampled” by a discrete set of neurons forming  \(k=1\)\sphinxhyphen{}dimensional grid. Hence we have dimensional reduction.
 
 \item {} 
 \sphinxAtStartPar
-The effect of the algorithm is the creation of a network in which a given neuron “focuses” on data from its vicinity. In a general case where the data are non\sphinxhyphen{}uniformly distributed, the neurons would fill the area with more data more densely, because the data points “attract” the neurons.
+The outcome of the algorithm is a network in which a given neuron “focuses” on data from its vicinity. In a general case where the data are non\sphinxhyphen{}uniformly distributed, the neurons would fill the area containing more data more densely.
 
 \item {} 
 \sphinxAtStartPar
-The lines in the above figure are “to guide the eye” to the next neuron, \( 1,2, ..., m \), they do not mean any connection (!)
+The fact that there are no line intersections is a manifestation of topological features, discussed in detail below.
 
 \item {} 
 \sphinxAtStartPar
-We see a similar behavior to the construction of the so\sphinxhyphen{}called Peano curve in mathematics, which fills an area with a line.
+The policy of choosing initial \(\delta\) and \(\varepsilon \) parameters and reducing them appropriately in subsequent rounds is based on experience and non\sphinxhyphen{}trivial.
 
 \item {} 
 \sphinxAtStartPar
-The distances between successive neurons are similar, see the table above.
+The final result is not unequivocal, i.e. running the algorithm with a different initialization of the weights (positions of neurons) yields a different outcome, equally “good”.
 
 \item {} 
 \sphinxAtStartPar
-There cannot be line intersections (!), as this would be against the topological condition. The close points in the data space would then correspond to distant neurons.
-
-\item {} 
-\sphinxAtStartPar
-The policy of choosing \( \delta \) and \( \varepsilon \) parameters and reducing them in the following rounds based on experience and non\sphinxhyphen{}trivial.
+Finally, the progress and result of the algorithm is reminiscent of the construction of the \sphinxhref{https://en.wikipedia.org/wiki/Peano\_curve}{Peano curve} in mathematics, which fills an area with a line.
 
 \end{itemize}
+\end{sphinxadmonition}
+
+
+\subsection{2 dim. color map}
+\label{\detokenize{docs/som:dim-color-map}}
+\sphinxAtStartPar
+Now we come a case of 3\sphinxhyphen{}dim. data and 2\sphinxhyphen{}dim. neuron grid, which is a situation from the right panel of \hyperref[\detokenize{docs/som:koh-fig}]{Fig.\@ \ref{\detokenize{docs/som:koh-fig}}}. An RGB color is described with three numbers from \([0,1]\), so it can nicely serve as input in our example.
 
 \sphinxAtStartPar
-\sphinxstylestrong{The fact that you can achieve topological behavior with as simple a recipe as the winner\sphinxhyphen{}take\sphinxhyphen{}the\sphinxhyphen{}majority strategy in unsupervised learning is fascinating.}
-
-\sphinxAtStartPar
-Run the above with different parameters and for a different data area
-
-\sphinxAtStartPar
-Basic SOM functionality:
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-\sphinxAtStartPar
-Learning (in an unsupervised way)
-
-\item {} 
-\sphinxAtStartPar
-Using as a classifier
-
-\end{enumerate}
-
-
-\section{Color map}
-\label{\detokenize{docs/som:color-map}}
-\sphinxAtStartPar
-Now an example of mapping a two\sphinxhyphen{}dimensional neuron array into 3\sphinxhyphen{}dimensional data
+The distance squared between two colors (this is just a distance between two points in the 3\sphinxhyphen{}dim. space) is taken in the Euclidean form
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{dist3}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{n}{p2}\PYG{p}{)}\PYG{p}{:} 
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Square of the Euclidean distance between points p1 and p2}
+\PYG{l+s+sd}{    in 3 dimensions.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{def} \PYG{n+nf}{phi2}\PYG{p}{(}\PYG{n}{ix}\PYG{p}{,}\PYG{n}{iy}\PYG{p}{,}\PYG{n}{kx}\PYG{p}{,}\PYG{n}{ky}\PYG{p}{,}\PYG{n}{d}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} Gaussian in 2D}
-    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{p}{(}\PYG{n}{ix}\PYG{o}{\PYGZhy{}}\PYG{n}{kx}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{iy}\PYG{o}{\PYGZhy{}}\PYG{n}{ky}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{d}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)} 
+\PYG{k}{def} \PYG{n+nf}{phi2}\PYG{p}{(}\PYG{n}{ix}\PYG{p}{,}\PYG{n}{iy}\PYG{p}{,}\PYG{n}{kx}\PYG{p}{,}\PYG{n}{ky}\PYG{p}{,}\PYG{n}{d}\PYG{p}{)}\PYG{p}{:}  \PYG{c+c1}{\PYGZsh{} proximity function for 2\PYGZhy{}dim. grid}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{p}{(}\PYG{n}{ix}\PYG{o}{\PYGZhy{}}\PYG{n}{kx}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{iy}\PYG{o}{\PYGZhy{}}\PYG{n}{ky}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{d}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Gaussian}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ns}\PYG{o}{=}\PYG{l+m+mi}{30}  \PYG{c+c1}{\PYGZsh{} run also for 3, 4, 5, 30, 500}
-\PYG{c+c1}{\PYGZsh{} random sample of ns colors}
+\PYG{k}{def} \PYG{n+nf}{rgbn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{r}\PYG{p}{,}\PYG{n}{g}\PYG{p}{,}\PYG{n}{b}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{norm}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{r}\PYG{o}{*}\PYG{n}{r}\PYG{o}{+}\PYG{n}{g}\PYG{o}{*}\PYG{n}{g}\PYG{o}{+}\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{r}\PYG{p}{,}\PYG{n}{g}\PYG{p}{,}\PYG{n}{b}\PYG{p}{]}\PYG{o}{/}\PYG{n}{norm}\PYG{p}{)}
+\end{sphinxVerbatim}
 
-\PYG{n}{samp}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{rgbn}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
 
-\PYG{c+c1}{\PYGZsh{}samp=[[np.random.random(),0,0] for \PYGZus{} in range(ns)] \PYGZsh{} one color}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+array([0.1234176 , 0.55504897, 0.82261093])
+\end{sphinxVerbatim}
 
-\PYG{c+c1}{\PYGZsh{} RGB}
-\PYG{c+c1}{\PYGZsh{} samp=[[1,0,0],[0,1,0],[0,0,1]]}
+\sphinxAtStartPar
+Next, we generate a sample of \sphinxstylestrong{ns} points with RGB colors:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ns}\PYG{o}{=}\PYG{l+m+mi}{40}  \PYG{c+c1}{\PYGZsh{} number of colors in the sample}
+
+\PYG{n}{samp}\PYG{o}{=}\PYG{p}{[}\PYG{n}{rgbn}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]}
+       \PYG{c+c1}{\PYGZsh{} random sample}
 
 \PYG{n}{pls}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Color sample}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)} 
-
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{o}{/}\PYG{n}{ns}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{25000}\PYG{o}{/}\PYG{n}{ns}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;} 
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{:} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_34_0}.png}
-
-\noindent\sphinxincludegraphics{{som_35_0}.png}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}   
-\PYG{n}{de} \PYG{o}{=} \PYG{l+m+mi}{7}  \PYG{c+c1}{\PYGZsh{} (25 for small samples, 1 for bigger)}
-\PYG{n}{rep}\PYG{o}{=} \PYG{l+m+mi}{1}   \PYG{c+c1}{\PYGZsh{} repeats without changing eps and de (4,1)}
-\end{sphinxVerbatim}
+\noindent\sphinxincludegraphics{{som_41_0}.png}
 
 \sphinxAtStartPar
-Do step by step
+We use \sphinxstylestrong{size} x \sphinxstylestrong{size} grid of neurons. Each neuron’s position (color, or weight) in the 3\sphinxhyphen{}dim. space is initialized randomly:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{:}  \PYG{c+c1}{\PYGZsh{} rounds}
+\PYG{n}{size}\PYG{o}{=}\PYG{l+m+mi}{40}  \PYG{c+c1}{\PYGZsh{} neuron array of size x size (40 x 40)}
+
+\PYG{n}{tab}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{size}\PYG{p}{,}\PYG{n}{size}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)} 
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}          \PYG{c+c1}{\PYGZsh{} i index in the grid    }
+    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} j index in the grid}
+        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{:}     \PYG{c+c1}{\PYGZsh{} RGB: 0\PYGZhy{}red, 1\PYGZhy{}green, 2\PYGZhy{}blue}
+            \PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{k}\PYG{p}{]}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random number form [0,1]}
+            \PYG{c+c1}{\PYGZsh{} 3 RGB components for neuron in the grid positin (i,j)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{som_44_0}.png}
+
+\sphinxAtStartPar
+Now we are ready to run Kohonen’s algorithm:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}   \PYG{c+c1}{\PYGZsh{} initial parameters}
+\PYG{n}{de} \PYG{o}{=} \PYG{l+m+mi}{20}   
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{:}    \PYG{c+c1}{\PYGZsh{} rounds}
     \PYG{n}{eps}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{l+m+mf}{.99}      
     \PYG{n}{de}\PYG{o}{=}\PYG{n}{de}\PYG{o}{*}\PYG{l+m+mf}{.96}        
-    \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{rep}\PYG{p}{)}\PYG{p}{:}    
-        \PYG{k}{for} \PYG{n}{s} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} loop over the data sample       }
-\PYG{c+c1}{\PYGZsh{}            p=[np.random.random(),np.random.random(),np.random.random()] \PYGZsh{} random RGB}
-            \PYG{n}{p}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{s}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} poin of the sample}
-            \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{dist3}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{]} 
-                \PYG{c+c1}{\PYGZsh{} distance in color to all neurons}
-            \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} winner index}
-            \PYG{n}{ind\PYGZus{}x}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{/}\PYG{o}{/}\PYG{n}{size}       \PYG{c+c1}{\PYGZsh{} a trick to get a 2\PYGZhy{}dim index}
-            \PYG{n}{ind\PYGZus{}y}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{\PYGZpc{}}\PYG{k}{size}
-\PYG{c+c1}{\PYGZsh{}            print(dist)}
-\PYG{c+c1}{\PYGZsh{}            print(ind\PYGZus{}x, ind\PYGZus{}y, dist[ind\PYGZus{}x][ind\PYGZus{}y], tab[ind\PYGZus{}x][ind\PYGZus{}y])}
+    \PYG{k}{for} \PYG{n}{s} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} loop over the points in the data sample       }
+        \PYG{n}{p}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{s}\PYG{p}{]}       \PYG{c+c1}{\PYGZsh{} point from the sample}
+\PYG{c+c1}{\PYGZsh{}        p=[np.random.random() for \PYGZus{} in range(3)]}
+        \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{dist3}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{]} 
+                        \PYG{c+c1}{\PYGZsh{} distance to all neurons}
+        \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} the winner index}
+        \PYG{n}{ind\PYGZus{}x}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{/}\PYG{o}{/}\PYG{n}{size}       \PYG{c+c1}{\PYGZsh{} a trick to get a 2\PYGZhy{}dim index}
+        \PYG{n}{ind\PYGZus{}y}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{\PYGZpc{}}\PYG{k}{size}
 
-            \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:} 
-                \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}
-                    \PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{n}{phi2}\PYG{p}{(}\PYG{n}{ind\PYGZus{}x}\PYG{p}{,}\PYG{n}{ind\PYGZus{}y}\PYG{p}{,}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{de}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)} 
-                      \PYG{c+c1}{\PYGZsh{} update}
-         
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:} 
+            \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}
+                \PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{n}{phi2}\PYG{p}{(}\PYG{n}{ind\PYGZus{}x}\PYG{p}{,}\PYG{n}{ind\PYGZus{}y}\PYG{p}{,}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{de}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} update         }
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_39_0}.png}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{eps}\PYG{p}{,}\PYG{n}{de}
+\end{sphinxVerbatim}
 
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+(0.18301617063661463, 0.33740638717699184)
+\end{sphinxVerbatim}
 
-\subsection{Comments}
-\label{\detokenize{docs/som:comments}}\begin{itemize}
-\item {} 
 \sphinxAtStartPar
-The algorithm divides the data into clusters in the sense that close data points are mapped to nearby neurons.
+As a result we get an arrangement of our color sample in two dimensions in such a way that the neighboring areas have a similar color:
 
-\item {} 
-\sphinxAtStartPar
-The final result is not unequivocal, i.e. running the algorithm with a different initialization of the weights gives a different division, equally “good”.
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Kohonen color map}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)} 
 
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}i\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}j\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{som_50_0}.png}
+
+\begin{sphinxadmonition}{note}{Remarks}
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 The areas for the individual colors of the sample have a comparable area. Generally, the area is proportional to the sample size.
 
 \item {} 
 \sphinxAtStartPar
-To get sharper boundaries between regions, de has to shrink faster than eps. Then, in the final stage of learning, the neural adaptation process takes place for small neighborhood distances.
-
-\item {} 
-\sphinxAtStartPar
-It makes no sense to consider the case when the dimension of the neural network is greater than the dimension of the data.
+To get sharper boundaries between regions, de has to shrink faster than eps. Then, in the final stage of learning, the neuron update process takes place with small neighborhood radius.
 
 \end{itemize}
-
-\sphinxAtStartPar
-First show the U matrix below. Then go back and run for different de values and for different sample sizes, and also for an infinite sample and for a single color.
+\end{sphinxadmonition}
 
 
 \section{Unified distance matrix}
 \label{\detokenize{docs/som:unified-distance-matrix}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{siz}\PYG{o}{=}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} 
+\sphinxAtStartPar
+A way to present the results of the Kohonen algorithm as via the \sphinxstylestrong{unified distance matrix}.
 
-\PYG{n}{ta}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{,}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{)}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{udm}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{n}{sc}\PYG{o}{=}\PYG{l+m+mf}{0.25}
 
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{:}
-        \PYG{n}{ta}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{n}{sc}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{udm}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{n}{sc}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}
                             \PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}
                             \PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}
                             \PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
@@ -4510,43 +4508,40 @@ First show the U matrix below. Then go back and run for different de values and 
         
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{U\PYGZhy{}matrix}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)} 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{)}
 
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{:}
-    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{:}
-        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{o}{/}\PYG{n}{siz}\PYG{p}{,}\PYG{n}{j}\PYG{o}{/}\PYG{n}{siz}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ta}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)} 
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{udm}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)} 
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}y\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}i\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}j\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_44_0}.png}
+\noindent\sphinxincludegraphics{{som_54_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 \PYG{n}{axes1} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{add\PYGZus{}subplot}\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{p}{,} \PYG{n}{projection}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{3d}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{n}{projection}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{3d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 
-\PYG{n}{xx\PYGZus{}1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{1.}\PYG{o}{/}\PYG{n}{siz}\PYG{p}{)}
-\PYG{n}{xx\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{1.}\PYG{o}{/}\PYG{n}{siz}\PYG{p}{)}
+\PYG{n}{xx\PYGZus{}1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{1.}\PYG{o}{/}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{xx\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{1.}\PYG{o}{/}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{n}{x\PYGZus{}1}\PYG{p}{,} \PYG{n}{x\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{xx\PYGZus{}1}\PYG{p}{,} \PYG{n}{xx\PYGZus{}2}\PYG{p}{)}
 
-\PYG{n}{Z}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{n}{ta}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{siz}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{Z}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{n}{udm}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
 
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}zlim}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mf}{.5}\PYG{p}{)}
 
 \PYG{n}{ax}\PYG{o}{.}\PYG{n}{plot\PYGZus{}surface}\PYG{p}{(}\PYG{n}{x\PYGZus{}1}\PYG{p}{,}\PYG{n}{x\PYGZus{}2}\PYG{p}{,} \PYG{n}{Z}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{n}{cm}\PYG{o}{.}\PYG{n}{gray}\PYG{p}{)}
 
-\PYG{c+c1}{\PYGZsh{} plt.axis(\PYGZsq{}off\PYGZsq{})}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}y\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}i\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}j\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{U\PYGZhy{}matrix}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_45_0}.png}
+\noindent\sphinxincludegraphics{{som_55_0}.png}
 
 \sphinxAtStartPar
 Distance map for a given (new) data point (i.e. using a classifier)
@@ -4562,7 +4557,7 @@ Distance map for a given (new) data point (i.e. using a classifier)
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{nd}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{5000}\PYG{p}{)}\PYG{p}{;} 
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_48_0}.png}
+\noindent\sphinxincludegraphics{{som_58_0}.png}
 
 \sphinxAtStartPar
 Classification of the point according to the previously obtained map
@@ -4581,69 +4576,57 @@ Classification of the point according to the previously obtained map
 
 \PYG{n}{da}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{tad}\PYG{p}{[}\PYG{n}{in\PYGZus{}x}\PYG{p}{]}\PYG{p}{[}\PYG{n}{in\PYGZus{}y}\PYG{p}{]}\PYG{p}{)}
 
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Closest neuron coordinates: (}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{in\PYGZus{}x}\PYG{o}{/}\PYG{n}{size}\PYG{p}{,}\PYG{n}{in\PYGZus{}y}\PYG{o}{/}\PYG{n}{size}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{)}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Closest neuron grid coordinates: (}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{in\PYGZus{}x}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{in\PYGZus{}y}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{)}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Distance: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{da}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Closest neuron coordinates: ( 0.575 0.55 )
-Distance:  0.118
+Closest neuron grid coordinates: ( 0 , 20 )
+Distance:  0.213
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_51_0}.png}
-
-\sphinxAtStartPar
-Comment
-
-\sphinxAtStartPar
-We have a classifier that assigns a position in a space with a reduced number of dimensions.
+\noindent\sphinxincludegraphics{{som_61_0}.png}
 
 
-\section{Mapping colors on a line}
+\subsection{Mapping colors on a line}
 \label{\detokenize{docs/som:mapping-colors-on-a-line}}
 \sphinxAtStartPar
 Reduction of three dimensions into one
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ns}\PYG{o}{=}\PYG{l+m+mi}{5}  \PYG{c+c1}{\PYGZsh{} do for 3, 4, 5}
+\PYG{n}{ns}\PYG{o}{=}\PYG{l+m+mi}{8}
 \PYG{c+c1}{\PYGZsh{} random sample}
 \PYG{n}{samp}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]}
 
-\PYG{c+c1}{\PYGZsh{} RGB}
-\PYG{c+c1}{\PYGZsh{} samp=[[1,0,0],[0,1,0],[0,0,1]]}
-
-\PYG{n}{fig1}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Sample colors}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)} 
 
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 
 \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{o}{/}\PYG{n}{ns}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{25000}\PYG{o}{/}\PYG{n}{ns}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{n}{samp}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{400}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_56_0}.png}
+\noindent\sphinxincludegraphics{{som_64_0}.png}
 
-\noindent\sphinxincludegraphics{{som_57_0}.png}
+\noindent\sphinxincludegraphics{{som_65_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}    
 \PYG{n}{de} \PYG{o}{=} \PYG{l+m+mi}{20}   
-\PYG{n}{rep}\PYG{o}{=} \PYG{l+m+mi}{1}    
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_59_0}.png}
+\noindent\sphinxincludegraphics{{som_68_0}.png}
 
 \sphinxAtStartPar
 Smooth transition between colors.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{si2}\PYG{o}{=}\PYG{n}{si}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+\PYG{n}{xr}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{si}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
 
-\PYG{n}{xr}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{si2}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{ta2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{si}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
 
-\PYG{n}{ta2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{si2}\PYG{p}{)}
-
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{si2}\PYG{p}{)}\PYG{p}{:}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{si}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{ta2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{dist3}\PYG{p}{(}\PYG{n}{tab2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{tab2}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
         
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{3.2}\PYG{p}{,}\PYG{l+m+mf}{3.2}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
@@ -4651,11 +4634,11 @@ Smooth transition between colors.
 
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{xr}\PYG{p}{,}\PYG{n}{ta2}\PYG{p}{)} 
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{neuron number}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{distance from neighbor}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{neuron index}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{distance between neighbors}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_61_0}.png}
+\noindent\sphinxincludegraphics{{som_70_0}.png}
 
 \sphinxAtStartPar
 The minima correspond to the individual colors of the sample. The height of the separating peaks shows how much the colors differ.
@@ -4664,8 +4647,19 @@ The minima correspond to the individual colors of the sample. The height of the 
 The most similar colors are not necessarily adjacent. The behavior depends on the value of the de parameter.
 
 
-\section{Mapping two\sphinxhyphen{}dimensional data into a two\sphinxhyphen{}dimensional network}
-\label{\detokenize{docs/som:mapping-two-dimensional-data-into-a-two-dimensional-network}}
+\subsection{Wikipedia articles’ similarity}
+\label{\detokenize{docs/som:wikipedia-articles-similarity}}
+\sphinxAtStartPar
+Reduction from very many parameters into 2. U\sphinxhyphen{}matrix.
+
+\noindent\sphinxincludegraphics{{som_75_0}.jpg}
+
+\sphinxAtStartPar
+{[}Wikipedia{]} Cartographical representation of a self\sphinxhyphen{}organizing map (U\sphinxhyphen{}Matrix) based on Wikipedia featured article data (word frequency). Distance is inversely proportional to similarity. The “mountains” are edges between clusters. The red lines are links between articles.
+
+
+\section{Mapping 2\sphinxhyphen{}dim. data in a 2\sphinxhyphen{}dim. network}
+\label{\detokenize{docs/som:mapping-2-dim-data-in-a-2-dim-network}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{point}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{x}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
@@ -4701,7 +4695,7 @@ The most similar colors are not necessarily adjacent. The behavior depends on th
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}    
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_67_0}.png}
+\noindent\sphinxincludegraphics{{som_80_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}   \PYG{c+c1}{\PYGZsh{} początkowa szybkość uczenia (0.5)}
@@ -4716,14 +4710,11 @@ The most similar colors are not necessarily adjacent. The behavior depends on th
     \PYG{n}{de}\PYG{o}{=}\PYG{n}{de}\PYG{o}{*}\PYG{l+m+mf}{.98}        \PYG{c+c1}{\PYGZsh{} promień sąsiedztwa też maleje }
     \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{rep}\PYG{p}{)}\PYG{p}{:}    \PYG{c+c1}{\PYGZsh{} powtórz bez uaktualniania eps i de}
         \PYG{n}{p}\PYG{o}{=}\PYG{n}{point}\PYG{p}{(}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} punkt próbki}
-\PYG{c+c1}{\PYGZsh{}        print(p)}
         \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{sam}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{o}{*}\PYG{n}{n}\PYG{p}{)}\PYG{p}{]} 
           \PYG{c+c1}{\PYGZsh{} tablica kwadratów euklidesowych odległości od p dla wsyzstkich neuronów}
         \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} wskaźnik zwycięzcy}
         \PYG{n}{ind\PYGZus{}i}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{\PYGZpc{}}\PYG{k}{n}
         \PYG{n}{ind\PYGZus{}j}\PYG{o}{=}\PYG{n}{ind\PYGZus{}min}\PYG{o}{/}\PYG{o}{/}\PYG{n}{n}       \PYG{c+c1}{\PYGZsh{} tak trzeba wyłowić wskaźnik dwuwymiarowy (!)}
-\PYG{c+c1}{\PYGZsh{}        print(dist)}
-\PYG{c+c1}{\PYGZsh{}        print(ind\PYGZus{}x, ind\PYGZus{}y, dist[ind\PYGZus{}x+n*ind\PYGZus{}y], sam[ind\PYGZus{}x+n*ind\PYGZus{}y])}
 
         \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:} 
             \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
@@ -4732,8 +4723,11 @@ The most similar colors are not necessarily adjacent. The behavior depends on th
    
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_70_0}.png}
+\noindent\sphinxincludegraphics{{som_83_0}.png}
 
+
+\section{Topological properties}
+\label{\detokenize{docs/som:topological-properties}}
 \sphinxAtStartPar
 The \( f \) mapping
 has the following \sphinxstylestrong{topological} property: if two neurons \( n_1 \) and \( n_2 \) are close to each other, then also \( d_1 = f (n_1) \) and \( d_2 = f (n_2) \) are close. As we will see, this allows for “transferring” of structures from the \( D \) data space to the \( N \) neuron space.
@@ -4749,17 +4743,6 @@ In this case, preserving the topology means that, for example, a retinal circle 
 
 \sphinxAtStartPar
 Mapping the retina into the visual area of the cerebral cortex
-
-
-\subsection{Wikipedia articles’ similarity}
-\label{\detokenize{docs/som:wikipedia-articles-similarity}}
-\sphinxAtStartPar
-Reduction from very many parameters into 2. U\sphinxhyphen{}matrix.
-
-\noindent\sphinxincludegraphics{{som_75_0}.jpg}
-
-\sphinxAtStartPar
-{[}Wikipedia{]} Cartographical representation of a self\sphinxhyphen{}organizing map (U\sphinxhyphen{}Matrix) based on Wikipedia featured article data (word frequency). Distance is inversely proportional to similarity. The “mountains” are edges between clusters. The red lines are links between articles.
 
 
 \section{Lateral inhibition}
@@ -4815,7 +4798,7 @@ i.e. attenuation is strongest for close neighbors and it decreases with distance
     
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_82_0}.png}
+\noindent\sphinxincludegraphics{{som_92_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{s} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{p}{(}\PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{n}{ns}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Lorentzian function}
@@ -4825,7 +4808,7 @@ i.e. attenuation is strongest for close neighbors and it decreases with distance
 \PYG{n}{y}\PYG{o}{=}\PYG{n}{y}\PYG{o}{/}\PYG{n}{y}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{]}                             \PYG{c+c1}{\PYGZsh{} normalization }
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_84_0}.png}
+\noindent\sphinxincludegraphics{{som_94_0}.png}
 
 \sphinxAtStartPar
 Pyramidal neurons

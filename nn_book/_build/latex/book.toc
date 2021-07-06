@@ -61,18 +61,17 @@
 \contentsline {subsection}{\numberline {9.4.2}Scalar product maximization}{86}{subsection.9.4.2}%
 \contentsline {chapter}{\numberline {10}Self Organizing Maps}{89}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{90}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Mapping of a 1\sphinxhyphen {}dim. network of neurons into 2\sphinxhyphen {}dim. data}{90}{section.10.2}%
-\contentsline {subsection}{\numberline {10.2.1}Remarks:}{93}{subsection.10.2.1}%
-\contentsline {section}{\numberline {10.3}Color map}{93}{section.10.3}%
-\contentsline {subsection}{\numberline {10.3.1}Comments}{95}{subsection.10.3.1}%
-\contentsline {section}{\numberline {10.4}Unified distance matrix}{95}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Mapping colors on a line}{98}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Mapping two\sphinxhyphen {}dimensional data into a two\sphinxhyphen {}dimensional network}{100}{section.10.6}%
-\contentsline {subsection}{\numberline {10.6.1}Wikipedia articles’ similarity}{102}{subsection.10.6.1}%
-\contentsline {section}{\numberline {10.7}Lateral inhibition}{102}{section.10.7}%
-\contentsline {chapter}{\numberline {11}Concluding remarks}{105}{chapter.11}%
-\contentsline {chapter}{\numberline {12}Appendix}{107}{chapter.12}%
-\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{107}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{107}{subsection.12.1.1}%
-\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{113}{subsection.12.1.2}%
-\contentsline {chapter}{Bibliography}{119}{chapter*.3}%
+\contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{90}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}2 dim. color map}{94}{subsection.10.1.2}%
+\contentsline {section}{\numberline {10.2}Unified distance matrix}{96}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Mapping colors on a line}{99}{subsection.10.2.1}%
+\contentsline {subsection}{\numberline {10.2.2}Wikipedia articles’ similarity}{101}{subsection.10.2.2}%
+\contentsline {section}{\numberline {10.3}Mapping 2\sphinxhyphen {}dim. data in a 2\sphinxhyphen {}dim. network}{101}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Topological properties}{103}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Lateral inhibition}{103}{section.10.5}%
+\contentsline {chapter}{\numberline {11}Concluding remarks}{107}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Appendix}{109}{chapter.12}%
+\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{109}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{109}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{115}{subsection.12.1.2}%
+\contentsline {chapter}{Bibliography}{121}{chapter*.3}%
