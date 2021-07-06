@@ -912,47 +912,47 @@ plt.xlabel('$i$',fontsize=11);
 
 # ## Lateral inhibition
 
-# In a last topic of these lectures, we return to the issue of how the competition for the "winner" is realized. Abobve, we habe just used the minimum (or maximum) functions, but ... external wizard, control unit - not there!
+# In a last topic of these lectures, we return to the issue of how the competition for the "winner" is realized in ANNs. Above, we have just used the minimum (or maximum, when the signal was extended to a hyperphere) functions, but this is embarrasingly outside of the framework. Such an insection of which neuron yields the strongest signal would require an "external wizard", or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons. 
 # 
-# Neurons in the same laye do talk to one another, and this allows for an arrangement of competition and a natural realization of the strategy winner-take-most
+# Actually, if the neurons in a layer "talk" to one another, we can have a contest. An architecture as in {numref}`lat-fig` allows for an arrangement of competition and a natural realization of the winner-take-most mechanism. 
 
 # :::{figure-md} lat-fig
 # 
-# <img src="images/lat2.png" width="170px">
+# <img src="images/lat3.png" width="220px">
 # 
-# Network with inter-neuron coupling used for modeling lateral inhibition.
+# Network with inter-neuron coupling used for modeling lateral inhibition. All the neurons are connected in both directions (lines without arrows). 
 # :::
 
+# Neuron number $i$ receives the signal $s_i = x w_i$, where $x$ is the input (the same for all the neurons), and $w_i$ is the weight. It produces an output $y_i$, but part of it is sent neuron $j$ as $F_{ji} y_i$, where $F_{ij}$ is the coupling strength (we assume $F_{ii}=0$ - no self coupling). Neuron $i$ also receives output from neuron $j$ in the form $F_{ij} y_j$. Summing over all the neurons yields
+# 
 # $$ 
-# y_i = s_i + \sum_{j\neq i} F_{ij} y_j.
+# y_i = s_i + \sum_{j\neq i} F_{ij} y_j, 
 # $$
 # 
-# $$
-# \sum_j (\delta_{ij}-F_{ij}) y_j = s_i , ~~~s_i = x w_i, ~~~ F_{ii}=0.
-# $$
+# which in the matrix notation becomes $ y = s + F y$, or $y(I-F)=s$, where $I$ is the identity matrix. Solving for $y$ gives
+
+# ```{math}
+# :label: eq-lat
 # 
-# $$ (I-F) y = s $$
-# 
-# $$ y= (I-F)^{-1} s $$
-# 
-# 
-# Coupling (damping) matrix:
-# 
-# We will take, for example
+# y= (I-F)^{-1} s.
+# ```
+
+# One needs to model appropriately the coupling matrix $F$. We take
 # 
 # $ F_ {ii} = $ 0,
 # 
 # $ F_ {ij} = - a \exp (- | i-j | / b) ~~ $ for $ i \neq j $, $ ~~ a, b> 0 $,
 # 
-# i.e. attenuation is strongest for close neighbors and it decreases with distance with a characteristic scale $b$.
+# i.e. assume attenuation (negative values), which is strongest for close neighbors and decreases with distance with a characteristic scale $b$. 
+# 
+# The Python implemetation is as follows:
 
-# In[41]:
+# In[477]:
 
 
 ns = 30;       # number of neurons
 b = 4;         # parameter controling the decrease of damping with distance
 a = 1;         # magnitude of damping
-eps = .1;      # coupling parameter
 
 F=np.array([[-a*np.exp(-np.abs(i-j)/b) for i in range(ns)] for j in range(ns)]) 
                     # exponential fall-off
@@ -962,7 +962,7 @@ for i in range(ns):
     
 
 
-# In[42]:
+# In[478]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
@@ -977,17 +977,29 @@ plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$F(i,15)$',fontsize=11);    
 
 
-# In[43]:
+# We assume a bell-shaped Lorentzian input signal $s$, with a maximum in the middle neuron. The width is controled with **D**.
+
+# In[481]:
 
 
-s = np.array([2**2/((i - ns/2)**2 + 2**2) for i in range(ns)]) # Lorentzian function
+D=2
+s = np.array([D**2/((i - ns/2)**2 + D**2) for i in range(ns)]) # Lorentzian function
+
+
+# 
+# and solve Eq. {ref}`eq-lat` via inverting the $(I-F)$ matrix:
+
+# In[482]:
+
 
 invF=np.linalg.inv(np.identity(ns)-F) # matrix inversion
 y=np.dot(invF,s)                      # multiplication
-y=y/y[15]                             # normalization 
+y=y/y[15]                             # normalization (inessential) 
 
 
-# In[44]:
+# What follows is quite remarkable: the output signal $y$ is much narrower form the input signal, which is a realization of the "winner-take-all" scenario. 
+
+# In[483]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
