@@ -133,6 +133,77 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
+# (vor_lab)=
+# ## [Voronoi areas](https://en.wikipedia.org/wiki/Voronoi_diagram)
+
+# Having the situation as in the figure above, i.e. some representative points present, we can divide the entire plane into areas according to the following Voronoi criterion, which is a simple geometric notion:
+# 
+# ```{admonition} Voronoi areas
+# :class: important
+# 
+# Consider point $P$ in a metric space, where we have a number representative points (also called the Voronoi points). The representative point $R$ closest to $P$ determines its category. All such points $P$ form a Voronoi area of $R$.
+# ```
+
+# Let us define the color of the point P in our plane as the color of the nearest representative point. For this we first need (the square of) a distance function (here: Euclidean) between two points in 2-dim. space:
+
+# In[ ]:
+
+
+def eucl(p1,p2): # square of the Euclidean distance
+    return (p1[0]-p2[0])**2+(p1[1]-p2[1])**2
+
+
+# Then we find the nearest representative point and determine its color:
+
+# In[ ]:
+
+
+def col_char(p):
+    dist=[eucl(p,rA),eucl(p,rB),eucl(p,rC),eucl(p,rD)]
+    ind_min = np.argmin(dist) # index of the nearest point
+    return col[ind_min]
+
+
+# In[ ]:
+
+
+# e.g.
+col_char([.5,.5])
+
+
+# The result is following, with straight-line boundaries between naighboring areas:
+
+# In[ ]:
+
+
+plt.figure(figsize=(3.2,3.2))
+plt.title("Voronoi areas",fontsize=11) 
+plt.xlim(-.1,1.1)
+plt.ylim(-.1,1.1)
+
+for x1 in np.linspace(0,1,70): # 70 points in x
+    for x2 in np.linspace(0,1,70): # 70 points in y
+        plt.scatter(x1,x2,c=col_char([x1,x2]), s=50, alpha=0.6, edgecolors='none')
+
+plt.scatter(samA[:,0],samA[:,1],c='black', s=20)
+plt.scatter(samB[:,0],samB[:,1],c='black', s=20)
+plt.scatter(samC[:,0],samC[:,1],c='black', s=20)
+plt.scatter(samD[:,0],samD[:,1],c='black', s=20)
+
+plt.scatter(rA[0],rA[1],c='black', s=150, alpha=.6)
+plt.scatter(rB[0],rB[1],c='black', s=150, alpha=.6)
+plt.scatter(rC[0],rC[1],c='black', s=150, alpha=.6)
+plt.scatter(rD[0],rD[1],c='black', s=150, alpha=.6)
+
+plt.xlabel('$x_1$',fontsize=18)
+plt.ylabel('$x_2$',fontsize=18);
+
+
+# ```{note}
+# 
+# A practical message here is that once we have the characteristic points, we can use Voronoi's criterion for classification of data
+# ```
+
 # ## Naive clusterization
 
 # Now the "real" botanist's problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points,

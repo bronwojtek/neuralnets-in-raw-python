@@ -239,6 +239,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#voronoi-areas">
+   Voronoi areas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#naive-clusterization">
    Naive clusterization
   </a>
@@ -377,6 +382,74 @@
 </div>
 </div>
 </div>
+<div class="section" id="voronoi-areas">
+<span id="vor-lab"></span><h2><a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi areas</a><a class="headerlink" href="#voronoi-areas" title="Permalink to this headline">¶</a></h2>
+<p>Having the situation as in the figure above, i.e. some representative points present, we can divide the entire plane into areas according to the following Voronoi criterion, which is a simple geometric notion:</p>
+<div class="important admonition">
+<p class="admonition-title">Voronoi areas</p>
+<p>Consider point <span class="math notranslate nohighlight">\(P\)</span> in a metric space, where we have a number representative points (also called the Voronoi points). The representative point <span class="math notranslate nohighlight">\(R\)</span> closest to <span class="math notranslate nohighlight">\(P\)</span> determines its category. All such points <span class="math notranslate nohighlight">\(P\)</span> form a Voronoi area of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</div>
+<p>Let us define the color of the point P in our plane as the color of the nearest representative point. For this we first need (the square of) a distance function (here: Euclidean) between two points in 2-dim. space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eucl</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span> <span class="c1"># square of the Euclidean distance</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we find the nearest representative point and determine its color:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">col_char</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">dist</span><span class="o">=</span><span class="p">[</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">rA</span><span class="p">),</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">rB</span><span class="p">),</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">rC</span><span class="p">),</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">rD</span><span class="p">)]</span>
+    <span class="n">ind_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="c1"># index of the nearest point</span>
+    <span class="k">return</span> <span class="n">col</span><span class="p">[</span><span class="n">ind_min</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># e.g.</span>
+<span class="n">col_char</span><span class="p">([</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is following, with straight-line boundaries between naighboring areas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Voronoi areas&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">70</span><span class="p">):</span> <span class="c1"># 70 points in x</span>
+    <span class="k">for</span> <span class="n">x2</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">70</span><span class="p">):</span> <span class="c1"># 70 points in y</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">col_char</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">]),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">samA</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">samA</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">samB</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">samB</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">samC</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">samC</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">samD</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">samD</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rA</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rA</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rB</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rB</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rC</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rC</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rD</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rD</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A practical message here is that once we have the characteristic points, we can use Voronoi’s criterion for classification of data</p>
+</div>
+</div>
 <div class="section" id="naive-clusterization">
 <h2>Naive clusterization<a class="headerlink" href="#naive-clusterization" title="Permalink to this headline">¶</a></h2>
 <p>Now the “real” botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points,</p>
@@ -459,7 +532,7 @@ rounds  location
 <p>We have decided a priori to have one category, and here is our plot of the result fot the characeristic point, indicated with a gray blob:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/unsupervised_27_0.png" src="../_images/unsupervised_27_0.png" />
+<img alt="../_images/unsupervised_37_0.png" src="../_images/unsupervised_37_0.png" />
 </div>
 </div>
 <p>Let us try to generalize the above algorithm for the case of several (<span class="math notranslate nohighlight">\( n_R&gt; \)</span> 1) representative points.</p>
@@ -530,7 +603,7 @@ rounds  locations
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/unsupervised_34_0.png" src="../_images/unsupervised_34_0.png" />
+<img alt="../_images/unsupervised_44_0.png" src="../_images/unsupervised_44_0.png" />
 </div>
 </div>
 <p>One of the characteristic poits “specializes” in the lower right cluster, and the other in the remaining three.</p>
@@ -656,7 +729,7 @@ dynamic clasterization algorithm presented above, i.e.</p>
 <p>We will now interpret the above unsupervised learning algorithm with the winner-take-all strategy in the neural network language.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/unsupervised_60_0.png" src="../_images/unsupervised_60_0.png" />
+<img alt="../_images/unsupervised_70_0.png" src="../_images/unsupervised_70_0.png" />
 </div>
 </div>
 <p>Our example network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point <span class="math notranslate nohighlight">\(\vec{R}^i\)</span>. The weights are the coordinates of <span class="math notranslate nohighlight">\(\vec{R}^i\)</span>. There is one node in the output layer. We note significant differences from the perceptron discussed earlier.</p>
@@ -695,7 +768,7 @@ w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. \]</div>
 <p>With the extension of the data to a hemisphere, the appropriate neural network can be viewed as follows:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/unsupervised_66_0.png" src="../_images/unsupervised_66_0.png" />
+<img alt="../_images/unsupervised_76_0.png" src="../_images/unsupervised_76_0.png" />
 </div>
 </div>
 <p>Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in the artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest.</p>
@@ -766,7 +839,7 @@ w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. \]</div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/unsupervised_72_0.png" src="../_images/unsupervised_72_0.png" />
+<img alt="../_images/unsupervised_82_0.png" src="../_images/unsupervised_82_0.png" />
 </div>
 </div>
 <p>We can see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. <a class="reference internal" href="#dyn-fig"><span class="std std-numref">Fig. 13</span></a>.</p>

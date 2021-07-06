@@ -78,7 +78,7 @@ def dsoftplus(s):
 
 def eucl(p1,p2): # square of the Euclidean distance
     """
-    Squqre of Euclidean distance between to points in 2-dim. space
+    Square of Euclidean distance between to points in 2-dim. space
     
     input: p1, p1 - arrays in the format [x1,x2]
     return: square of Euclidean distance

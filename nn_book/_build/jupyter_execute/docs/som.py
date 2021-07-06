@@ -3,14 +3,13 @@
 
 # # Self Organizing Maps
 
-# In[1]:
+# In[133]:
 
 
 import numpy as np
 
 # graphics
 import matplotlib.pyplot as plt
-# import matplotlib as mpl
 from IPython.display import display, Image
 
 # contour plots 
@@ -25,7 +24,13 @@ sys.path.append('./lib_nn') # my path (linux, Mac OS)
 from neural import * # import my library packages
 
 
-# A very important and ingenious application of unsupervised learning are the so-called **Kohonen nets** ([Teuvo Kohonen](https://en.wikipedia.org/wiki/Teuvo_Kohonen), i.e. **self-organizing mappings (SOM)**. Consider a mapping between a set of $n$-dimensional input data $D$ (continuous or discrete) and a **discrete** $k$-dimensional set (**grid**) of neurons. Since $N$ is descrete, each neuron carrries an index consisting of $k$ natural numbers, denoted as $\bar {i} = (i_1, i_2, ..., i_k)$. Typically, the dimensions satisfy $n \ge k$. When $n > k$, one talks about **reduction of dimensionality**, as the input space $D$ has more dimensions than the grid of neurons. 
+# A very important and ingenious application of unsupervised learning are the so-called **Kohonen nets** ([Teuvo Kohonen](https://en.wikipedia.org/wiki/Teuvo_Kohonen), i.e. **self-organizing mappings (SOM)**. Consider a mapping $f$ between a **discrete** $k$-dimensional set (**grid**) of neurons and $n$-dimensional input data $D$ (continuous or discrete), 
+# 
+# $$
+# f: N \to D.
+# $$
+# 
+# Since $N$ is descrete, each neuron carrries an index consisting of $k$ natural numbers, denoted as $\bar {i} = (i_1, i_2, ..., i_k)$. Typically, the dimensions satisfy $n \ge k$. When $n > k$, one talks about **reduction of dimensionality**, as the input space $D$ has more dimensions than the grid of neurons. 
 # 
 # Two examples of such networks are visualized in {numref]`koh-fig`. The left panel shows a 2-dim. input space $D$, and a one dimensional grid on neurons. The input point $(x_1,x_2)$ enters all the neuron of the grid, and one of them (with best-suited weights) becomes the winner (red dot). The gray oval indicates the neighborhood of the winner. The right panel shows an analogous situation for the case of a 3-dim. input and 2-dim. grid of neurons. Here, for clarity, we only indicated the edges entering the winner, but they also enter all the other neurons, as in the left panel. 
 
@@ -44,7 +49,7 @@ from neural import * # import my library packages
 
 # ## Kohonen's algorithm
 
-# The set up of Kohonen's algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron has weights, which are elements of $D$, i.e. form $n$-dimensional vectors. One may simply think of this as placing the neurons in some locations in $D$. When an input point $P$ form $D$ is fed into the network, one looks for a closest neuron, which becomes the **winner**, exactly as in the algorithm from section {ref}`inn-sec`. However, here comes an important differeence: Not only the winner is attracted a bit towards $P$, but also its neighbors, to a lesser and lesser extent the farther they are from the winner.
+# The set up of Kohonen's algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron $\bar{i}$ obtains weights $f\left(\bar{i}\right)$, which are elements of $D$, i.e. form $n$-dimensional vectors. One may simply think of this as placing the neurons in some locations in $D$. When an input point $P$ form $D$ is fed into the network, one looks for a closest neuron, which becomes the **winner**, exactly as in the algorithm from section {ref}`inn-sec`. However, here comes an important difference: Not only the winner is attracted (updated) a bit towards $P$, but also its neighbors, to a lesser and lesser extent the farther they are from the winner.
 
 # ```{admonition} Winner-take-most strategy
 # :class: important
@@ -143,8 +148,8 @@ plt.ylabel('$x_2$',fontsize=11);
 # In[7]:
 
 
-eps=.5   # initial learning speed (0.5)
-de = 10  # initial neighborhood distance (10)
+eps=.5   # initial learning speed 
+de = 10  # initial neighborhood distance
 ste=0    # inital number of caried out steps
 
 
@@ -166,7 +171,7 @@ for _ in range(150): # rounds
              # update of the neuron locations (weights), depending on proximity
 
 
-# In[9]:
+# In[423]:
 
 
 fk=plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -199,7 +204,7 @@ plt.tight_layout();
 # <img src="images/kaall.png" width="800px">
 # 
 # 
-# Progress of Kohonen's algorithm. The line, drawn to guide the eye, connects neurons with adjaceny indices.
+# Progress of Kohonen's algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.
 # :::
 
 # ```{admonition} Kohonen network as a classifier
@@ -320,7 +325,7 @@ for i in range(ns): plt.scatter(i,0,color=samp[i], s=15);
 
 # We use **size** x **size** grid of neurons. Each neuron's position (color, or weight) in the 3-dim. space is initialized randomly:
 
-# In[95]:
+# In[119]:
 
 
 size=40  # neuron array of size x size (40 x 40)
@@ -334,7 +339,7 @@ for i in range(size):          # i index in the grid
             # 3 RGB components for neuron in the grid positin (i,j)
 
 
-# In[96]:
+# In[120]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -349,19 +354,19 @@ plt.ylabel('$j$',fontsize=11);
 
 # Now we are ready to run Kohonen's algorithm:
 
-# In[97]:
+# In[121]:
 
 
 eps=.5   # initial parameters
 de = 20   
 
 
-# In[98]:
+# In[122]:
 
 
-for _ in range(100):    # rounds
-    eps=eps*.99      
-    de=de*.96        
+for _ in range(150):    # rounds
+    eps=eps*.995      
+    de=de*.96           # de shrinks faster than eps     
     for s in range(ns): # loop over the points in the data sample       
         p=samp[s]       # point from the sample
 #        p=[np.random.random() for _ in range(3)]
@@ -376,15 +381,9 @@ for _ in range(100):    # rounds
                 tab[i][j]+=eps*phi2(ind_x,ind_y,i,j,de)*(p-tab[i][j]) # update         
 
 
-# In[99]:
-
-
-eps,de
-
-
 # As a result we get an arrangement of our color sample in two dimensions in such a way that the neighboring areas have a similar color:
 
-# In[100]:
+# In[123]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -406,49 +405,66 @@ plt.ylabel('$j$',fontsize=11);
 # - To get sharper boundaries between regions, de has to shrink faster than eps. Then, in the final stage of learning, the neuron update process takes place with small neighborhood radius.
 # ```
 
-# ## Unified distance matrix
+# ## U-matrix
 
-# A way to present the results of the Kohonen algorithm as via the **unified distance matrix**.
+# A convenient way to present the results of the Kohonen algorithm when the grid is 2-dimensional is via the **unified distance matrix** (shortly **U-matrix**). The idea is to plot a 2-dimensional grayscale map with the intensity given by the averaged distance (in $D$-space) of the neuron to its immediate neighbors, and not the neuron poperty itself (such as the color in the plot above). This is particularly useful when the dimension of the input space is large, when it is difficult to visualize the results directly.
+# 
+# The definition of a U-matrix element $U_{ij}$ is shown in {numref}`udm-fig`. Let $d$ be the distance in $D$-space and $[i,j]$ denote the neuron of indices $i,j$ . We take
+# 
+# $$
+# U_{ij}=\sqrt{d\left([i,j],[i+1,j]\right)^2+d\left([i,j],[i-1,j]\right)^2+
+#         d\left([i,j],[i,j+1]\right)^2+d\left([i,j],[i,j-1]\right)^2 }
+# $$
 
-# In[21]:
+# :::{figure-md} udm-fig
+# 
+# <img src="images/udm.png" width="150px">
+# 
+# Construction of $U_{ij}$: geometric average of the distance along the indicated links.
+# :::
+
+# In[126]:
 
 
-udm=np.zeros((size-1,size-1))
+udm=np.zeros((size-2,size-2)) # create U-matrix with elements = 0
 
-sc=0.25
+for i in range(1,size-1):
+    for j in range(1,size-1):
+        udm[i-1][j-1]=np.sqrt(dist3(tab[i][j],tab[i][j+1])+dist3(tab[i][j],tab[i][j-1])+
+                            dist3(tab[i][j],tab[i+1][j])+dist3(tab[i][j],tab[i-1][j]))
+                     # U-matrix as explained above
 
-for i in range(size-1):
-    for j in range(size-1):
-        udm[i][j]=sc*np.sqrt(dist3(tab[i][j],tab[i][j+1])+
-                            dist3(tab[i][j+1],tab[i+1][j+1])+
-                            dist3(tab[i+1][j+1],tab[i+1][j])+
-                            dist3(tab[i+1][j],tab[i][j]))
-        # sum of squares of distances around the plaquette
-        
+
+# In[134]:
+
+
 plt.figure(figsize=(2.3,2.3),dpi=120)
 plt.title("U-matrix",fontsize=11) 
 
-for i in range(size-1):
-    for j in range(size-1):
-        plt.scatter(i,j,color=[0,0,0,udm[i][j]], s=10) 
-
+for i in range(size-2): # loops over indices exclude the first and last point of the grid
+    for j in range(size-2):
+        plt.scatter(i+1,j+1,color=[0,0,0,2*udm[i][j]], s=10) 
+            # color format: [R,G,B,intensity], 2 just scales up
 plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$j$',fontsize=11);
 
 
-# In[22]:
+# The white regions in the above figure correspond to clusters, separated with the darker regions. The higher is the boundary between clusters, the darker the plot.
+# The same may be visualized in a 3D figure:
+
+# In[135]:
 
 
 fig = plt.figure(figsize=(4,4),dpi=120)
 axes1 = fig.add_subplot(111, projection="3d")
 ax = fig.gca(projection='3d')
 
-xx_1 = np.arange(0, 1, 1./(size-1))
-xx_2 = np.arange(0, 1, 1./(size-1))
+xx_1 = np.arange(1, size-1, 1)
+xx_2 = np.arange(1, size-1, 1)
 
 x_1, x_2 = np.meshgrid(xx_1, xx_2)
 
-Z=np.array([[udm[i][j] for i in range(size-1)] for j in range(size-1)])
+Z=np.array([[udm[i][j] for i in range(size-2)] for j in range(size-2)])
 
 ax.set_zlim(0,.5)
 
@@ -460,26 +476,26 @@ plt.ylabel('$j$',fontsize=11);
 plt.title("U-matrix",fontsize=11);
 
 
-# Distance map for a given (new) data point (i.e. using a classifier)
+# We an now classify a given (new) data point according to the obtained map.
 
-# In[23]:
+# In[136]:
 
 
 nd=[np.random.random(),np.random.random(),np.random.random()]
 
 
-# In[24]:
+# In[143]:
 
 
 plt.figure(figsize=(6.5,1.5))
 
 plt.axis('off')
-plt.scatter(0,0,color=nd, s=5000); 
+plt.scatter(0,0,color=nd, s=500); 
 
 
-# Classification of the point according to the previously obtained map
+# It is useful to obtain a distance map from from this point:
 
-# In[25]:
+# In[144]:
 
 
 tad=np.zeros((size,size))
@@ -499,7 +515,7 @@ print("Closest neuron grid coordinates: (",in_x,",",in_y,")")
 print("Distance: ",np.round(da,3))
 
 
-# In[26]:
+# In[139]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -515,15 +531,17 @@ plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$j$',fontsize=11);
 
 
+# The lightest region indicates the cluster, to which the point belongs. The darker the region, the lager the distance to the corresponding neurons. 
+
 # ### Mapping colors on a line
 
-# Reduction of three dimensions into one
+# In this subsection we present an example of reduction of 3-dim. data in a 1-dim. neuron grid. This proceeds along the lines of the previous evaluation, so we are brief in comments.
 
-# In[27]:
+# In[160]:
 
 
 ns=8
-# random sample
+
 samp=[[np.random.random(),np.random.random(),np.random.random()] for _ in range(ns)]
 
 plt.figure(figsize=(4,1))
@@ -535,170 +553,177 @@ for i in range(ns):
     plt.scatter(i,0,color=samp[i], s=400);
 
 
-# In[28]:
+# In[ ]:
 
 
-si=50  # 1D array of si neurons
+si=50  # 1D grid of si neurons
 
 tab2=np.zeros((si,3))
 
 for i in range(si):      
-    for k in range(3): # 3 RGB components
+    for k in range(3):                # RGB components
         tab2[i][k]=np.random.random() # random initialization
 
-plt.figure(figsize=(4,0.5),dpi=120)
+
+# In[161]:
+
+
+plt.figure(figsize=(5.5,0.5),dpi=120)
 plt.axis('off')
 
 for i in range(si):
-    plt.scatter(i,0,color=tab2[i], s=25000/si**2); 
+    plt.scatter(i,0,color=tab2[i], s=20); 
 
 
-# In[29]:
+# In[162]:
 
 
 eps=.5    
 de = 20   
 
 
-# In[31]:
+# In[165]:
 
 
-for _ in range(100): 
+for _ in range(200): 
     eps=eps*.99      
     de=de*.96        
     for s in range(ns):       
-        p=samp[s] # point from the sample
+        p=samp[s]
         dist=[dist3(p,tab2[i]) for i in range(si)] 
         ind_min = np.argmin(dist)          
         for i in range(si):
             tab2[i]+=eps*phi(ind_min,i,de)*(p-tab2[i]) 
 
 
-# In[32]:
+# In[170]:
 
 
-plt.figure(figsize=(4,.5),dpi=120)
+plt.figure(figsize=(5.5,.5),dpi=120)
 plt.title("Kohonen color map",fontsize=10) 
 plt.axis('off')
 
 for i in range(si):
-    plt.scatter(i,0,color=tab2[i], s=10); 
+    plt.scatter(i,0,color=tab2[i], s=20); 
 
 
-# Smooth transition between colors.
+# We note smooth transitions between colors. The formation of clusters can be seen with $U$-matrix, which now is of course one-dimensional:
 
-# In[33]:
+# In[ ]:
 
 
-xr=np.array([i for i in range(si-1)])
+ta2=np.zeros(si-2)
 
-ta2=np.zeros(si-1)
+for i in range(1,si-1):
+    ta2[i-1]=np.sqrt(dist3(tab2[i],tab2[i+1])+dist3(tab2[i],tab2[i-1]))
 
-for i in range(si-1):
-    ta2[i]=np.sqrt(dist3(tab2[i],tab2[i+1]))
-        
+
+# In[168]:
+
+
+
 plt.figure(figsize=(3.2,3.2),dpi=120)
 plt.title("U-matrix",fontsize=11) 
 
+xr=np.array([i for i in range(1,si-1)])
+
 plt.plot(xr,ta2) 
 
-plt.xlabel('neuron index',fontsize=11)
-plt.ylabel('distance between neighbors',fontsize=11);
+plt.xlabel('i',fontsize=11)
+plt.ylabel('$U_i$',fontsize=11);
 
 
-# The minima correspond to the individual colors of the sample. The height of the separating peaks shows how much the colors differ.
-
-# The most similar colors are not necessarily adjacent. The behavior depends on the value of the de parameter.
+# The minima (there are 8 of them, which is the multiplicity of the sample) indicate the clusters. The height of the separating peaks shows how much the colors differ.
 
 # ### Wikipedia articles' similarity
 
-# Reduction from very many parameters into 2. U-matrix.
+# The input space may have very large dimensions. In the [Wikipedia example](https://en.wikipedia.org/wiki/Self-organizing_map) below, one takes articles from various fields and computes frequencies of words (for instance, how  many times the word "goalkeeper" has been used, divided by the total number of words in the article). So essentially the dimensionality is of the oder of the number of English words, a huge number $\sim 10^5$! Then one uses Kohonen's algorith to carry out reduction into a 2-dim. grid of neurons. The U-matrix is following:
 
-# In[40]:
-
-
-Image(filename="images/Self_oraganizing_map_cartography.jpg",width=620)
+# In[169]:
 
 
-# [Wikipedia] Cartographical representation of a self-organizing map (U-Matrix) based on Wikipedia featured article data (word frequency). Distance is inversely proportional to similarity. The "mountains" are edges between clusters. The red lines are links between articles.
-
-# ## Mapping 2-dim. data in a 2-dim. network
-
-# In[34]:
+Image(filename="images/Self_oraganizing_map_cartography.jpg",width=720)
 
 
-def point():
-    x=np.random.random()
-    y=np.random.random()
-    return np.array([x,y])
+# In particular we note that articles on sports are special and form a well-defined cluster. This is not surprising, as the jargon is very specific.
 
+# ## Mapping 2-dim. data into a 2-dim. grid 
 
-# In[35]:
+# Finally, we come to a very important case of mapping 2-dim. data on a 2-dim. grid, as this is realized in our vision system between the retina and the visual cortex. 
+# 
+# The algorithm proceedes analogously to the previous cases. We initialize an $n \times n$ grid of neurons, placing them randomly in the square $[0,1]\times [0,1]$.
+
+# In[327]:
 
 
 n=10
 sam=np.array([func.point() for _ in range(n*n)])
 
 
-# In[36]:
+# The lines, drawn to guide the eye, join the adjacent index pairs [i,j] and [i+1,j], or [i,j] and [i,j+1]. The neurons in the interior of the grid have 4 nearest neighbors, those at the boundary 3, except for the corners, which have 2.
+
+# In[328]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
 
-plt.xlim(0,1)
-plt.ylim(0,1)
+plt.xlim(-.1,1.1)
+plt.ylim(-.1,1.1)
  
 plt.scatter(sam[:,0],sam[:,1],s=5,zorder=3)
 
-for j in range(n):       # rows
-    for i in range(n-1): # columns
+# draw the lines
+for j in range(n):        # rows
+    for i in range(n-1):  # columns
         plt.plot([sam[i+n*j,0],sam[i+1+n*j,0]],[sam[i+n*j,1],sam[i+1+n*j,1]],
                  linewidth=.2,c='black')
 
 for j in range(n-1):       # rows
-    for i in range(n): # columns
+    for i in range(n):     # columns
         plt.plot([sam[i+n*j,0],sam[i+n*(j+1),0]],[sam[i+n*j,1],sam[i+n*(j+1),1]],
                  linewidth=.2,c='black')
-        
-        
+         
 plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);    
 
 
-# In[37]:
+# We note a total initial "chaos", as the neurons are located randomly. Now comes Kohonen's miracle:   
+
+# In[329]:
 
 
-eps=.5   # początkowa szybkość uczenia (0.5)
-de = 3   # początkowy promień sąsiedztwa 
-nr=400
-rep= 300 # powtórzenia po próbce bez zmiany eps i de
+eps=.5   # initial learning speed
+de = 3   # initial neighborhood distance
+nr = 100 # number of rounds
+rep= 300 # number of points in each round
+ste=0    # inital number of caried out steps
 
 
-# In[38]:
+# In[380]:
 
 
-for _ in range(nr):  # rundy z uaktualnieniem eps i de (100)
-    eps=eps*.97      # uczenie słabnie z każdą rundą
-    de=de*.98        # promień sąsiedztwa też maleje 
-    for _ in range(rep):    # powtórz bez uaktualniania eps i de
-        p=point() # punkt próbki
+# analogous to the previous codes
+for _ in range(10):   # rounds
+    eps=eps*.97      
+    de=de*.98         
+    for _ in range(rep):    # repeat for rep points
+        ste=ste+1
+        p=point() 
         dist=[func.eucl(p,sam[l]) for l in range(n*n)] 
-          # tablica kwadratów euklidesowych odległości od p dla wsyzstkich neuronów
-        ind_min = np.argmin(dist) # wskaźnik zwycięzcy
+        ind_min = np.argmin(dist) 
         ind_i=ind_min%n
-        ind_j=ind_min//n       # tak trzeba wyłowić wskaźnik dwuwymiarowy (!)
-
+        ind_j=ind_min//n       
+        
         for j in range(n): 
             for i in range(n):
                 sam[i+n*j]+=eps*phi2(ind_i,ind_j,i,j,de)*(p-sam[i+n*j]) 
-                      # aktualizacja wg strategii "zwycięzca bierze wiekszość"
-   
 
 
-# In[39]:
+# In[381]:
 
 
-plt.figure(figsize=(2.3,2.3),dpi=120)
+fl=plt.figure(figsize=(2.3,2.3),dpi=120)
+plt.title(str(ste)+" steps",fontsize=10) 
 
 plt.xlim(0,1)
 plt.ylim(0,1)
@@ -717,25 +742,179 @@ for j in range(n-1):       # rows
         
         
 plt.xlabel('$x_1$',fontsize=11)
-plt.ylabel('$x_2$',fontsize=11);    
+plt.ylabel('$x_2$',fontsize=11)
 
+plt.tight_layout();    
+
+
+# In[382]:
+
+
+# fl.savefig('images/kb30000.png')
+
+
+# :::{figure-md} kohstory2-fig
+# 
+# <img src="images/kball.png" width="800px">
+# 
+# 
+# Progress of Kohonen's algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.
+# :::
+
+# As the algorithm progresses, chaos changes into nearly perfect order, with the grid placed unifomly in the square of the data, with only slight displacements from a regular arrangement. On the way, at 600 steps, we notice a phenomenon called "twist", where many neurons have a close location an the grid is crumpled.
 
 # ## Topological properties
 
-# The $ f $ mapping
-# has the following **topological** property: if two neurons $ n_1 $ and $ n_2 $ are close to each other, then also $ d_1 = f (n_1) $ and $ d_2 = f (n_2) $ are close. As we will see, this allows for "transferring" of structures from the $ D $ data space to the $ N $ neuron space.
+# Recall the Voronoi construction of categories introduced in section {ref}`vor_lab`. One can simply use it now, treating the neurons from a grid as the Voronoi points. The Voronoi construction provides a mapping $v$ from the data space $D$ to the neuron space $N$,
 # 
-# Such a mechanism takes place, for example, in the visual system ...
+# $$ 
+# v: D \to N 
+# $$
 # 
-# Topology of the vision
+# (note that this goes in the opposite direction than function $f$ defined at the beginning of this chapter). 
 # 
-# In this case, preserving the topology means that, for example, a retinal circle is mapped into a loop in the cerebral cortex. 
+# For instance, we take the bottom right panel of {numref}`kohstory2-fig`, construct the Voronoi areas for all the neurons, and thus obtain a mapping for all poins in the $(x_1,x_2)$ square. The reader may notice that there is an ambiguity for points lying exactly at boundaries between areas, but this can be taken care of by using an additional prescription, for instance, selecting a neuron lying at direction which has the lowest angle, etc. 
+# 
+# Now a key observation: 
+# 
+# ```{admonition} Topological property
+# :class: important
+# 
+# For situations such as in the bottom right panel of {numref}`kohstory2-fig`, mapping $v$ has the property that when $d_1$ and $d_2$ from $D$ are close to each other, then also their corresponding neurons are close, i.e. the indices $v(d_1)$ and $v(d_2)$ are close. 
+# ```
 
-# Mapping the retina into the visual area of the cerebral cortex
+# This observation is obvious. Since $d_1$ and $d_2$ are close (and we mean very close, closer than the resolution of the grid), then they must belong either to
+# 
+#    - the same Voronoi area, where $v(d_1)=v(d_2)$, or
+#    - neighboring Voronoi areas. 
+#    
+# Since for the considered situation the neighboring areas have the grid indices differing by 1, the conclusion that $v(d_1)$ and $v(d_2)$ are close follows.
+# 
+# Note that this feature of Hohonen's maps is far from trivial and does not hold for a general mapping. Imagine for instance that we stop our simulations for {numref}`kohstory2-fig` after 40 steps (top central panel) and are left with a "twisted" grid. In the vicinity of the twist, the indices of the adjacent Voronoi areas differ largely, and the considered topological property no longer holds. 
+
+# The discussed topological propery has general and far-reaching consequences. First, it allows to carry over "shapes" from $D$ to $N$. Imagine that we have a circle in the $D$-space:
+
+# In[417]:
+
+
+plt.figure(figsize=(2.3,2.3),dpi=120)
+
+plt.xlim(0,1)
+plt.ylim(0,1)
+
+co=['blue' for _ in range(n*n)]
+ci=np.array(
+  [13,14,15,16,21,22,23,26,27,31,37,38,41,48,51,58,61,68,71,72,77,78,82,83,84,85,86,87])
+
+for i in ci: co[i]='red'
+
+plt.scatter(sam[:,0],sam[:,1],c=co,s=5,zorder=3)
+
+for j in range(n):       # rows
+    for i in range(n-1): # columns
+        plt.plot([sam[i+n*j,0],sam[i+1+n*j,0]],[sam[i+n*j,1],sam[i+1+n*j,1]],
+                 linewidth=.2,c='black')
+
+for j in range(n-1):       # rows
+    for i in range(n): # columns
+        plt.plot([sam[i+n*j,0],sam[i+n*(j+1),0]],[sam[i+n*j,1],sam[i+n*(j+1),1]],
+                 linewidth=.2,c='black')
+        
+circ=plt.Circle((0.53,0.48), radius=.35, color='red', fill=False)
+plt.gca().add_artist(circ)
+
+        
+plt.xlabel('$x_1$',fontsize=11)
+plt.ylabel('$x_2$',fontsize=11);
+
+
+# where the red points indicate the winners for certain sections of the circle. When we draw these points alone in the $N$ space, we get
+
+# In[422]:
+
+
+plt.figure(figsize=(2.3,2.3),dpi=120)
+
+plt.xlim(-1,10)
+plt.ylim(-1,10)
+
+plt.scatter(ci//10,ci%10,c='red',s=5)
+
+        
+plt.xlabel('$i$',fontsize=11)
+plt.ylabel('$j$',fontsize=11);
+
+
+# This looks as a (rough and discrete) circle. Note that in our example we only have $n^2=100$ pixels to our disposal, and the image would look better and better with increasing $n$. At some point one would reach the 10M pixels resolution of typical camera, and then the image would look smooth. 
+
+# ```{admonition} Vision
+# :class: important
+# 
+# The topological property of the Kohonen mapping is believed to have a prime importance in our vision system and the perception of objects. ...
+# 
+# ```
+
+# Another key topological feature is the preservation of connectedness. If an area $A$ in $D$ is connected (is in one piece), then its image $v(A)$ in $N$ is also connected (we ignore the desired rigor here as to what "connected" means in a discrete space and rely on intuition). So things do not get "warped up" when transforming form $D$ to $N$.
+
+# 
+# Note that the discussed topological features need not be present when dimensionality is reduced, as in our previous examples. Take for instance the bottom right panel of {numref}`kohstory-fig`. There, many neighboring pairs of Voronoi areas correspond to distant indices, and it is no longer true that $v(d_1)$ and $v(d_2)$ are close for close $d_1$ and $d_2$, as these points may belong to different Voronoi areas with distant indices. 
+# 
+# Our example with the circle now looks like this:
+
+# In[476]:
+
+
+plt.figure(figsize=(2.5,2.3),dpi=120)
+plt.xlim(0,1)
+plt.ylim(0,1)
+ 
+
+co=['blue' for _ in range(num)]
+ci=np.array(
+  [3,6,7,10,14,15,21,24,25,30,31,39,40,44,47,49,52,54,56,72,73,80,85,86,89,92,95,96,97])
+
+for i in ci: co[i]='red'
+
+    
+plt.scatter(W[:,0],W[:,1],c=co,s=5)
+plt.plot(W[:,0],W[:,1],linewidth=0.7)
+
+        
+circ=plt.Circle((0.51,0.49), radius=.28, color='red', fill=False)
+plt.gca().add_artist(circ)
+
+plt.xlabel('$x_1$',fontsize=11)
+plt.ylabel('$x_2$',fontsize=11)
+plt.tight_layout();    
+
+
+# When we go along the grid indices, we see the image of our circle (red dots) as a bunch of **disconnected** sections. Topology is not preserved.
+
+# In[474]:
+
+
+plt.figure(figsize=(6.5,0.2),dpi=120)
+
+plt.xlim(-1,100)
+plt.ylim(-1,1)
+
+tl=[i for i in range(num)]
+
+plt.scatter([i for i in range(num)],[0 for i in range(num)],c=co,s=7)
+
+plt.axis('off')       
+plt.xlabel('$i$',fontsize=11);
+
+
+# ```{note}
+# Topological features of Kohonen's maps hold for equal dimensionalities of the input space and the neuron grid, $n=k$, and in general do not hold for the reduced dimensionality case, $k<n$.
+# ```
 
 # ## Lateral inhibition
 
-# Final missing link: how to make the winner-take-all/most
+# In a last topic of these lectures, we return to the issue of how the competition for the "winner" is realized. Abobve, we habe just used the minimum (or maximum) functions, but ... external wizard, control unit - not there!
+# 
+# Neurons in the same laye do talk to one another, and this allows for an arrangement of competition and a natural realization of the strategy winner-take-most
 
 # :::{figure-md} lat-fig
 # 

@@ -251,8 +251,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unified-distance-matrix">
-   Unified distance matrix
+  <a class="reference internal nav-link" href="#u-matrix">
+   U-matrix
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -268,8 +268,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mapping-2-dim-data-in-a-2-dim-network">
-   Mapping 2-dim. data in a 2-dim. network
+  <a class="reference internal nav-link" href="#mapping-2-dim-data-into-a-2-dim-grid">
+   Mapping 2-dim. data into a 2-dim. grid
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -295,7 +295,12 @@
                 
   <div class="section" id="self-organizing-maps">
 <h1>Self Organizing Maps<a class="headerlink" href="#self-organizing-maps" title="Permalink to this headline">¶</a></h1>
-<p>A very important and ingenious application of unsupervised learning are the so-called <strong>Kohonen nets</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Teuvo_Kohonen">Teuvo Kohonen</a>, i.e. <strong>self-organizing mappings (SOM)</strong>. Consider a mapping between a set of <span class="math notranslate nohighlight">\(n\)</span>-dimensional input data <span class="math notranslate nohighlight">\(D\)</span> (continuous or discrete) and a <strong>discrete</strong> <span class="math notranslate nohighlight">\(k\)</span>-dimensional set (<strong>grid</strong>) of neurons. Since <span class="math notranslate nohighlight">\(N\)</span> is descrete, each neuron carrries an index consisting of <span class="math notranslate nohighlight">\(k\)</span> natural numbers, denoted as <span class="math notranslate nohighlight">\(\bar {i} = (i_1, i_2, ..., i_k)\)</span>. Typically, the dimensions satisfy <span class="math notranslate nohighlight">\(n \ge k\)</span>. When <span class="math notranslate nohighlight">\(n &gt; k\)</span>, one talks about <strong>reduction of dimensionality</strong>, as the input space <span class="math notranslate nohighlight">\(D\)</span> has more dimensions than the grid of neurons.</p>
+<p>A very important and ingenious application of unsupervised learning are the so-called <strong>Kohonen nets</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Teuvo_Kohonen">Teuvo Kohonen</a>, i.e. <strong>self-organizing mappings (SOM)</strong>. Consider a mapping <span class="math notranslate nohighlight">\(f\)</span> between a <strong>discrete</strong> <span class="math notranslate nohighlight">\(k\)</span>-dimensional set (<strong>grid</strong>) of neurons and <span class="math notranslate nohighlight">\(n\)</span>-dimensional input data <span class="math notranslate nohighlight">\(D\)</span> (continuous or discrete),</p>
+<div class="math notranslate nohighlight">
+\[
+f: N \to D.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(N\)</span> is descrete, each neuron carrries an index consisting of <span class="math notranslate nohighlight">\(k\)</span> natural numbers, denoted as <span class="math notranslate nohighlight">\(\bar {i} = (i_1, i_2, ..., i_k)\)</span>. Typically, the dimensions satisfy <span class="math notranslate nohighlight">\(n \ge k\)</span>. When <span class="math notranslate nohighlight">\(n &gt; k\)</span>, one talks about <strong>reduction of dimensionality</strong>, as the input space <span class="math notranslate nohighlight">\(D\)</span> has more dimensions than the grid of neurons.</p>
 <p>Two examples of such networks are visualized in {numref]<code class="docutils literal notranslate"><span class="pre">koh-fig</span></code>. The left panel shows a 2-dim. input space <span class="math notranslate nohighlight">\(D\)</span>, and a one dimensional grid on neurons. The input point <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> enters all the neuron of the grid, and one of them (with best-suited weights) becomes the winner (red dot). The gray oval indicates the neighborhood of the winner. The right panel shows an analogous situation for the case of a 3-dim. input and 2-dim. grid of neurons. Here, for clarity, we only indicated the edges entering the winner, but they also enter all the other neurons, as in the left panel.</p>
 <div class="figure align-default" id="koh-fig">
 <a class="reference internal image-reference" href="../_images/koha.png"><img alt="../_images/koha.png" src="../_images/koha.png" style="width: 500px;" /></a>
@@ -307,7 +312,7 @@
 <p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the <strong>neighborhood radius</strong>. For a 1-dim. grid it becomes <span class="math notranslate nohighlight">\( \phi(i,j)=\exp\left [ -\frac{(i-j)^2}{2 \delta^2} \right ]\)</span>.</p>
 <div class="section" id="kohonen-s-algorithm">
 <h2>Kohonen’s algorithm<a class="headerlink" href="#kohonen-s-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The set up of Kohonen’s algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron has weights, which are elements of <span class="math notranslate nohighlight">\(D\)</span>, i.e. form <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors. One may simply think of this as placing the neurons in some locations in <span class="math notranslate nohighlight">\(D\)</span>. When an input point <span class="math notranslate nohighlight">\(P\)</span> form <span class="math notranslate nohighlight">\(D\)</span> is fed into the network, one looks for a closest neuron, which becomes the <strong>winner</strong>, exactly as in the algorithm from section <a class="reference internal" href="unsupervised.html#inn-sec"><span class="std std-ref">Interpretation via neural networks</span></a>. However, here comes an important differeence: Not only the winner is attracted a bit towards <span class="math notranslate nohighlight">\(P\)</span>, but also its neighbors, to a lesser and lesser extent the farther they are from the winner.</p>
+<p>The set up of Kohonen’s algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron <span class="math notranslate nohighlight">\(\bar{i}\)</span> obtains weights <span class="math notranslate nohighlight">\(f\left(\bar{i}\right)\)</span>, which are elements of <span class="math notranslate nohighlight">\(D\)</span>, i.e. form <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors. One may simply think of this as placing the neurons in some locations in <span class="math notranslate nohighlight">\(D\)</span>. When an input point <span class="math notranslate nohighlight">\(P\)</span> form <span class="math notranslate nohighlight">\(D\)</span> is fed into the network, one looks for a closest neuron, which becomes the <strong>winner</strong>, exactly as in the algorithm from section <a class="reference internal" href="unsupervised.html#inn-sec"><span class="std std-ref">Interpretation via neural networks</span></a>. However, here comes an important difference: Not only the winner is attracted (updated) a bit towards <span class="math notranslate nohighlight">\(P\)</span>, but also its neighbors, to a lesser and lesser extent the farther they are from the winner.</p>
 <div class="important admonition">
 <p class="admonition-title">Winner-take-most strategy</p>
 <p>Kohonen’s algorithm involves the “winner take most” strategy, where not only the winner neuron is updated (as in the winner-take-all case), but also its neighbors. The neighbors update is strongest for the nearest neighbors, and gradually weakens with the distance from the winner.</p>
@@ -371,8 +376,8 @@
 <p>The line connects the subsequent neurons … They are chaotically scattered around the region.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">.5</span>   <span class="c1"># initial learning speed (0.5)</span>
-<span class="n">de</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># initial neighborhood distance (10)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">.5</span>   <span class="c1"># initial learning speed </span>
+<span class="n">de</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># initial neighborhood distance</span>
 <span class="n">ste</span><span class="o">=</span><span class="mi">0</span>    <span class="c1"># inital number of caried out steps</span>
 </pre></div>
 </div>
@@ -403,7 +408,7 @@ After completion, individual neurons “specialize” (are close to) in a certai
 <p>In the present example, after about 20000 steps the result practically stops to change.</p>
 <div class="figure align-default" id="kohstory-fig">
 <a class="reference internal image-reference" href="../_images/kaall.png"><img alt="../_images/kaall.png" src="../_images/kaall.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Progress of Kohonen’s algorithm. The line, drawn to guide the eye, connects neurons with adjaceny indices.</span><a class="headerlink" href="#kohstory-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Progress of Kohonen’s algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="note admonition">
 <p class="admonition-title">Kohonen network as a classifier</p>
@@ -542,9 +547,9 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>    <span class="c1"># rounds</span>
-    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.99</span>      
-    <span class="n">de</span><span class="o">=</span><span class="n">de</span><span class="o">*</span><span class="mf">.96</span>        
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">150</span><span class="p">):</span>    <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.995</span>      
+    <span class="n">de</span><span class="o">=</span><span class="n">de</span><span class="o">*</span><span class="mf">.96</span>           <span class="c1"># de shrinks faster than eps     </span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ns</span><span class="p">):</span> <span class="c1"># loop over the points in the data sample       </span>
         <span class="n">p</span><span class="o">=</span><span class="n">samp</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>       <span class="c1"># point from the sample</span>
 <span class="c1">#        p=[np.random.random() for _ in range(3)]</span>
@@ -557,18 +562,6 @@ After completion, individual neurons “specialize” (are close to) in a certai
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span> 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
                 <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">eps</span><span class="o">*</span><span class="n">phi2</span><span class="p">(</span><span class="n">ind_x</span><span class="p">,</span><span class="n">ind_y</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">de</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="c1"># update         </span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="p">,</span><span class="n">de</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.18301617063661463, 0.33740638717699184)
 </pre></div>
 </div>
 </div>
@@ -589,7 +582,7 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/som_50_0.png" src="../_images/som_50_0.png" />
+<img alt="../_images/som_49_0.png" src="../_images/som_49_0.png" />
 </div>
 </div>
 <div class="note admonition">
@@ -601,51 +594,64 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 </div>
 </div>
-<div class="section" id="unified-distance-matrix">
-<h2>Unified distance matrix<a class="headerlink" href="#unified-distance-matrix" title="Permalink to this headline">¶</a></h2>
-<p>A way to present the results of the Kohonen alogit</p>
+<div class="section" id="u-matrix">
+<h2>U-matrix<a class="headerlink" href="#u-matrix" title="Permalink to this headline">¶</a></h2>
+<p>A convenient way to present the results of the Kohonen algorithm when the grid is 2-dimensional is via the <strong>unified distance matrix</strong> (shortly <strong>U-matrix</strong>). The idea is to plot a 2-dimensional grayscale map with the intensity given by the averaged distance (in <span class="math notranslate nohighlight">\(D\)</span>-space) of the neuron to its immediate neighbors, and not the neuron poperty itself (such as the color in the plot above). This is particularly useful when the dimension of the input space is large, when it is difficult to visualize the results directly.</p>
+<p>The definition of a U-matrix element <span class="math notranslate nohighlight">\(U_{ij}\)</span> is shown in <a class="reference internal" href="#udm-fig"><span class="std std-numref">Fig. 16</span></a>. Let <span class="math notranslate nohighlight">\(d\)</span> be the distance in <span class="math notranslate nohighlight">\(D\)</span>-space and <span class="math notranslate nohighlight">\([i,j]\)</span> denote the neuron of indices <span class="math notranslate nohighlight">\(i,j\)</span> . We take</p>
+<div class="math notranslate nohighlight">
+\[
+U_{ij}=\sqrt{d\left([i,j],[i+1,j]\right)^2+d\left([i,j],[i-1,j]\right)^2+
+        d\left([i,j],[i,j+1]\right)^2+d\left([i,j],[i,j-1]\right)^2 }
+\]</div>
+<div class="figure align-default" id="udm-fig">
+<a class="reference internal image-reference" href="../_images/udm.png"><img alt="../_images/udm.png" src="../_images/udm.png" style="width: 150px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Construction of <span class="math notranslate nohighlight">\(U_{ij}\)</span>: geometric average of the distance along the indicated links.</span><a class="headerlink" href="#udm-fig" title="Permalink to this image">¶</a></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># create U-matrix with elements = 0</span>
 
-<span class="n">sc</span><span class="o">=</span><span class="mf">0.25</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">sc</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span>
-                            <span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span>
-                            <span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">+</span>
-                            <span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
-        <span class="c1"># sum of squares of distances around the plaquette</span>
-        
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span>
+                            <span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
+                     <span class="c1"># U-matrix as explained above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;U-matrix&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span> 
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
-
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span> <span class="c1"># loops over indices exclude the first and last point of the grid</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]],</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+            <span class="c1"># color format: [R,G,B,intensity], 2 just scales up</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$i$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$j$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/som_54_0.png" src="../_images/som_54_0.png" />
+<img alt="../_images/som_55_0.png" src="../_images/som_55_0.png" />
 </div>
 </div>
+<p>The white regions in the above figure correspond to clusters, separated with the darker regions. The higher is the boundary between clusters, the darker the plot.
+The same may be visualized in a 3D figure:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 <span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 
-<span class="n">xx_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">xx_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">xx_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">xx_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx_1</span><span class="p">,</span> <span class="n">xx_2</span><span class="p">)</span>
 
-<span class="n">Z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">Z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">udm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">)])</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.5</span><span class="p">)</span>
 
@@ -659,10 +665,10 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/som_55_0.png" src="../_images/som_55_0.png" />
+<img alt="../_images/som_57_0.png" src="../_images/som_57_0.png" />
 </div>
 </div>
-<p>Distance map for a given (new) data point (i.e. using a classifier)</p>
+<p>We an now classify a given (new) data point according to the obtained map.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nd</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()]</span>
@@ -670,20 +676,12 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">nd</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5000</span><span class="p">);</span> 
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_58_0.png" src="../_images/som_58_0.png" />
+<img alt="../_images/som_60_0.png" src="../_images/som_60_0.png" />
 </div>
 </div>
-<p>Classification of the point according to the previously obtained map</p>
+<p>It is useful to obtain a distance map from from this point:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tad</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span>
@@ -705,24 +703,25 @@ After completion, individual neurons “specialize” (are close to) in a certai
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Closest neuron grid coordinates: ( 0 , 20 )
-Distance:  0.213
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Closest neuron grid coordinates: ( 28 , 5 )
+Distance:  0.032
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_61_0.png" src="../_images/som_61_0.png" />
+<img alt="../_images/som_63_0.png" src="../_images/som_63_0.png" />
 </div>
 </div>
+<p>The lightest region indicates the cluster, to which the point belongs. The darker the region, the lager the distance to the corresponding neurons.</p>
 <div class="section" id="mapping-colors-on-a-line">
 <h3>Mapping colors on a line<a class="headerlink" href="#mapping-colors-on-a-line" title="Permalink to this headline">¶</a></h3>
-<p>Reduction of three dimensions into one</p>
+<p>In this subsection we present an example of reduction of 3-dim. data in a 1-dim. neuron grid. This proceeds along the lines of the previous evaluation, so we are brief in comments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span><span class="o">=</span><span class="mi">8</span>
-<span class="c1"># random sample</span>
+
 <span class="n">samp</span><span class="o">=</span><span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ns</span><span class="p">)]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -736,12 +735,25 @@ Distance:  0.213
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/som_64_0.png" src="../_images/som_64_0.png" />
+<img alt="../_images/som_67_0.png" src="../_images/som_67_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">si</span><span class="o">=</span><span class="mi">50</span>  <span class="c1"># 1D grid of si neurons</span>
+
+<span class="n">tab2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">si</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">si</span><span class="p">):</span>      
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>                <span class="c1"># RGB components</span>
+        <span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1"># random initialization</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_65_0.png" src="../_images/som_65_0.png" />
+<img alt="../_images/som_69_0.png" src="../_images/som_69_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -752,63 +764,59 @@ Distance:  0.213
 </div>
 </div>
 </div>
-<div class="cell tag_remove-input docutils container">
-</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/som_68_0.png" src="../_images/som_68_0.png" />
-</div>
-</div>
-<p>Smooth transition between colors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">si</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
-
-<span class="n">ta2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">si</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">si</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">ta2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
-        
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">3.2</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;U-matrix&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span> 
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span><span class="n">ta2</span><span class="p">)</span> 
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;neuron index&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;distance between neighbors&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span> 
+    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.99</span>      
+    <span class="n">de</span><span class="o">=</span><span class="n">de</span><span class="o">*</span><span class="mf">.96</span>        
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ns</span><span class="p">):</span>       
+        <span class="n">p</span><span class="o">=</span><span class="n">samp</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+        <span class="n">dist</span><span class="o">=</span><span class="p">[</span><span class="n">dist3</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">si</span><span class="p">)]</span> 
+        <span class="n">ind_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>          
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">si</span><span class="p">):</span>
+            <span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">eps</span><span class="o">*</span><span class="n">phi</span><span class="p">(</span><span class="n">ind_min</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">de</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_70_0.png" src="../_images/som_70_0.png" />
+<img alt="../_images/som_72_0.png" src="../_images/som_72_0.png" />
 </div>
 </div>
-<p>The minima correspond to the individual colors of the sample. The height of the separating peaks shows how much the colors differ.</p>
-<p>The most similar colors are not necessarily adjacent. The behavior depends on the value of the de parameter.</p>
+<p>We note smooth transitions between colors. The formation of clusters can be seen with <span class="math notranslate nohighlight">\(U\)</span>-matrix, which now is of course one-dimensional:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ta2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">si</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">si</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ta2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">dist3</span><span class="p">(</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">tab2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/som_75_0.png" src="../_images/som_75_0.png" />
+</div>
+</div>
+<p>The minima (there are 8 of them, which is the multiplicity of the sample) indicate the clusters. The height of the separating peaks shows how much the colors differ.</p>
 </div>
 <div class="section" id="wikipedia-articles-similarity">
 <h3>Wikipedia articles’ similarity<a class="headerlink" href="#wikipedia-articles-similarity" title="Permalink to this headline">¶</a></h3>
-<p>Reduction from very many parameters into 2. U-matrix.</p>
+<p>The input space may have very large dimensions. In the <a class="reference external" href="https://en.wikipedia.org/wiki/Self-organizing_map">Wikipedia example</a> below, one takes articles from various fields and computes frequencies of words (for instance, how  many times the word “goalkeeper” has been used, divided by the total number of words in the article). So essentially the dimensionality is of the oder of the number of English words, a huge number <span class="math notranslate nohighlight">\(\sim 10^5\)</span>! Then one uses Kohonen’s algorith to carry out reduction into a 2-dim. grid of neurons. The U-matrix is following:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_75_0.jpg" src="../_images/som_75_0.jpg" />
+<img alt="../_images/som_79_0.jpg" src="../_images/som_79_0.jpg" />
 </div>
 </div>
-<p>[Wikipedia] Cartographical representation of a self-organizing map (U-Matrix) based on Wikipedia featured article data (word frequency). Distance is inversely proportional to similarity. The “mountains” are edges between clusters. The red lines are links between articles.</p>
+<p>In particular we note that articles on sports are special and form a well-defined cluster. This is not surprising, as the jargon is very specific.</p>
 </div>
 </div>
-<div class="section" id="mapping-2-dim-data-in-a-2-dim-network">
-<h2>Mapping 2-dim. data in a 2-dim. network<a class="headerlink" href="#mapping-2-dim-data-in-a-2-dim-network" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">point</span><span class="p">():</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
+<div class="section" id="mapping-2-dim-data-into-a-2-dim-grid">
+<h2>Mapping 2-dim. data into a 2-dim. grid<a class="headerlink" href="#mapping-2-dim-data-into-a-2-dim-grid" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we come to a very important case of mapping 2-dim. data on a 2-dim. grid, as this is realized in our vision system between the retina and the visual cortex.</p>
+<p>The algorithm proceedes analogously to the previous cases. We initialize an <span class="math notranslate nohighlight">\(n \times n\)</span> grid of neurons, placing them randomly in the square <span class="math notranslate nohighlight">\([0,1]\times [0,1]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span>
@@ -817,88 +825,136 @@ Distance:  0.213
 </div>
 </div>
 </div>
+<p>The lines, drawn to guide the eye, join the adjacent index pairs [i,j] and [i+1,j], or [i,j] and [i,j+1]. The neurons in the interior of the grid have 4 nearest neighbors, those at the boundary 3, except for the corners, which have 2.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/som_85_0.png" src="../_images/som_85_0.png" />
+</div>
+</div>
+<p>We note a total initial “chaos”, as the neurons are located randomly. Now comes Kohonen’s miracle:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">.5</span>   <span class="c1"># initial learning speed</span>
+<span class="n">de</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># initial neighborhood distance</span>
+<span class="n">nr</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># number of rounds</span>
+<span class="n">rep</span><span class="o">=</span> <span class="mi">300</span> <span class="c1"># number of points in each round</span>
+<span class="n">ste</span><span class="o">=</span><span class="mi">0</span>    <span class="c1"># inital number of caried out steps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analogous to the previous codes</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>   <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.97</span>      
+    <span class="n">de</span><span class="o">=</span><span class="n">de</span><span class="o">*</span><span class="mf">.98</span>         
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rep</span><span class="p">):</span>    <span class="c1"># repeat for rep points</span>
+        <span class="n">ste</span><span class="o">=</span><span class="n">ste</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">p</span><span class="o">=</span><span class="n">point</span><span class="p">()</span> 
+        <span class="n">dist</span><span class="o">=</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">sam</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)]</span> 
+        <span class="n">ind_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> 
+        <span class="n">ind_i</span><span class="o">=</span><span class="n">ind_min</span><span class="o">%</span><span class="k">n</span>
+        <span class="n">ind_j</span><span class="o">=</span><span class="n">ind_min</span><span class="o">//</span><span class="n">n</span>       
+        
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> 
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">eps</span><span class="o">*</span><span class="n">phi2</span><span class="p">(</span><span class="n">ind_i</span><span class="p">,</span><span class="n">ind_j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">de</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fl.savefig(&#39;images/kb30000.png&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="kohstory2-fig">
+<a class="reference internal image-reference" href="../_images/kball.png"><img alt="../_images/kball.png" src="../_images/kball.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Progress of Kohonen’s algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory2-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>As the algorithm progresses, chaos changes into nearly perfect order, with the grid placed unifomly in the square of the data, with only slight displacements from a regular arrangement. On the way, at 600 steps, we notice a phenomenon called “twist”, where many neurons have a close location an the grid is crumpled.</p>
+</div>
+<div class="section" id="topological-properties">
+<h2>Topological properties<a class="headerlink" href="#topological-properties" title="Permalink to this headline">¶</a></h2>
+<p>Recall the Voronoi construction of categories introduced in section <a class="reference internal" href="unsupervised.html#vor-lab"><span class="std std-ref">Voronoi areas</span></a>. One can simply use it now, treating the neurons from a grid as the Voronoi points. The Voronoi construction provides a mapping <span class="math notranslate nohighlight">\(v\)</span> from the data space <span class="math notranslate nohighlight">\(D\)</span> to the neuron space <span class="math notranslate nohighlight">\(N\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ 
+v: D \to N 
+\]</div>
+<p>(note that this goes in the opposite direction than function <span class="math notranslate nohighlight">\(f\)</span> defined at the beginning of this chapter).</p>
+<p>For instance, we take the bottom right panel of <a class="reference internal" href="#kohstory2-fig"><span class="std std-numref">Fig. 17</span></a>, construct the Voronoi areas for all the neurons, and thus obtain a mapping for all poins in the <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> square. The reader may notice that there is an ambiguity for points lying exactly at boundaries between areas, but this can be taken care of by using an additional prescription, for instance, selecting a neuron lying at direction which has the lowest angle, etc.</p>
+<p>Now a key observation:</p>
+<div class="important admonition">
+<p class="admonition-title">Topological property</p>
+<p>For situations such as in the bottom right panel of <a class="reference internal" href="#kohstory2-fig"><span class="std std-numref">Fig. 17</span></a>, mapping <span class="math notranslate nohighlight">\(v\)</span> has the property that when <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> from <span class="math notranslate nohighlight">\(D\)</span> are close to each other, then also their corresponding neurons are close, i.e. the indices <span class="math notranslate nohighlight">\(v(d_1)\)</span> and <span class="math notranslate nohighlight">\(v(d_2)\)</span> are close.</p>
+</div>
+<p>This observation is obvious. Since <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> are close (and we mean very close, closer than the resolution of the grid), then they must belong either to</p>
+<ul class="simple">
+<li><p>the same Voronoi area, where <span class="math notranslate nohighlight">\(v(d_1)=v(d_2)\)</span>, or</p></li>
+<li><p>neighboring Voronoi areas.</p></li>
+</ul>
+<p>Since for the considered situation the neighboring areas have the grid indices differing by 1, the conclusion that <span class="math notranslate nohighlight">\(v(d_1)\)</span> and <span class="math notranslate nohighlight">\(v(d_2)\)</span> are close follows.</p>
+<p>Note that this feature of Hohonen’s maps is far from trivial and does not hold for a general mapping. Imagine for instance that we stop our simulations for <a class="reference internal" href="#kohstory2-fig"><span class="std std-numref">Fig. 17</span></a> after 40 steps (top central panel) and are left with a “twisted” grid. In the vicinity of the twist, the indices of the adjacent Voronoi areas differ largely, and the considered topological property no longer holds.</p>
+<p>The discussed topological propery has general and far-reaching consequences. First, it allows to carry over “shapes” from <span class="math notranslate nohighlight">\(D\)</span> to <span class="math notranslate nohighlight">\(N\)</span>. Imagine that we have a circle in the <span class="math notranslate nohighlight">\(D\)</span>-space:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/som_97_0.png" src="../_images/som_97_0.png" />
+</div>
+</div>
+<p>where the red points indicate the winners for certain sections of the circle. When we draw these points alone in the <span class="math notranslate nohighlight">\(N\)</span> space, we get</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
- 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sam</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">sam</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>       <span class="c1"># rows</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># columns</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]],[</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span>
-                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ci</span><span class="o">//</span><span class="mi">10</span><span class="p">,</span><span class="n">ci</span><span class="o">%</span><span class="k">10</span>,c=&#39;red&#39;,s=5)
 
-<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>       <span class="c1"># rows</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># columns</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">]],[</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">]],</span>
-                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
         
-        
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$i$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$j$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/som_80_0.png" src="../_images/som_80_0.png" />
+<img alt="../_images/som_99_0.png" src="../_images/som_99_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">.5</span>   <span class="c1"># początkowa szybkość uczenia (0.5)</span>
-<span class="n">de</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># początkowy promień sąsiedztwa </span>
-<span class="n">nr</span><span class="o">=</span><span class="mi">400</span>
-<span class="n">rep</span><span class="o">=</span> <span class="mi">300</span> <span class="c1"># powtórzenia po próbce bez zmiany eps i de</span>
-</pre></div>
+<p>This looks as a (rough and discrete) circle. Note that in our example we only have <span class="math notranslate nohighlight">\(n^2=100\)</span> pixels to our disposal, and the image would look better and better with increasing <span class="math notranslate nohighlight">\(n\)</span>. At some point one would reach the 10M pixels resolution of typical camera, and then the image would look smooth.</p>
+<div class="important admonition">
+<p class="admonition-title">Vision</p>
+<p>The topological property of the Kohonen mapping is believed to have a prime importance in our vision system and the perception of objects. …</p>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>  <span class="c1"># rundy z uaktualnieniem eps i de (100)</span>
-    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.97</span>      <span class="c1"># uczenie słabnie z każdą rundą</span>
-    <span class="n">de</span><span class="o">=</span><span class="n">de</span><span class="o">*</span><span class="mf">.98</span>        <span class="c1"># promień sąsiedztwa też maleje </span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rep</span><span class="p">):</span>    <span class="c1"># powtórz bez uaktualniania eps i de</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">point</span><span class="p">()</span> <span class="c1"># punkt próbki</span>
-        <span class="n">dist</span><span class="o">=</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">eucl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">sam</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)]</span> 
-          <span class="c1"># tablica kwadratów euklidesowych odległości od p dla wsyzstkich neuronów</span>
-        <span class="n">ind_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="c1"># wskaźnik zwycięzcy</span>
-        <span class="n">ind_i</span><span class="o">=</span><span class="n">ind_min</span><span class="o">%</span><span class="k">n</span>
-        <span class="n">ind_j</span><span class="o">=</span><span class="n">ind_min</span><span class="o">//</span><span class="n">n</span>       <span class="c1"># tak trzeba wyłowić wskaźnik dwuwymiarowy (!)</span>
-
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> 
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-                <span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">eps</span><span class="o">*</span><span class="n">phi2</span><span class="p">(</span><span class="n">ind_i</span><span class="p">,</span><span class="n">ind_j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">de</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">sam</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">])</span> 
-                      <span class="c1"># aktualizacja wg strategii &quot;zwycięzca bierze wiekszość&quot;</span>
-   
-</pre></div>
-</div>
-</div>
-</div>
+<p>Another key topological feature is the preservation of connectedness. If an area <span class="math notranslate nohighlight">\(A\)</span> in <span class="math notranslate nohighlight">\(D\)</span> is connected (is in one piece), then its image <span class="math notranslate nohighlight">\(v(A)\)</span> in <span class="math notranslate nohighlight">\(N\)</span> is also connected (we ignore the desired rigor here as to what “connected” means in a discrete space and rely on intuition). So things do not get “warped up” when transforming form <span class="math notranslate nohighlight">\(D\)</span> to <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>Note that the discussed topological features need not be present when dimensionality is reduced, as in our previous examples. Take for instance the bottom right panel of <a class="reference internal" href="#kohstory-fig"><span class="std std-numref">Fig. 15</span></a>. There, many neighboring pairs of Voronoi areas correspond to distant indices, and it is no longer true that <span class="math notranslate nohighlight">\(v(d_1)\)</span> and <span class="math notranslate nohighlight">\(v(d_2)\)</span> are close for close <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span>, as these points may belong to different Voronoi areas with distant indices.</p>
+<p>Our example with the circle now looks like this:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_83_0.png" src="../_images/som_83_0.png" />
+<img alt="../_images/som_104_0.png" src="../_images/som_104_0.png" />
 </div>
 </div>
+<p>When we go along the grid indices, we see the image of our circle (red dots) as a bunch of <strong>disconnected</strong> sections. Topology is not preserved.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/som_106_0.png" src="../_images/som_106_0.png" />
 </div>
-<div class="section" id="topological-properties">
-<h2>Topological properties<a class="headerlink" href="#topological-properties" title="Permalink to this headline">¶</a></h2>
-<p>The <span class="math notranslate nohighlight">\( f \)</span> mapping
-has the following <strong>topological</strong> property: if two neurons <span class="math notranslate nohighlight">\( n_1 \)</span> and <span class="math notranslate nohighlight">\( n_2 \)</span> are close to each other, then also <span class="math notranslate nohighlight">\( d_1 = f (n_1) \)</span> and <span class="math notranslate nohighlight">\( d_2 = f (n_2) \)</span> are close. As we will see, this allows for “transferring” of structures from the <span class="math notranslate nohighlight">\( D \)</span> data space to the <span class="math notranslate nohighlight">\( N \)</span> neuron space.</p>
-<p>Such a mechanism takes place, for example, in the visual system …</p>
-<p>Topology of the vision</p>
-<p>In this case, preserving the topology means that, for example, a retinal circle is mapped into a loop in the cerebral cortex.</p>
-<p>Mapping the retina into the visual area of the cerebral cortex</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Topological features of Kohonen’s maps hold for equal dimensionalities of the input space and the neuron grid, <span class="math notranslate nohighlight">\(n=k\)</span>, and in general do not hold for the reduced dimensionality case, <span class="math notranslate nohighlight">\(k&lt;n\)</span>.</p>
+</div>
 </div>
 <div class="section" id="lateral-inhibition">
 <h2>Lateral inhibition<a class="headerlink" href="#lateral-inhibition" title="Permalink to this headline">¶</a></h2>
-<p>Final missing link: how to make the winner-take-all/most</p>
+<p>In a last topic of these lectures, we return to the issue of how the competition for the “winner” is realized. Abobve, we habe just used the minimum (or maximum) functions, but … external wizard, control unit - not there!</p>
+<p>Neurons in the same laye do talk to one another, and this allows for an arrangement of competition and a natural realization of the strategy winner-take-most</p>
 <div class="figure align-default" id="lat-fig">
 <a class="reference internal image-reference" href="../_images/lat2.png"><img alt="../_images/lat2.png" src="../_images/lat2.png" style="width: 170px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Network with inter-neuron coupling used for modeling lateral inhibition.</span><a class="headerlink" href="#lat-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Network with inter-neuron coupling used for modeling lateral inhibition.</span><a class="headerlink" href="#lat-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="math notranslate nohighlight">
 \[ 
@@ -936,7 +992,7 @@ y_i = s_i + \sum_{j\neq i} F_{ij} y_j.
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_92_0.png" src="../_images/som_92_0.png" />
+<img alt="../_images/som_113_0.png" src="../_images/som_113_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -952,7 +1008,7 @@ y_i = s_i + \sum_{j\neq i} F_{ij} y_j.
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/som_94_0.png" src="../_images/som_94_0.png" />
+<img alt="../_images/som_115_0.png" src="../_images/som_115_0.png" />
 </div>
 </div>
 <p>Pyramidal neurons</p>

@@ -53,25 +53,26 @@
 \contentsline {section}{\numberline {8.3}General remarks on backprop}{72}{section.8.3}%
 \contentsline {chapter}{\numberline {9}Unsupervised learning}{75}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Clusters of points}{75}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Naive clusterization}{77}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Clustering scale}{81}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}Interpretation via steepest descent}{84}{subsection.9.3.1}%
-\contentsline {section}{\numberline {9.4}Interpretation via neural networks}{84}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}Representation with spherical coordinates}{85}{subsection.9.4.1}%
-\contentsline {subsection}{\numberline {9.4.2}Scalar product maximization}{86}{subsection.9.4.2}%
-\contentsline {chapter}{\numberline {10}Self Organizing Maps}{89}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{90}{section.10.1}%
-\contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{90}{subsection.10.1.1}%
-\contentsline {subsection}{\numberline {10.1.2}2 dim. color map}{94}{subsection.10.1.2}%
-\contentsline {section}{\numberline {10.2}Unified distance matrix}{96}{section.10.2}%
-\contentsline {subsection}{\numberline {10.2.1}Mapping colors on a line}{99}{subsection.10.2.1}%
-\contentsline {subsection}{\numberline {10.2.2}Wikipedia articles’ similarity}{101}{subsection.10.2.2}%
-\contentsline {section}{\numberline {10.3}Mapping 2\sphinxhyphen {}dim. data in a 2\sphinxhyphen {}dim. network}{101}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Topological properties}{103}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Lateral inhibition}{103}{section.10.5}%
-\contentsline {chapter}{\numberline {11}Concluding remarks}{107}{chapter.11}%
-\contentsline {chapter}{\numberline {12}Appendix}{109}{chapter.12}%
-\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{109}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{109}{subsection.12.1.1}%
-\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{115}{subsection.12.1.2}%
-\contentsline {chapter}{Bibliography}{121}{chapter*.3}%
+\contentsline {section}{\numberline {9.2}Voronoi areas}{77}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Naive clusterization}{78}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Clustering scale}{83}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Interpretation via steepest descent}{85}{subsection.9.4.1}%
+\contentsline {section}{\numberline {9.5}Interpretation via neural networks}{86}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Representation with spherical coordinates}{86}{subsection.9.5.1}%
+\contentsline {subsection}{\numberline {9.5.2}Scalar product maximization}{88}{subsection.9.5.2}%
+\contentsline {chapter}{\numberline {10}Self Organizing Maps}{91}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{92}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{92}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}2 dim. color map}{96}{subsection.10.1.2}%
+\contentsline {section}{\numberline {10.2}U\sphinxhyphen {}matrix}{98}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Mapping colors on a line}{101}{subsection.10.2.1}%
+\contentsline {subsection}{\numberline {10.2.2}Wikipedia articles’ similarity}{103}{subsection.10.2.2}%
+\contentsline {section}{\numberline {10.3}Mapping 2\sphinxhyphen {}dim. data into a 2\sphinxhyphen {}dim. grid}{104}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Topological properties}{107}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Lateral inhibition}{109}{section.10.5}%
+\contentsline {chapter}{\numberline {11}Concluding remarks}{113}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Appendix}{115}{chapter.12}%
+\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{115}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{115}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{121}{subsection.12.1.2}%
+\contentsline {chapter}{Bibliography}{127}{chapter*.3}%
