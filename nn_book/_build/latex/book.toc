@@ -1,10 +1,11 @@
 \selectlanguage *{english}
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Purpose of these lectures}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Biological inspiration}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.2}Biological inspiration}{4}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Feed\sphinxhyphen {}forward networks}{5}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Why Python}{6}{section.1.4}%
 \contentsline {subsection}{\numberline {1.4.1}Imported packages}{7}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Before you begin}{7}{subsection.1.4.2}%
 \contentsline {chapter}{\numberline {2}MCP Neuron}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Definition}{9}{section.2.1}%
 \contentsline {section}{\numberline {2.2}MCP neuron in Python}{11}{section.2.2}%
@@ -12,6 +13,7 @@
 \contentsline {subsection}{\numberline {2.3.1}Problem with XOR}{15}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}XOR from composition of AND, NAND and OR}{16}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}XOR composed from NAND}{16}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Exercises}{17}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Models of memory}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Heteroassociative memory}{19}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Pair associations}{19}{subsection.3.1.1}%
@@ -55,11 +57,11 @@
 \contentsline {section}{\numberline {9.1}Clusters of points}{75}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Voronoi areas}{77}{section.9.2}%
 \contentsline {section}{\numberline {9.3}Naive clusterization}{78}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Clustering scale}{83}{section.9.4}%
+\contentsline {section}{\numberline {9.4}Clustering scale}{82}{section.9.4}%
 \contentsline {subsection}{\numberline {9.4.1}Interpretation via steepest descent}{85}{subsection.9.4.1}%
-\contentsline {section}{\numberline {9.5}Interpretation via neural networks}{86}{section.9.5}%
+\contentsline {section}{\numberline {9.5}Interpretation via neural networks}{85}{section.9.5}%
 \contentsline {subsection}{\numberline {9.5.1}Representation with spherical coordinates}{86}{subsection.9.5.1}%
-\contentsline {subsection}{\numberline {9.5.2}Scalar product maximization}{88}{subsection.9.5.2}%
+\contentsline {subsection}{\numberline {9.5.2}Scalar product maximization}{87}{subsection.9.5.2}%
 \contentsline {chapter}{\numberline {10}Self Organizing Maps}{91}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{92}{section.10.1}%
 \contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{92}{subsection.10.1.1}%

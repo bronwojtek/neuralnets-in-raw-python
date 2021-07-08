@@ -280,6 +280,10 @@
                 
   <div class="section" id="perceptron">
 <span id="perc-lab"></span><h1>Perceptron<a class="headerlink" href="#perceptron" title="Permalink to this headline">¶</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><em>Practice makes perfect</em></p>
+</div>
 <div class="section" id="supervised-learning">
 <h2>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
 <p>We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has</p>
@@ -314,7 +318,7 @@ construct <strong>binary classifiers</strong> for the data. <em>Binary</em> mean
 is used to assess if a data point has a particular feature, or not.</p>
 <div class="admonition-remark admonition">
 <p class="admonition-title">Remark</p>
-<p>The term <em>perceptron</em> is also used for ANNs (without or with intermediate layers) consisting of the MCP neurons (cf. Fig. <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 4</span></a> and <a class="reference internal" href="mcp.html#mcp1-fig"><span class="std std-numref">Fig. 5</span></a>), on which the perceptron algorithm is executed.</p>
+<p>The term <em>perceptron</em> is also used for ANNs (without or with intermediate layers) consisting of the MCP neurons (cf. Fig. <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a> and <a class="reference internal" href="mcp.html#mcp1-fig"><span class="std std-numref">Fig. 4</span></a>), on which the perceptron algorithm is executed.</p>
 </div>
 <div class="section" id="sample-with-a-known-classification-rule">
 <h3>Sample with a known classification rule<a class="headerlink" href="#sample-with-a-known-classification-rule" title="Permalink to this headline">¶</a></h3>
@@ -374,7 +378,7 @@ is used to assess if a data point has a particular feature, or not.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_15_0.png" src="../_images/perceptron_15_0.png" />
+<img alt="../_images/perceptron_16_0.png" src="../_images/perceptron_16_0.png" />
 </div>
 </div>
 <div class="admonition-linearly-separable-sets admonition">
@@ -385,7 +389,7 @@ is used to assess if a data point has a particular feature, or not.</p>
 <div class="math notranslate nohighlight" id="equation-eq-linsep">
 <span class="eqno">(3)<a class="headerlink" href="#equation-eq-linsep" title="Permalink to this equation">¶</a></span>\[w_0+x_1 w_1+x_2 w_2 + \dots x_n w_n &gt; 0\]</div>
 <p>and the other the opposite condition, with <span class="math notranslate nohighlight">\(&gt;\)</span> replaced with <span class="math notranslate nohighlight">\(\le\)</span>.</p>
-<p>Now a crucial, albeit simple observation: the above inequality is precisely the condition implemented in the <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP neuron</span></a> (with the step activation function) in the convention of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 6</span></a>! We may thus enforce condition <a class="reference internal" href="#equation-eq-linsep">(3)</a> with the <strong>neuron</strong> function from our <strong>neural</strong> library.</p>
+<p>Now a crucial, albeit simple observation: the above inequality is precisely the condition implemented in the <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP neuron</span></a> (with the step activation function) in the convention of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a>! We may thus enforce condition <a class="reference internal" href="#equation-eq-linsep">(3)</a> with the <strong>neuron</strong> function from our <strong>neural</strong> library.</p>
 <p>In our example we have for the pink points, by construction,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -439,10 +443,10 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_26_0.png" src="../_images/perceptron_26_0.png" />
+<img alt="../_images/perceptron_27_0.png" src="../_images/perceptron_27_0.png" />
 </div>
 </div>
-<p>The situation is in some sense inverted now. We have abtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 6</span></a> that would carry out the classification.</p>
+<p>The situation is in some sense inverted now. We have abtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a> that would carry out the classification.</p>
 </div>
 </div>
 <div class="section" id="perceptron-algorithm">
@@ -523,7 +527,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>It yields the result</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_37_0.png" src="../_images/perceptron_37_0.png" />
+<img alt="../_images/perceptron_38_0.png" src="../_images/perceptron_38_0.png" />
 </div>
 </div>
 <p>We can see that the algorithm works! All the pink points are above the line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation</p>
@@ -623,7 +627,7 @@ sets its weights.</p>
 <p>As we can see, a small number of test points are misclassified. All these points lie near the separating line.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_51_0.png" src="../_images/perceptron_51_0.png" />
+<img alt="../_images/perceptron_52_0.png" src="../_images/perceptron_52_0.png" />
 </div>
 </div>
 <div class="note admonition">

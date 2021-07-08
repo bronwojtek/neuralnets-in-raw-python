@@ -265,6 +265,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -280,35 +285,35 @@
 <span id="mcp-lab"></span><h1>MCP Neuron<a class="headerlink" href="#mcp-neuron" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
-<p>We need the basic buiding block of the ANN: the (artificial) neuron. The first mathematical model dates back to Warren McCulloch and Walter Pitts (MCP), who proposed it in 1942, hence at the very beginning of the electronic computer age during World War II. The MCP neuron depicted in <a class="reference internal" href="#mcp1-fig"><span class="std std-numref">Fig. 5</span></a> in the basic ingredient of all ANNs and is built on very simple general rules, inspired neatly by the biological neuron:</p>
+<p>We need a basic building block of ANNs: the artificial neuron. The first mathematical model dates back to Warren McCulloch and Walter Pitts (MCP)<span id="id1">[<a class="reference internal" href="conclusion.html#id9">MP43</a>]</span>, who proposed it in 1942, hence at the very beginning of the electronic computer age during World War II. The MCP neuron depicted in <a class="reference internal" href="#mcp1-fig"><span class="std std-numref">Fig. 4</span></a> is a basic ingredient of all ANNs discussed in this course. It is built on very simple general rules, inspired neatly by the biological neuron:</p>
 <ul class="simple">
-<li><p>The signal enters the nucleus via dendrites from the previous layer.</p></li>
-<li><p>The synaptic connection for each dendrite may have a different (and adjustable) strength.</p></li>
+<li><p>The signal enters the nucleus via dendrites from other neurons.</p></li>
+<li><p>The synaptic connection for each dendrite may have a different (and adjustable) strength (weight).</p></li>
 <li><p>In the nucleus, the signal from all the dendrites is combined (summed up) into <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
-<li><p>If the combined signal is stronger than a given threshold, then the neuron fires along the axon, in the opposice case it remains still.</p></li>
-<li><p>In the siplest relization, the strenth of the fired signal has two possible levels: on or off, i.e. 1 or 0. No intermediate values are needed.</p></li>
-<li><p>Axon terminal connect to dendrites of the neurons in the next layer.</p></li>
+<li><p>If the combined signal is stronger than a given threshold, then the neuron fires along the axon, in the opposite case it remains still.</p></li>
+<li><p>In the simplest realization, the strength of the fired signal has two possible levels: on or off, i.e. 1 or 0. No intermediate values are needed.</p></li>
+<li><p>Axon terminal connects to dendrites of other neurons.</p></li>
 </ul>
 <div class="figure align-default" id="mcp1-fig">
 <a class="reference internal image-reference" href="../_images/mcp-1a.png"><img alt="../_images/mcp-1a.png" src="../_images/mcp-1a.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">MCP neuron: <span class="math notranslate nohighlight">\(x_i\)</span> are the inputs (different in each instance of the data), <span class="math notranslate nohighlight">\(w_i\)</span> are the weights, <span class="math notranslate nohighlight">\(s\)</span> is the signal, <span class="math notranslate nohighlight">\(b\)</span> is the bias, and <span class="math notranslate nohighlight">\(f(s;b)\)</span> represents the acitvation function, yielding the output <span class="math notranslate nohighlight">\(y=f(s;b)\)</span>. The blue oval encircles the whole neuron, as used in <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 4</span></a>.</span><a class="headerlink" href="#mcp1-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">MCP neuron: <span class="math notranslate nohighlight">\(x_i\)</span> is the input, <span class="math notranslate nohighlight">\(w_i\)</span> are the weights, <span class="math notranslate nohighlight">\(s\)</span> is the signal, <span class="math notranslate nohighlight">\(b\)</span> is the bias, and <span class="math notranslate nohighlight">\(f(s;b)\)</span> represents an activation function, yielding the output <span class="math notranslate nohighlight">\(y=f(s;b)\)</span>. The blue oval encircles the whole neuron, as used e.g. in <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>.</span><a class="headerlink" href="#mcp1-fig" title="Permalink to this image">¶</a></p>
 </div>
-<p>Translating this into a mathematical prescription, one assigns to the input cells the numbers <span class="math notranslate nohighlight">\(x_1, x_2 \dots, x_n\)</span> (input data). The strength of the synaptic connections is controled with the <strong>weights</strong> <span class="math notranslate nohighlight">\(w_i\)</span>. Then the combined signal is defined as the weighted sum</p>
+<p>Translating this into a mathematical prescription, one assigns to the input cells the numbers <span class="math notranslate nohighlight">\(x_1, x_2 \dots, x_n\)</span> (input data point). The strength of the synaptic connections is controlled with the <strong>weights</strong> <span class="math notranslate nohighlight">\(w_i\)</span>. Then the combined signal is defined as the weighted sum</p>
 <div class="math notranslate nohighlight">
 \[s=\sum_{i=1}^n x_i w_i.\]</div>
-<p>Thesignal becomes an argument of the <strong>activation function</strong>, which to begin takes the simple form of the step function</p>
+<p>The signal becomes an argument of the <strong>activation function</strong>, which, in the simplest case, takes the form of the step function</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 f(s;b) = \left \{ \begin{array}{l} 1 {\rm ~for~} s \ge b \\ 0 {\rm ~for~} s &lt; b \end{array} \right .
 \end{split}\]</div>
-<p>When the combined signal <span class="math notranslate nohighlight">\(s\)</span> is larger than the bias (threshold) <span class="math notranslate nohighlight">\(b\)</span>, the nucleus fires. i.e. the signal passed along the axon is 1. in the opposite case, the generated signal value is 0 (no firing). This is precisely what we need to mimick the biological prototype.</p>
-<p>There is a convenient notational covnention which is frequently used. Instead of splitting the bias from the input data, we may treat it uniformly. The condition for firing may be triviallly transformed as</p>
+<p>When the combined signal <span class="math notranslate nohighlight">\(s\)</span> is larger than the bias (threshold) <span class="math notranslate nohighlight">\(b\)</span>, the nucleus fires. i.e. the signal passed along the axon is 1. in the opposite case, the generated signal value is 0 (no firing). This is precisely what we need to mimic the biological prototype.</p>
+<p>There is a convenient notational convention which is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as</p>
 <div class="math notranslate nohighlight">
 \[
 s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w_i +x_0 w_0 \ge 0 
 \to \sum_{i=0}^n x_i w_i \ge 0,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>. In other words, we may treat the bias as a weight on the edge connected to an additional cell with input set to 1. This notation is shown in <a class="reference internal" href="#mcp2-fig"><span class="std std-numref">Fig. 6</span></a>. Now, the activation function is simply</p>
+<p>where <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>. In other words, we may treat the bias as a weight on the edge connected to an additional cell with the input always fixed to 1. This notation is shown in <a class="reference internal" href="#mcp2-fig"><span class="std std-numref">Fig. 5</span></a>. Now, the activation function is simply</p>
 <div class="math notranslate nohighlight" id="equation-eq-f">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eq-f" title="Permalink to this equation">¶</a></span>\[\begin{split}f(s) = \left \{ \begin{array}{l} 1 {\rm ~for~} s \ge 0 \\ 0 {\rm ~for~} s &lt; 0 \end{array} \right .,\end{split}\]</div>
 <p>with the summation index in <span class="math notranslate nohighlight">\(s\)</span> starting from <span class="math notranslate nohighlight">\(0\)</span>:</p>
@@ -316,20 +321,20 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <span class="eqno">(2)<a class="headerlink" href="#equation-eq-f0" title="Permalink to this equation">¶</a></span>\[s=\sum_{i=0}^n x_i w_i = x_0 w_0+x_1 w_1 + \dots + x_n w_n.\]</div>
 <div class="figure align-default" id="mcp2-fig">
 <a class="reference internal image-reference" href="../_images/mcp-2a.png"><img alt="../_images/mcp-2a.png" src="../_images/mcp-2a.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Alternative, more uniform representation of the MCP neuron, with <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>.</span><a class="headerlink" href="#mcp2-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Alternative, more uniform representation of the MCP neuron, with <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>.</span><a class="headerlink" href="#mcp2-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition-hyperparameters admonition">
 <p class="admonition-title">Hyperparameters</p>
-<p>The weights <span class="math notranslate nohighlight">\(w_0=-b,w_1,\dots,w_n\)</span> are referred to as hyperparameters. They determine the functionality of the MCP neuron and may be changed during the learning (training) process (see the following). However, they are kept fixed when using the trained neuron on a particular input data set.</p>
+<p>The weights <span class="math notranslate nohighlight">\(w_0=-b,w_1,\dots,w_n\)</span> are generally referred to as <strong>hyperparameters</strong>. They determine the functionality of the MCP neuron and may be changed during the learning (training) process (see the following). However, they are kept fixed when using the trained neuron on a particular input data sample.</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>An essential property of neurons in ANNs is the <strong>nonlinearity</strong> of the activation function. Without this feature, the MCP neuron would simply represent a scalar product, and the feed-forward networks would involve trivial matrix multilications.</p>
+<p>An essential property of neurons in ANNs is <strong>nonlinearity</strong> of the activation function. Without this feature, the MCP neuron would simply represent a scalar product, and the feed-forward networks would just involve trivial matrix multiplications.</p>
 </div>
 </div>
 <div class="section" id="mcp-neuron-in-python">
 <span id="mcp-p-lab"></span><h2>MCP neuron in Python<a class="headerlink" href="#mcp-neuron-in-python" title="Permalink to this headline">¶</a></h2>
-<p>We will now implement the mathematical model of the neuron of Sec. <a class="reference internal" href="#mcp-lab"><span class="std std-ref">MCP Neuron</span></a>. First, we obviously need arrays (vectors), which in Python are represented as</p>
+<p>We now implement the mathematical model of the neuron of Sec. <a class="reference internal" href="#mcp-lab"><span class="std std-ref">MCP Neuron</span></a> in Python. First, we obviously need arrays (vectors), which are represented as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -338,7 +343,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 </div>
 </div>
 </div>
-<p>and are indexed starting from 0, e.g.</p>
+<p>and (<strong>important</strong>) are indexed starting from 0, e.g.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -351,7 +356,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 </div>
 </div>
 </div>
-<p>The numpy library functions carry the prefix <strong>np</strong>, which is the alias given at import. Note that these fumctions act <em>distributively</em> over arrays, e.g.</p>
+<p>(note that typing a variable at the end of a notebook cell prints out its content). The numpy library functions carry the prefix <strong>np</strong>, which is the alias given at import. Note that these functions act <em>distributively</em> over arrays, e.g.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -364,7 +369,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 </div>
 </div>
 </div>
-<p>which is a convenient feature. We also have the scalar product <span class="math notranslate nohighlight">\(x \cdot w = \sum_i x_i w_i\)</span> handy, which we can use to build the combined signal <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p>which is a very convenient feature when programming. We also have the scalar product <span class="math notranslate nohighlight">\(x \cdot w = \sum_i x_i w_i\)</span> handy, which we use to build the combined signal <span class="math notranslate nohighlight">\(s\)</span> entering the MCP neuron:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
@@ -380,36 +385,36 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <p>Next, we need to construct the neuron activation function, which presently is just the step function <a class="reference internal" href="#equation-eq-f">(1)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="c1"># step function (in neural library)</span>
-     <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>       <span class="c1"># step function (also in neural library package)</span>
+     <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>     <span class="c1"># condition satisfied</span>
         <span class="k">return</span> <span class="mi">1</span>
-     <span class="k">else</span><span class="p">:</span>
+     <span class="k">else</span><span class="p">:</span>         <span class="c1"># otherwise</span>
         <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>where in the comment we indicate, that the function is also defined in the <strong>neural</strong> library, cf. <a class="reference internal" href="lib_app.html#app-lab"><span class="std std-ref">Appendix</span></a>. For the visualizers, the plot of the step function is following:</p>
+<p>where in the top comments we have indicated that the function is also defined in the <strong>neural</strong> library package, cf. <a class="reference internal" href="lib_app.html#app-lab"><span class="std std-ref">Appendix</span></a>. For the visualizers, the plot of the step function is following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span> <span class="c1"># set the size of the figure</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span> <span class="c1"># set the size and resolution of the figure</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>   <span class="c1"># array 100+1 equally spaced points between -2 and 2</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>   <span class="c1"># array of 100+1 equally spaced points in [-2, 2]</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="p">[</span><span class="n">step</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>     <span class="c1"># corresponding array of function values</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;signal s&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>      <span class="c1"># axes labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;response f(s)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;step function&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>  <span class="c1"># plot title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;signal s&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>      <span class="c1"># axes labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;response f(s)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;step function&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>  <span class="c1"># plot title</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fs</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mcp_25_0.png" src="../_images/mcp_25_0.png" />
+<img alt="../_images/mcp_24_0.png" src="../_images/mcp_24_0.png" />
 </div>
 </div>
-<p>Since <span class="math notranslate nohighlight">\(x_0=1\)</span> always, we do not want to explicitly carry this in the argument of the functions that will follow. We will be inserting <span class="math notranslate nohighlight">\(x_0=1\)</span> into the input, for instance:</p>
+<p>Since <span class="math notranslate nohighlight">\(x_0=1\)</span> always, we do not want to explicitly carry this over in the arguments of functions that will follow. We will be frequently inserting <span class="math notranslate nohighlight">\(x_0=1\)</span> into the input, for instance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -427,7 +432,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">neuron</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">step</span><span class="p">):</span> <span class="c1"># (in the neural library)</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;                 </span>
 <span class="sd">    MCP neuron</span>
 
 <span class="sd">    x: array of inputs  [x1, x2,...,xn]</span>
@@ -436,12 +441,12 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <span class="sd">    </span>
 <span class="sd">    return: signal=weighted sum w0 + x1 w1 + x2 w2 +...+ xn wn = x.w</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
-    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">w</span><span class="p">))</span> <span class="c1"># insert x0=1, signal s=x.w, output f(s)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">w</span><span class="p">))</span> <span class="c1"># insert x0=1 into x, output f(x.w)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We diligently put the comments in triple quotes to be able to get the help, when needed:</p>
+<p>We diligently put the comments in triple quotes to be able to get a useful help when needed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">neuron</span><span class="p">)</span>
@@ -451,7 +456,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function neuron in module __main__:
 
-neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
+neuron(x, w, f=&lt;function step at 0x7fb295f785f0&gt;)
     MCP neuron
     
     x: array of inputs  [x1, x2,...,xn]
@@ -463,7 +468,7 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 </div>
 </div>
 </div>
-<p>Note that the function f is an argument of neuron, but it has the default set to step and thus does not have to be present. The sample usage with <span class="math notranslate nohighlight">\(x_1=3\)</span>, <span class="math notranslate nohighlight">\(w_0=-b=-2\)</span>, <span class="math notranslate nohighlight">\(w_1=1\)</span> is</p>
+<p>Note that function <strong>f</strong> is an argument of <strong>neuron</strong>. It is by default set to <strong>step</strong>, thus does not have to be present in the argument list. A sample usage with <span class="math notranslate nohighlight">\(x_1=3\)</span>, <span class="math notranslate nohighlight">\(w_0=-b=-2\)</span>, <span class="math notranslate nohighlight">\(w_1=1\)</span> is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neuron</span><span class="p">([</span><span class="mi">3</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
@@ -476,7 +481,8 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 </div>
 </div>
 </div>
-<p>As we can see, the neuron fired in this case, as <span class="math notranslate nohighlight">\(s=1*(-2)+3*1&gt;0\)</span>. Next, we show how the neuron operates on a varying input <span class="math notranslate nohighlight">\(x_1\)</span> taken in the range <span class="math notranslate nohighlight">\([-2,2]\)</span>. We also change the bias parameter, to illustrate its role. It is clear that the bias works as the threshold: if the signal <span class="math notranslate nohighlight">\(x_1 w_1\)</span> is above <span class="math notranslate nohighlight">\(b=-x_0\)</span>, the neuron fires.</p>
+<p>As we can see, the neuron fired in this case, because <span class="math notranslate nohighlight">\(s=1*(-2)+3*1&gt;0\)</span>.</p>
+<p>Next, we show how the neuron operates on an input sample <span class="math notranslate nohighlight">\(x_1\)</span> taken in the range <span class="math notranslate nohighlight">\([-2,2]\)</span>. We also change the bias parameter, to illustrate its role. It is clear that the bias works as the threshold: if the signal <span class="math notranslate nohighlight">\(x_1 w_1\)</span> is above <span class="math notranslate nohighlight">\(b=-x_0\)</span>, then the neuron fires.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span> 
@@ -486,10 +492,10 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 <span class="n">fs0</span> <span class="o">=</span> <span class="p">[</span><span class="n">neuron</span><span class="p">([</span><span class="n">x1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
 <span class="n">fsm12</span> <span class="o">=</span> <span class="p">[</span><span class="n">neuron</span><span class="p">([</span><span class="n">x1</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Change of bias&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Change of bias&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fs1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=-1&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fs0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=0&#39;</span><span class="p">)</span>
@@ -499,26 +505,29 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mcp_35_0.png" src="../_images/mcp_35_0.png" />
+<img alt="../_images/mcp_34_0.png" src="../_images/mcp_34_0.png" />
 </div>
 </div>
-<p>When the sign of the weight <span class="math notranslate nohighlight">\(w_1\)</span> is negative, we get in some sense a <strong>reverse</strong> behavior, where the neuron fires when <span class="math notranslate nohighlight">\(x_1 |w_1| &lt; w_0\)</span>:</p>
+<p>When the sign of the weight <span class="math notranslate nohighlight">\(w_1\)</span> is negative, we get a <strong>reverse</strong> behavior, where the neuron fires when <span class="math notranslate nohighlight">\(x_1 |w_1| &lt; w_0\)</span>:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/mcp_37_0.png" src="../_images/mcp_37_0.png" />
+<img alt="../_images/mcp_36_0.png" src="../_images/mcp_36_0.png" />
 </div>
 </div>
-<p>Note that here (and similarly in other places) the trivial code for the above output is hidden and can be found in the corresponding jupyter notebook.</p>
-<p>Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this enriches the mathematical model, which one is free to use without constraints.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From now on, for the brevity of presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.</p>
+</div>
+<p>Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.</p>
 </div>
 <div class="section" id="boolean-functions">
 <span id="bool-sec"></span><h2>Boolean functions<a class="headerlink" href="#boolean-functions" title="Permalink to this headline">¶</a></h2>
-<p>Having constructed the MCP neuron in Python, the question is: <em>What is the simplest (but still non-trivial) application we can use it for?</em> We will show here that one can easily construct <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_function">boolean functions</a>, or logical networks, with the help of networks of MCP neurons. Boolean functions, by definition, have arguments and values in the set <span class="math notranslate nohighlight">\(\{ 0,1 \}\)</span>, or {True, False}.</p>
+<p>Having constructed the MCP neuron in Python, the question is: <em>What is the simplest (but still non-trivial) application we can use it for?</em> We show here that one can easily construct <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_function">boolean functions</a>, or logical networks, with the help of networks of MCP neurons. Boolean functions, by definition, have arguments and values in the set <span class="math notranslate nohighlight">\(\{ 0,1 \}\)</span>, or {True, False}.</p>
 <p>To warm up, let us start with some guesswork, where we take the neuron with the weights <span class="math notranslate nohighlight">\(w=[w_0,w_1,w_2]=[-1,0.6,0.6]\)</span> (why not). We shall here denote <span class="math notranslate nohighlight">\(x_1=p\)</span>, <span class="math notranslate nohighlight">\(x_2=q\)</span>, in accordance with the traditional notation for logical variables, where <span class="math notranslate nohighlight">\(p,q \in \{0,1\}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p q n(p,q)&quot;</span><span class="p">)</span> <span class="c1"># print the header</span>
-<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">()</span>             <span class="c1"># print space</span>
 
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>       <span class="c1"># loop over p</span>
     <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>   <span class="c1"># loop over q</span>
@@ -537,7 +546,7 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 </div>
 </div>
 </div>
-<p>We immediately recognize in the above output the logical table for the conjunction, <span class="math notranslate nohighlight">\(n(p,q)=p \land q\)</span>, or the logical <strong>AND</strong> operation. It is clear how the neuron works. The condition for the firing <span class="math notranslate nohighlight">\(n(p,q)=1\)</span> is <span class="math notranslate nohighlight">\(-1+p*0.6+q*0.6 \ge 0\)</span>, and it is satisfied if and only if <span class="math notranslate nohighlight">\(p=q=1\)</span>, which is the definition of the logical conjunction. Of course, we could use here 0.7 instead of 0.6, or in general <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> such that <span class="math notranslate nohighlight">\(w_1&lt;1, w_2&lt;1, w_1+w_2 \ge 1\)</span>. In the electronics terminology, we can call the present system the <strong>AND gate</strong>.</p>
+<p>We immediately recognize in the above output the logical table for the conjunction, <span class="math notranslate nohighlight">\(n(p,q)=p \land q\)</span>, or the logical <strong>AND</strong> operation. It is clear how the neuron works. The condition for the firing <span class="math notranslate nohighlight">\(n(p,q)=1\)</span> is <span class="math notranslate nohighlight">\(-1+p*0.6+q*0.6 \ge 0\)</span>, and it is satisfied if and only if <span class="math notranslate nohighlight">\(p=q=1\)</span>, which is the definition of the logical conjunction. Of course, we could have used here 0.7 instead of 0.6, or in general <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span> such that <span class="math notranslate nohighlight">\(w_1&lt;1, w_2&lt;1, w_1+w_2 \ge 1\)</span>. In the electronics terminology, we can call the present neuron the <strong>AND gate</strong>.</p>
 <p>We can thus define the short-hand</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,7 +555,7 @@ neuron(x, w, f=&lt;function step at 0x7fb008a4e320&gt;)
 </div>
 </div>
 </div>
-<p>Quite similarly, we may define other boolean functions (or logical gates) of two variables. In particular, the NAND gate (the negation of conjunction) and the OR gate (alternative) are realized with the following MCP neurons:</p>
+<p>Quite similarly, we may define other boolean functions (or logical gates) of two logical variables. In particular, the NAND gate (the negation of conjunction) and the OR gate (alternative) are realized with the following MCP neurons:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">neurNAND</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span> <span class="k">return</span> <span class="n">neuron</span><span class="p">([</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">])</span>
@@ -591,8 +600,8 @@ p &amp; q &amp; p \oplus q \\
 1 &amp; 1 &amp; 0
 \end{array}
 \end{split}\]</div>
-<p>This is one of possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to behave as the XOR gate, but we are doomed to fail. Here is the reson:</p>
-<p>From the first row of the above table it follows that for the input 0 0 the neuron should not fire. Hence</p>
+<p>This is one of possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:</p>
+<p>From the first row of the above table it follows that for the input 0, 0 (first row) the neuron should not fire. Hence</p>
 <p><span class="math notranslate nohighlight">\(w_0  + 0* w_1 + 0*w_2  &lt; 0\)</span>, or <span class="math notranslate nohighlight">\(-w_0&gt;0\)</span>.</p>
 <p>For the cases of rows 2 and 3 the neuron must fire, therefore</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_2 \ge 0\)</span> and <span class="math notranslate nohighlight">\(w_0+w_1 \ge 0\)</span>.</p>
@@ -615,7 +624,7 @@ p &amp; q &amp; p \oplus q \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p q XOR&quot;</span><span class="p">)</span> <span class="c1"># print the header</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p q XOR&quot;</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span> 
@@ -635,16 +644,16 @@ p &amp; q &amp; p \oplus q \\
 </div>
 </div>
 </div>
-<p>The above construction corresponds to the simple network of <a class="reference internal" href="#xor-fig"><span class="std std-numref">Fig. 7</span></a>.</p>
+<p>The above construction corresponds to the simple network of <a class="reference internal" href="#xor-fig"><span class="std std-numref">Fig. 6</span></a>.</p>
 <div class="figure align-default" id="xor-fig">
 <a class="reference internal image-reference" href="../_images/xor.png"><img alt="../_images/xor.png" src="../_images/xor.png" style="width: 260px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">The XOR gate compsed of the NAND, OR, and AND MCP neurons.</span><a class="headerlink" href="#xor-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The XOR gate composed of the NAND, OR, and AND MCP neurons.</span><a class="headerlink" href="#xor-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note that we are dealing here, for the first time, with a network having an intermediate layer, consisting of the NAND and OR neurons. This layer is indispensable to construct the XOR gate.</p>
 </div>
 <div class="section" id="xor-composed-from-nand">
 <h3>XOR composed from NAND<a class="headerlink" href="#xor-composed-from-nand" title="Permalink to this headline">¶</a></h3>
-<p>Within the theory of logical networks, one proves that any network (or boolean function) can be composed of only NAND gates, or only the NOR gates. One says that the NAND (or NOR) gates are <strong>complete</strong>. In particular, the XOR gate can be constructed as</p>
+<p>Within the theory of logical networks, one proves that any network (or any boolean function) can be composed of only NAND gates, or only the NOR gates. One says that the NAND (or NOR) gates are <strong>complete</strong>. In particular, the XOR gate can be constructed as</p>
 <p>[ p NAND ( p NAND q ) ] NAND [ q NAND ( p NAND q ) ],</p>
 <p>which we can write in Python as</p>
 <div class="cell docutils container">
@@ -656,7 +665,7 @@ p &amp; q &amp; p \oplus q \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p q XOR&quot;</span><span class="p">)</span> <span class="c1"># print the header</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p q XOR&quot;</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span> 
@@ -676,16 +685,28 @@ p &amp; q &amp; p \oplus q \\
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One proves that logical networks are complete in the <a class="reference external" href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis">Church-Turing</a> sense, i.e., (when sufficiently large) may carry over any possible calculation. This feature directly carries over to ANNs. Historically, that was the basic finding of the seminal MCP paper <span id="id2">[<a class="reference internal" href="conclusion.html#id9">MP43</a>]</span>.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Conclusion</p>
+<p>ANNs (sufficiently large) can perform any calculation!</p>
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title">Exercises</p>
 <p>Construct (all in Python)</p>
 <ul class="simple">
-<li><p>gates NOT, NOR</p></li>
-<li><p>gates OR, AND, NOT by composing gates NAND <a class="reference external" href="https://en.wikipedia.org/wiki/NAND_logic">https://en.wikipedia.org/wiki/NAND_logic</a></p></li>
-<li><p>the half adder and full adder <a class="reference external" href="https://en.wikipedia.org/wiki/Adder_(electronics)">https://en.wikipedia.org/wiki/Adder_(electronics)</a></p></li>
+<li><p>a gate realizing conjunction of multiple boolean variables;</p></li>
+<li><p>gates NOT, NOR;</p></li>
+<li><p>gates OR, AND, NOT by composing gates NAND <a class="reference external" href="https://en.wikipedia.org/wiki/NAND_logic"></a>;</p></li>
+<li><p>the half adder and full adder [] (<a class="reference external" href="https://en.wikipedia.org/wiki/Adder_(electronics)">https://en.wikipedia.org/wiki/Adder_(electronics)</a>),</p></li>
 </ul>
 <p>as networks of MCP neurons.</p>
-</div>
 </div>
 </div>
 </div>

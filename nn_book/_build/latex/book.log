@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  6 JUL 2021 20:43
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  8 JUL 2021 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1619,11 +1619,9 @@ File: barcode.png Graphic file (type bmp)
 
 ]
 Chapter 1.
+[3]
 File: neuron-structure.jpg Graphic file (type bmp)
 <neuron-structure.jpg>
-[3]
-File: feat.jpg Graphic file (type bmp)
-<feat.jpg>
  [4]
 File: brain.jpg Graphic file (type bmp)
 <brain.jpg>
@@ -1640,13 +1638,13 @@ File: mcp-1a.png Graphic file (type bmp)
 File: mcp-2a.png Graphic file (type bmp)
 <mcp-2a.png>
  [10]
-File: mcp_25_0.png Graphic file (type bmp)
-<mcp_25_0.png>
+File: mcp_24_0.png Graphic file (type bmp)
+<mcp_24_0.png>
  [11] [12]
-File: mcp_35_0.png Graphic file (type bmp)
-<mcp_35_0.png>
-File: mcp_37_0.png Graphic file (type bmp)
-<mcp_37_0.png>
+File: mcp_34_0.png Graphic file (type bmp)
+<mcp_34_0.png>
+File: mcp_36_0.png Graphic file (type bmp)
+<mcp_36_0.png>
  [13] [14] [15]
 File: xor.png Graphic file (type bmp)
 <xor.png>
@@ -1684,17 +1682,17 @@ File: memory_70_0.png Graphic file (type bmp)
 ]
 Chapter 4.
 [29] [30]
-File: perceptron_15_0.png Graphic file (type bmp)
-<perceptron_15_0.png>
+File: perceptron_16_0.png Graphic file (type bmp)
+<perceptron_16_0.png>
  [31]
-File: perceptron_26_0.png Graphic file (type bmp)
-<perceptron_26_0.png>
+File: perceptron_27_0.png Graphic file (type bmp)
+<perceptron_27_0.png>
  [32] [33]
-File: perceptron_37_0.png Graphic file (type bmp)
-<perceptron_37_0.png>
+File: perceptron_38_0.png Graphic file (type bmp)
+<perceptron_38_0.png>
  [34] [35]
-File: perceptron_51_0.png Graphic file (type bmp)
-<perceptron_51_0.png>
+File: perceptron_52_0.png Graphic file (type bmp)
+<perceptron_52_0.png>
  [36]
 Chapter 5.
 File: regions.png Graphic file (type bmp)
@@ -1746,7 +1744,7 @@ File: backprop_24_0.png Graphic file (type bmp)
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
  [52] [53] [54] [55]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2757--2763
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2810--2816
 []$[] [][] [][]$ 
  []
 
@@ -1806,33 +1804,37 @@ Chapter 9.
 [75]
 File: unsupervised_10_0.png Graphic file (type bmp)
 <unsupervised_10_0.png>
- [76]
+
+Overfull \vbox (1.6242pt too high) detected at line 3629
+ []
+
+[76]
 File: unsupervised_15_0.png Graphic file (type bmp)
 <unsupervised_15_0.png>
  [77] [78]
 File: unsupervised_37_0.png Graphic file (type bmp)
 <unsupervised_37_0.png>
- [79] [80]
+ [79]
 File: unsupervised_44_0.png Graphic file (type bmp)
 <unsupervised_44_0.png>
+ [80]
 File: cl4_2.jpg Graphic file (type bmp)
 <cl4_2.jpg>
 File: cl5.jpg Graphic file (type bmp)
 <cl5.jpg>
- [81] [82] [83]
+ [81] [82]
 File: cd.jpg Graphic file (type bmp)
 <cd.jpg>
- [84] [85]
+ [83] [84]
 File: unsupervised_70_0.png Graphic file (type bmp)
 <unsupervised_70_0.png>
- [86]
+ [85]
 File: unsupervised_76_0.png Graphic file (type bmp)
 <unsupervised_76_0.png>
- [87] [88]
+ [86] [87]
 File: unsupervised_82_0.png Graphic file (type bmp)
 <unsupervised_82_0.png>
- [89]
-[90
+ [88] [89] [90
 
 ]
 Chapter 10.
@@ -1912,6 +1914,8 @@ File: som_115_0.png Graphic file (type bmp)
  [110]
 File: som_121_0.png Graphic file (type bmp)
 <som_121_0.png>
+File: smi32-pic.jpg Graphic file (type bmp)
+<smi32-pic.jpg>
  [111] [112
 
 ]
@@ -1921,71 +1925,71 @@ Chapter 11.
 ]
 Chapter 12.
 
-Overfull \vbox (2.01305pt too high) detected at line 5348
+Overfull \vbox (2.01305pt too high) detected at line 5415
  []
 
 [115]
-Underfull \vbox (badness 10000) detected at line 5348
+Underfull \vbox (badness 10000) detected at line 5415
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5348
+Overfull \vbox (2.78596pt too high) detected at line 5415
  []
 
 [116]
-Underfull \vbox (badness 10000) detected at line 5348
+Underfull \vbox (badness 10000) detected at line 5415
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5348
+Overfull \vbox (2.78596pt too high) detected at line 5415
  []
 
 [117]
-Underfull \vbox (badness 10000) detected at line 5348
+Underfull \vbox (badness 10000) detected at line 5415
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5348
+Overfull \vbox (2.78596pt too high) detected at line 5415
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5348
+Underfull \vbox (badness 10000) detected at line 5415
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5348
+Overfull \vbox (2.78596pt too high) detected at line 5415
  []
 
 [119] [120]
-Underfull \vbox (badness 10000) detected at line 5582
+Underfull \vbox (badness 10000) detected at line 5649
  []
 
 
-Overfull \vbox (4.52797pt too high) detected at line 5582
+Overfull \vbox (4.52797pt too high) detected at line 5649
  []
 
 [121]
-Underfull \vbox (badness 10000) detected at line 5582
+Underfull \vbox (badness 10000) detected at line 5649
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5582
+Overfull \vbox (2.78596pt too high) detected at line 5649
  []
 
 [122]
-Underfull \vbox (badness 10000) detected at line 5582
+Underfull \vbox (badness 10000) detected at line 5649
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5582
+Overfull \vbox (2.78596pt too high) detected at line 5649
  []
 
 [123]
-Underfull \vbox (badness 10000) detected at line 5582
+Underfull \vbox (badness 10000) detected at line 5649
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5582
+Overfull \vbox (2.78596pt too high) detected at line 5649
  []
 
 [124] [125] [126
@@ -2028,26 +2032,26 @@ braces):
  [127
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5598.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5598.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5683.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5683.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5598.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5598.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5683.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5683.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 679157BD09179A3D284932D6B6B17EE2;7998.
+(rerunfilecheck)             Checksum: 359E43D1FC2DFFCC766165FA2E9A0F33;8098.
  ) 
 Here is how much of TeX's memory you used:
- 41876 strings out of 479418
- 953368 string characters out of 5884586
+ 41884 strings out of 479418
+ 953568 string characters out of 5884586
  1843486 words of memory out of 5000000
- 58550 multiletter control sequences out of 15000+600000
+ 58558 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 71i,22n,112p,1464b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,22n,112p,1514b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on book.pdf (131 pages).

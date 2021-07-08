@@ -915,6 +915,8 @@ plt.xlabel('$i$',fontsize=11);
 # In a last topic of these lectures, we return to the issue of how the competition for the "winner" is realized in ANNs. Above, we have just used the minimum (or maximum, when the signal was extended to a hyperphere) functions, but this is embarrasingly outside of the framework. Such an insection of which neuron yields the strongest signal would require an "external wizard", or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons. 
 # 
 # Actually, if the neurons in a layer "talk" to one another, we can have a contest. An architecture as in {numref}`lat-fig` allows for an arrangement of competition and a natural realization of the winner-take-most mechanism. 
+# 
+# The type of models as presented below is known as the [Hopfield networks](https://en.wikipedia.org/wiki/Hopfield_network).
 
 # :::{figure-md} lat-fig
 # 
@@ -979,17 +981,17 @@ plt.ylabel('$F(i,15)$',fontsize=11);
 
 # We assume a bell-shaped Lorentzian input signal $s$, with a maximum in the middle neuron. The width is controled with **D**.
 
-# In[481]:
+# In[484]:
 
 
-D=2
+D=3
 s = np.array([D**2/((i - ns/2)**2 + D**2) for i in range(ns)]) # Lorentzian function
 
 
 # 
-# and solve Eq. {ref}`eq-lat` via inverting the $(I-F)$ matrix:
+# and solve Eq. {eq}`eq-lat` via inverting the $(I-F)$ matrix:
 
-# In[482]:
+# In[485]:
 
 
 invF=np.linalg.inv(np.identity(ns)-F) # matrix inversion
@@ -997,22 +999,32 @@ y=np.dot(invF,s)                      # multiplication
 y=y/y[15]                             # normalization (inessential) 
 
 
-# What follows is quite remarkable: the output signal $y$ is much narrower form the input signal, which is a realization of the "winner-take-all" scenario. 
+# What follows is quite remarkable: the output signal $y$ is much narrower from the input signal, which is a realization of the "winner-take-all" scenario. 
 
-# In[483]:
+# In[489]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
 
 plt.plot(s)
 plt.plot(y)
-plt.legend(('$s$','$y$'),fontsize=11)
+plt.legend(('input $s$','output $y$'),fontsize=9)
 plt.xlabel('neuron number',fontsize=11)
 plt.ylabel('signal',fontsize=11);    
 
 
-# Pyramidal neurons
+# The presented model is certainly too simple to be realistic from the point of view of biological networks. Also, it yields unnatural negative signal outside of the central peak (which we can remove with rectification). Nevertheless, the model shows the possible way to achieve the "winner competition", essential for unsupervised learning. 
 # 
+# ```{note}
+# Actually, **pyramidal neurons**, present i.a. in the neocortex, have as many as a few thousand dendritic spines and do realize a scenario with numerous synaptic connections. They are believed [Quantamagazine](https://www.quantamagazine.org/artificial-neural-nets-finally-yield-clues-to-how-brains-learn-20210218/)to play a crucial role in learning and cognition.
+# ```
+# 
+
+# :::{figure-md} pyr-fig
+# <img src="images/smi32-pic.jpg" width="300px">
+# 
+# Image of pyramidal neurons (from [brainmaps.org](http://brainmaps.org/index.php?p=screenshots))
+# :::
 
 # ```{admonition} Exercises
 # :class: warning

@@ -277,10 +277,10 @@
 <div class="math notranslate nohighlight">
 \[x \cdot w=w_0+x_1 w_1 + \dots x_n w_n = 0\]</div>
 <p>is the <strong>dividing line</strong>.</p>
-<p>Imagine now that we have more such conditions: two, three, etc., in general <span class="math notranslate nohighlight">\(k\)</span> independent conditions. Taking a conjunction of these conditions, we can build regions as shown, e.g., in <a class="reference internal" href="#regions-fig"><span class="std std-numref">Fig. 8</span></a>.</p>
+<p>Imagine now that we have more such conditions: two, three, etc., in general <span class="math notranslate nohighlight">\(k\)</span> independent conditions. Taking a conjunction of these conditions, we can build regions as shown, e.g., in <a class="reference internal" href="#regions-fig"><span class="std std-numref">Fig. 7</span></a>.</p>
 <div class="figure align-default" id="regions-fig">
 <a class="reference internal image-reference" href="../_images/regions.png"><img alt="../_images/regions.png" src="../_images/regions.png" style="width: 620px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunction of 2, 3, or 4 inequality conditions, yielding <strong>polygons</strong>.</span><a class="headerlink" href="#regions-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunction of 2, 3, or 4 inequality conditions, yielding <strong>polygons</strong>.</span><a class="headerlink" href="#regions-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition-convex-region admonition">
 <p class="admonition-title">Convex region</p>
@@ -294,13 +294,13 @@ Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span
 <div class="math notranslate nohighlight">
 \[p \cdot w =-1 + p_1 w_1 + \dots + p_k w_k = -1+\frac{p_1+\dots p_k}{k-\frac{1}{2}} &gt; 0\]</div>
 <p>if and only if all <span class="math notranslate nohighlight">\(p_i=1\)</span>, i.e. all the conditions are true. This builds th AND gate for the incoming <span class="math notranslate nohighlight">\(k\)</span> boolean signals.</p>
-<p>The architecture of networks for <span class="math notranslate nohighlight">\(k=1\)</span>, 2, 3, or 4 conditions is shown in <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a>. Starting from the second panel, we have networks with two layers of neurons, with <span class="math notranslate nohighlight">\(k\)</span> neurons in the intermediate layer, providing the inequality conditions, and one neuron in the output layer, acting as the AND gate. Of course, for one condition it is sufficient to have a single neuron, as in the left panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a>.</p>
+<p>The architecture of networks for <span class="math notranslate nohighlight">\(k=1\)</span>, 2, 3, or 4 conditions is shown in <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a>. Starting from the second panel, we have networks with two layers of neurons, with <span class="math notranslate nohighlight">\(k\)</span> neurons in the intermediate layer, providing the inequality conditions, and one neuron in the output layer, acting as the AND gate. Of course, for one condition it is sufficient to have a single neuron, as in the left panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a>.</p>
 <div class="figure align-default" id="nfn-fig">
 <a class="reference internal image-reference" href="../_images/nf1-4.png"><img alt="../_images/nf1-4.png" src="../_images/nf1-4.png" style="width: 820px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Networks capable of classifying data in the corresponding regions of <a class="reference internal" href="#regions-fig"><span class="std std-numref">Fig. 8</span></a>.</span><a class="headerlink" href="#nfn-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Networks capable of classifying data in the corresponding regions of <a class="reference internal" href="#regions-fig"><span class="std std-numref">Fig. 7</span></a>.</span><a class="headerlink" href="#nfn-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>With the geometric interpretation, the first neuron layer represents the <span class="math notranslate nohighlight">\(k\)</span> half-planes, and the neuron in the second layer correspond to a convex region with <span class="math notranslate nohighlight">\(k\)</span> sides.</p>
-<p>The situation generalizes in an obvious way to data in more dimensions. In that case we have more black dots in the inputs in  <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a>. Geometrically, non <span class="math notranslate nohighlight">\(n=3\)</span> we deal with dividing planes and convex <a class="reference external" href="https://en.wikipedia.org/wiki/Polyhedron">polyhedrons</a>, and for <span class="math notranslate nohighlight">\(n&gt;3\)</span> with dividing <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperplane">hyperplanes</a> and convex <a class="reference external" href="https://en.wikipedia.org/wiki/Polytope">polytopes</a>.</p>
+<p>The situation generalizes in an obvious way to data in more dimensions. In that case we have more black dots in the inputs in  <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a>. Geometrically, non <span class="math notranslate nohighlight">\(n=3\)</span> we deal with dividing planes and convex <a class="reference external" href="https://en.wikipedia.org/wiki/Polyhedron">polyhedrons</a>, and for <span class="math notranslate nohighlight">\(n&gt;3\)</span> with dividing <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperplane">hyperplanes</a> and convex <a class="reference external" href="https://en.wikipedia.org/wiki/Polytope">polytopes</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If there are numerous neurons <span class="math notranslate nohighlight">\(k\)</span> in the intermediate layer, the resulting polygon has many sides which may approximate a smooth boundary, such as an arc. The approximation is better and better as <span class="math notranslate nohighlight">\(k\)</span> increases.</p>
@@ -318,10 +318,10 @@ Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span
 <img alt="../_images/more_layers_13_0.png" src="../_images/more_layers_13_0.png" />
 </div>
 </div>
-<p>Note that the first and second neuron layers are not fully connected here, as we “stack on top of each other” two networks producing triangles, as in the third panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a>. Next, in the third neuron layer (here having a single neuron) we implement a <span class="math notranslate nohighlight">\(p \,\wedge \!\sim\!q\)</span> gate, i.e. the conjunction of the conditions that the points belong to one triangle and do not belong to the other one. As we will show shortly, with appropriate weights, the above network may produce a concave region, for example a triangle with a triangular hollow:</p>
+<p>Note that the first and second neuron layers are not fully connected here, as we “stack on top of each other” two networks producing triangles, as in the third panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a>. Next, in the third neuron layer (here having a single neuron) we implement a <span class="math notranslate nohighlight">\(p \,\wedge \!\sim\!q\)</span> gate, i.e. the conjunction of the conditions that the points belong to one triangle and do not belong to the other one. As we will show shortly, with appropriate weights, the above network may produce a concave region, for example a triangle with a triangular hollow:</p>
 <div class="figure align-default" id="tri-fig">
 <a class="reference internal image-reference" href="../_images/tritri.png"><img alt="../_images/tritri.png" src="../_images/tritri.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Triangle with a tringular hollow.</span><a class="headerlink" href="#tri-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Triangle with a tringular hollow.</span><a class="headerlink" href="#tri-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Generalizing this argument to other shapes, one can show an important theorem that</p>
 <div class="admonition important">
@@ -335,7 +335,7 @@ Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span
 <p>Before proceeding with an explicit example, we need a Python code for propagation of the signal in a general fully-connected feed-forward network. First, we represent the architecture of a network with <span class="math notranslate nohighlight">\(l\)</span> neuron layers as an array of the form</p>
 <div class="math notranslate nohighlight">
 \[[n_0,n_1,n_2,...,n_l],\]</div>
-<p>where <span class="math notranslate nohighlight">\(n_0\)</span> in the number of the input nodes, and <span class="math notranslate nohighlight">\(n_i\)</span> are the numbers of neurons in layers <span class="math notranslate nohighlight">\(i=1,\dots,l\)</span>. For instance, the architecture of the network from the fourth panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a> is</p>
+<p>where <span class="math notranslate nohighlight">\(n_0\)</span> in the number of the input nodes, and <span class="math notranslate nohighlight">\(n_i\)</span> are the numbers of neurons in layers <span class="math notranslate nohighlight">\(i=1,\dots,l\)</span>. For instance, the architecture of the network from the fourth panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a> is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> 
@@ -349,7 +349,7 @@ Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span
 </div>
 </div>
 </div>
-<p>In the codes of this course we use the convention of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 6</span></a>, namely, the bias is treated uniformly with the remaining signal. However, the bias notes are not included in the numbers <span class="math notranslate nohighlight">\(n_i\)</span> defined above. In particular, a more detailed view of the fourth panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 9</span></a> is</p>
+<p>In the codes of this course we use the convention of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a>, namely, the bias is treated uniformly with the remaining signal. However, the bias notes are not included in the numbers <span class="math notranslate nohighlight">\(n_i\)</span> defined above. In particular, a more detailed view of the fourth panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a> is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net</span><span class="p">(</span><span class="n">arch</span><span class="p">);</span>
@@ -533,7 +533,7 @@ The figure below illustrates the scheme:</p>
 </div>
 <div class="section" id="classifier-with-three-neuron-layers">
 <h2>Classifier with three neuron layers<a class="headerlink" href="#classifier-with-three-neuron-layers" title="Permalink to this headline">¶</a></h2>
-<p>We are now ready to explicitly construct an example of a binary classifier of points in a concave region: a triagle with a triangular hollow of <a class="reference internal" href="#tri-fig"><span class="std std-numref">Fig. 10</span></a>.
+<p>We are now ready to explicitly construct an example of a binary classifier of points in a concave region: a triagle with a triangular hollow of <a class="reference internal" href="#tri-fig"><span class="std std-numref">Fig. 9</span></a>.
 The network architecture is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

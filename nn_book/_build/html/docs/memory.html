@@ -290,6 +290,11 @@
                 
   <div class="section" id="models-of-memory">
 <h1>Models of memory<a class="headerlink" href="#models-of-memory" title="Permalink to this headline">¶</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><em>Memory is the mother of all wisdom.</em></p>
+<p style="text-align:right;">Aeschylus</p>
+</div>
 <div class="section" id="heteroassociative-memory">
 <h2>Heteroassociative memory<a class="headerlink" href="#heteroassociative-memory" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pair-associations">
@@ -336,7 +341,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_14_0.png" src="../_images/memory_14_0.png" />
+<img alt="../_images/memory_15_0.png" src="../_images/memory_15_0.png" />
 </div>
 </div>
 <p>It is more convenient to work not with the above two-dimensional arrays, but with one-dimensional vectors obtained with the so-called <strong>flattening</strong> procedure, where a matrix is cut along its rows into a vector. For example</p>
@@ -372,12 +377,12 @@
 <p>to obtain, for instance</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_20_0.png" src="../_images/memory_20_0.png" />
+<img alt="../_images/memory_21_0.png" src="../_images/memory_21_0.png" />
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_21_0.png" src="../_images/memory_21_0.png" />
+<img alt="../_images/memory_22_0.png" src="../_images/memory_22_0.png" />
 </div>
 </div>
 <p>The advantage of working with vectors is that we can use the scalar product. Here, the scalar product between two symbols is just equal to the number of common yellow pixels. For instance, for the flattened symbols plotted above we have only two common yellow pixels:</p>
@@ -499,7 +504,7 @@ ld be a), it yields (we use rounding to 2 decimal digits)</p>
 <p>We note that the strength of pixels is now not necessarily equal to 0 or 1, as it was in the original symbols. The graphic representation looks as follows:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_37_0.png" src="../_images/memory_37_0.png" />
+<img alt="../_images/memory_38_0.png" src="../_images/memory_38_0.png" />
 </div>
 </div>
 <p>We should be able to see in the above picture the sequence a, A, i, I, and nothing particular in the association of Y. We almost do, but the situation is not perfect due to the nonorthogonality error discussed above.</p>
@@ -555,14 +560,14 @@ ld be a), it yields (we use rounding to 2 decimal digits)</p>
 <p>where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our accociations (such perfection is not always the case):</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_47_0.png" src="../_images/memory_47_0.png" />
+<img alt="../_images/memory_48_0.png" src="../_images/memory_48_0.png" />
 </div>
 </div>
 <p>A representation of the presented model of the heteroassociative memory in terms of ANN can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements <span class="math notranslate nohighlight">\(M_{ij}\)</span>, indicated with symbol M. The activation function is the same for all neurons and it has the form of a step function.</p>
 <p>At the bottom we indicate the elements of the input vector, <span class="math notranslate nohighlight">\(x_i\)</span>, of the signal reaching the neuron <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(s_j=\sum_i x_i M_{ij}\)</span>, and the final output <span class="math notranslate nohighlight">\(y_j=f(s_j)\)</span>.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_50_0.png" src="../_images/memory_50_0.png" />
+<img alt="../_images/memory_51_0.png" src="../_images/memory_51_0.png" />
 </div>
 </div>
 <div class="admonition-summary-of-the-model-of-the-heteroassociative-memory admonition">
@@ -596,7 +601,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back th original symbols (except for Y, which was not associated).</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_58_0.png" src="../_images/memory_58_0.png" />
+<img alt="../_images/memory_59_0.png" src="../_images/memory_59_0.png" />
 </div>
 </div>
 </div>
@@ -619,7 +624,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After this the input symbols look like this:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_63_0.png" src="../_images/memory_63_0.png" />
+<img alt="../_images/memory_64_0.png" src="../_images/memory_64_0.png" />
 </div>
 </div>
 </div>
@@ -642,7 +647,7 @@ It should be the symbol associated to the input.</p></li>
 <p>which yields</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_68_0.png" src="../_images/memory_68_0.png" />
+<img alt="../_images/memory_69_0.png" src="../_images/memory_69_0.png" />
 </div>
 </div>
 <p>After filtering, with <span class="math notranslate nohighlight">\(b=0.9\)</span>, we obtain back the original symbols:</p>
@@ -658,7 +663,7 @@ It should be the symbol associated to the input.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_70_0.png" src="../_images/memory_70_0.png" />
+<img alt="../_images/memory_71_0.png" src="../_images/memory_71_0.png" />
 </div>
 </div>
 <div class="admonition-summary-of-the-model-of-the-autooassociative-memory admonition">

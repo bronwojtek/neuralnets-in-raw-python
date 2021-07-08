@@ -4,6 +4,12 @@
 # (perc-lab)=
 # # Perceptron
 
+# ```{tip}
+# 
+# *Practice makes perfect*
+#                              
+# ```
+
 # ## Supervised learning
 
 # In[1]:

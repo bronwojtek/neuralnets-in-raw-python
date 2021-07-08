@@ -4,7 +4,7 @@
 # (un-lab)=
 # # Unsupervised learning
 
-# In[1]:
+# In[ ]:
 
 
 import numpy as np
@@ -18,11 +18,14 @@ from IPython.display import display, Image
 import sys # system library
 sys.path.append('./lib_nn') # my path (linux, Mac OS)
 
+
+# In[1]:
+
+
 from neural import * # import my library packages
 
 
-# ```{admonition} Motto
-# :class: tip
+# ```{tip}
 # 
 # *teachers! leave those kids alone!*
 # 

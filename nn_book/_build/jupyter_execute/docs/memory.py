@@ -15,6 +15,14 @@ import matplotlib.pyplot as plt
 from IPython.display import display, Image
 
 
+# ```{tip}
+# 
+# *Memory is the mother of all wisdom.*
+# 
+# <p style="text-align:right;">Aeschylus</p>
+#                              
+# ```
+
 # ## Heteroassociative memory
 
 # ### Pair associations
