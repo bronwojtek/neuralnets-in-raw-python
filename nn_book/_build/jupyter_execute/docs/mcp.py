@@ -387,7 +387,7 @@ for i in [0,1]:
 
 # ## Exercises
 
-# ```{admonition} Exercises 
+# ```{admonition} $~$
 # :class: warning
 # 
 # 
@@ -395,8 +395,8 @@ for i in [0,1]:
 # 
 # - a gate realizing conjunction of multiple boolean variables;
 # - gates NOT, NOR;
-# - gates OR, AND, NOT by composing gates NAND [](https://en.wikipedia.org/wiki/NAND_logic); 
-# - the half adder and full adder [] (https://en.wikipedia.org/wiki/Adder_(electronics)),
+# - gates OR, AND, NOT by [composing NAND gates](https://en.wikipedia.org/wiki/NAND_logic); 
+# - the [half adder and full adder](https://en.wikipedia.org/wiki/Adder_(electronics)),
 # 
 # as networks of MCP neurons.
 # ```

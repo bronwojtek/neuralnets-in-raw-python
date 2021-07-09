@@ -72,7 +72,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 08, 2021}
+\date{Jul 09, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -162,8 +162,10 @@ On the way of the course, some basic Python programing will be gently sneaked in
 At the end of each chapter some exercises are suggested, with the goal to familiarize the reader with the covered topics and the little codes. Most of exercises involve simple modifications/extensions of appropriate pieces of the lecture material.
 \end{sphinxadmonition}
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by \sphinxhref{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}{Daniel Kersten}, done in Mathematica, from an on\sphinxhyphen{}line book by \sphinxhref{https://page.mi.fu-berlin.de/rojas/neural/}{Raul Rojas} (also available in a printed version {[}\hyperlink{cite.docs/conclusion:id8}{FR13}{]}), and from physicists’ (as myself!) point of view {[}\hyperlink{cite.docs/conclusion:id7}{MullerRS12}{]}.
+There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by \sphinxhref{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}{Daniel Kersten}, done in Mathematica, from an on\sphinxhyphen{}line book by \sphinxhref{https://page.mi.fu-berlin.de/rojas/neural/}{Raul Rojas} (also available in a printed version {[}\hyperlink{cite.docs/conclusion:id8}{FR13}{]}), and the from physicists’ (as myself!) point of view from {[}\hyperlink{cite.docs/conclusion:id7}{MullerRS12}{]}.
+\end{sphinxadmonition}
 
 
 \section{Biological inspiration}
@@ -763,13 +765,13 @@ One proves that logical networks are complete in the \sphinxhref{https://en.wiki
 \begin{sphinxadmonition}{note}{Conclusion}
 
 \sphinxAtStartPar
-Message: ANNs (sufficiently large) can perform any calculation!
+ANNs (sufficiently large) can perform any calculation!
 \end{sphinxadmonition}
 
 
 \section{Exercises}
 \label{\detokenize{docs/mcp:exercises}}
-\begin{sphinxadmonition}{note}{Exercises}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 
 \sphinxAtStartPar
 Construct (all in Python)
@@ -784,11 +786,11 @@ gates NOT, NOR;
 
 \item {} 
 \sphinxAtStartPar
-gates OR, AND, NOT by composing gates NAND \sphinxhref{https://en.wikipedia.org/wiki/NAND\_logic}{};
+gates OR, AND, NOT by \sphinxhref{https://en.wikipedia.org/wiki/NAND\_logic}{composing NAND gates};
 
 \item {} 
 \sphinxAtStartPar
-the half adder and full adder {[}{]} (\sphinxurl{https://en.wikipedia.org/wiki/Adder\_(electronics)}),
+the \sphinxhref{https://en.wikipedia.org/wiki/Adder\_(electronics)}{half adder and full adder},
 
 \end{itemize}
 
@@ -799,6 +801,14 @@ as networks of MCP neurons.
 
 \chapter{Models of memory}
 \label{\detokenize{docs/memory:models-of-memory}}\label{\detokenize{docs/memory::doc}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
+
+\sphinxAtStartPar
+\sphinxstyleemphasis{Memory is the mother of all wisdom.}
+
+
+\end{sphinxadmonition}
+
 
 \section{Heteroassociative memory}
 \label{\detokenize{docs/memory:heteroassociative-memory}}
@@ -806,16 +816,17 @@ as networks of MCP neurons.
 \subsection{Pair associations}
 \label{\detokenize{docs/memory:pair-associations}}
 \sphinxAtStartPar
-We now pass to further illustrations of elementary capabilities of ANNs, desribing two very simple models of memory based on linear algebra, supplemented with (nonlinear) filtering (an implementation of these models in Mathematica is provided in \sphinxurl{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}). Speaking of memory here, we have very simple tools in mind, which is far from the actual complex and hitherto not completely understood memory mechanism operating in our brain.
+We now pass to further illustrations of elementary capabilities of ANNs, describing two very simple models of memory based on linear algebra, supplemented with (nonlinear) filtering. Speaking of memory here, a word of caution is in place. We have rather simplistic tools in mind here, which are far from the actual complex and hitherto not comprehended memory mechanism operating in our brain. The present understanding is that these mechanism involve feed\sphinxhyphen{}back, which goes beyond the considered feed\sphinxhyphen{}forward networks.
 
 \sphinxAtStartPar
-The first model concerns the so called \sphinxstylestrong{heterassociative} memory, where some objects (here graphic bitmap symbols) are joined in pairs. In particular, we take the set of five graphical symbols, \{A, a, I, i, Y\}, and define two pair associations A \(\leftrightarrow\) a and I \(\leftrightarrow\) i between different (hetero) symbols. Y remain unassociated.
+The first considered model concerns the so called \sphinxstylestrong{heterassociative} memory, where some objects (here graphic bitmap symbols) are joined in pairs. In particular, we take the set of five graphical symbols, \{A, a, I, i, Y\}, and define two pair associations: A \(\leftrightarrow\) a and I \(\leftrightarrow\) i, that is between different (hetero) symbols. Y remains unassociated.
 
 \sphinxAtStartPar
 The symbols are defined as 2\sphinxhyphen{}dimensional \(12 \times 12\) pixel arrays, for instance
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-    \PYG{n}{A} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{A} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}
+       \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
        \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
        \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
        \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
@@ -833,10 +844,10 @@ The symbols are defined as 2\sphinxhyphen{}dimensional \(12 \times 12\) pixel ar
 The remaining symbols are defined smilarly.
 
 \sphinxAtStartPar
-The whole set looks like this, with yellow=1 and violet=0:
+We use the standard plotting package imported earlier. The whole set of our symbols looks like this, with yellow=1 and violet=0:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{sym}\PYG{o}{=}\PYG{p}{[}\PYG{n}{A}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{ii}\PYG{p}{,}\PYG{n}{I}\PYG{p}{,}\PYG{n}{Y}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} array of symbols, numbered from 0 to 4}
+\PYG{n}{sym}\PYG{o}{=}\PYG{p}{[}\PYG{n}{A}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{ii}\PYG{p}{,}\PYG{n}{I}\PYG{p}{,}\PYG{n}{Y}\PYG{p}{]}   \PYG{c+c1}{\PYGZsh{} array of symbols, numbered from 0 to 4}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -848,7 +859,12 @@ The whole set looks like this, with yellow=1 and violet=0:
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{sym}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} plot symbol, numbered from 0 to 4}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{memory_14_0}.png}
+\noindent\sphinxincludegraphics{{memory_13_0}.png}
+
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+In Python, an integer range\((i,j)\) includes \(i\), but does not include \(j\), i.e. equals \([i, i+1, \dots, j-1]\). Also, range\((i)\) includes \(0, 1, \dots, i-1\). This differs from conventions in some other programming languages.
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
 It is more convenient to work not with the above two\sphinxhyphen{}dimensional arrays, but with one\sphinxhyphen{}dimensional vectors obtained with the so\sphinxhyphen{}called \sphinxstylestrong{flattening} procedure, where a matrix is cut along its rows into a vector. For example
@@ -856,7 +872,7 @@ It is more convenient to work not with the above two\sphinxhyphen{}dimensional a
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{t}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} a matrix}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{t}\PYG{p}{)}                            
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{t}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}     \PYG{c+c1}{\PYGZsh{} matrix flattened into a vector   }
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{t}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}                    \PYG{c+c1}{\PYGZsh{} matrix flattened into a vector   }
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -867,7 +883,7 @@ It is more convenient to work not with the above two\sphinxhyphen{}dimensional a
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We thus perform the flattenning:
+We thus perform the flattening on our set,
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fA}\PYG{o}{=}\PYG{n}{A}\PYG{o}{.}\PYG{n}{flatten}\PYG{p}{(}\PYG{p}{)}
@@ -885,7 +901,7 @@ to obtain, for instance
 \noindent\sphinxincludegraphics{{memory_21_0}.png}
 
 \sphinxAtStartPar
-The advantage of working with vectors is that we can use the scalar product. Here, the scalar product between two symbols is just equal to the number of common yellow pixels. For instance, for the flattened symbols plotted above we have only two common yellow pixels:
+The advantage of working with vectors is that we can use the scalar product. Note that here the scalar product between two symbols is just equal to the number of common yellow pixels. For instance, for the flattened symbols plotted above we have only two common yellow pixels:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{fA}\PYG{p}{,}\PYG{n}{fi}\PYG{p}{)}
@@ -896,13 +912,13 @@ The advantage of working with vectors is that we can use the scalar product. Her
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-It is clear that one can use the scalar product as a measure of similarity between the symbols. For the following method to work, the symbols should not be too similar.
+It is clear that one can use the scalar product as a measure of similarity between the symbols. For the following method to work, the symbols should not be too similar, as then they could be “confused”.
 
 
 \subsection{Memory matrix}
 \label{\detokenize{docs/memory:memory-matrix}}
 \sphinxAtStartPar
-The next algebraic concept we need is the \sphinxstylestrong{outer product}. For two vectors \(v\) and \(w\), it is defined as \(v w^T = v \otimes w\) (as opposed to the scalar product, where \(w^T v = w \cdot v\)). \(T\) denotes transposition. The result is a matrix with the number of rows equal to the length of \(v\), and the number of column equal to the length of \(w\).
+The next algebraic concept we need is the \sphinxstylestrong{outer product}. For two vectors \(v\) and \(w\), it is defined as \(v w^T = v \otimes w\) (as opposed to the scalar product, where \(w^T v = w \cdot v\)). Here \(T\) denotes transposition. The result is a matrix with the number of rows equal to the length of \(v\), and the number of columns equal to the length of \(w\).
 
 \sphinxAtStartPar
 For example, with
@@ -919,7 +935,7 @@ v \otimes w = v w^T=
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-In numpy
+(recall from algebra that we multiply “the columns by the rows”). In \sphinxstylestrong{numpy}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} outer product of two vectors}
@@ -932,7 +948,7 @@ In numpy
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Next, we construct a \sphinxstylestrong{memory matrix} needed for modeling our heteroassociative memory. Suppose first for simplicity of notation that we only have two associations: \(a \to A\) and \(b \to B\).
+Next, we construct a \sphinxstylestrong{memory matrix} needed for modeling the heteroassociative memory. Suppose first, for simplicity of notation, that we only have two associations: \(a \to A\) and \(b \to B\).
 Let
 \begin{equation*}
 \begin{split}M = A a^T/a\cdot a + B b^T/b\cdot b.\end{split}
@@ -949,10 +965,11 @@ and if \(a\) and \(b\) were \sphinxstylestrong{orthogonal}, i.e. \(a \cdot b =0\
 \( M a =  A\)
 
 \sphinxAtStartPar
-yielding an exact association. Similarly, we would have \(M b = B\). However, since in a general case the vectors are not exactly orthogonal, an error \(B \, b \cdot a/a \cdot a\) (for the association of \(a\)) is generated. It is usually small if the number of pixels in our symbols is large and the symbols are, loosely speaking, not too similar. As we will see, the emerging error can be efficiently “filtered out” with an appropriate neuron activation function.
+yielding an exact association. Similarly, we would get \(M b = B\). However, since in a general case the vectors are not exactly orthogonal, an error \(B \, b \cdot a/a \cdot a\) (for the association of \(a\)) is generated. It is usually small if the number of pixels in our symbols is large and the symbols are, loosely speaking, not too similar (do not have too many common pixels. As we will see shortly, the emerging error can be efficiently “filtered out” with an appropriate neuron activation function.
 
 \sphinxAtStartPar
-Coming back to our particular case, we thus need four terms in \(M\):
+Coming back to our particular case, we thus need four terms in \(M\), as
+\(a \to A\), \(A\to a\), \(I \to i\), and \(i \to I\):
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{M}\PYG{o}{=}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{n}{fA}\PYG{p}{,}\PYG{n}{fa}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{fa}\PYG{p}{,}\PYG{n}{fa}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{n}{fa}\PYG{p}{,}\PYG{n}{fA}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{fA}\PYG{p}{,}\PYG{n}{fA}\PYG{p}{)}
@@ -960,7 +977,7 @@ Coming back to our particular case, we thus need four terms in \(M\):
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Now, for each flattened symbol \(s\) we will evaluate \(Ms\). The result is a vector, which we want to bring back to the form of the \(12\times 12\) pixel array. The operation inverse to flattening in Python is \sphinxstylestrong{reshape}. For instance
+Now, as a test how it works, for each flattened symbol \(s\) we evaluate \(Ms\). The result is a vector, which we want to bring back to the form of the \(12\times 12\) pixel array. The operation inverse to flattening in Python is \sphinxstylestrong{reshape}. For instance
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{tt}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} test vector}
@@ -980,14 +997,13 @@ For our vectors we have
 \PYG{n}{ap}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{M}\PYG{p}{,}\PYG{n}{fa}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
 \PYG{n}{Ip}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{M}\PYG{p}{,}\PYG{n}{fI}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
 \PYG{n}{ip}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{M}\PYG{p}{,}\PYG{n}{fi}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
-\PYG{n}{Yp}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{M}\PYG{p}{,}\PYG{n}{fY}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} we also try unassociated symbol Y}
+\PYG{n}{Yp}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{M}\PYG{p}{,}\PYG{n}{fY}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} we also try the unassociated symbol Y}
 
-\PYG{n}{symp}\PYG{o}{=}\PYG{p}{[}\PYG{n}{Ap}\PYG{p}{,}\PYG{n}{ap}\PYG{p}{,}\PYG{n}{Ip}\PYG{p}{,}\PYG{n}{ip}\PYG{p}{,}\PYG{n}{Yp}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} array of associated symbols}
+\PYG{n}{symp}\PYG{o}{=}\PYG{p}{[}\PYG{n}{Ap}\PYG{p}{,}\PYG{n}{ap}\PYG{p}{,}\PYG{n}{Ip}\PYG{p}{,}\PYG{n}{ip}\PYG{p}{,}\PYG{n}{Yp}\PYG{p}{]}          \PYG{c+c1}{\PYGZsh{} array of associated symbols}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-For the case of association to A (which shou
-ld be a), it yields (we use rounding to 2 decimal digits)
+For the case of association to A (which should be a), the procedure yields (we use rounding to 2 decimal digits with \sphinxstylestrong{np.round})
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{Ap}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} pixel map for the association of the symbol A}
@@ -1020,7 +1036,7 @@ We should be able to see in the above picture the sequence a, A, i, I, and nothi
 \subsection{Applying a filter}
 \label{\detokenize{docs/memory:applying-a-filter}}
 \sphinxAtStartPar
-The result improves greatly when a filter is applied to the pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which shoul be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of suffient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) \(b\) should be reset to 0, and those above or equal to \(b\) should be reset to 1. This can be neatly accomplished with our \sphinxstylestrong{neuron} function from Sec. {\hyperref[\detokenize{docs/mcp:mcp-p-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron in Python}}}}. This function has been placed in the library \sphinxstylestrong{neural} (see {\hyperref[\detokenize{docs/lib_app:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}), which we now read in:
+The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) \(b\) should be reset to 0, and those above or equal to \(b\) should be reset to 1. This can be neatly accomplished with our \sphinxstylestrong{neuron} function from Sec. {\hyperref[\detokenize{docs/mcp:mcp-p-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron in Python}}}}. This function has been placed in the library \sphinxstylestrong{neural} (see {\hyperref[\detokenize{docs/lib_app:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}), which we now read in:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{sys} \PYG{c+c1}{\PYGZsh{} system library}
@@ -1030,7 +1046,7 @@ The result improves greatly when a filter is applied to the pixel maps. Looking 
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We thus define the filter as a neuron with weight \(w_0=-b\) and \(w_1=1\):
+We thus define the filter as an MCP neuron with weights \(w_0=-b\) and \(w_1=1\):
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{filter}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} a \PYGZhy{} symbol (2\PYGZhy{}dim pixel array), b \PYGZhy{} bias}
@@ -1040,7 +1056,7 @@ We thus define the filter as a neuron with weight \(w_0=-b\) and \(w_1=1\):
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-When operating on Ap with appropriately chosen \(b=0.9\) (the level of the bias is very much relevant), the result is
+When operating on Ap with appropriately chosen \(b=0.9\) (the level of the assumed bias is very much relevant). This yields the result
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n+nb}{filter}\PYG{p}{(}\PYG{n}{Ap}\PYG{p}{,}\PYG{l+m+mf}{.9}\PYG{p}{)}\PYG{p}{)}
@@ -1062,15 +1078,15 @@ When operating on Ap with appropriately chosen \(b=0.9\) (the level of the bias 
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our accociations (such perfection is not always the case):
+where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our associations (such perfection is not always the case):
 
-\noindent\sphinxincludegraphics{{memory_47_0}.png}
-
-\sphinxAtStartPar
-A representation of the presented model of the heteroassociative memory in terms of ANN can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements \(M_{ij}\), indicated with symbol M. The activation function is the same for all neurons and it has the form of a step function.
+\noindent\sphinxincludegraphics{{memory_48_0}.png}
 
 \sphinxAtStartPar
-At the bottom we indicate the elements of the input vector, \(x_i\), of the signal reaching the neuron \(j\), \(s_j=\sum_i x_i M_{ij}\), and the final output \(y_j=f(s_j)\).
+A representation of the just presented model of the heteroassociative memory in terms of a \sphinxstylestrong{single\sphinxhyphen{}layer} network of MCP neurons can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements \(M_{ij}\), indicated with symbol M. The activation function is the same for all neurons and has the form of the step function.
+
+\sphinxAtStartPar
+At the bottom, we indicate the elements of the input vector, \(x_i\), of the signal reaching the neuron \(j\), \(s_j=\sum_i x_i M_{ij}\), and the final output \(y_j=f(s_j)\).
 
 \noindent\sphinxincludegraphics{{memory_50_0}.png}
 
@@ -1087,7 +1103,7 @@ The input is a symbol in the form of a 2\sphinxhyphen{}dim array of pixels with 
 
 \item {} 
 \sphinxAtStartPar
-Flaten the symbol into a vector, which forms the layer of inputs \(x_i\).
+Flatten the symbol into a vector, which forms the layer of inputs \(x_i\).
 
 \item {} 
 \sphinxAtStartPar
@@ -1116,7 +1132,7 @@ It should be the symbol associated to the input.
 \subsection{Self\sphinxhyphen{}associations}
 \label{\detokenize{docs/memory:self-associations}}
 \sphinxAtStartPar
-The autoassociative memory model is in close analogy to the case of the heteroassociatine memory, but now the symbol is associated \sphinxstylestrong{to itself}. Why we do such a thing will become clear shortly, when we consider distorted input. We thus define the association matrix as follows:
+The autoassociative memory model is in close analogy to the case of the heteroassociatine memory, but now the symbol is associated \sphinxstylestrong{with itself}. Why we do such a thing will become clear shortly, when we consider distorted input. We thus define the association matrix as follows:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{Ma}\PYG{o}{=}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{n}{fA}\PYG{p}{,}\PYG{n}{fA}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{fA}\PYG{p}{,}\PYG{n}{fA}\PYG{p}{)}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{n}{fa}\PYG{p}{,}\PYG{n}{fa}\PYG{p}{)}\PYG{o}{/}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{fa}\PYG{p}{,}\PYG{n}{fa}\PYG{p}{)}
@@ -1124,7 +1140,7 @@ The autoassociative memory model is in close analogy to the case of the heteroas
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back th original symbols (except for Y, which was not associated).
+After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back the original symbols (except for Y, which was not associated with anything).
 
 \noindent\sphinxincludegraphics{{memory_58_0}.png}
 
@@ -1132,20 +1148,20 @@ After multiplying the flattened symbol with matrix Ma, reshaping, and filtering 
 \subsection{Distorting the image}
 \label{\detokenize{docs/memory:distorting-the-image}}
 \sphinxAtStartPar
-Now imagine that the original input gets partially destroyed, with some pixels randomly altered from 1 to 0 and vice versa.
+Now imagine that the original image gets partially destroyed, with some pixels randomly altered from 1 to 0 and vice versa.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ne}\PYG{o}{=}\PYG{l+m+mi}{12} \PYG{c+c1}{\PYGZsh{} number of alterations}
+\PYG{n}{ne}\PYG{o}{=}\PYG{l+m+mi}{12}   \PYG{c+c1}{\PYGZsh{} number of alterations}
 
 \PYG{k}{for} \PYG{n}{s} \PYG{o+ow}{in} \PYG{n}{sym}\PYG{p}{:}                     \PYG{c+c1}{\PYGZsh{} loop over symbols}
     \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ne}\PYG{p}{)}\PYG{p}{:}           \PYG{c+c1}{\PYGZsh{} loop over alteratons}
         \PYG{n}{i}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random position in row}
         \PYG{n}{j}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random position in column}
-        \PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{]}           \PYG{c+c1}{\PYGZsh{} switching 1 and 0}
+        \PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{]}           \PYG{c+c1}{\PYGZsh{} trick to switch 1 and 0}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-After this the input symbols look like this:
+After this destruction, the input symbols look like this:
 
 \noindent\sphinxincludegraphics{{memory_63_0}.png}
 
@@ -1153,7 +1169,7 @@ After this the input symbols look like this:
 \subsection{Restoring the symbols}
 \label{\detokenize{docs/memory:restoring-the-symbols}}
 \sphinxAtStartPar
-We now apply our model of the autoassociative memory to all the “distroyed” symbols:
+We next apply our model of the autoassociative memory to all the “destroyed” symbols:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{Ap}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{Ma}\PYG{p}{,}\PYG{n}{fA}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
@@ -1162,7 +1178,7 @@ We now apply our model of the autoassociative memory to all the “distroyed” 
 \PYG{n}{ip}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{Ma}\PYG{p}{,}\PYG{n}{fi}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
 \PYG{n}{Yp}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{Ma}\PYG{p}{,}\PYG{n}{fY}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)}
 
-\PYG{n}{symp}\PYG{o}{=}\PYG{p}{[}\PYG{n}{Ap}\PYG{p}{,}\PYG{n}{ap}\PYG{p}{,}\PYG{n}{Ip}\PYG{p}{,}\PYG{n}{ip}\PYG{p}{,}\PYG{n}{Yp}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} array of self\PYGZhy{}associated symbols}
+\PYG{n}{symp}\PYG{o}{=}\PYG{p}{[}\PYG{n}{Ap}\PYG{p}{,}\PYG{n}{ap}\PYG{p}{,}\PYG{n}{Ip}\PYG{p}{,}\PYG{n}{ip}\PYG{p}{,}\PYG{n}{Yp}\PYG{p}{]} 
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
@@ -1171,18 +1187,21 @@ which yields
 \noindent\sphinxincludegraphics{{memory_68_0}.png}
 
 \sphinxAtStartPar
-After filtering, with \(b=0.9\), we obtain back the original symbols:
+After filtering with \(b=0.9\) we obtain back the original symbols:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} loop over panels}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{p}{:}     
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{i}\PYG{p}{)}  
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}       
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n+nb}{filter}\PYG{p}{(}\PYG{n}{symp}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mf}{0.9}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} plot filtered symbol}
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{memory_70_0}.png}
+
+\sphinxAtStartPar
+The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism.
 
 \begin{sphinxadmonition}{note}{Summary of the model of the autooassociative memory}
 \begin{enumerate}
@@ -1198,7 +1217,7 @@ certain number of pixels randomly distorted.
 
 \item {} 
 \sphinxAtStartPar
-Flaten the symbol into a vector, which forms the layer of inputs \(x_i\).
+Flatten the symbol into a vector, which forms the layer of inputs \(x_i\).
 
 \item {} 
 \sphinxAtStartPar
@@ -1214,32 +1233,40 @@ The activation (step) function with a properly chosen bias yields \(y_j=f(s_j)\)
 
 \item {} 
 \sphinxAtStartPar
-Cut the output vector into a matrix of pixels, which constitutes the final output. It should bring back the ariginal symbol.
+Cut the output vector into a matrix of pixels, which constitutes the final output. It should bring back the original symbol.
 
 \end{enumerate}
 \end{sphinxadmonition}
 
-\sphinxAtStartPar
-The application can thus decifer a “destroyed” text, or, more generally,
-provide an error correcion mechanism.
-
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-Message: ANN can serve as very simple models of memory!
+Message: ANNs with one layer of MPC neurons can serve as very simple models of memory!
 \end{sphinxadmonition}
 
-\begin{sphinxadmonition}{note}{Exercises}
+\sphinxAtStartPar
+Note, however, that we constructed the memory matrices algebraically, externally, so to speak. Hence, the network has not really learned the associations from experience. There are ways to do it, but they require more advanced methods (see, e.g., {[}\hyperlink{cite.docs/conclusion:id11}{FS91}{]}), similar to those covered in the following parts of these lectures.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+An implementation of the discussed memory models in Mathematica is provided in
+{[}\hyperlink{cite.docs/conclusion:id10}{Fre93}{]} (\sphinxurl{https://library.wolfram.com/infocenter/Books/3485}) and in the already mentioned lectures by \sphinxhref{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}{Daniel Kersten}.
+\end{sphinxadmonition}
+
+
+\section{Exercises}
+\label{\detokenize{docs/memory:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 
 \sphinxAtStartPar
 Play with the lecture code and
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-add more and more symbols,
+add more and more symbols;
 
 \item {} 
 \sphinxAtStartPar
-change the filter level,
+change the filter level;
 
 \item {} 
 \sphinxAtStartPar
@@ -1248,16 +1275,24 @@ increase the number of alterations.
 \end{itemize}
 
 \sphinxAtStartPar
-Discuss your findings.
+Discuss your findings and the limitations of the models.
 \end{sphinxadmonition}
 
 
 \chapter{Perceptron}
 \label{\detokenize{docs/perceptron:perceptron}}\label{\detokenize{docs/perceptron:perc-lab}}\label{\detokenize{docs/perceptron::doc}}
-\begin{sphinxadmonition}{tip}{Tip:}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
+
 \sphinxAtStartPar
-\sphinxstyleemphasis{practice makes perfect}
+\sphinxstyleemphasis{Practice makes perfect}
 \end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+(we only show new imported packages in the text, with the previous imports, such as \sphinxstylestrong{numpy}, repeated but hidden)
 
 
 \section{Supervised learning}
@@ -1267,7 +1302,7 @@ We have shown in the previous chapters that even the simplest ANNs can carry out
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-some \sphinxstylestrong{architecture}, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, …),
+some \sphinxstylestrong{architecture}, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, …);
 
 \item {} 
 \sphinxAtStartPar
@@ -1277,7 +1312,7 @@ some \sphinxstylestrong{architecture}, i.e. the number of layers, number of neur
 
 \sphinxAtStartPar
 The prime practical question is how to set (for a given architecture) the weights such that a requested goal is realized, i.e., a given input yields a desired output.
-In the tasks discussed earlier, the weights could be constructed \sphinxstyleemphasis{a priori}, be it for the logical gates or for the memory models. However, for more involved applications we want to have an “easier” way of determining the weights. Actually, for complicated problems a “theoretical” determination of weights is not possible at all. This is the basic reason for inventing \sphinxstylestrong{learning algorithms}, which automatically adjust the weights with the help of a data sample.
+In the tasks discussed earlier, the weights could be constructed \sphinxstyleemphasis{a priori}, be it for the logical gates or for the memory models. However, for more involved applications we want to have an “easier” way of determining the weights. Actually, for complicated problems a “theoretical” determination of weights is not possible at all. This is the basic reason for inventing \sphinxstylestrong{learning algorithms}, which automatically adjust the weights with the help of the data.
 
 \sphinxAtStartPar
 In this chapter we begin to explore such algorithms with the \sphinxstylestrong{supervised learning}, used for data classification.
@@ -1285,7 +1320,7 @@ In this chapter we begin to explore such algorithms with the \sphinxstylestrong{
 \begin{sphinxadmonition}{note}{Supervised learning}
 
 \sphinxAtStartPar
-In this strategy, the data must possess \sphinxstylestrong{labels} which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat,dog,…), which are the labels.
+In this strategy, the data must possess \sphinxstylestrong{labels} which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat, dog,…), which are the labels.
 The labeled data are split into a \sphinxstylestrong{training} sample and a \sphinxstylestrong{test} sample.
 
 \sphinxAtStartPar
@@ -1297,7 +1332,7 @@ Initialize somehow the weights, for instance randomly or to zero.
 
 \item {} 
 \sphinxAtStartPar
-Read subsequently the data points from the training sample and pass them throught your ANN. The obtained answer may differ from the correct one, determimed by the label, in which case the weights are adjusted according to a specific prescription (to be discussed later on).
+Read subsequently the data points from the training sample and pass them through your ANN. The obtained answer may differ from the correct one, given by the label, in which case the weights are adjusted according to a specific prescription (to be discussed later on).
 
 \item {} 
 \sphinxAtStartPar
@@ -1309,25 +1344,25 @@ Finish the training when a stopping criterion is reached (weights do not change 
 
 \item {} 
 \sphinxAtStartPar
-Test the trained ANN on the test sample.
+Test the trained ANN on a test sample.
 
 \end{itemize}
 
 \sphinxAtStartPar
-If satisfied, you have a desired trained ANN performing a specific task, which can be used on new, unlabeled data. If not, you can split the sample in the training and the test parts in a different way and repeat the procedure from the beginning. Also, you may try to acquire more data, or change your network’s architecture.
+If satisfied, you have a desired trained ANN performing a specific task (like classification), which can be used on new, unlabeled data. If not, you can split the sample in the training and the test parts in a different way and repeat the procedure from the beginning. Also, you may try to acquire more data (which may be expensive), or change your network’s architecture.
 
 \sphinxAtStartPar
-This he term “supervised” comes form the interpretation of the procedure where the labels are held by a “teacher”, who thus knows which answers are correct and which are wrong, and who \sphinxstylestrong{supervises} the training process.
+The term “supervised” comes form the interpretation of the procedure where the labels are held by a “teacher”, who thus knows which answers are correct and which are wrong, and who \sphinxstylestrong{supervises} that way the training process.
 \end{sphinxadmonition}
 
 
-\section{Binary classifier}
-\label{\detokenize{docs/perceptron:binary-classifier}}
+\section{Perceptron as a binary classifier}
+\label{\detokenize{docs/perceptron:perceptron-as-a-binary-classifier}}
 \sphinxAtStartPar
 The simplest supervised learning algorithm
-is the \sphinxhref{https://en.wikipedia.org/wiki/Perceptron}{perceptron}, invented in 1958 by Frank Rosenblatt. It can be used to
-construct \sphinxstylestrong{binary classifiers} for the data. \sphinxstyleemphasis{Binary} means that the network
-is used to assess if a data point has a particular feature, or not.
+is the \sphinxhref{https://en.wikipedia.org/wiki/Perceptron}{perceptron}, invented in 1958 by Frank Rosenblatt. It can be used, i.a., to
+construct \sphinxstylestrong{binary classifiers} of the data. \sphinxstyleemphasis{Binary} means that the network
+is used to assess if a data item has a particular feature, or not \sphinxhyphen{} just two possibilities. Multi\sphinxhyphen{}label classification is also possible with ANNs (see exercises), but we do not discuss it in these lectures.
 
 \begin{sphinxadmonition}{note}{Remark}
 
@@ -1339,14 +1374,13 @@ The term \sphinxstyleemphasis{perceptron} is also used for ANNs (without or with
 \subsection{Sample with a known classification rule}
 \label{\detokenize{docs/perceptron:sample-with-a-known-classification-rule}}
 \sphinxAtStartPar
-To begin, we need some training data, which we will generate as random points in a square. Thus the coordinates of the point, \(x_1\) and \(x_2\), are taken in the range \([0,1]\). We define two categories: one for the points lying above the line \(x_1=x_2\) (call them pink), and the other for the points lying below (blue). During the generation, we check whether \(x_2 > x_1\) or not, and assign a \sphinxstylestrong{label} to each data point equal to, correspongigly, 1 or 0.
+To begin, we need some training data, which we will generate as random points in a square. Thus the coordinates of the point, \(x_1\) and \(x_2\), are taken in the range \([0,1]\). We define two categories: one for the points lying above the line \(x_1=x_2\) (call them pink), and the other for the points lying below (blue). During the generation, we check whether \(x_2 > x_1\) or not, and assign a \sphinxstylestrong{label} to each data point equal to, correspondingly, 1 or 0. These labels are “true” answers.
 
 \sphinxAtStartPar
-The function generating the described data point with a label is
+The function generating the above described data point with a label is
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} returns random coordinates x1, x2 and 1 if x2\PYGZgt{}x1, 0 otherwise}
-\PYG{k}{def} \PYG{n+nf}{point}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+\PYG{k}{def} \PYG{n+nf}{point}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}     \PYG{c+c1}{\PYGZsh{} generates random coordinates x1, x2, and 1 if x2\PYGZgt{}x1, 0 otherwise}
     \PYG{n}{x1}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}          \PYG{c+c1}{\PYGZsh{} random number from the range [0,1]}
     \PYG{n}{x2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
     \PYG{k}{if}\PYG{p}{(}\PYG{n}{x2}\PYG{o}{\PYGZgt{}}\PYG{n}{x1}\PYG{p}{)}\PYG{p}{:}                     \PYG{c+c1}{\PYGZsh{} condition met}
@@ -1368,18 +1402,36 @@ We generate a \sphinxstylestrong{training sample} of \sphinxstylestrong{npo}=300
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
   x1         x2         label
-[[0.19968208 0.34399239 1.        ]
- [0.11365587 0.21869436 1.        ]
- [0.10854327 0.43462234 1.        ]
- [0.80135246 0.69970322 0.        ]
- [0.41130912 0.80434883 1.        ]]
+[[0.39421929 0.18790361 0.        ]
+ [0.93838154 0.78690602 0.        ]
+ [0.56680192 0.46849309 0.        ]
+ [0.89119929 0.60750201 0.        ]
+ [0.04872589 0.40065797 1.        ]]
 \end{sphinxVerbatim}
 
-\sphinxAtStartPar
-Not to print unnecessarily the very long table, we have used above for the first time the \sphinxstylestrong{ranges for array indices}. For example, 2:5 means from 2 to 4 (the last one is excluded!), :5  \sphinxhyphen{} from 0 to 4, 5: \sphinxhyphen{} from 5 to the end, and : \sphinxhyphen{} all the indices.
+\begin{sphinxadmonition}{note}{Loops in arrays}
 
 \sphinxAtStartPar
-Graphically, our data are show in the figure below. We also plot the line \(x_2=x_1\), which separates the blue and purple points. In this case the division is a priori possible (we know the rule) in an exact manner.
+In Python, one can conveniently define arrays with a loop inside, e.g.
+
+\sphinxAtStartPar
+{[}i**2 for i in range(4){]} yields {[}1,4,9{]}.
+
+\sphinxAtStartPar
+In loops, if the index does not explicitly show in the expression, one can use a dummy index \sphinxstylestrong{\_}, as for instance in the above code:
+
+\sphinxAtStartPar
+{[}point() for \_ in range(npo){]}
+\end{sphinxadmonition}
+
+\begin{sphinxadmonition}{note}{Ranges in arrays}
+
+\sphinxAtStartPar
+Not to print unnecessarily the very long table, we have used above for the first time the \sphinxstylestrong{ranges for array indices}. For example, 2:5 means from 2 to 4 (recall the last one is excluded!), :5  \sphinxhyphen{} from 0 to 4, 5: \sphinxhyphen{} from 5 to the end, and : \sphinxhyphen{} all the indices.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+Graphically, our data are shown in the figure below. We also plot the line \(x_2=x_1\), which separates the blue and purple points. In this case the division is a priori possible (we know the rule) in an exact manner.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}                 
@@ -1390,31 +1442,31 @@ Graphically, our data are show in the figure below. We also plot the line \(x_2=
 
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.1}\PYG{p}{]}\PYG{p}{)}                 \PYG{c+c1}{\PYGZsh{} separating line}
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}1\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{12}\PYG{p}{)}                    
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}1\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}                    
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_16_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_19_0}.png}
 
 \begin{sphinxadmonition}{note}{Linearly separable sets}
 
 \sphinxAtStartPar
-Two sets of points (e.g. blue and pink) on a plane which are possible to separate with a straigh line are called \sphinxstylestrong{linearly separable}. In three dimensions, the sets must be separable with a plane, in general in \(n\) dimensions the sets must must be separable with a \(n-1\) dimensional hyperplane.
+Two sets of points (as here blue and pink) on a plane which are possible to separate with a straight line are called \sphinxstylestrong{linearly separable}. In three dimensions, the sets must be separable with a plane, in general in \(n\) dimensions the sets must must be separable with an \(n-1\) dimensional hyperplane.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Analitically, if the points in the \(n\) dimensional space have coordinates \((x_1,x_2,\dots,x_n)\), one may chose the parameters \((w_0,w_1,\dots,w_n)\) in such a way that one set of points must satisfy the condition
+Analytically, if the points in the \(n\) dimensional space have coordinates \((x_1,x_2,\dots,x_n)\), one may chose the parameters \((w_0,w_1,\dots,w_n)\) in such a way that one set of points must satisfy the condition
 \begin{equation}\label{equation:docs/perceptron:eq-linsep}
 \begin{split}w_0+x_1 w_1+x_2 w_2 + \dots x_n w_n > 0\end{split}
 \end{equation}
 \sphinxAtStartPar
-and the other the opposite condition, with \(>\) replaced with \(\le\).
+and the other one the opposite condition, with \(>\) replaced with \(\le\).
 
 \sphinxAtStartPar
-Now a crucial, albeit simple observation: the above inequality is precisely the condition implemented in the {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron}}}} (with the step activation function) in the convention of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}}! We may thus enforce condition \eqref{equation:docs/perceptron:eq-linsep} with the \sphinxstylestrong{neuron} function from our \sphinxstylestrong{neural} library.
+Now a crucial, albeit obvious observation: the above inequality is precisely the condition implemented in the {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron}}}} (with the step activation function) in the convention of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}}! We may thus enforce condition \eqref{equation:docs/perceptron:eq-linsep} with the \sphinxstylestrong{neuron} function from the \sphinxstylestrong{neural} library.
 
 \sphinxAtStartPar
-In our example we have for the pink points, by construction,
+In our example, we have for the pink points, by construction,
 \begin{equation*}
 \begin{split}
 x_2>x_1 \to s=-x_1+x_2 >0
@@ -1428,7 +1480,7 @@ w_0=0, \;\; w_1=-1, w_2=1.
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-Thus the \sphinxstylestrong{neuron} function is used on a sample point p like this:
+Thus the \sphinxstylestrong{neuron} function is used on a sample point p as follows:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{p}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{]}      \PYG{c+c1}{\PYGZsh{} sample point with x\PYGZus{}2 \PYGZgt{} x\PYGZus{}1}
@@ -1447,31 +1499,31 @@ The neuron fired, so point p is pink.
 \begin{sphinxadmonition}{note}{Observation}
 
 \sphinxAtStartPar
-A single MCP neuron with properly chosen weights can be used as a binary classifier.
+A single MCP neuron with properly chosen weights can be used as a binary classifier for \(n\)\sphinxhyphen{}dimensional separable data.
 \end{sphinxadmonition}
 
 
 \subsection{Sample with an unknown classification rule}
 \label{\detokenize{docs/perceptron:sample-with-an-unknown-classification-rule}}
 \sphinxAtStartPar
-At this point the reader may be a bit misled by the apparent triviality of the result. The confusion may stem from the fact that in our example we knew from the outset the rule defining the two classes of points (\(x_2>x_1\), or opposite). However, in a general “real life” situation this is frequently not the case! Imagine that we encounter the (labeled) data \sphinxstylestrong{samp2} looking like this:
+At this point the reader may be a bit misled by the apparent triviality of the results. The confusion may stem from the fact that in the above example we knew from the outset the rule defining the two classes of points (\(x_2>x_1\), or opposite). However, in a general “real life” situation this is usually not the case! Imagine that we encounter the (labeled) data \sphinxstylestrong{samp2} looking like this:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[[0.52395167 0.07006229 0.        ]
- [0.46580068 0.17984878 0.        ]
- [0.88313537 0.80437289 1.        ]
- [0.22527853 0.93083163 1.        ]
- [0.67041055 0.97779144 1.        ]]
+[[0.34238434 0.06775293 0.        ]
+ [0.2771834  0.1100432  0.        ]
+ [0.66800363 0.16046044 0.        ]
+ [0.1681795  0.41494989 1.        ]
+ [0.837124   0.80643535 1.        ]]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_27_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_30_0}.png}
 
 \sphinxAtStartPar
-The situation is in some sense inverted now. We have abtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}} that would carry out the classification.
+The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}} that would carry out the binary classification.
 
 
 \section{Perceptron algorithm}
@@ -1480,7 +1532,7 @@ The situation is in some sense inverted now. We have abtained from somewhere the
 We could still try to figure out somehow the proper weights for the present example and find the dividing line, for instance with a ruler and pencil, but this is not the point. We wish to have a systematic algorithmic procedure that will effortlessly work for this one and any similar situation. The answer is the already mentioned \sphinxhref{https://en.wikipedia.org/wiki/Perceptron}{perceptron algorithm}.
 
 \sphinxAtStartPar
-Before presenting the algorithm, let us remark that the MCP neuron with some set of weigths \(w_0, w_1, w_2\) will always yield some answer for a labeled data point, correct or wrong. For example
+Before presenting the algorithm, let us remark that the MCP neuron with some set of weights \(w_0, w_1, w_2\) always yields some answer for a labeled data point, correct or wrong. For example
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{w}\PYG{o}{=}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}           \PYG{c+c1}{\PYGZsh{} arbitrary choice of weights}
@@ -1489,60 +1541,60 @@ Before presenting the algorithm, let us remark that the MCP neuron with some set
 
 \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} look at first 5 points}
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{    }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{func}\PYG{o}{.}\PYG{n}{neuron}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{n}{w}\PYG{p}{)}\PYG{p}{)} 
-    \PYG{c+c1}{\PYGZsh{} samp2[i,2] is the label, samp2[i,:2] is [x\PYGZus{}1,x\PYGZus{}2]}
+            \PYG{c+c1}{\PYGZsh{} samp2[i,2] is the label, samp2[i,:2] is [x\PYGZus{}1,x\PYGZus{}2]}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 label  answer
-0      1
 0      0
-1      1
+0      0
+0      1
 1      0
 1      1
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We can see that some answers are equal to the corresponding labels (correct), and some are different (wrong). The general idea now is to \sphinxstylestrong{use the wrong answers} to adjust cleverly, in small steps, the weights, such that after many iterations we get all the answers for the training sample correct!
+We can see that some answers are equal to the corresponding labels (correct), and some are different (wrong). The general idea now is to \sphinxstylestrong{use the wrong answers} to adjust cleverly, in small steps, the weights, such that after sufficiently many iterations we get all the answers for the training sample correct!
 
 \begin{sphinxadmonition}{note}{Perceptron algorithm}
 
 \sphinxAtStartPar
 We iterate over the points of the training data sample.
-If for a given point  the obtained result \(y_o\) is equal to the true value \(y_t\) (the label), i.e. the answer is  correct, we do nothing. However, if it is wrong, we change the weights a bit, such that the chance of getting the wrong answer decreses. The explicit recipe is as follows:
+If for a given point  the obtained result \(y_o\) is equal to the true value \(y_t\) (the label), i.e. the answer is  correct, we do nothing. However, if it is wrong, we change the weights a bit, such that the chance of getting the wrong answer decreases. The explicit recipe is as follows:
 
 \sphinxAtStartPar
 \(w_i \to w_i  +  \varepsilon  (y_t - y_o)  x_i\),
 
 \sphinxAtStartPar
 where \( \varepsilon \) is a small number (called the \sphinxstylestrong{learning speed}) and \(x_i\) are the coordinates of the input point, with \(i=0,\dots,n\).
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
 Let us follow how it works. Suppose first that \( x_i> 0\). Then if the label \( y_t = 1 \) is greater than the obtained answer \( y_o = 0\), the weight \(w_i\) is increased. Then \( w \cdot x \) also increases and \( y_o = f (w \cdot x) \) is more likely to acquire the correct value of 1 (we remember how the step function \(f\) looks like). If, on the other hand, the label \( y_t = 0 \) is less than the obtained answer \( y_o = 1 \), then the weight \(w_i\) is decreased, \( w \cdot x \) decreases, and \( y_o = f (w \cdot x) \) has a better chance of achieving the correct value of 0.
 
 \sphinxAtStartPar
-If \( x_i < 0 \) it is easy to use the same method to check that the recipe also works properly.
+If \( x_i < 0 \) it is easy to analogously check that the recipe also works properly.
 
 \sphinxAtStartPar
-When the anwer is correct, \(y_t=y_0\), then \( w_i \to w_i\), so nothing changes. We do not “spoil” the perceptron!
+When the answer is correct, \(y_t=y_0\), then \( w_i \to w_i\), so nothing changes. We do not “spoil” the perceptron!
 
 \sphinxAtStartPar
-The above formula can be used many times for the same point from the traing sample. Next,  we loop over all the points of the sample, and the whole procedure can still be repeated in many rounds to obtain stable weights (not changing any more as we continue the procedure, or changing very slightly).
+The above formula can be used many times for the same point from the training sample. Next,  we loop over all the points of the sample, and the whole procedure can still be repeated in many rounds to obtain stable weights (not changing any more as we continue the procedure, or changing only slightly).
 
 \sphinxAtStartPar
-Typically, in such algorithms the learning speed \( \varepsilon \) is being decreased in successive rounds. This is technically very important, because too large steps can spoil the obtained solution.
-\end{sphinxadmonition}
+Typically, in such algorithms the learning speed \( \varepsilon \) is being decreased in successive rounds. This is technically very important, because too large updates could spoil the obtained solution.
 
 \sphinxAtStartPar
-The Python implementation of the perceptron algorithm for the 2\sphinxhyphen{}dimesional data is as follows:
+The Python implementation of the perceptron algorithm for the 2\sphinxhyphen{}dimensional data is as follows:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{w0}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}   \PYG{c+c1}{\PYGZsh{} initialize weights randomly in the range [\PYGZhy{}0.5,0.5]}
+\PYG{n}{w0}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}  \PYG{c+c1}{\PYGZsh{} initialize weights randomly in the range [\PYGZhy{}0.5,0.5]}
 \PYG{n}{w1}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}
 \PYG{n}{w2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}
 
-\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.3}  \PYG{c+c1}{\PYGZsh{} initialize the learning speed }
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.3}                     \PYG{c+c1}{\PYGZsh{} initial  learning speed }
    
-\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} loop over 20 rounds}
+\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} loop over rounds}
     \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.9}\PYG{o}{*}\PYG{n}{eps}            \PYG{c+c1}{\PYGZsh{} in each round decrease the learning speed }
         
     \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{npo}\PYG{p}{)}\PYG{p}{:}   \PYG{c+c1}{\PYGZsh{} loop over the points from the data sample}
@@ -1551,46 +1603,47 @@ The Python implementation of the perceptron algorithm for the 2\sphinxhyphen{}di
             
             \PYG{n}{yo} \PYG{o}{=} \PYG{n}{func}\PYG{o}{.}\PYG{n}{neuron}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} obtained answer}
             
-            \PYG{n}{w0}\PYG{o}{=}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}   \PYG{c+c1}{\PYGZsh{} weight update (perceptron formula)}
+            \PYG{n}{w0}\PYG{o}{=}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}   \PYG{c+c1}{\PYGZsh{} weight update (the perceptron formula)}
             \PYG{n}{w1}\PYG{o}{=}\PYG{n}{w1}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}
             \PYG{n}{w2}\PYG{o}{=}\PYG{n}{w2}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{samp2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}
 
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Obtained weights:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{  w0     w1     w2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}        \PYG{c+c1}{\PYGZsh{} header }
 \PYG{n}{w\PYGZus{}o}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{)}           \PYG{c+c1}{\PYGZsh{} obtained weights}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{w\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}             \PYG{c+c1}{\PYGZsh{} result, rounded to 3 decimal places }
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
+Obtained weights:
   w0     w1     w2
-[\PYGZhy{}0.441 \PYGZhy{}0.88   1.74 ]
+[\PYGZhy{}0.525 \PYGZhy{}1.078  2.086]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-It yields the result
+The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.
 
-\noindent\sphinxincludegraphics{{perceptron_38_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_41_0}.png}
 
 \sphinxAtStartPar
-We can see that the algorithm works! All the pink points are above the line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation
+We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation
 \begin{equation*}
 \begin{split} w_0+x_1 w_1 + x_2 w_2=0,\end{split}
 \end{equation*}
 \sphinxAtStartPar
-does not result from our a priori knowledge, but from the training of the MCP neuron which
-sets its weights.
+does not result from our a priori knowledge, but from the training of the MCP neuron which sets its weights.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-One can prove that the perceptrom algorith converges if and only if the data are linearly seperable.
+One can prove that the perceptron algorithm converges if and only if the data are linearly separable.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-We may now reveal our secret! The data of our sample were labeled at the time of creation with the rule
+We may now reveal our secret! The data of the training sample \sphinxstylestrong{samp2} were labeled at the time of creation with the rule
 \begin{equation*}
-\begin{split} x_2>0.25+0.52 x_1 \end{split}
+\begin{split} x_2>0.25+0.52 x_1, \end{split}
 \end{equation*}
 \sphinxAtStartPar
-which corresponds to weights \(w_0^c=0.25\), \(w_1^c=-0.52\), \(w_2^c=1\).
+which corresponds to the weights \(w_0^c=0.25\), \(w_1^c=-0.52\), \(w_2^c=1\).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{w\PYGZus{}c}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.52}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} weights used for labeling the training sample}
@@ -1602,18 +1655,18 @@ which corresponds to weights \(w_0^c=0.25\), \(w_1^c=-0.52\), \(w_2^c=1\).
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Note that this is not at all the same as the weights obtained from the training:
+Note that these are not at all the same as the weights obtained from the training:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{w\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[\PYGZhy{}0.441 \PYGZhy{}0.88   1.74 ]
+[\PYGZhy{}0.525 \PYGZhy{}1.078  2.086]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The reason is twofold. First, note that the inequality condition \eqref{equation:docs/perceptron:eq-linsep} is unchanged if we multiply both sides by a \sphinxstylestrong{positive} constant \(c\). We may therefore scale all the weight by \(c\), and the situation (the answers of the MCP neuron, the dividing line) remains exactly the same (we encounter here an \sphinxstylestrong{equivalece class} of weight scaled with a positive factor).
+The reason is twofold. First, note that the inequality condition \eqref{equation:docs/perceptron:eq-linsep} is unchanged if we multiply both sides by a \sphinxstylestrong{positive} constant \(c\). We may therefore scale all the weight by \(c\), and the situation (the answers of the MCP neuron, the dividing line) remains exactly the same (we encounter here an \sphinxstylestrong{equivalence class} of weights scaled with a positive factor).
 
 \sphinxAtStartPar
 For that reason, when we divide correspondingly the obtained weights by the weights used to label the sample, we get (almost) constant values:
@@ -1623,17 +1676,17 @@ For that reason, when we divide correspondingly the obtained weights by the weig
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[1.764 1.693 1.74 ]
+[2.099 2.073 2.086]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The reason why the ratio values for \(i=0,1,2\) are not exactly the same is that the sample has a finite number of points (here 300). Thus, there is gap between the two classes of points and there is some room for “jiggling” the separating line a bit. With more data points this mismatch effect would decrease (see the homework problem below).
+The reason why the ratio values for \(i=0,1,2\) are not exactly the same is that the sample has a finite number of points (here 300). Thus, there is always some gap between the two classes of points and there is some room for “jiggling” the separating line a bit. With more data points this mismatch effect decreases (see the exercises).
 
 
 \subsection{Testing the classifier}
 \label{\detokenize{docs/perceptron:testing-the-classifier}}
 \sphinxAtStartPar
-Due to the limited size of the training sample and the “jiggling” effect desribed above, the classification result on a test sample is sometimes wrong. This always applies to the points near the dividing line, which is determined with accuracy depending on the multiplicity of the training sample. The code below carries out the check on a test sample. The test sample consists of labeled data generated randomly “on the flight” with the same function \sphinxstylestrong{point2} as for the training data used before:
+Due to the limited size of the training sample and the “jiggling” effect desribed above, the classification result on a test sample is sometimes wrong. This always applies to the points near the dividing line, which is determined with accuracy depending on the multiplicity of the training sample. The code below carries out the check on a test sample. The test sample consists of labeled data generated randomly “on the flight” with the same function \sphinxstylestrong{point2} used to generate the training data before:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{point2}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
@@ -1652,33 +1705,36 @@ The code for testing is as follows:
 \PYG{n}{er}\PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{empty}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} initialize an empty 1 x 3 array to store misclassified points}
 
 \PYG{n}{ner}\PYG{o}{=}\PYG{l+m+mi}{0}                 \PYG{c+c1}{\PYGZsh{} initial number of misclassified points}
-\PYG{n}{nt}\PYG{o}{=}\PYG{l+m+mi}{3000}               \PYG{c+c1}{\PYGZsh{} number of test points}
+\PYG{n}{nt}\PYG{o}{=}\PYG{l+m+mi}{10000}               \PYG{c+c1}{\PYGZsh{} number of test points}
 
-\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{nt}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} run for nt points}
+\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{nt}\PYG{p}{)}\PYG{p}{:}   \PYG{c+c1}{\PYGZsh{} loop over the test points}
     \PYG{n}{ps}\PYG{o}{=}\PYG{n}{point2}\PYG{p}{(}\PYG{p}{)}       \PYG{c+c1}{\PYGZsh{} a test point }
-    \PYG{k}{if}\PYG{p}{(}\PYG{n}{func}\PYG{o}{.}\PYG{n}{neuron}\PYG{p}{(}\PYG{n}{ps}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{)}\PYG{o}{!=}\PYG{n}{ps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} if wrong answers                                      }
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{func}\PYG{o}{.}\PYG{n}{neuron}\PYG{p}{(}\PYG{n}{ps}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{)}\PYG{o}{!=}\PYG{n}{ps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} if wrong answer                                      }
         \PYG{n}{er}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{er}\PYG{p}{,}\PYG{p}{[}\PYG{n}{ps}\PYG{p}{]}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}           \PYG{c+c1}{\PYGZsh{} add the point to er}
-        \PYG{n}{ner}\PYG{o}{+}\PYG{o}{=}\PYG{l+m+mi}{1}
+        \PYG{n}{ner}\PYG{o}{+}\PYG{o}{=}\PYG{l+m+mi}{1}                                 \PYG{c+c1}{\PYGZsh{} count the number of errors}
         
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{number of misclassified points = }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ner}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ per }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{nt}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ (}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{ner}\PYG{o}{/}\PYG{n}{nt}\PYG{o}{*}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZpc{}}\PYG{l+s+s2}{ )}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}        
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-number of misclassified points =  12  per  3000  ( 0.4 \PYGZpc{} )
+number of misclassified points =  11  per  10000  ( 0.1 \PYGZpc{} )
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
 As we can see, a small number of test points are misclassified. All these points lie near the separating line.
 
-\noindent\sphinxincludegraphics{{perceptron_52_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_56_0}.png}
 
 \begin{sphinxadmonition}{note}{Misclassification}
 
 \sphinxAtStartPar
-As it became clear, the reason for misclassification comes from the fact that the training sample does not determine the separating line precisely, but with some uncertainty, as there is a gap between the points of the training smaple. For a better result, the training points would have to be “denser” in the vicinity of the separation line, or the training sample would have to be larger.
+As it became clear, the reason for misclassification comes from the fact that the training sample does not determine the separating line precisely, but with some uncertainty, as there is a gap between the points of the training sample. For a better result, the training points would have to be “denser” in the vicinity of the separating line, or the training sample would have to be larger.
 \end{sphinxadmonition}
 
-\begin{sphinxadmonition}{note}{Exercises}
+
+\section{Exercises}
+\label{\detokenize{docs/perceptron:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -1686,7 +1742,7 @@ Play with the lecture code and see how the percentage of misclassified points de
 
 \item {} 
 \sphinxAtStartPar
-As the perceptron algorithm converges, at some point the weights stop to change. Improve the lecture code by implementing stopping when the weights do not change when passing to the next round.
+As the perceptron algorithm converges, at some point the weights stop to change. Improve the lecture code by implementing stopping when the weights do not change more than some value when passing to the next round.
 
 \item {} 
 \sphinxAtStartPar
@@ -1702,7 +1758,7 @@ Generalize the above classifier to points in 3\sphinxhyphen{}dimensional space.
 \section{Two layers of neurons}
 \label{\detokenize{docs/more_layers:two-layers-of-neurons}}
 \sphinxAtStartPar
-In the previous chapter we have seen that the MCP neuron with the step activation fuction realizes the inequality \(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n > 0\), where \(n\) in the dimensionality of the input space. It is instructive to come up here with a geometric interpretation. Taking for definiteness \(n=2\) (the plane), the above inequality corresponds to a division into two half\sphinxhyphen{}planes. The line given by the equation
+In the previous chapter we have seen that the MCP neuron with the step activation function realizes the inequality \(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n > 0\), where \(n\) in the dimensionality of the input space. It is instructive to come up here with a geometric interpretation. Taking for definiteness \(n=2\) (the plane), the above inequality corresponds to a division into two half\sphinxhyphen{}planes. The line given by the equation
 \begin{equation*}
 \begin{split}x \cdot w=w_0+x_1 w_1 + \dots x_n w_n = 0\end{split}
 \end{equation*}
@@ -2322,6 +2378,12 @@ At this point the reader might rightly say that the preceding results are trivia
 
 \sphinxAtStartPar
 However, there is an important case against this apparent triviality. Imagine we have the data sample with labels, and only this, as in the example of the single MCP neuron of chapter {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP Neuron}}}}. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exacly what teaching of classifiers does: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this section, the reader should be convinced that this is perfectly possible.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Design and program a classifier for four categories of points belonging to regions formed by 2 intersecting lines (hint: include four output cells).
+
+\end{itemize}
 
 
 \chapter{Back propagation}
@@ -3537,7 +3599,16 @@ Use various rectified activation functions for the binary classifiers and test t
 
 \chapter{Unsupervised learning}
 \label{\detokenize{docs/unsupervised:unsupervised-learning}}\label{\detokenize{docs/unsupervised:un-lab}}\label{\detokenize{docs/unsupervised::doc}}
-\begin{sphinxadmonition}{tip}{Tip:}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{neural} \PYG{k+kn}{import} \PYG{o}{*} \PYG{c+c1}{\PYGZsh{} import my library packages}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Invoking \PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}.py for neural
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Motto}
+
 \sphinxAtStartPar
 \sphinxstyleemphasis{teachers! leave those kids alone!}
 
@@ -3586,7 +3657,7 @@ Let us create data samples with a few points from each category:
 \sphinxAtStartPar
 Our data looks like this:
 
-\noindent\sphinxincludegraphics{{unsupervised_10_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_11_0}.png}
 
 \sphinxAtStartPar
 If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is he using to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other.
@@ -3628,7 +3699,7 @@ We add thus defined characteristic points to our graphics. For visual convenienc
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_15_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_16_0}.png}
 
 
 \section{Voronoi areas}
@@ -3784,7 +3855,7 @@ We can see that the position of the characteristic point converges. Actually, it
 \sphinxAtStartPar
 We have decided a priori to have one category, and here is our plot of the result fot the characeristic point, indicated with a gray blob:
 
-\noindent\sphinxincludegraphics{{unsupervised_37_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_38_0}.png}
 
 \sphinxAtStartPar
 Let us try to generalize the above algorithm for the case of several (\( n_R> \) 1) representative points.
@@ -3864,7 +3935,7 @@ rounds  locations
 40      [0.837 0.102] [0.504 0.642]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_44_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_45_0}.png}
 
 \sphinxAtStartPar
 One of the characteristic poits “specializes” in the lower right cluster, and the other in the remaining three.
@@ -4070,7 +4141,7 @@ Note, however, that the minimization used in the present algorithms also takes i
 \sphinxAtStartPar
 We will now interpret the above unsupervised learning algorithm with the winner\sphinxhyphen{}take\sphinxhyphen{}all strategy in the neural network language.
 
-\noindent\sphinxincludegraphics{{unsupervised_70_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_71_0}.png}
 
 \sphinxAtStartPar
 Our example network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point \(\vec{R}^i\). The weights are the coordinates of \(\vec{R}^i\). There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
@@ -4142,7 +4213,7 @@ So it is (for points close to the pole) the constant \( r ^ 2 \) minus half the 
 \sphinxAtStartPar
 With the extension of the data to a hemisphere, the appropriate neural network can be viewed as follows:
 
-\noindent\sphinxincludegraphics{{unsupervised_76_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_77_0}.png}
 
 \sphinxAtStartPar
 Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in the artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest.
@@ -4238,7 +4309,7 @@ hence we have a point on the hyper\sphinxhyphen{}hemisphere \( x_1 ^ 2 + \dots +
 Number of representative points:  4
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_82_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_83_0}.png}
 
 \sphinxAtStartPar
 We can see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}.
@@ -5654,7 +5725,13 @@ lib\PYGZus{}nn
 P. Barry. \sphinxstyleemphasis{Head First Python: A Brain\sphinxhyphen{}Friendly Guide}. O'Reilly Media, 2016. ISBN 9781491919491. URL: \sphinxurl{https://books.google.pl/books?id=NIqNDQAAQBAJ}.
 \bibitem[FR13]{docs/conclusion:id8}
 \sphinxAtStartPar
-J. Feldman and R. Rojas. \sphinxstyleemphasis{Neural Networks: A Systematic Introduction}. Springer Berlin Heidelberg, 2013. ISBN 9783642610684. URL: \sphinxurl{https://books.google.pl/books?id=4rESBwAAQBAJ}.
+J. Feldman and R. Rojas. \sphinxstyleemphasis{Neural Networks: A Systematic Introduction}. Springer Berlin Heidelberg, 2013. ISBN 9783642610684.
+\bibitem[Fre93]{docs/conclusion:id10}
+\sphinxAtStartPar
+James A. Freeman. \sphinxstyleemphasis{Simulating Neural Networks with Mathematica}. Addison\sphinxhyphen{}Wesley Professional, 1993. ISBN 9780201566291.
+\bibitem[FS91]{docs/conclusion:id11}
+\sphinxAtStartPar
+James A. Freeman and David M. Skapura. \sphinxstyleemphasis{Neural Networks: Algorithms, Applications, and Programming Techniques (Computation and Neural Systems Series)}. Addison\sphinxhyphen{}Wesley, 1991. ISBN 9780201513769.
 \bibitem[Gut16]{docs/conclusion:id3}
 \sphinxAtStartPar
 John Guttag. \sphinxstyleemphasis{Introduction to computation and programming using Python: With application to understanding data}. MIT Press, 2016.

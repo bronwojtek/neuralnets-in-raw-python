@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  8 JUL 2021 12:53
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  9 JUL 2021 08:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1652,9 +1652,9 @@ File: xor.png Graphic file (type bmp)
 
 ]
 Chapter 3.
-File: memory_14_0.png Graphic file (type bmp)
-<memory_14_0.png>
 [19]
+File: memory_13_0.png Graphic file (type bmp)
+<memory_13_0.png>
 File: memory_20_0.png Graphic file (type bmp)
 <memory_20_0.png>
 File: memory_21_0.png Graphic file (type bmp)
@@ -1663,11 +1663,12 @@ File: memory_21_0.png Graphic file (type bmp)
 File: memory_37_0.png Graphic file (type bmp)
 <memory_37_0.png>
  [22]
-File: memory_47_0.png Graphic file (type bmp)
-<memory_47_0.png>
+File: memory_48_0.png Graphic file (type bmp)
+<memory_48_0.png>
+ [23]
 File: memory_50_0.png Graphic file (type bmp)
 <memory_50_0.png>
- [23] [24]
+ [24]
 File: memory_58_0.png Graphic file (type bmp)
 <memory_58_0.png>
 File: memory_63_0.png Graphic file (type bmp)
@@ -1682,317 +1683,313 @@ File: memory_70_0.png Graphic file (type bmp)
 ]
 Chapter 4.
 [29] [30]
-File: perceptron_16_0.png Graphic file (type bmp)
-<perceptron_16_0.png>
+File: perceptron_19_0.png Graphic file (type bmp)
+<perceptron_19_0.png>
  [31]
-File: perceptron_27_0.png Graphic file (type bmp)
-<perceptron_27_0.png>
+File: perceptron_30_0.png Graphic file (type bmp)
+<perceptron_30_0.png>
  [32] [33]
-File: perceptron_38_0.png Graphic file (type bmp)
-<perceptron_38_0.png>
+File: perceptron_41_0.png Graphic file (type bmp)
+<perceptron_41_0.png>
  [34] [35]
-File: perceptron_52_0.png Graphic file (type bmp)
-<perceptron_52_0.png>
- [36]
+File: perceptron_56_0.png Graphic file (type bmp)
+<perceptron_56_0.png>
+ [36] [37] [38
+
+]
 Chapter 5.
 File: regions.png Graphic file (type bmp)
 <regions.png>
-[37
-
-]
+[39]
 File: nf1-4.png Graphic file (type bmp)
 <nf1-4.png>
 File: more_layers_13_0.png Graphic file (type bmp)
 <more_layers_13_0.png>
- [38]
+ [40]
 File: tritri.png Graphic file (type bmp)
 <tritri.png>
 File: more_layers_22_0.png Graphic file (type bmp)
 <more_layers_22_0.png>
- [39] [40]
+ [41] [42]
 File: more_layers_28_0.png Graphic file (type bmp)
 <more_layers_28_0.png>
- [41] [42]
+ [43] [44]
 File: more_layers_37_0.png Graphic file (type bmp)
 <more_layers_37_0.png>
 File: more_layers_38_0.png Graphic file (type bmp)
 <more_layers_38_0.png>
 File: more_layers_41_0.png Graphic file (type bmp)
 <more_layers_41_0.png>
- [43]
+ [45]
 File: more_layers_45_0.png Graphic file (type bmp)
 <more_layers_45_0.png>
- [44]
+ [46]
 File: more_layers_50_0.png Graphic file (type bmp)
 <more_layers_50_0.png>
- [45] [46]
+ [47] [48]
 Chapter 6.
-[47
+[49
 
 ]
 File: backprop_12_0.png Graphic file (type bmp)
 <backprop_12_0.png>
- [48]
+ [50]
 File: backprop_18_0.png Graphic file (type bmp)
 <backprop_18_0.png>
- [49]
+ [51]
 File: backprop_21_0.png Graphic file (type bmp)
 <backprop_21_0.png>
 File: backprop_24_0.png Graphic file (type bmp)
 <backprop_24_0.png>
- [50] [51]
+ [52] [53]
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
- [52] [53] [54] [55]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2810--2816
+ [54] [55] [56] [57]
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2872--2878
 []$[] [][] [][]$ 
  []
 
-[56] [57]
+[58] [59]
 File: backprop_53_0.png Graphic file (type bmp)
 <backprop_53_0.png>
- [58]
+ [60]
 File: backprop_59_0.png Graphic file (type bmp)
 <backprop_59_0.png>
- [59]
+ [61]
 File: backprop_61_0.png Graphic file (type bmp)
 <backprop_61_0.png>
 File: backprop_64_0.png Graphic file (type bmp)
 <backprop_64_0.png>
- [60] [61] [62]
+ [62] [63] [64]
 Chapter 7.
 File: interpol_7_0.png Graphic file (type bmp)
 <interpol_7_0.png>
-[63
+[65
 
 ]
 File: interpol_11_0.png Graphic file (type bmp)
 <interpol_11_0.png>
 File: interpol_13_0.png Graphic file (type bmp)
 <interpol_13_0.png>
- [64]
+ [66]
 File: interpol_15_0.png Graphic file (type bmp)
 <interpol_15_0.png>
- [65]
+ [67]
 File: interpol_24_0.png Graphic file (type bmp)
 <interpol_24_0.png>
 File: interpol_30_0.png Graphic file (type bmp)
 <interpol_30_0.png>
- [66] [67] [68]
+ [68] [69] [70]
 Chapter 8.
 File: rectification_5_0.png Graphic file (type bmp)
 <rectification_5_0.png>
 File: rectification_7_0.png Graphic file (type bmp)
 <rectification_7_0.png>
-[69
+[71
 
 ]
 File: rectification_9_0.png Graphic file (type bmp)
 <rectification_9_0.png>
 File: rectification_11_0.png Graphic file (type bmp)
 <rectification_11_0.png>
- [70]
+ [72]
 File: rectification_20_0.png Graphic file (type bmp)
 <rectification_20_0.png>
- [71]
+ [73]
 File: rectification_34_0.png Graphic file (type bmp)
 <rectification_34_0.png>
- [72] [73] [74
+ [74] [75] [76
 
 ]
 Chapter 9.
-[75]
-File: unsupervised_10_0.png Graphic file (type bmp)
-<unsupervised_10_0.png>
-
-Overfull \vbox (1.6242pt too high) detected at line 3629
- []
-
-[76]
-File: unsupervised_15_0.png Graphic file (type bmp)
-<unsupervised_15_0.png>
- [77] [78]
-File: unsupervised_37_0.png Graphic file (type bmp)
-<unsupervised_37_0.png>
- [79]
-File: unsupervised_44_0.png Graphic file (type bmp)
-<unsupervised_44_0.png>
- [80]
+[77]
+File: unsupervised_11_0.png Graphic file (type bmp)
+<unsupervised_11_0.png>
+ [78]
+File: unsupervised_16_0.png Graphic file (type bmp)
+<unsupervised_16_0.png>
+ [79] [80]
+File: unsupervised_38_0.png Graphic file (type bmp)
+<unsupervised_38_0.png>
+ [81] [82]
+File: unsupervised_45_0.png Graphic file (type bmp)
+<unsupervised_45_0.png>
 File: cl4_2.jpg Graphic file (type bmp)
 <cl4_2.jpg>
 File: cl5.jpg Graphic file (type bmp)
 <cl5.jpg>
- [81] [82]
+ [83] [84] [85]
 File: cd.jpg Graphic file (type bmp)
 <cd.jpg>
- [83] [84]
-File: unsupervised_70_0.png Graphic file (type bmp)
-<unsupervised_70_0.png>
- [85]
-File: unsupervised_76_0.png Graphic file (type bmp)
-<unsupervised_76_0.png>
  [86] [87]
-File: unsupervised_82_0.png Graphic file (type bmp)
-<unsupervised_82_0.png>
- [88] [89] [90
+File: unsupervised_71_0.png Graphic file (type bmp)
+<unsupervised_71_0.png>
+ [88]
+File: unsupervised_77_0.png Graphic file (type bmp)
+<unsupervised_77_0.png>
+ [89] [90]
+File: unsupervised_83_0.png Graphic file (type bmp)
+<unsupervised_83_0.png>
+ [91]
+[92
 
 ]
 Chapter 10.
 File: koha.png Graphic file (type bmp)
 <koha.png>
-[91]
+[93]
 File: som_16_0.png Graphic file (type bmp)
 <som_16_0.png>
- [92]
+ [94]
 File: som_20_0.png Graphic file (type bmp)
 <som_20_0.png>
- [93]
+ [95]
 File: kaall.png Graphic file (type bmp)
 <kaall.png>
 File: som_30_0.png Graphic file (type bmp)
 <som_30_0.png>
- [94]
+ [96]
 File: som_32_0.png Graphic file (type bmp)
 <som_32_0.png>
- [95]
+ [97]
 File: som_41_0.png Graphic file (type bmp)
 <som_41_0.png>
- [96]
+ [98]
 File: som_44_0.png Graphic file (type bmp)
 <som_44_0.png>
- [97]
+ [99]
 File: som_49_0.png Graphic file (type bmp)
 <som_49_0.png>
 File: udm.png Graphic file (type bmp)
 <udm.png>
- [98]
+ [100]
 File: som_55_0.png Graphic file (type bmp)
 <som_55_0.png>
- [99]
+ [101]
 File: som_57_0.png Graphic file (type bmp)
 <som_57_0.png>
 File: som_60_0.png Graphic file (type bmp)
 <som_60_0.png>
- [100]
+ [102]
 File: som_63_0.png Graphic file (type bmp)
 <som_63_0.png>
 File: som_67_0.png Graphic file (type bmp)
 <som_67_0.png>
- [101]
+ [103]
 File: som_69_0.png Graphic file (type bmp)
 <som_69_0.png>
 File: som_72_0.png Graphic file (type bmp)
 <som_72_0.png>
 File: som_75_0.png Graphic file (type bmp)
 <som_75_0.png>
- [102]
+ [104]
 File: som_79_0.jpg Graphic file (type bmp)
 <som_79_0.jpg>
- [103]
+ [105]
 File: som_85_0.png Graphic file (type bmp)
 <som_85_0.png>
- [104]
+ [106]
 File: kball.png Graphic file (type bmp)
 <kball.png>
 
-[105] [106]
+[107] [108]
 File: som_97_0.png Graphic file (type bmp)
 <som_97_0.png>
- [107]
+ [109]
 File: som_99_0.png Graphic file (type bmp)
 <som_99_0.png>
 File: som_104_0.png Graphic file (type bmp)
 <som_104_0.png>
- [108]
+ [110]
 File: som_106_0.png Graphic file (type bmp)
 <som_106_0.png>
 File: lat3.png Graphic file (type bmp)
 <lat3.png>
- [109]
+ [111]
 File: som_115_0.png Graphic file (type bmp)
 <som_115_0.png>
- [110]
+ [112]
 File: som_121_0.png Graphic file (type bmp)
 <som_121_0.png>
 File: smi32-pic.jpg Graphic file (type bmp)
 <smi32-pic.jpg>
- [111] [112
+ [113] [114
 
 ]
 Chapter 11.
-[113] [114
+[115] [116
 
 ]
 Chapter 12.
 
-Overfull \vbox (2.01305pt too high) detected at line 5415
- []
-
-[115]
-Underfull \vbox (badness 10000) detected at line 5415
- []
-
-
-Overfull \vbox (2.78596pt too high) detected at line 5415
- []
-
-[116]
-Underfull \vbox (badness 10000) detected at line 5415
- []
-
-
-Overfull \vbox (2.78596pt too high) detected at line 5415
+Overfull \vbox (2.01305pt too high) detected at line 5486
  []
 
 [117]
-Underfull \vbox (badness 10000) detected at line 5415
+Underfull \vbox (badness 10000) detected at line 5486
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5415
+Overfull \vbox (2.78596pt too high) detected at line 5486
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5415
+Underfull \vbox (badness 10000) detected at line 5486
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5415
+Overfull \vbox (2.78596pt too high) detected at line 5486
  []
 
-[119] [120]
-Underfull \vbox (badness 10000) detected at line 5649
- []
-
-
-Overfull \vbox (4.52797pt too high) detected at line 5649
- []
-
-[121]
-Underfull \vbox (badness 10000) detected at line 5649
+[119]
+Underfull \vbox (badness 10000) detected at line 5486
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5649
+Overfull \vbox (2.78596pt too high) detected at line 5486
  []
 
-[122]
-Underfull \vbox (badness 10000) detected at line 5649
+[120]
+Underfull \vbox (badness 10000) detected at line 5486
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5649
+Overfull \vbox (2.78596pt too high) detected at line 5486
+ []
+
+[121] [122]
+Underfull \vbox (badness 10000) detected at line 5720
+ []
+
+
+Overfull \vbox (4.52797pt too high) detected at line 5720
  []
 
 [123]
-Underfull \vbox (badness 10000) detected at line 5649
+Underfull \vbox (badness 10000) detected at line 5720
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5649
+Overfull \vbox (2.78596pt too high) detected at line 5720
  []
 
-[124] [125] [126
+[124]
+Underfull \vbox (badness 10000) detected at line 5720
+ []
+
+
+Overfull \vbox (2.78596pt too high) detected at line 5720
+ []
+
+[125]
+Underfull \vbox (badness 10000) detected at line 5720
+ []
+
+
+Overfull \vbox (2.78596pt too high) detected at line 5720
+ []
+
+[126] [127] [128
 
 ] (./book.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -2029,29 +2026,29 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [127
+ [129
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5683.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5683.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5760.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5760.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5683.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5683.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5760.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5760.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 359E43D1FC2DFFCC766165FA2E9A0F33;8098.
+(rerunfilecheck)             Checksum: C04C007063F8E046332E0C209AE9444A;8387.
  ) 
 Here is how much of TeX's memory you used:
- 41884 strings out of 479418
- 953568 string characters out of 5884586
- 1843486 words of memory out of 5000000
- 58558 multiletter control sequences out of 15000+600000
+ 41888 strings out of 479418
+ 953678 string characters out of 5884586
+ 1843485 words of memory out of 5000000
+ 58562 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 71i,22n,112p,1514b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on book.pdf (131 pages).
+Output written on book.pdf (133 pages).

@@ -28,8 +28,9 @@
 # At the end of each chapter some exercises are suggested, with the goal to familiarize the reader with the covered topics and the little codes. Most of exercises involve simple modifications/extensions of appropriate pieces of the lecture material.
 # ```
 
-# There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by [Daniel Kersten](http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html), done in Mathematica, from an on-line book by [Raul Rojas](https://page.mi.fu-berlin.de/rojas/neural/) (also available in a printed version {cite}`feldman2013neural`), and from physicists' (as myself!) point of view {cite}`muller2012neural`. 
-# 
+# ```{note}
+# There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by [Daniel Kersten](http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html), done in Mathematica, from an on-line book by [Raul Rojas](https://page.mi.fu-berlin.de/rojas/neural/) (also available in a printed version {cite}`feldman2013neural`), and the from physicists' (as myself!) point of view from {cite}`muller2012neural`. 
+# ```
 
 # ## Biological inspiration
 

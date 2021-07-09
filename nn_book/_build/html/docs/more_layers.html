@@ -273,7 +273,7 @@
 <span id="more-lab"></span><h1>More layers<a class="headerlink" href="#more-layers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="two-layers-of-neurons">
 <h2>Two layers of neurons<a class="headerlink" href="#two-layers-of-neurons" title="Permalink to this headline">¶</a></h2>
-<p>In the previous chapter we have seen that the MCP neuron with the step activation fuction realizes the inequality <span class="math notranslate nohighlight">\(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n &gt; 0\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> in the dimensionality of the input space. It is instructive to come up here with a geometric interpretation. Taking for definiteness <span class="math notranslate nohighlight">\(n=2\)</span> (the plane), the above inequality corresponds to a division into two half-planes. The line given by the equation</p>
+<p>In the previous chapter we have seen that the MCP neuron with the step activation function realizes the inequality <span class="math notranslate nohighlight">\(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n &gt; 0\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> in the dimensionality of the input space. It is instructive to come up here with a geometric interpretation. Taking for definiteness <span class="math notranslate nohighlight">\(n=2\)</span> (the plane), the above inequality corresponds to a division into two half-planes. The line given by the equation</p>
 <div class="math notranslate nohighlight">
 \[x \cdot w=w_0+x_1 w_1 + \dots x_n w_n = 0\]</div>
 <p>is the <strong>dividing line</strong>.</p>
@@ -707,6 +707,9 @@ In the second neuron layer we need to realize two AND gates for conditions 1-3 a
 <p>We can see that our little machine works perfectly well!</p>
 <p>At this point the reader might rightly say that the preceding results are trivial: in essence, we have just been implementing some geometric conditions and their conjunctions.</p>
 <p>However, there is an important case against this apparent triviality. Imagine we have the data sample with labels, and only this, as in the example of the single MCP neuron of chapter <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP Neuron</span></a>. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exacly what teaching of classifiers does: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this section, the reader should be convinced that this is perfectly possible.</p>
+<ul class="simple">
+<li><p>Design and program a classifier for four categories of points belonging to regions formed by 2 intersecting lines (hint: include four output cells).</p></li>
+</ul>
 </div>
 </div>
 

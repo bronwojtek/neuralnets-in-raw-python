@@ -25,7 +25,8 @@ sys.path.append('./lib_nn') # my path (linux, Mac OS)
 from neural import * # import my library packages
 
 
-# ```{tip}
+# ```{admonition} Motto
+# :class: tip
 # 
 # *teachers! leave those kids alone!*
 # 
