@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# (app-lab)=
 # # Appendix
 
-# ## How to run the book code
+# ## How to run the book codes
 
 # ### Locally
 
@@ -14,6 +13,7 @@
 
 # ...
 
+# (app-lab)=
 # ## **neural** package
 
 # The structure of the library tree is as follows:
@@ -568,3 +568,18 @@
 #     return [-.1,1.1],[-(w0-w1*0.1)/w2,-(w0+w1*1.1)/w2]
 # 
 # ````
+
+# ## How to cite
+
+# If you would like to cite this book, here is the BibTeX entry:
+
+# ```
+# @book{WB2021,
+#   title={Explaining neural networks in raw Python: lectures in Jupiter},
+#   author={Wojciech Broniowski},
+#   isbn={978-83-962099-0-0},
+#   year={2021},
+#   url={https://ujk.edu.pl/strony/Wojciech.Broniowski/xxxxx}
+#   publisher={Wojciech Broniowski}
+# }
+# ```

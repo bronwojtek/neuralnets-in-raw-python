@@ -4,7 +4,7 @@
 # (un-lab)=
 # # Unsupervised learning
 
-# In[ ]:
+# In[1]:
 
 
 import numpy as np
@@ -18,10 +18,6 @@ from IPython.display import display, Image
 import sys # system library
 sys.path.append('./lib_nn') # my path (linux, Mac OS)
 
-
-# In[1]:
-
-
 from neural import * # import my library packages
 
 
@@ -34,11 +30,11 @@ from neural import * # import my library packages
 #                              
 # ```
 
-# Supervised learning discussed in previous lectures needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., in our example, whether the point is inside or outside the circle).
+# Supervised learning, discussed in previous lectures, needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., as in one of our examples, whether a given point is inside or outside the circle).
 # 
-# However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and "are what they are". Also, from the neurobiological or methodological point of view, we learn many facts and activities "on an ongoing basis", classifying and then recognizing them, whilst the process goes on without any external supervision.
+# However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and "are what they are". Also, from the neurobiological or methodological point of view, we learn many facts and activities "on an ongoing basis", classifying and then recognizing them, whilst the process goes on without any external supervision or labels floating around.
 # 
-# Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, etc. He goes on, and finds a different flower, and records its features, and so on with the next flowers. At some point, however, he finds a flower that he already had met. More precisely, its features will be close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,...  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
+# Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, scent, etc. He goes on, finds a different flower, records its features, and so on and on with subsequent flowers. At some point, however, he finds a flower that he already had met. More precisely, its features are close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes that it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end of his quest, he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,...  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
 # 
 # 
 # Formally, this problem of **unsupervised learning** is related to data classification (division into categories, or **clusters**, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
@@ -46,7 +42,7 @@ from neural import * # import my library packages
 # ## Clusters of points
 Here is our simplified version of the alien botanist exploration.
 
-Consider points on the plane that are randomly generated. Their distribution is not homogeneous, but is concentrated in four clusters: A, B, C and D. For example, we can set appropriate limits for the coordinates $x_1$ and $x_2$ when randomly generating points of a given category:
+Consider points on the plane that are randomly generated. Their distribution is not homogeneous, but is concentrated in four clusters: A, B, C, and D. For example, we can set appropriate limits for the coordinates $x_1$ and $x_2$ when randomly generating points of a given category:
 # In[2]:
 
 
@@ -94,9 +90,9 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
-# If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is he using to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other. 
+# If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is used to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment, let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other. 
 # 
-# One can represent clusters with **representative points** that lie somewher within the cluster. For example, one could take an item belonging to a given cluster as its representative, or in each cluster one can evaluate the mean position of its points and use it as representative points:
+# One can represent clusters with **representative points** that lie somewhere within the cluster. For example, one could take an item belonging to a given cluster as its representative, or in each cluster one can evaluate the mean position of its points and use it as its representative point:
 
 # In[5]:
 
@@ -107,7 +103,7 @@ rC=[st.mean(samC[:,0]),st.mean(samC[:,1])]
 rD=[st.mean(samD[:,0]),st.mean(samD[:,1])]
 
 
-# We add thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves this purpose).
+# We add thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves this precisely this purpose).
 
 # In[6]:
 
@@ -148,9 +144,9 @@ plt.ylabel('$x_2$',fontsize=11);
 # Consider point $P$ in a metric space, where we have a number representative points (also called the Voronoi points). The representative point $R$ closest to $P$ determines its category. All such points $P$ form a Voronoi area of $R$.
 # ```
 
-# Let us define the color of the point P in our plane as the color of the nearest representative point. For this we first need (the square of) a distance function (here: Euclidean) between two points in 2-dim. space:
+# Let us define the color of the point P in our plane as the color of the nearest representative point. To do it, we first need (the square of) a distance function (here Euclidean) between two points in 2-dim. space:
 
-# In[ ]:
+# In[8]:
 
 
 def eucl(p1,p2): # square of the Euclidean distance
@@ -159,48 +155,48 @@ def eucl(p1,p2): # square of the Euclidean distance
 
 # Then we find the nearest representative point and determine its color:
 
-# In[ ]:
+# In[9]:
 
 
 def col_char(p):
-    dist=[eucl(p,rA),eucl(p,rB),eucl(p,rC),eucl(p,rD)]
-    ind_min = np.argmin(dist) # index of the nearest point
-    return col[ind_min]
+    dist=[eucl(p,rA),eucl(p,rB),eucl(p,rC),eucl(p,rD)] # array of distances
+    ind_min = np.argmin(dist)                          # index of the nearest point
+    return col[ind_min]                                # color of the nearest point
 
 
-# In[ ]:
+# In[10]:
 
 
 # e.g.
 col_char([.5,.5])
 
 
-# The result is following, with straight-line boundaries between naighboring areas:
+# The result is the following division of the plane, with straight-line boundaries between the neighboring areas:
 
-# In[ ]:
+# In[14]:
 
 
-plt.figure(figsize=(3.2,3.2))
+plt.figure(figsize=(2.3,2.3),dpi=120)
 plt.title("Voronoi areas",fontsize=11) 
 plt.xlim(-.1,1.1)
 plt.ylim(-.1,1.1)
 
 for x1 in np.linspace(0,1,70): # 70 points in x
     for x2 in np.linspace(0,1,70): # 70 points in y
-        plt.scatter(x1,x2,c=col_char([x1,x2]), s=50, alpha=0.6, edgecolors='none')
+        plt.scatter(x1,x2,c=col_char([x1,x2]), s=10, alpha=0.6, edgecolors='none')
 
-plt.scatter(samA[:,0],samA[:,1],c='black', s=20)
-plt.scatter(samB[:,0],samB[:,1],c='black', s=20)
-plt.scatter(samC[:,0],samC[:,1],c='black', s=20)
-plt.scatter(samD[:,0],samD[:,1],c='black', s=20)
+plt.scatter(samA[:,0],samA[:,1],c='black', s=10)
+plt.scatter(samB[:,0],samB[:,1],c='black', s=10)
+plt.scatter(samC[:,0],samC[:,1],c='black', s=10)
+plt.scatter(samD[:,0],samD[:,1],c='black', s=10)
 
-plt.scatter(rA[0],rA[1],c='black', s=150, alpha=.6)
-plt.scatter(rB[0],rB[1],c='black', s=150, alpha=.6)
-plt.scatter(rC[0],rC[1],c='black', s=150, alpha=.6)
-plt.scatter(rD[0],rD[1],c='black', s=150, alpha=.6)
+plt.scatter(rA[0],rA[1],c='black', s=90, alpha=.5)
+plt.scatter(rB[0],rB[1],c='black', s=90, alpha=.5)
+plt.scatter(rC[0],rC[1],c='black', s=90, alpha=.5)
+plt.scatter(rD[0],rD[1],c='black', s=90, alpha=.5)
 
-plt.xlabel('$x_1$',fontsize=18)
-plt.ylabel('$x_2$',fontsize=18);
+plt.xlabel('$x_1$',fontsize=11)
+plt.ylabel('$x_2$',fontsize=11);
 
 
 # ```{note}
@@ -210,15 +206,15 @@ plt.ylabel('$x_2$',fontsize=18);
 
 # ## Naive clusterization
 
-# Now the "real" botanist's problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points,
+# Now the "real" botanist's problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points with **concatenate**:
 
-# In[8]:
+# In[15]:
 
 
 alls=np.concatenate((samA, samB, samC, samD))
 
 
-# and shuffle them,
+# and shuffle them:
 
 # In[9]:
 
@@ -226,7 +222,7 @@ alls=np.concatenate((samA, samB, samC, samD))
 np.random.shuffle(alls)
 
 
-# The data visualization looks as in the first plot of thsi chapter.
+# The data visualization looks as in the first plot of this chapter.
 
 # We now want to somehow create representative points, but a priori we don't know where they should be, or even how many of them there are. Very different strategies are possible here. Their common feature is that the position of the representative points is updated as the sample data is processed.
 # 
@@ -238,39 +234,40 @@ np.random.shuffle(alls)
 # 
 # $$ \vec {R} \to \vec {R} + \varepsilon (\vec {x}^P - \vec {R}). $$
 # 
-# The step is repeated for all points of the sample, and then many such round may be carried out. As in the previous chapters, $ \varepsilon $ is the learning rate that (preferably) decreases
+# The step is repeated for all the points of the sample, and then many such rounds may be carried out. As in the previous chapters, $ \varepsilon $ is the learning rate that (preferably) decreases
 # as the algorithm proceeds. The above formula realizes the "snapping" of the point $\vec{R}$ by the data point $\vec{P}$.
 # 
 # The following code implements the above prescription:
 
-# In[10]:
+# In[17]:
 
 
-R=np.array([np.random.random(),np.random.random()])
+R=np.array([np.random.random(),np.random.random()]) # initial location
+
 print("initial location:")
 print(np.round(R,3))
-print("rounds  location")
+print("round   location")
 
-eps=.5
+eps=.5              # initial learning speed
 
-for j in range(50): # rounds
-    eps=0.85*eps    # decrease the update speed 
-    np.random.shuffle(alls) # reshuffle the sample
+for j in range(50):            # rounds
+    eps=0.85*eps               # decrease the learning speed 
+    np.random.shuffle(alls)    # reshuffle the sample
     for i in range(len(alls)): # loop over points of the whole sample
-        R+=eps*(alls[i]-R) # update/learning
-    if j%5==4: print(j+1, "    ",np.round(R,3))   
+        R+=eps*(alls[i]-R)     # update/learning
+    if j%5==4: print(j+1, "    ",np.round(R,3))  # print every 5th step
 
 
-# We can see that the position of the characteristic point converges. Actually, it becomes very close to the average of the locatio of all points, 
+# We can see that the position of the characteristic point converges. Actually, it becomes very close to the average location of all the points, 
 
-# In[11]:
+# In[18]:
 
 
 R_mean=[st.mean(alls[:,0]),st.mean(alls[:,1])]
 print(np.round(R_mean,3))
 
 
-# We have decided a priori to have one category, and here is our plot of the result fot the characeristic point, indicated with a gray blob:
+# We have decided a priori to have just one category, and here is our plot of the result for the characteristic point, indicated with a gray blob:
 
 # In[12]:
 
@@ -288,35 +285,35 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
-# Let us try to generalize the above algorithm for the case of several ($ n_R> $ 1) representative points.
+# One is, of course, not satisfied with the above, so let us try to generalize the algorithm for the case of several ($ n_R> $ 1) representative points.
 # 
 # - We initialize randomly representative vectors $ \vec{R}^i $, $i = 1, \dots, n_R $.
 # 
-# - Round: We take the sample points P one by one and update only the **closest** point $R^m$ to the point P in a given step:
+# - Round: We take the sample points P one by one and update only the **closest** representative point $R^m$ to the point P in a given step:
 # 
 # $$ \vec{R}^m \to \vec{R}^m + \varepsilon (\vec{x} - \vec{R}^m). $$
 # 
-# - The position of the other representative points remains the same. This strategy is called the **winner-take-all**.
+# - The position of the other representative points remains unchanged. This strategy is called **winner-take-all**.
 # 
-# - We repeat the rounds, reducing the learning speed $ \varepsilon $ each time.
+# - We repeat the rounds, reducing the learning speed $ \varepsilon $ each time, until we are happy.
 
-# ```{note}
+# ```{important}
 # 
-# The **winner-take-all** strategy is an important concept in ANN modeling. The competing neurons in a layer fight for the signal, and the one that wins, takes it all (its weighs get updated), while the loosers get nothing.
+# The **winner-take-all** strategy is an important concept in ANN modeling. The competing neurons in a layer fight for the signal, and the one that wins, takes it all (its weighs get updated), while the losers get nothing.
 # ```
 
 # So let's consider two representative points that we initialize randomly:
 
-# In[13]:
+# In[19]:
 
 
 R1=np.array([np.random.random(), np.random.random()])
 R2=np.array([np.random.random(), np.random.random()])
 
 
-# Then we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only this one:
+# Then we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only the winner:
 
-# In[14]:
+# In[20]:
 
 
 print("initial locations:")
@@ -325,23 +322,22 @@ print("rounds  locations")
 
 eps=.5
 
-for j in range(40): # rounds
+for j in range(40):             
     eps=0.85*eps
     np.random.shuffle(alls) 
     for i in range(len(alls)):
-        p=alls[i] # data point
-#        print(p)
+        p=alls[i]   
         dist=[func.eucl(p,R1), func.eucl(p,R2)] # squares of distances
-        ind_min = np.argmin(dist)    # minimum
-        if ind_min==0: # if R1 closer to the new data point
+        ind_min = np.argmin(dist)               # index of the minimum
+        if ind_min==0:           # if R1 closer to the new data point
             R1+=eps*(p-R1)
-        else:          # if R2 closer ...
+        else:                    # if R2 closer ...
             R2+=eps*(p-R2)            
 
     if j%5==4: print(j+1,"    ", np.round(R1,3), np.round(R2,3))  
 
 
-# In[15]:
+# In[21]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -358,9 +354,9 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
-# One of the characteristic poits "specializes" in the lower right cluster, and the other in the remaining three.
+# One of the characteristic points "specializes" in the lower right cluster, and the other in the remaining points.
 # 
-# We continue, anologously, with four representative points.
+# We continue, analogously, with four representative points.
 
 # In[16]:
 
@@ -421,9 +417,9 @@ plt.ylabel('$x_2$',fontsize=11)
 # Left: proper characteristic points. Right: one "dead body".
 # :::
 
-# Running the case for four categories, we notice that it does not always give the correct answer. Quite often one of the representative points is not updated at all and becomes the so-called **dead body**. This is because the other representative points always "win", i.e. one of them is always closer to each point of the sample than the "corpse".
+# Running the case of four categories, we notice that it does not always give the "correct"/expected answer. Quite often one of the representative points is not updated at all and becomes the so-called **dead body**. This is because the other representative points always win, i.e. one of them is always closer to each data point of the sample than the "corpse".
 
-# In[17]:
+# In[22]:
 
 
 R1=np.array([np.random.random(), np.random.random()])
@@ -480,7 +476,7 @@ plt.tight_layout()
 plt.savefig("images/cl5_d.jpg");
 
 
-# When we set up five characteristic points, several situation may occur, as shown in the figure below. Sometimes, depending on the initializtion, a cluster is split into two smaller ones, sometimes dead bodies occur.
+# When we set up five characteristic points, several situation may occur, as shown in the figure below. Sometimes, depending on the initialization, a cluster is split into two smaller ones, sometimes dead bodies occur.
 
 # :::{figure-md} 5p-fig
 # 
@@ -489,19 +485,20 @@ plt.savefig("images/cl5_d.jpg");
 # From left to right: 5 characteristic points with one cluster split into two, with another cluster split into two, one dead body, and two dead bodies.
 # :::
 
-# Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current startegy is problematic. 
+# Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current strategy is problematic. 
 
 # ## Clustering scale
 
-# In the previous section we were trying to guess from the outset how many clusters there are in the data. This lead to problems, also many times we do not really know how many clusters there are. Actually, up to now we have not even defined what precisely a cluster is, using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristi point, but how close? Actually, the definition must involve a scale telling us "how close is close". Fo instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller one and resolve the bigger clusters inti smaller ones, as in the  left panels of {numref}`5p-fig`.
+# In the previous section we were trying to guess from the outset how many clusters there are in the data. This lead to problems, as usually we do not even know how many clusters there are. Actually, up to now we have not defined what precisely a cluster is, and were using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristic point, but how close? Actually, the definition must involve a scale telling us "how close is close". For instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller one and resolve the bigger clusters into smaller ones, as in the  left panels of {numref}`5p-fig`.
 # 
 # 
 # ```{admonition} Definition of cluster
 # :class: note
-# A cluster of scale $d$ associated with a characteristic point $R$ is the set of data points $P$, whose distance from $R$ is less than $d$, whereas the distance from other characteristic points is $\ge d$. The characteristic points must be selected in such a way that each data point belongs to a cluster, and no characteristic point is a dead body (i.e., its cluster must contain at least one data point).
+# 
+# A cluster of scale $d$ associated with a characteristic point $R$ is a set of data points $P$, whose distance from $R$ is less than $d$, whereas the distance from other characteristic points is $\ge d$. The characteristic points must be selected in such a way that each data point belongs to a cluster, and no characteristic point is a dead body (i.e., its cluster must contain at least one data point).
 # ```
 
-# Various strategies can be used to implement this prescription. We use here the **dynamical clusterization**, where a new cluster/representative point is created whenever an encoutered data point is farther than $d$ from any present characteristic point up to now.   
+# Various strategies can be used to implement this prescription. We use here the **dynamical clusterization**, where a new cluster/representative point is created whenever an encountered data point is farther than $d$ from any characteristic point defined up to now.   
 
 # ```{admonition} Dynamical clusterization
 # :class: important
@@ -513,19 +510,19 @@ plt.savefig("images/cl5_d.jpg");
 # 2. Read the next data points $P$. If the distance of $P$ to the **closest** characteristic point, $R^m$, is $\le d$, then 
 #     - mark $P$ as belonging to cluster $m$. 
 #     - move $R^m$ towards $P$ with the learning speed $\varepsilon$.     
-# Otherwise, add to $R$ a new characteristic point a location of the point $P$. 
+# Otherwise, add to $R$ a new characteristic point at the location of point $P$. 
 # 
 # 3. Repeat from $2.$ until all the data points are read. 
 # 
-# 4. Repeat from $2.$ a number of rounds, decreasing each time $\varepsilon$. The result is a division of the sample into a number of clusters, and ghe location of corresponding charactristic points. The result may depend on the reshuffling, hence does not have to the same when the procedure is repeated.
+# 4. Repeat from $2.$ a number of rounds, decreasing each time $\varepsilon$. The result is a division of the sample into a number of clusters, and the location of corresponding characteristic points. The result may depend on the random reshuffling, hence does not have to the same when the procedure is repeated.
 # ```
 
-# A Python implementation finding dynamically the representative points is following:
+# A Python implementation, finding dynamically the representative points, is following:
 
-# In[94]:
+# In[23]:
 
 
-d=0.2  # clustering scale
+d=0.2   # clustering scale
 eps=0.5 # initial learning speed
 
 for r in range(20):               # rounds
@@ -548,7 +545,7 @@ for r in range(20):               # rounds
 print("Number of representative points: ",len(R))
 
 
-# In[96]:
+# In[24]:
 
 
 
@@ -576,7 +573,7 @@ plt.ylabel('$x_2$',fontsize=11);
 # fig.savefig('images/cd20.jpg');
 
 
-# The outcome for various values of the clustering scale $d$ is shown in {numref}`dyn-fig`. At very low values of $d$, smaller than the minimum separation betwenn the points, there are as many clusters as the data points. Then, as we increase $d$, the number of clusters decreases. At very large $d$, order of the of the span of the sample, there is only one cluster.
+# The outcome for various values of the clustering scale $d$ is shown in {numref}`dyn-fig`. At very low values of $d$, smaller than the minimum separation between the points, there are as many clusters as the data points. Then, as we increase $d$, the number of clusters decreases. At very large $d$, of order of the of the span of the sample, there is only one cluster.
 
 # :::{figure-md} dyn-fig
 # 
@@ -597,12 +594,14 @@ plt.ylabel('$x_2$',fontsize=11);
 #    - continue the dynamical update as new data are encountered, or
 #    - "close" it, and see where the new data falls in.
 #    
-# In the first case, we assign the corresponding cluster label to the data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm descibed above on the new incoming data
+# In the first case, we assign the corresponding cluster label to the data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm described above on new incoming data
 # 
-# In the latter case (we bought the ready botanist's catalogue), a data point may 
+# In the latter case (we bought the ready and closed botanist's catalog), a data point may 
 #    - belong to a cluster (we know its label), 
 #    - fall outside any cluster, then we just do not know what it is, or 
 #    - fall into an overlapping region of two or more clusters (cf. {numref}`dyn-fig`, where we only get "partial" classification.
+#    
+# Alternatively, we can use the Voronoi areas classification.   
 
 # ### Interpretation via steepest descent
 
@@ -622,22 +621,22 @@ plt.ylabel('$x_2$',fontsize=11);
 # = 2 \sum_{P \in C_i} (\vec{R}^i- \vec{x}^P). $$
 # 
 # The steepest descent method results **exactly** in the recipe used in the 
-# dynamic clasterization algorithm presented above, i.e.
+# dynamic clusterization algorithm presented above, i.e.
 # 
 # $$ \vec{R} \to \vec{R} - \varepsilon (\vec{R} - \vec {x}^P). $$
 # 
 # To summarize, the algorithm used here actually involves the steepest descent method for the function $ E (\{R \})$, as discussed in previous lectures. 
 
 # ```{note}
-# Note, however, that the minimization used in the present algorithms also takes into account different division of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when the closest representative point is changed.
+# Note, however, that the minimization used in the present algorithms also takes into account different combinatorial divisions of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when the closest representative point is changed.
 # ```
 
 # (inn-sec)=
 # ## Interpretation via neural networks
 
-# We will now interpret the above unsupervised learning algorithm with the winner-take-all strategy in the neural network language. 
+# We shall now interpret the above unsupervised learning algorithm with the winner-take-all strategy in the neural network language. 
 
-# In[123]:
+# In[26]:
 
 
 def plot_net_lab_0(n_war, wagi, x):
@@ -678,35 +677,35 @@ plot_net_lab_0([2,4,1],
               2: np.array(["MIN"])})
 
 
-# Our example network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point $\vec{R}^i$. The weights are the coordinates of $\vec{R}^i$. There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
+# Our above sample network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point $\vec{R}^i$. The weights are the coordinates of $\vec{R}^i$. There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
 # 
 # - There are no threshold nodes.
 # 
-# - In the intermediate layer, the signal equals the distance squared of the input from the correspoding characteristic point. It is not a weighted sum.
+# - In the intermediate layer, the signal equals the distance squared of the input from the corresponding characteristic point. It is not a weighted sum.
 # 
 # - The node in the last layer (MIN) indicates in which neuron of the intermediate layer the signal is the smallest, i.e., where we have the shortest distance. Hence it works as a control unit selecting the minimum.
 # 
-# During (unsupervised) learning, an input point "attracts" the closest characteristic point, whose weights are updated.
+# During (unsupervised) learning, an input point P "attracts" the closest characteristic point, whose weights are updated towards the coordinates of P.
 # 
-# The application of the above network classifies the point with the coordinates $(x_1, x_2)$, assigning it the index of the representative point of a given category (here it is the number 1, 2, 3, or 4).
+# The application of the above network classifies the point with coordinates $(x_1, x_2)$, assigning it the index of the representative point of a given category (here it is the number 1, 2, 3, or 4).
 
 # ### Representation with spherical coordinates
 
-# Even with our vast "mathematical freedom", calling the above system a neural network is quite abusive, as it seems very far away from any neurobiological pattern. In particular, the use of a (non-linear) signal of the form $\left(\vec{R}^i-\vec{x}\right)^2$ contrasts with the perceptron, where the signal entering the neurons is a (linear) weighted sum of inputs, i.e.
+# Even with our vast "mathematical liberty", calling the above system a neural network would be quite abusive, as it seems very far away from any neurobiological pattern. In particular, the use of a (non-linear) signal of the form $\left(\vec{R}^i-\vec{x}\right)^2$ contrasts with the perceptron, where the signal entering the neurons is a (linear) weighted sum of inputs, i.e.
 # 
 # $$ s ^ i = x_1 w_1 ^ i + x_2 w_2 ^ i + ... + w_1 ^ m x_m = \vec {x} \cdot \vec {w} ^ i. $$
 # 
-# We can alter our problem with a simple geometric construction to make it similar to the perceptron principle. For this purpose we enter a (spurious) third coordinate defined as
+# We can alter our problem with a simple geometric construction/trick to make it more similar to the perceptron principle. For this purpose we introduce a (spurious) third coordinate defined as
 # 
 # $$ x_3 = \sqrt {r ^ 2-x_1 ^ 2-x_2 ^ 2}, $$
 # 
 # where $ r $ is chosen such that for all data points $ r ^ 2 \ge x_1 ^ 2 + x_2 ^ 2 $.
-# From the construction $ \vec {x} \cdot \vec {x} = x_1 ^ 2 + x_2 ^ 2 + x_3 ^ 2 = r ^ 2 $, so the data points lie on the hemisphere ($ x_3 \ge 0 $) of radius $ r $. Similarly, for the representative points we introduce:
+# From construction, $ \vec {x} \cdot \vec {x} = x_1 ^ 2 + x_2 ^ 2 + x_3 ^ 2 = r ^ 2 $, so the data points lie on the hemisphere ($ x_3 \ge 0 $) of radius $ r $. Similarly, for the representative points we introduce:
 # 
 # $$ w_1 ^ i = R_1 ^ i,  \; w_2 ^ i = R_2 ^ i,  \; 
 # w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. $$
 # 
-# It is geometrically obvious that two points in a plane in coordinates 1 and 2 are close to each other if and only if their extensions to the hemisphere are close. We support this statement with a simple calculation:
+# It is geometrically obvious that two points in a plane are close to each other if and only if their extensions to the hemisphere are close. We support this statement with a simple calculation:
 # 
 # The dot product of two points $ \vec {x} $ and $ \vec {y} $ on a hemisphere can be written as
 # 
@@ -722,7 +721,7 @@ plot_net_lab_0([2,4,1],
 # \;\;\;\simeq r^2 - \frac{1}{2} (x_1^2+x_2^2 +y_1^2+y_2^2) + x_1 y_1+x_2 y_2 \\ 
 # \;\;\; = r^2 - \frac{1}{2}[ (x_1-x_2)^2 +(y_1-y_2)^2]$.
 # 
-# So it is (for points close to the pole) the constant $ r ^ 2 $ minus half the square of the distance between the points $ (x_1, x_2) $ and $ (y_1, y_2) $ on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3D extensions to a hemisphere.
+# It equals (for points close to the pole) the constant $ r ^ 2 $ minus half the square of the distance between the points $ (x_1, x_2) $ and $ (y_1, y_2) $ on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3D extensions to a hemisphere.
 
 # In[110]:
 
@@ -743,7 +742,7 @@ plt.xlabel('$a$',fontsize=11);
 
 # With the extension of the data to a hemisphere, the appropriate neural network can be viewed as follows:
 
-# In[111]:
+# In[28]:
 
 
 plot_net_lab_0([3,4,1],
@@ -751,7 +750,7 @@ plot_net_lab_0([3,4,1],
                   ["$w_2^1$", "$w_2^2$", "$w_2^3$", "$w_2^4$"],
                   ["$w_3^1$", "$w_3^2$", "$w_3^3$", "$w_2^4$"]], 
               2: [[""], [""], [""],[""]]} ,
-             {0: np.array(["$x_1$","$x_2$","$x_3=\sqrt{r^2-x_1^2-x_2^2}$"]), 
+             {0: np.array(["$x_1$","$x_2$","$x_3$"]), 
               1: np.array(["$x_1 w_1^1+x_2 w_2^1+x_3 w_3^1$",
                            "$x_1 w_1^2+x_2 w_2^2+x_3 w_3^2$",
                            "$x_1 w_1^3+x_2 w_2^3+x_3 w_3^3$", 
@@ -761,17 +760,17 @@ plot_net_lab_0([3,4,1],
 
 # Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in the artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest. 
 # 
-# This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed-forward networks. When the neurons in the layer can communicate (recurrent [Hopfield networks](https://en.wikipedia.org/wiki/Hopfield_network)), they can compete, and with proper feed-back it is possible to enforce the winner-take-all mechanism. 
+# This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed-forward networks. When the neurons in the layer can communicate (recurrent [Hopfield networks](https://en.wikipedia.org/wiki/Hopfield_network)), they can compete, and with proper feed-back it is possible to enforce the winner-take-all mechanism. We discuss these aspects in section {ref}`lat-lab'.
 
 # ```{admonition} Hebbian rule
 # :class: important
 # 
-# On the conceptul side, we here touch upon a very important and intuitve principle in neural networks, known as the [Hebbian rule](https://en.wikipedia.org/wiki/Hebbian_theory)/ Essentially, it applies the truth "What is used, gets stronger" no synaptic connections. A repeated use of a connection makes it stronger.
-# 
-# In our formulation, if a signal passes through a given connection, its weight changes accordingly, and other connections remain the same. The process takes place in an unsupervised manner and its implementation is biologically well motivated. 
-# 
-# On the other hand, it is difficult to find a biological justification for backpropagation in supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful)
+# On the conceptual side, we here touch upon a very important and intuitive principle in neural networks, known as the [Hebbian rule](https://en.wikipedia.org/wiki/Hebbian_theory). Essentially, it applies the truth "What is used, gets stronger" to synaptic connections. A repeated use of a connection makes it stronger.
 # ```
+# 
+# In our formulation, if a signal passes through a given connection, its weight changes accordingly, while other connections remain the same. The process takes place in an unsupervised manner and its implementation is biologically well motivated. 
+# 
+# On the other hand, it is difficult to find a biological justification for the backprop supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful).
 
 # ### Scalar product maximization
 
@@ -798,6 +797,8 @@ plot_net_lab_0([3,4,1],
 # $$ x_ {n + 1} = \sqrt {r ^ 2 - x_1 ^ 2 -...- x_n ^ 2},$$
 # 
 # hence we have a point on the hyper-hemisphere $ x_1 ^ 2 + \dots + x_n ^ 2 + x_ {n + 1} ^ 2 = r ^ 2 $,  $x_ {n + 1} >0$.
+# 
+# In Python:
 
 # In[124]:
 
@@ -827,7 +828,7 @@ for r in range(25):
 print("Number of representative points: ",len(R))
 
 
-# In[126]:
+# In[29]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -852,15 +853,16 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # We can see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. {numref}`dyn-fig`.
 
-# ```{admonition} Exercises
+# ## Exercises
+
+# ```{admonition} $~$
 # :class: warning
 # 
 # 1. The city (Manhattan) metric is defined as
 # $ d (\vec {x}, \vec {y}) = | x_1-y_1 | + | x_2 - y_2 | $ for points $ \vec {x} $ and $ \vec {y} $.
-# Repeat the simulations of this lecture with this metric. Draw conclusions.
+# Repeat the simulations of this chapter using this metric. Draw conclusions.
 # 
 # 2. Run the classification algorithms for more categories in the data sample (generate your own sample). 
 # 
-# 3. One-dimensional data variant: Consider the problem of clustering points of different grayscale. To do this, enter the grayscale as $ s $ from the $ [0,1] $ range and the character data vector
-# $ (s, \sqrt {1-s ^ 2}) $ which is normalized to 1 (such points lie on a semicircle). Generate a sample of these points and run dynamical clusterization.
+# 3. Extend the dynamic clusterization algorithm to 3 spatial dimensions. 
 # ```

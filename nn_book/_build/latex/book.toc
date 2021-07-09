@@ -28,7 +28,7 @@
 \contentsline {section}{\numberline {4.1}Supervised learning}{29}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Perceptron as a binary classifier}{30}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Sample with a known classification rule}{30}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Sample with an unknown classification rule}{32}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.2}Sample with an unknown classification rule}{33}{subsection.4.2.2}%
 \contentsline {section}{\numberline {4.3}Perceptron algorithm}{33}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Testing the classifier}{36}{subsection.4.3.1}%
 \contentsline {section}{\numberline {4.4}Exercises}{37}{section.4.4}%
@@ -58,7 +58,7 @@
 \contentsline {section}{\numberline {8.2}Classifiers with rectification}{74}{section.8.2}%
 \contentsline {section}{\numberline {8.3}Exercises}{75}{section.8.3}%
 \contentsline {chapter}{\numberline {9}Unsupervised learning}{77}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Clusters of points}{78}{section.9.1}%
+\contentsline {section}{\numberline {9.1}Clusters of points}{77}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Voronoi areas}{79}{section.9.2}%
 \contentsline {section}{\numberline {9.3}Naive clusterization}{80}{section.9.3}%
 \contentsline {section}{\numberline {9.4}Clustering scale}{85}{section.9.4}%
@@ -66,6 +66,7 @@
 \contentsline {section}{\numberline {9.5}Interpretation via neural networks}{88}{section.9.5}%
 \contentsline {subsection}{\numberline {9.5.1}Representation with spherical coordinates}{88}{subsection.9.5.1}%
 \contentsline {subsection}{\numberline {9.5.2}Scalar product maximization}{90}{subsection.9.5.2}%
+\contentsline {section}{\numberline {9.6}Exercises}{91}{section.9.6}%
 \contentsline {chapter}{\numberline {10}Self Organizing Maps}{93}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{94}{section.10.1}%
 \contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{94}{subsection.10.1.1}%
@@ -78,7 +79,11 @@
 \contentsline {section}{\numberline {10.5}Lateral inhibition}{111}{section.10.5}%
 \contentsline {chapter}{\numberline {11}Concluding remarks}{115}{chapter.11}%
 \contentsline {chapter}{\numberline {12}Appendix}{117}{chapter.12}%
-\contentsline {section}{\numberline {12.1}\sphinxstylestrong {neural} package}{117}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}\sphinxstylestrong {func.py} module}{117}{subsection.12.1.1}%
-\contentsline {subsection}{\numberline {12.1.2}\sphinxstylestrong {draw.py} module}{123}{subsection.12.1.2}%
+\contentsline {section}{\numberline {12.1}How to run the book codes}{117}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}Locally}{117}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}In Google Colab}{117}{subsection.12.1.2}%
+\contentsline {section}{\numberline {12.2}\sphinxstylestrong {neural} package}{117}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{117}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{123}{subsection.12.2.2}%
+\contentsline {section}{\numberline {12.3}How to cite}{127}{section.12.3}%
 \contentsline {chapter}{Bibliography}{129}{chapter*.3}%

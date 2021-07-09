@@ -12,7 +12,7 @@
 #                              
 # ```
 
-# In[3]:
+# In[ ]:
 
 
 import numpy as np
@@ -23,19 +23,23 @@ from IPython.display import display, Image
 # plotting
 import matplotlib.pyplot as plt
 
-import sys # system library
-sys.path.append('./lib_nn') # my path (linux, Mac OS)
-
-from neural import * # import my library packages
-
 
 # In[4]:
 
 
 import matplotlib as mpl
 
+import sys                  # system library
+sys.path.append('./lib_nn') # path to my library package
 
-# (we only show new imported packages in the text, with the previous imports, such as **numpy**, repeated but hidden) 
+from neural import *        # import my library package
+
+
+# ```{note}
+# We only show new imported packages in the text, with the previous imports, such as **numpy**, repeated but hidden.
+# 
+# Here we load for the first time the lecture's **neural** package (see {ref}`app-lab`). 
+# ```
 
 # ## Supervised learning
 

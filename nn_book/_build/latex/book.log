@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  9 JUL 2021 18:55
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  9 JUL 2021 22:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1685,13 +1685,13 @@ Chapter 4.
 [29] [30]
 File: perceptron_19_0.png Graphic file (type bmp)
 <perceptron_19_0.png>
- [31]
+ [31] [32]
 File: perceptron_30_0.png Graphic file (type bmp)
 <perceptron_30_0.png>
- [32] [33]
+ [33] [34]
 File: perceptron_41_0.png Graphic file (type bmp)
 <perceptron_41_0.png>
- [34] [35]
+ [35]
 File: perceptron_56_0.png Graphic file (type bmp)
 <perceptron_56_0.png>
  [36] [37] [38
@@ -1746,7 +1746,7 @@ File: backprop_24_0.png Graphic file (type bmp)
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
  [55] [56] [57]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2903--2909
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2920--2926
 []$[] [][] [][]$ 
  []
 
@@ -1804,17 +1804,20 @@ File: rectification_36_0.png Graphic file (type bmp)
 ]
 Chapter 9.
 [77]
-File: unsupervised_11_0.png Graphic file (type bmp)
-<unsupervised_11_0.png>
+File: unsupervised_10_0.png Graphic file (type bmp)
+<unsupervised_10_0.png>
  [78]
-File: unsupervised_16_0.png Graphic file (type bmp)
-<unsupervised_16_0.png>
- [79] [80]
-File: unsupervised_38_0.png Graphic file (type bmp)
-<unsupervised_38_0.png>
+File: unsupervised_15_0.png Graphic file (type bmp)
+<unsupervised_15_0.png>
+ [79]
+File: unsupervised_24_0.png Graphic file (type bmp)
+<unsupervised_24_0.png>
+ [80]
+File: unsupervised_37_0.png Graphic file (type bmp)
+<unsupervised_37_0.png>
  [81] [82]
-File: unsupervised_45_0.png Graphic file (type bmp)
-<unsupervised_45_0.png>
+File: unsupervised_44_0.png Graphic file (type bmp)
+<unsupervised_44_0.png>
 File: cl4_2.jpg Graphic file (type bmp)
 <cl4_2.jpg>
 File: cl5.jpg Graphic file (type bmp)
@@ -1823,14 +1826,14 @@ File: cl5.jpg Graphic file (type bmp)
 File: cd.jpg Graphic file (type bmp)
 <cd.jpg>
  [86] [87]
-File: unsupervised_71_0.png Graphic file (type bmp)
-<unsupervised_71_0.png>
+File: unsupervised_70_0.png Graphic file (type bmp)
+<unsupervised_70_0.png>
  [88]
-File: unsupervised_77_0.png Graphic file (type bmp)
-<unsupervised_77_0.png>
+File: unsupervised_76_0.png Graphic file (type bmp)
+<unsupervised_76_0.png>
  [89] [90]
-File: unsupervised_83_0.png Graphic file (type bmp)
-<unsupervised_83_0.png>
+File: unsupervised_82_0.png Graphic file (type bmp)
+<unsupervised_82_0.png>
  [91]
 [92
 
@@ -1922,72 +1925,68 @@ Chapter 11.
 
 ]
 Chapter 12.
-
-Overfull \vbox (2.01305pt too high) detected at line 5535
- []
-
 [117]
-Underfull \vbox (badness 10000) detected at line 5535
+Underfull \vbox (badness 10000) detected at line 5549
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5535
+Overfull \vbox (2.78596pt too high) detected at line 5549
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5535
+Underfull \vbox (badness 10000) detected at line 5549
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5535
+Overfull \vbox (2.78596pt too high) detected at line 5549
  []
 
 [119]
-Underfull \vbox (badness 10000) detected at line 5535
+Underfull \vbox (badness 10000) detected at line 5549
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5535
+Overfull \vbox (2.78596pt too high) detected at line 5549
  []
 
 [120]
-Underfull \vbox (badness 10000) detected at line 5535
+Underfull \vbox (badness 10000) detected at line 5549
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5535
+Overfull \vbox (2.78596pt too high) detected at line 5549
  []
 
-[121] [122]
-Underfull \vbox (badness 10000) detected at line 5769
- []
-
-
-Overfull \vbox (4.52797pt too high) detected at line 5769
- []
-
-[123]
-Underfull \vbox (badness 10000) detected at line 5769
+[121]
+Underfull \vbox (badness 10000) detected at line 5549
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5769
+Overfull \vbox (2.78596pt too high) detected at line 5549
+ []
+
+[122] [123]
+Underfull \vbox (badness 10000) detected at line 5783
+ []
+
+
+Overfull \vbox (2.78596pt too high) detected at line 5783
  []
 
 [124]
-Underfull \vbox (badness 10000) detected at line 5769
+Underfull \vbox (badness 10000) detected at line 5783
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5769
+Overfull \vbox (2.78596pt too high) detected at line 5783
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5769
+Underfull \vbox (badness 10000) detected at line 5783
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5769
+Overfull \vbox (2.78596pt too high) detected at line 5783
  []
 
 [126] [127] [128
@@ -2030,24 +2029,24 @@ braces):
  [129
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5815.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5815.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5846.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5846.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5815.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5815.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5846.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5846.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: F48216E8D0CE40E4C4EDAACCFB2029E4;8498.
+(rerunfilecheck)             Checksum: 47712600DD26367F13613A4142D09C28;8913.
  ) 
 Here is how much of TeX's memory you used:
- 41894 strings out of 479418
- 953806 string characters out of 5884586
- 1843486 words of memory out of 5000000
- 58568 multiletter control sequences out of 15000+600000
+ 41906 strings out of 479418
+ 954119 string characters out of 5884586
+ 1849486 words of memory out of 5000000
+ 58579 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s

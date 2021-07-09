@@ -12,5 +12,5 @@ chapters:
 - file: docs/unsupervised
 - file: docs/som
 - file: docs/conclusion
-- file: docs/lib_app
+- file: docs/appendix
 # - file: docs/refs

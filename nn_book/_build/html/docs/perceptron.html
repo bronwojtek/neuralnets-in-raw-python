@@ -141,7 +141,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lib_app.html">
+  <a class="reference internal" href="appendix.html">
    Appendix
   </a>
  </li>
@@ -292,11 +292,20 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>                  <span class="c1"># system library</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> <span class="c1"># path to my library package</span>
+
+<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span>        <span class="c1"># import my library package</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>(we only show new imported packages in the text, with the previous imports, such as <strong>numpy</strong>, repeated but hidden)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We only show new imported packages in the text, with the previous imports, such as <strong>numpy</strong>, repeated but hidden.</p>
+<p>Here we load for the first time the lecture’s <strong>neural</strong> package (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>).</p>
+</div>
 <div class="section" id="supervised-learning">
 <h2>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
 <p>We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has</p>

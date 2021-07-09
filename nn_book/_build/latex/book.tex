@@ -97,6 +97,8 @@
 \sphinxAtStartPar
 \sphinxhref{https://www.ujk.edu.pl}{\sphinxstylestrong{Jan Kochanowski University}}, Kielce, Poland
 
+
+
 \sphinxAtStartPar
 These lectures were originally given to students of computer engineering at the \sphinxhref{https://www.ujk.edu.pl}{Jan Kochanowski University} in Kielce, Poland, and for
 the \sphinxhref{https://kisd.ifj.edu.pl/news/}{Kraków School of Interdisciplinary PhD Studies}. They explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the code for various algorithms of neural networks is written from absolute scratch, i.e. without any use of dedicated higher\sphinxhyphen{}level libraries. That way one can follow all the programming steps in an explicit manner.
@@ -115,15 +117,20 @@ Built with \sphinxhref{https://beta.jupyterbook.org/intro.html}{Jupyter Book
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The reader may download the complete code in the form of
-\sphinxhref{https://jupyter.org}{jupyter} notebooks as well as some supplementary material from …
+The reader may download the book codes in the form of
+\sphinxhref{https://jupyter.org}{jupyter} notebooks from …
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to run the book codes.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
 ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{}0\sphinxhyphen{}0}
 
 \sphinxAtStartPar
-\sphinxincludegraphics{{barcode}.png}
+\sphinxincludegraphics{{barcode}.png}\{:height=”50\%” width=”50\%”\}
+
+
 
 
 \chapter{Introduction}
@@ -286,7 +293,7 @@ Throughout the course we use some standard Python library packages for the numer
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-Functions created in the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in the {\hyperref[\detokenize{docs/lib_app:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}.
+Functions created in the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in the {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}.
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{note}{Note:}
@@ -455,7 +462,7 @@ Next, we need to construct the neuron activation function, which presently is ju
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-where in the top comments we have indicated that the function is also defined in the \sphinxstylestrong{neural} library package, cf. {\hyperref[\detokenize{docs/lib_app:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}. For the visualizers, the plot of the step function is following:
+where in the top comments we have indicated that the function is also defined in the \sphinxstylestrong{neural} library package, cf. {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}. For the visualizers, the plot of the step function is following:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} set the size and resolution of the figure}
@@ -1032,7 +1039,7 @@ We should be able to see in the above picture the sequence a, A, i, I, and nothi
 \subsection{Applying a filter}
 \label{\detokenize{docs/memory:applying-a-filter}}
 \sphinxAtStartPar
-The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) \(b\) should be reset to 0, and those above or equal to \(b\) should be reset to 1. This can be neatly accomplished with our \sphinxstylestrong{neuron} function from Sec. {\hyperref[\detokenize{docs/mcp:mcp-p-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron in Python}}}}. This function has been placed in the library \sphinxstylestrong{neural} (see {\hyperref[\detokenize{docs/lib_app:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}), which we now read in:
+The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) \(b\) should be reset to 0, and those above or equal to \(b\) should be reset to 1. This can be neatly accomplished with our \sphinxstylestrong{neuron} function from Sec. {\hyperref[\detokenize{docs/mcp:mcp-p-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP neuron in Python}}}}. This function has been placed in the library \sphinxstylestrong{neural} (see {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}), which we now read in:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{sys} \PYG{c+c1}{\PYGZsh{} system library}
@@ -1285,10 +1292,20 @@ Discuss your findings and the limitations of the models.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}
+
+\PYG{k+kn}{import} \PYG{n+nn}{sys}                  \PYG{c+c1}{\PYGZsh{} system library}
+\PYG{n}{sys}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./lib\PYGZus{}nn}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} path to my library package}
+
+\PYG{k+kn}{from} \PYG{n+nn}{neural} \PYG{k+kn}{import} \PYG{o}{*}        \PYG{c+c1}{\PYGZsh{} import my library package}
 \end{sphinxVerbatim}
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-(we only show new imported packages in the text, with the previous imports, such as \sphinxstylestrong{numpy}, repeated but hidden)
+We only show new imported packages in the text, with the previous imports, such as \sphinxstylestrong{numpy}, repeated but hidden.
+
+\sphinxAtStartPar
+Here we load for the first time the lecture’s \sphinxstylestrong{neural} package (see {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}}).
+\end{sphinxadmonition}
 
 
 \section{Supervised learning}
@@ -3648,14 +3665,6 @@ Convince yourself that starting backprop (with ReLU) with too large initial lear
 
 \chapter{Unsupervised learning}
 \label{\detokenize{docs/unsupervised:unsupervised-learning}}\label{\detokenize{docs/unsupervised:un-lab}}\label{\detokenize{docs/unsupervised::doc}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{neural} \PYG{k+kn}{import} \PYG{o}{*} \PYG{c+c1}{\PYGZsh{} import my library packages}
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-Invoking \PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}.py for neural
-\end{sphinxVerbatim}
-
 \begin{sphinxadmonition}{note}{Motto}
 
 \sphinxAtStartPar
@@ -3665,13 +3674,13 @@ Invoking \PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}.py for neural
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Supervised learning discussed in previous lectures needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., in our example, whether the point is inside or outside the circle).
+Supervised learning, discussed in previous lectures, needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., as in one of our examples, whether a given point is inside or outside the circle).
 
 \sphinxAtStartPar
-However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision.
+However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision or labels floating around.
 
 \sphinxAtStartPar
-Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, etc. He goes on, and finds a different flower, and records its features, and so on with the next flowers. At some point, however, he finds a flower that he already had met. More precisely, its features will be close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
+Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, scent, etc. He goes on, finds a different flower, records its features, and so on and on with subsequent flowers. At some point, however, he finds a flower that he already had met. More precisely, its features are close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes that it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end of his quest, he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
 
 \sphinxAtStartPar
 Formally, this problem of \sphinxstylestrong{unsupervised learning} is related to data classification (division into categories, or \sphinxstylestrong{clusters}, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
@@ -3706,13 +3715,13 @@ Let us create data samples with a few points from each category:
 \sphinxAtStartPar
 Our data looks like this:
 
-\noindent\sphinxincludegraphics{{unsupervised_11_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_10_0}.png}
 
 \sphinxAtStartPar
-If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is he using to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other.
+If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is used to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment, let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other.
 
 \sphinxAtStartPar
-One can represent clusters with \sphinxstylestrong{representative points} that lie somewher within the cluster. For example, one could take an item belonging to a given cluster as its representative, or in each cluster one can evaluate the mean position of its points and use it as representative points:
+One can represent clusters with \sphinxstylestrong{representative points} that lie somewhere within the cluster. For example, one could take an item belonging to a given cluster as its representative, or in each cluster one can evaluate the mean position of its points and use it as its representative point:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{rA}\PYG{o}{=}\PYG{p}{[}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]}
@@ -3722,7 +3731,7 @@ One can represent clusters with \sphinxstylestrong{representative points} that l
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We add thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves this purpose).
+We add thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves this precisely this purpose).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{col}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{magenta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
@@ -3748,7 +3757,7 @@ We add thus defined characteristic points to our graphics. For visual convenienc
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_16_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_15_0}.png}
 
 
 \section{Voronoi areas}
@@ -3763,7 +3772,7 @@ Consider point \(P\) in a metric space, where we have a number representative po
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Let us define the color of the point P in our plane as the color of the nearest representative point. For this we first need (the square of) a distance function (here: Euclidean) between two points in 2\sphinxhyphen{}dim. space:
+Let us define the color of the point P in our plane as the color of the nearest representative point. To do it, we first need (the square of) a distance function (here Euclidean) between two points in 2\sphinxhyphen{}dim. space:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{eucl}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{n}{p2}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} square of the Euclidean distance}
@@ -3775,9 +3784,9 @@ Then we find the nearest representative point and determine its color:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{col\PYGZus{}char}\PYG{p}{(}\PYG{n}{p}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rA}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rB}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rC}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rD}\PYG{p}{)}\PYG{p}{]}
-    \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} index of the nearest point}
-    \PYG{k}{return} \PYG{n}{col}\PYG{p}{[}\PYG{n}{ind\PYGZus{}min}\PYG{p}{]}
+    \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rA}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rB}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rC}\PYG{p}{)}\PYG{p}{,}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{rD}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} array of distances}
+    \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}                          \PYG{c+c1}{\PYGZsh{} index of the nearest point}
+    \PYG{k}{return} \PYG{n}{col}\PYG{p}{[}\PYG{n}{ind\PYGZus{}min}\PYG{p}{]}                                \PYG{c+c1}{\PYGZsh{} color of the nearest point}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -3785,32 +3794,14 @@ Then we find the nearest representative point and determine its color:
 \PYG{n}{col\PYGZus{}char}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{.5}\PYG{p}{,}\PYG{l+m+mf}{.5}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\sphinxAtStartPar
-The result is following, with straight\sphinxhyphen{}line boundaries between naighboring areas:
-
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{3.2}\PYG{p}{,}\PYG{l+m+mf}{3.2}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Voronoi areas}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)} 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{)}
-
-\PYG{k}{for} \PYG{n}{x1} \PYG{o+ow}{in} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{70}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} 70 points in x}
-    \PYG{k}{for} \PYG{n}{x2} \PYG{o+ow}{in} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{70}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} 70 points in y}
-        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{n}{col\PYGZus{}char}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.6}\PYG{p}{,} \PYG{n}{edgecolors}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{none}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{samB}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{samB}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{samC}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{samC}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{samD}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{samD}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{rA}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{rA}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{.6}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{rB}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{rB}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{.6}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{rC}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{rC}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{.6}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{rD}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{rD}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{.6}\PYG{p}{)}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}1\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{18}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{18}\PYG{p}{)}\PYG{p}{;}
+\PYGZsq{}blue\PYGZsq{}
 \end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The result is the following division of the plane, with straight\sphinxhyphen{}line boundaries between the neighboring areas:
+
+\noindent\sphinxincludegraphics{{unsupervised_24_0}.png}
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
@@ -3821,21 +3812,21 @@ A practical message here is that once we have the characteristic points, we can 
 \section{Naive clusterization}
 \label{\detokenize{docs/unsupervised:naive-clusterization}}
 \sphinxAtStartPar
-Now the “real” botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points,
+Now the “real” botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points with \sphinxstylestrong{concatenate}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{alls}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{concatenate}\PYG{p}{(}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{,} \PYG{n}{samB}\PYG{p}{,} \PYG{n}{samC}\PYG{p}{,} \PYG{n}{samD}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-and shuffle them,
+and shuffle them:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The data visualization looks as in the first plot of thsi chapter.
+The data visualization looks as in the first plot of this chapter.
 
 \sphinxAtStartPar
 We now want to somehow create representative points, but a priori we don’t know where they should be, or even how many of them there are. Very different strategies are possible here. Their common feature is that the position of the representative points is updated as the sample data is processed.
@@ -3851,46 +3842,47 @@ or in the vector notation
 \begin{split} \vec {R} \to \vec {R} + \varepsilon (\vec {x}^P - \vec {R}). \end{split}
 \end{equation*}
 \sphinxAtStartPar
-The step is repeated for all points of the sample, and then many such round may be carried out. As in the previous chapters, \( \varepsilon \) is the learning rate that (preferably) decreases
+The step is repeated for all the points of the sample, and then many such rounds may be carried out. As in the previous chapters, \( \varepsilon \) is the learning rate that (preferably) decreases
 as the algorithm proceeds. The above formula realizes the “snapping” of the point \(\vec{R}\) by the data point \(\vec{P}\).
 
 \sphinxAtStartPar
 The following code implements the above prescription:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{R}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{R}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} initial location}
+
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{initial location:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{rounds  location}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{round   location}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
-\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}              \PYG{c+c1}{\PYGZsh{} initial learning speed}
 
-\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
-    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.85}\PYG{o}{*}\PYG{n}{eps}    \PYG{c+c1}{\PYGZsh{} decrease the update speed }
-    \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} reshuffle the sample}
+\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{:}            \PYG{c+c1}{\PYGZsh{} rounds}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.85}\PYG{o}{*}\PYG{n}{eps}               \PYG{c+c1}{\PYGZsh{} decrease the learning speed }
+    \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} reshuffle the sample}
     \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} loop over points of the whole sample}
-        \PYG{n}{R}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} update/learning}
-    \PYG{k}{if} \PYG{n}{j}\PYG{o}{\PYGZpc{}}\PYG{k}{5}==4: print(j+1, \PYGZdq{}    \PYGZdq{},np.round(R,3))   
+        \PYG{n}{R}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{R}\PYG{p}{)}     \PYG{c+c1}{\PYGZsh{} update/learning}
+    \PYG{k}{if} \PYG{n}{j}\PYG{o}{\PYGZpc{}}\PYG{k}{5}==4: print(j+1, \PYGZdq{}    \PYGZdq{},np.round(R,3))  \PYGZsh{} print every 5th step
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 initial location:
-[0.005 0.512]
-rounds  location
-5      [0.553 0.517]
-10      [0.637 0.503]
-15      [0.612 0.481]
-20      [0.602 0.48 ]
-25      [0.604 0.481]
-30      [0.603 0.482]
-35      [0.603 0.482]
-40      [0.603 0.482]
-45      [0.603 0.482]
-50      [0.603 0.482]
+[0.281 0.897]
+round   location
+5      [0.52  0.477]
+10      [0.624 0.467]
+15      [0.618 0.485]
+20      [0.607 0.484]
+25      [0.613 0.488]
+30      [0.614 0.49 ]
+35      [0.614 0.49 ]
+40      [0.614 0.489]
+45      [0.614 0.489]
+50      [0.615 0.489]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We can see that the position of the characteristic point converges. Actually, it becomes very close to the average of the locatio of all points,
+We can see that the position of the characteristic point converges. Actually, it becomes very close to the average location of all the points,
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{R\PYGZus{}mean}\PYG{o}{=}\PYG{p}{[}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]}
@@ -3898,16 +3890,16 @@ We can see that the position of the characteristic point converges. Actually, it
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[0.602 0.481]
+[0.615 0.489]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We have decided a priori to have one category, and here is our plot of the result fot the characeristic point, indicated with a gray blob:
+We have decided a priori to have just one category, and here is our plot of the result for the characteristic point, indicated with a gray blob:
 
-\noindent\sphinxincludegraphics{{unsupervised_38_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_37_0}.png}
 
 \sphinxAtStartPar
-Let us try to generalize the above algorithm for the case of several (\( n_R> \) 1) representative points.
+One is, of course, not satisfied with the above, so let us try to generalize the algorithm for the case of several (\( n_R> \) 1) representative points.
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -3915,7 +3907,7 @@ We initialize randomly representative vectors \( \vec{R}^i \), \(i = 1, \dots, n
 
 \item {} 
 \sphinxAtStartPar
-Round: We take the sample points P one by one and update only the \sphinxstylestrong{closest} point \(R^m\) to the point P in a given step:
+Round: We take the sample points P one by one and update only the \sphinxstylestrong{closest} representative point \(R^m\) to the point P in a given step:
 
 \end{itemize}
 \begin{equation*}
@@ -3923,17 +3915,17 @@ Round: We take the sample points P one by one and update only the \sphinxstylest
 \end{equation*}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-The position of the other representative points remains the same. This strategy is called the \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all}.
+The position of the other representative points remains unchanged. This strategy is called \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all}.
 
 \item {} 
 \sphinxAtStartPar
-We repeat the rounds, reducing the learning speed \( \varepsilon \) each time.
+We repeat the rounds, reducing the learning speed \( \varepsilon \) each time, until we are happy.
 
 \end{itemize}
 
-\begin{sphinxadmonition}{note}{Note:}
+\begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all} strategy is an important concept in ANN modeling. The competing neurons in a layer fight for the signal, and the one that wins, takes it all (its weighs get updated), while the loosers get nothing.
+The \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all} strategy is an important concept in ANN modeling. The competing neurons in a layer fight for the signal, and the one that wins, takes it all (its weighs get updated), while the losers get nothing.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -3945,7 +3937,7 @@ So let’s consider two representative points that we initialize randomly:
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Then we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only this one:
+Then we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only the winner:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{initial locations:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
@@ -3954,17 +3946,16 @@ Then we carry out the above algorithm. For each data point we find the nearest r
 
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}
 
-\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
+\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{)}\PYG{p}{:}             
     \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.85}\PYG{o}{*}\PYG{n}{eps}
     \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)} 
     \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
-        \PYG{n}{p}\PYG{o}{=}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} data point}
-\PYG{c+c1}{\PYGZsh{}        print(p)}
+        \PYG{n}{p}\PYG{o}{=}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}   
         \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R1}\PYG{p}{)}\PYG{p}{,} \PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R2}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} squares of distances}
-        \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} minimum}
-        \PYG{k}{if} \PYG{n}{ind\PYGZus{}min}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} if R1 closer to the new data point}
+        \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}               \PYG{c+c1}{\PYGZsh{} index of the minimum}
+        \PYG{k}{if} \PYG{n}{ind\PYGZus{}min}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{:}           \PYG{c+c1}{\PYGZsh{} if R1 closer to the new data point}
             \PYG{n}{R1}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R1}\PYG{p}{)}
-        \PYG{k}{else}\PYG{p}{:}          \PYG{c+c1}{\PYGZsh{} if R2 closer ...}
+        \PYG{k}{else}\PYG{p}{:}                    \PYG{c+c1}{\PYGZsh{} if R2 closer ...}
             \PYG{n}{R2}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R2}\PYG{p}{)}            
 
     \PYG{k}{if} \PYG{n}{j}\PYG{o}{\PYGZpc{}}\PYG{k}{5}==4: print(j+1,\PYGZdq{}    \PYGZdq{}, np.round(R1,3), np.round(R2,3))  
@@ -3972,25 +3963,25 @@ Then we carry out the above algorithm. For each data point we find the nearest r
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 initial locations:
-[0.905 0.549] [0.419 0.255]
+[0.583 0.354] [0.532 0.225]
 rounds  locations
-5      [0.836 0.104] [0.476 0.613]
-10      [0.837 0.107] [0.559 0.678]
-15      [0.838 0.101] [0.509 0.645]
-20      [0.837 0.102] [0.504 0.643]
-25      [0.837 0.102] [0.507 0.644]
-30      [0.837 0.102] [0.505 0.643]
-35      [0.837 0.102] [0.505 0.642]
-40      [0.837 0.102] [0.504 0.642]
+5      [0.567 0.652] [0.821 0.086]
+10      [0.565 0.66 ] [0.807 0.098]
+15      [0.527 0.652] [0.806 0.103]
+20      [0.539 0.654] [0.804 0.102]
+25      [0.537 0.653] [0.804 0.102]
+30      [0.537 0.653] [0.804 0.102]
+35      [0.536 0.652] [0.804 0.102]
+40      [0.536 0.652] [0.804 0.102]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_45_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_44_0}.png}
 
 \sphinxAtStartPar
-One of the characteristic poits “specializes” in the lower right cluster, and the other in the remaining three.
+One of the characteristic points “specializes” in the lower right cluster, and the other in the remaining points.
 
 \sphinxAtStartPar
-We continue, anologously, with four representative points.
+We continue, analogously, with four representative points.
 
 \begin{figure}[htbp]
 \centering
@@ -4000,10 +3991,10 @@ We continue, anologously, with four representative points.
 \caption{Left: proper characteristic points. Right: one “dead body”.}\label{\detokenize{docs/unsupervised:p-fig}}\end{figure}
 
 \sphinxAtStartPar
-Running the case for four categories, we notice that it does not always give the correct answer. Quite often one of the representative points is not updated at all and becomes the so\sphinxhyphen{}called \sphinxstylestrong{dead body}. This is because the other representative points always “win”, i.e. one of them is always closer to each point of the sample than the “corpse”.
+Running the case of four categories, we notice that it does not always give the “correct”/expected answer. Quite often one of the representative points is not updated at all and becomes the so\sphinxhyphen{}called \sphinxstylestrong{dead body}. This is because the other representative points always win, i.e. one of them is always closer to each data point of the sample than the “corpse”.
 
 \sphinxAtStartPar
-When we set up five characteristic points, several situation may occur, as shown in the figure below. Sometimes, depending on the initializtion, a cluster is split into two smaller ones, sometimes dead bodies occur.
+When we set up five characteristic points, several situation may occur, as shown in the figure below. Sometimes, depending on the initialization, a cluster is split into two smaller ones, sometimes dead bodies occur.
 
 \begin{figure}[htbp]
 \centering
@@ -4013,22 +4004,22 @@ When we set up five characteristic points, several situation may occur, as shown
 \caption{From left to right: 5 characteristic points with one cluster split into two, with another cluster split into two, one dead body, and two dead bodies.}\label{\detokenize{docs/unsupervised:id1}}\end{figure}
 
 \sphinxAtStartPar
-Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current startegy is problematic.
+Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current strategy is problematic.
 
 
 \section{Clustering scale}
 \label{\detokenize{docs/unsupervised:clustering-scale}}
 \sphinxAtStartPar
-In the previous section we were trying to guess from the outset how many clusters there are in the data. This lead to problems, also many times we do not really know how many clusters there are. Actually, up to now we have not even defined what precisely a cluster is, using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristi point, but how close? Actually, the definition must involve a scale telling us “how close is close”. Fo instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller one and resolve the bigger clusters inti smaller ones, as in the  left panels of \hyperref[\detokenize{docs/unsupervised:id1}]{Fig.\@ \ref{\detokenize{docs/unsupervised:id1}}}.
+In the previous section we were trying to guess from the outset how many clusters there are in the data. This lead to problems, as usually we do not even know how many clusters there are. Actually, up to now we have not defined what precisely a cluster is, and were using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristic point, but how close? Actually, the definition must involve a scale telling us “how close is close”. For instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller one and resolve the bigger clusters into smaller ones, as in the  left panels of \hyperref[\detokenize{docs/unsupervised:id1}]{Fig.\@ \ref{\detokenize{docs/unsupervised:id1}}}.
 
 \begin{sphinxadmonition}{note}{Definition of cluster}
 
 \sphinxAtStartPar
-A cluster of scale \(d\) associated with a characteristic point \(R\) is the set of data points \(P\), whose distance from \(R\) is less than \(d\), whereas the distance from other characteristic points is \(\ge d\). The characteristic points must be selected in such a way that each data point belongs to a cluster, and no characteristic point is a dead body (i.e., its cluster must contain at least one data point).
+A cluster of scale \(d\) associated with a characteristic point \(R\) is a set of data points \(P\), whose distance from \(R\) is less than \(d\), whereas the distance from other characteristic points is \(\ge d\). The characteristic points must be selected in such a way that each data point belongs to a cluster, and no characteristic point is a dead body (i.e., its cluster must contain at least one data point).
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Various strategies can be used to implement this prescription. We use here the \sphinxstylestrong{dynamical clusterization}, where a new cluster/representative point is created whenever an encoutered data point is farther than \(d\) from any present characteristic point up to now.
+Various strategies can be used to implement this prescription. We use here the \sphinxstylestrong{dynamical clusterization}, where a new cluster/representative point is created whenever an encountered data point is farther than \(d\) from any characteristic point defined up to now.
 
 \begin{sphinxadmonition}{note}{Dynamical clusterization}
 \begin{enumerate}
@@ -4051,7 +4042,7 @@ mark \(P\) as belonging to cluster \(m\).
 
 \item {} 
 \sphinxAtStartPar
-move \(R^m\) towards \(P\) with the learning speed \(\varepsilon\).Otherwise, add to \(R\) a new characteristic point a location of the point \(P\).
+move \(R^m\) towards \(P\) with the learning speed \(\varepsilon\).Otherwise, add to \(R\) a new characteristic point at the location of point \(P\).
 
 \end{itemize}
 
@@ -4061,16 +4052,16 @@ Repeat from \(2.\) until all the data points are read.
 
 \item {} 
 \sphinxAtStartPar
-Repeat from \(2.\) a number of rounds, decreasing each time \(\varepsilon\). The result is a division of the sample into a number of clusters, and ghe location of corresponding charactristic points. The result may depend on the reshuffling, hence does not have to the same when the procedure is repeated.
+Repeat from \(2.\) a number of rounds, decreasing each time \(\varepsilon\). The result is a division of the sample into a number of clusters, and the location of corresponding characteristic points. The result may depend on the random reshuffling, hence does not have to the same when the procedure is repeated.
 
 \end{enumerate}
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-A Python implementation finding dynamically the representative points is following:
+A Python implementation, finding dynamically the representative points, is following:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{d}\PYG{o}{=}\PYG{l+m+mf}{0.2}  \PYG{c+c1}{\PYGZsh{} clustering scale}
+\PYG{n}{d}\PYG{o}{=}\PYG{l+m+mf}{0.2}   \PYG{c+c1}{\PYGZsh{} clustering scale}
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.5} \PYG{c+c1}{\PYGZsh{} initial learning speed}
 
 \PYG{k}{for} \PYG{n}{r} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{:}               \PYG{c+c1}{\PYGZsh{} rounds}
@@ -4098,7 +4089,7 @@ Number of representative points:  4
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The outcome for various values of the clustering scale \(d\) is shown in \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}. At very low values of \(d\), smaller than the minimum separation betwenn the points, there are as many clusters as the data points. Then, as we increase \(d\), the number of clusters decreases. At very large \(d\), order of the of the span of the sample, there is only one cluster.
+The outcome for various values of the clustering scale \(d\) is shown in \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}. At very low values of \(d\), smaller than the minimum separation between the points, there are as many clusters as the data points. Then, as we increase \(d\), the number of clusters decreases. At very large \(d\), of order of the of the span of the sample, there is only one cluster.
 
 \begin{figure}[htbp]
 \centering
@@ -4130,10 +4121,10 @@ continue the dynamical update as new data are encountered, or
 \end{itemize}
 
 \sphinxAtStartPar
-In the first case, we assign the corresponding cluster label to the data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm descibed above on the new incoming data
+In the first case, we assign the corresponding cluster label to the data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm described above on new incoming data
 
 \sphinxAtStartPar
-In the latter case (we bought the ready botanist’s catalogue), a data point may
+In the latter case (we bought the ready and closed botanist’s catalog), a data point may
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -4148,6 +4139,9 @@ fall outside any cluster, then we just do not know what it is, or
 fall into an overlapping region of two or more clusters (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}, where we only get “partial” classification.
 
 \end{itemize}
+
+\sphinxAtStartPar
+Alternatively, we can use the Voronoi areas classification.
 
 
 \subsection{Interpretation via steepest descent}
@@ -4172,7 +4166,7 @@ Its derivative with respect to \( \vec{R}_i \) is
 \end{equation*}
 \sphinxAtStartPar
 The steepest descent method results \sphinxstylestrong{exactly} in the recipe used in the
-dynamic clasterization algorithm presented above, i.e.
+dynamic clusterization algorithm presented above, i.e.
 \begin{equation*}
 \begin{split} \vec{R} \to \vec{R} - \varepsilon (\vec{R} - \vec {x}^P). \end{split}
 \end{equation*}
@@ -4181,19 +4175,19 @@ To summarize, the algorithm used here actually involves the steepest descent met
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Note, however, that the minimization used in the present algorithms also takes into account different division of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when the closest representative point is changed.
+Note, however, that the minimization used in the present algorithms also takes into account different combinatorial divisions of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when the closest representative point is changed.
 \end{sphinxadmonition}
 
 
 \section{Interpretation via neural networks}
 \label{\detokenize{docs/unsupervised:interpretation-via-neural-networks}}\label{\detokenize{docs/unsupervised:inn-sec}}
 \sphinxAtStartPar
-We will now interpret the above unsupervised learning algorithm with the winner\sphinxhyphen{}take\sphinxhyphen{}all strategy in the neural network language.
+We shall now interpret the above unsupervised learning algorithm with the winner\sphinxhyphen{}take\sphinxhyphen{}all strategy in the neural network language.
 
-\noindent\sphinxincludegraphics{{unsupervised_71_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_70_0}.png}
 
 \sphinxAtStartPar
-Our example network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point \(\vec{R}^i\). The weights are the coordinates of \(\vec{R}^i\). There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
+Our above sample network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point \(\vec{R}^i\). The weights are the coordinates of \(\vec{R}^i\). There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -4201,7 +4195,7 @@ There are no threshold nodes.
 
 \item {} 
 \sphinxAtStartPar
-In the intermediate layer, the signal equals the distance squared of the input from the correspoding characteristic point. It is not a weighted sum.
+In the intermediate layer, the signal equals the distance squared of the input from the corresponding characteristic point. It is not a weighted sum.
 
 \item {} 
 \sphinxAtStartPar
@@ -4210,33 +4204,33 @@ The node in the last layer (MIN) indicates in which neuron of the intermediate l
 \end{itemize}
 
 \sphinxAtStartPar
-During (unsupervised) learning, an input point “attracts” the closest characteristic point, whose weights are updated.
+During (unsupervised) learning, an input point P “attracts” the closest characteristic point, whose weights are updated towards the coordinates of P.
 
 \sphinxAtStartPar
-The application of the above network classifies the point with the coordinates \((x_1, x_2)\), assigning it the index of the representative point of a given category (here it is the number 1, 2, 3, or 4).
+The application of the above network classifies the point with coordinates \((x_1, x_2)\), assigning it the index of the representative point of a given category (here it is the number 1, 2, 3, or 4).
 
 
 \subsection{Representation with spherical coordinates}
 \label{\detokenize{docs/unsupervised:representation-with-spherical-coordinates}}
 \sphinxAtStartPar
-Even with our vast “mathematical freedom”, calling the above system a neural network is quite abusive, as it seems very far away from any neurobiological pattern. In particular, the use of a (non\sphinxhyphen{}linear) signal of the form \(\left(\vec{R}^i-\vec{x}\right)^2\) contrasts with the perceptron, where the signal entering the neurons is a (linear) weighted sum of inputs, i.e.
+Even with our vast “mathematical liberty”, calling the above system a neural network would be quite abusive, as it seems very far away from any neurobiological pattern. In particular, the use of a (non\sphinxhyphen{}linear) signal of the form \(\left(\vec{R}^i-\vec{x}\right)^2\) contrasts with the perceptron, where the signal entering the neurons is a (linear) weighted sum of inputs, i.e.
 \begin{equation*}
 \begin{split} s ^ i = x_1 w_1 ^ i + x_2 w_2 ^ i + ... + w_1 ^ m x_m = \vec {x} \cdot \vec {w} ^ i. \end{split}
 \end{equation*}
 \sphinxAtStartPar
-We can alter our problem with a simple geometric construction to make it similar to the perceptron principle. For this purpose we enter a (spurious) third coordinate defined as
+We can alter our problem with a simple geometric construction/trick to make it more similar to the perceptron principle. For this purpose we introduce a (spurious) third coordinate defined as
 \begin{equation*}
 \begin{split} x_3 = \sqrt {r ^ 2-x_1 ^ 2-x_2 ^ 2}, \end{split}
 \end{equation*}
 \sphinxAtStartPar
 where \( r \) is chosen such that for all data points \( r ^ 2 \ge x_1 ^ 2 + x_2 ^ 2 \).
-From the construction \( \vec {x} \cdot \vec {x} = x_1 ^ 2 + x_2 ^ 2 + x_3 ^ 2 = r ^ 2 \), so the data points lie on the hemisphere (\( x_3 \ge 0 \)) of radius \( r \). Similarly, for the representative points we introduce:
+From construction, \( \vec {x} \cdot \vec {x} = x_1 ^ 2 + x_2 ^ 2 + x_3 ^ 2 = r ^ 2 \), so the data points lie on the hemisphere (\( x_3 \ge 0 \)) of radius \( r \). Similarly, for the representative points we introduce:
 \begin{equation*}
 \begin{split} w_1 ^ i = R_1 ^ i,  \; w_2 ^ i = R_2 ^ i,  \; 
 w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. \end{split}
 \end{equation*}
 \sphinxAtStartPar
-It is geometrically obvious that two points in a plane in coordinates 1 and 2 are close to each other if and only if their extensions to the hemisphere are close. We support this statement with a simple calculation:
+It is geometrically obvious that two points in a plane are close to each other if and only if their extensions to the hemisphere are close. We support this statement with a simple calculation:
 
 \sphinxAtStartPar
 The dot product of two points \( \vec {x} \) and \( \vec {y} \) on a hemisphere can be written as
@@ -4257,30 +4251,30 @@ hence
 \;\;\; = r^2 - \frac{1}{2}[ (x_1-x_2)^2 +(y_1-y_2)^2]\).
 
 \sphinxAtStartPar
-So it is (for points close to the pole) the constant \( r ^ 2 \) minus half the square of the distance between the points \( (x_1, x_2) \) and \( (y_1, y_2) \) on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3D extensions to a hemisphere.
+It equals (for points close to the pole) the constant \( r ^ 2 \) minus half the square of the distance between the points \( (x_1, x_2) \) and \( (y_1, y_2) \) on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3D extensions to a hemisphere.
 
 \sphinxAtStartPar
 With the extension of the data to a hemisphere, the appropriate neural network can be viewed as follows:
 
-\noindent\sphinxincludegraphics{{unsupervised_77_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_76_0}.png}
 
 \sphinxAtStartPar
 Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in the artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest.
 
 \sphinxAtStartPar
-This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed\sphinxhyphen{}forward networks. When the neurons in the layer can communicate (recurrent \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}), they can compete, and with proper feed\sphinxhyphen{}back it is possible to enforce the winner\sphinxhyphen{}take\sphinxhyphen{}all mechanism.
+This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed\sphinxhyphen{}forward networks. When the neurons in the layer can communicate (recurrent \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}), they can compete, and with proper feed\sphinxhyphen{}back it is possible to enforce the winner\sphinxhyphen{}take\sphinxhyphen{}all mechanism. We discuss these aspects in section \{ref\}`lat\sphinxhyphen{}lab’.
 
 \begin{sphinxadmonition}{note}{Hebbian rule}
 
 \sphinxAtStartPar
-On the conceptul side, we here touch upon a very important and intuitve principle in neural networks, known as the \sphinxhref{https://en.wikipedia.org/wiki/Hebbian\_theory}{Hebbian rule}/ Essentially, it applies the truth “What is used, gets stronger” no synaptic connections. A repeated use of a connection makes it stronger.
-
-\sphinxAtStartPar
-In our formulation, if a signal passes through a given connection, its weight changes accordingly, and other connections remain the same. The process takes place in an unsupervised manner and its implementation is biologically well motivated.
-
-\sphinxAtStartPar
-On the other hand, it is difficult to find a biological justification for backpropagation in supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful)
+On the conceptual side, we here touch upon a very important and intuitive principle in neural networks, known as the \sphinxhref{https://en.wikipedia.org/wiki/Hebbian\_theory}{Hebbian rule}. Essentially, it applies the truth “What is used, gets stronger” to synaptic connections. A repeated use of a connection makes it stronger.
 \end{sphinxadmonition}
+
+\sphinxAtStartPar
+In our formulation, if a signal passes through a given connection, its weight changes accordingly, while other connections remain the same. The process takes place in an unsupervised manner and its implementation is biologically well motivated.
+
+\sphinxAtStartPar
+On the other hand, it is difficult to find a biological justification for the backprop supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful).
 
 
 \subsection{Scalar product maximization}
@@ -4328,6 +4322,9 @@ The generalization for \( n \) dimensions is obvious: we enter an additional coo
 \sphinxAtStartPar
 hence we have a point on the hyper\sphinxhyphen{}hemisphere \( x_1 ^ 2 + \dots + x_n ^ 2 + x_ {n + 1} ^ 2 = r ^ 2 \),  \(x_ {n + 1} >0\).
 
+\sphinxAtStartPar
+In Python:
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{d}\PYG{o}{=}\PYG{l+m+mf}{0.25}
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}
@@ -4358,19 +4355,22 @@ hence we have a point on the hyper\sphinxhyphen{}hemisphere \( x_1 ^ 2 + \dots +
 Number of representative points:  4
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_83_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_82_0}.png}
 
 \sphinxAtStartPar
 We can see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}.
 
-\begin{sphinxadmonition}{note}{Exercises}
+
+\section{Exercises}
+\label{\detokenize{docs/unsupervised:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
 The city (Manhattan) metric is defined as
 \( d (\vec {x}, \vec {y}) = | x_1-y_1 | + | x_2 - y_2 | \) for points \( \vec {x} \) and \( \vec {y} \).
-Repeat the simulations of this lecture with this metric. Draw conclusions.
+Repeat the simulations of this chapter using this metric. Draw conclusions.
 
 \item {} 
 \sphinxAtStartPar
@@ -4378,8 +4378,7 @@ Run the classification algorithms for more categories in the data sample (genera
 
 \item {} 
 \sphinxAtStartPar
-One\sphinxhyphen{}dimensional data variant: Consider the problem of clustering points of different grayscale. To do this, enter the grayscale as \( s \) from the \( [0,1] \) range and the character data vector
-\( (s, \sqrt {1-s ^ 2}) \) which is normalized to 1 (such points lie on a semicircle). Generate a sample of these points and run dynamical clusterization.
+Extend the dynamic clusterization algorithm to 3 spatial dimensions.
 
 \end{enumerate}
 \end{sphinxadmonition}
@@ -5078,7 +5077,7 @@ Topological features of Kohonen’s maps hold for equal dimensionalities of the 
 
 
 \section{Lateral inhibition}
-\label{\detokenize{docs/som:lateral-inhibition}}
+\label{\detokenize{docs/som:lateral-inhibition}}\label{\detokenize{docs/som:lat-lab}}
 \sphinxAtStartPar
 In a last topic of these lectures, we return to the issue of how the competition for the “winner” is realized in ANNs. Above, we have just used the minimum (or maximum, when the signal was extended to a hyperphere) functions, but this is embarrasingly outside of the framework. Such an insection of which neuron yields the strongest signal would require an “external wizard”, or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons.
 
@@ -5208,10 +5207,25 @@ The references provided in the text as hyperlinks are not repeated in the list b
 
 
 \chapter{Appendix}
-\label{\detokenize{docs/lib_app:appendix}}\label{\detokenize{docs/lib_app:app-lab}}\label{\detokenize{docs/lib_app::doc}}
+\label{\detokenize{docs/appendix:appendix}}\label{\detokenize{docs/appendix::doc}}
+
+\section{How to run the book codes}
+\label{\detokenize{docs/appendix:how-to-run-the-book-codes}}
+
+\subsection{Locally}
+\label{\detokenize{docs/appendix:locally}}
+\sphinxAtStartPar
+…
+
+
+\subsection{In Google Colab}
+\label{\detokenize{docs/appendix:in-google-colab}}
+\sphinxAtStartPar
+…
+
 
 \section{\sphinxstylestrong{neural} package}
-\label{\detokenize{docs/lib_app:neural-package}}
+\label{\detokenize{docs/appendix:neural-package}}\label{\detokenize{docs/appendix:app-lab}}
 \sphinxAtStartPar
 The structure of the library tree is as follows:
 
@@ -5225,7 +5239,7 @@ lib\PYGZus{}nn
 
 
 \subsection{\sphinxstylestrong{func.py} module}
-\label{\detokenize{docs/lib_app:func-py-module}}
+\label{\detokenize{docs/appendix:func-py-module}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 \PYG{l+s+sd}{Contains functions repeatedy used in the lecture}
@@ -5536,7 +5550,7 @@ lib\PYGZus{}nn
 
 
 \subsection{\sphinxstylestrong{draw.py} module}
-\label{\detokenize{docs/lib_app:draw-py-module}}
+\label{\detokenize{docs/appendix:draw-py-module}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 \PYG{l+s+sd}{Plotting functions used in the lecture.}
@@ -5766,6 +5780,23 @@ lib\PYGZus{}nn
 \PYG{k}{def} \PYG{n+nf}{l2}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{return} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{\PYGZhy{}}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{]}
 
+\end{sphinxVerbatim}
+
+
+\section{How to cite}
+\label{\detokenize{docs/appendix:how-to-cite}}
+\sphinxAtStartPar
+If you would like to cite this book, here is the BibTeX entry:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nd}{@book}\PYG{p}{\PYGZob{}}\PYG{n}{WB2021}\PYG{p}{,}
+  \PYG{n}{title}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{Explaining} \PYG{n}{neural} \PYG{n}{networks} \PYG{o+ow}{in} \PYG{n}{raw} \PYG{n}{Python}\PYG{p}{:} \PYG{n}{lectures} \PYG{o+ow}{in} \PYG{n}{Jupiter}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+  \PYG{n}{author}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{Wojciech} \PYG{n}{Broniowski}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+  \PYG{n}{isbn}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{978}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{83}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{962099}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+  \PYG{n}{year}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2021}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+  \PYG{n}{url}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{ujk}\PYG{o}{.}\PYG{n}{edu}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{/}\PYG{n}{strony}\PYG{o}{/}\PYG{n}{Wojciech}\PYG{o}{.}\PYG{n}{Broniowski}\PYG{o}{/}\PYG{n}{xxxxx}\PYG{p}{\PYGZcb{}}
+  \PYG{n}{publisher}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{Wojciech} \PYG{n}{Broniowski}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
 
 \begin{sphinxthebibliography}{MullerRS}
