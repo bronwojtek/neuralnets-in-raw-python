@@ -270,6 +270,11 @@
    General remarks
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -285,17 +290,17 @@
 <h1>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="minimizing-the-error">
 <h2>Minimizing the error<a class="headerlink" href="#minimizing-the-error" title="Permalink to this headline">¶</a></h2>
-<p>We now go back to the perceptron algorithm of chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a> to look in some more detail at its performance as a function of weights. Note that in our example with points on the plane the condition for the pink points is given by the inequality</p>
+<p>We now go back to the perceptron algorithm of chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a> to look in some greater detail at its performance as a function of weights. Recall that in our example with points on the plane the condition for the pink points is given by the inequality</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_1 x_1 + w_2 x_2 &gt; 0\)</span>.</p>
 <p>We have already mentioned the equivalence class related to dividing this inequality with a
-positive constant. In general, at least one of the weights must be nonzero to have a nontrivial condition. Suppose or definiteness that <span class="math notranslate nohighlight">\(w_0 \neq 0\)</span> (other cases may be treated analogously). Then we can divide both sides with <span class="math notranslate nohighlight">\(|w_0|\)</span></p>
+positive constant <span class="math notranslate nohighlight">\(c\)</span>. In general, at least one of the weights must be nonzero to have a nontrivial condition. Suppose or definiteness that <span class="math notranslate nohighlight">\(w_0 \neq 0\)</span> (other cases may be treated analogously). Then we can divide both sides with <span class="math notranslate nohighlight">\(|w_0|\)</span> to obtain</p>
 <div class="math notranslate nohighlight">
 \[\frac{w_0}{|w_0|}+\frac{w_1}{|w_0|} \, x_1 + \frac{w_2}{|w_0|} \, x_2 &gt; 0. \]</div>
 <p>Introducing <span class="math notranslate nohighlight">\(v_1=\frac{w_1}{w_0}\)</span> and <span class="math notranslate nohighlight">\(v_2=\frac{w_2}{w_0}\)</span>, this can be rewritten in the form</p>
 <div class="math notranslate nohighlight">
 \[{\rm sgn}(w_0)( 1+v_1 \, x_1 +v_2 \, x_2) &gt; 0,\]</div>
 <p>where <span class="math notranslate nohighlight">\({\rm sgn}(w_0) = \frac{w_0}{|w_0|}\)</span>, hence we effectively have a two-parameter system (for each sign of <span class="math notranslate nohighlight">\(w_0\)</span>).</p>
-<p>Obviously, with some values of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2 \)</span> and for a given point from the sample, the perceptron will provide a correct or incorrect answer. It is thus natural to define the <strong>error function</strong> <span class="math notranslate nohighlight">\(E\)</span> such that each point of <span class="math notranslate nohighlight">\(p\)</span> from the sample contributes 1 if the answer is incorrect, and 0 if it is correct:</p>
+<p>Obviously, with some values of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2 \)</span> and for a given point from the data sample, the perceptron provides a correct or incorrect answer. It is thus natural to define the <strong>error function</strong> <span class="math notranslate nohighlight">\(E\)</span> such that each point of <span class="math notranslate nohighlight">\(p\)</span> from the sample contributes 1 if the answer is incorrect, and 0 if it is correct:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} E(v_1,v_2)=\sum_p \left\{ \begin{array}{ll} 1 -{\rm incorrect,~}\\ 0 -{\rm correct} \end{array}\right .\end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(E\)</span> is thus the number of misclassified points. We can easily construct this function for a labeled data sample in the format [x1, x2, label]:</p>
@@ -313,8 +318,8 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 <span class="sd">    returns:</span>
 <span class="sd">    error</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">er</span><span class="o">=</span><span class="mi">0</span>                           <span class="c1"># initial value of error</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)):</span>   <span class="c1"># loop over data points       </span>
+    <span class="n">er</span><span class="o">=</span><span class="mi">0</span>                                       <span class="c1"># initial value of the error</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)):</span>               <span class="c1"># loop over data points       </span>
         <span class="n">yo</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w2</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># obtained answer</span>
         <span class="n">er</span><span class="o">+=</span><span class="p">(</span><span class="n">yo</span><span class="o">-</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
                       <span class="c1"># sample[i,2] is the label</span>
@@ -325,19 +330,56 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 </div>
 </div>
 </div>
-<p>Atually, we have used a little trick here, in b=view if the future developments. Denoting the obtained result for a given data point as <span class="math notranslate nohighlight">\(y_o^{(p)}\)</span> and the true result (label) as <span class="math notranslate nohighlight">\(y_t^{(p)}\)</span> (both have values 0 or 1), we may write equivalently</p>
+<p>Actually, we have used a little trick here, in view of the future developments. Denoting the obtained result for a given data point as <span class="math notranslate nohighlight">\(y_o^{(p)}\)</span> and the true result (label) as <span class="math notranslate nohighlight">\(y_t^{(p)}\)</span> (both have values 0 or 1), we may write equivalently</p>
 <div class="math notranslate nohighlight">
 \[ E(v_1,v_2)=\sum_p \left ( y_o^{(p)}-y_t^{(p)}\right )^2,\]</div>
 <p>which is the programmed formula. Indeed, when  <span class="math notranslate nohighlight">\(y_o^{(p)}=y_t^{(p)}\)</span> (correct answer) the contribution of the point is 0, and when <span class="math notranslate nohighlight">\(y_o^{(p)}\neq y_t^{(p)}\)</span> (wrong answer) the contribution is <span class="math notranslate nohighlight">\((\pm 1)^2=1\)</span>.</p>
 <p>We repeat the simulations of chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a> for the sample <strong>samp2</strong> of 200 points (the sample was built with <span class="math notranslate nohighlight">\(w_0=-0.25\)</span>, <span class="math notranslate nohighlight">\(w_1=-0.52\)</span>, and <span class="math notranslate nohighlight">\(w_2=1\)</span>, which corresponds to <span class="math notranslate nohighlight">\(v_1=2.08\)</span> and <span class="math notranslate nohighlight">\(v_2=-4\)</span>, with <span class="math notranslate nohighlight">\({\rm sgn}(w_0)=-1\)</span>). Then we evaluate the error function <span class="math notranslate nohighlight">\(E(v_1,v_2)\)</span>.</p>
 <p>Next, we run the perceptron alogorithm:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">=</span><span class="p">[[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()],</span> <span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()],</span> <span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()]]</span> <span class="c1"># initial random weights</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimum:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   w0  w1/w0  w2/w0 error&quot;</span><span class="p">)</span>   <span class="c1"># header</span>
+
+<span class="n">eps</span><span class="o">=</span><span class="mf">0.7</span>             <span class="c1"># initial learning speed</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">0.8</span><span class="o">*</span><span class="n">eps</span>     <span class="c1"># decrease  the learning speed is smaller</span>
+    <span class="n">weights</span><span class="o">=</span><span class="n">teach_perceptron</span><span class="p">(</span><span class="n">samp2</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">func</span><span class="o">.</span><span class="n">step</span><span class="p">)</span> 
+    <span class="n">w0_o</span><span class="o">=</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>               <span class="c1"># updated weights and ratios</span>
+    <span class="n">v1_o</span><span class="o">=</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">v2_o</span><span class="o">=</span><span class="n">weights</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">w0_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v1_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v2_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+          <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">error</span><span class="p">(</span><span class="n">w0_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v1_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v2_o</span><span class="p">,</span> <span class="n">samp2</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="n">step</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span>             
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimum:
+   w0  w1/w0  w2/w0 error
+-0.644 1.543 -4.789 23.0
+-0.644 2.265 -5.165 16.0
+-1.002 1.775 -3.325 16.0
+-1.002 1.682 -3.477 4.0
+-0.773 2.352 -4.554 4.0
+-0.956 1.945 -3.636 7.0
+-0.81 2.216 -4.397 4.0
+-0.81 2.204 -4.416 4.0
+-0.81 2.241 -4.402 2.0
+-0.885 2.083 -3.992 0.0
+</pre></div>
+</div>
+</div>
+</div>
 <p>We note above that the final error is very small or 0 (depending on the particular simulation). It is illuminating to look at a contour map of the error function <span class="math notranslate nohighlight">\(E(v_1, v_2)\)</span> in the vicinity of the optimal parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.7</span><span class="p">,</span><span class="mf">3.7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># grid step in v1 and v2 for the contour map</span>
-<span class="n">ran</span><span class="o">=</span><span class="mf">0.5</span>       <span class="c1"># plot range around (v1_o, v2_o)</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.02</span>  <span class="c1"># grid step in v1 and v2 for the contour map</span>
+<span class="n">ran</span><span class="o">=</span><span class="mf">0.8</span>       <span class="c1"># plot range around (v1_o, v2_o)</span>
 
 <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">v1_o</span><span class="o">-</span><span class="n">ran</span><span class="p">,</span><span class="n">v1_o</span><span class="o">+</span><span class="n">ran</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="c1"># grid for v1</span>
 <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">v2_o</span><span class="o">-</span><span class="n">ran</span><span class="p">,</span><span class="n">v2_o</span><span class="o">+</span><span class="n">ran</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="c1"># grid for v2</span>
@@ -365,11 +407,11 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 <img alt="../_images/backprop_12_0.png" src="../_images/backprop_12_0.png" />
 </div>
 </div>
-<p>We can see in the plot that that the found minimum is in (or close to, depending on the simulation) the elongated region of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2\)</span> where the error vanishes.</p>
+<p>We can see in the above plot that that the found minimum is in (or close to, depending on the simulation) the elongated region of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2\)</span> where the error vanishes.</p>
 </div>
 <div class="section" id="continuous-activation-function">
 <h2>Continuous activation function<a class="headerlink" href="#continuous-activation-function" title="Permalink to this headline">¶</a></h2>
-<p>Coming back to the contour chart above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and non-differentiable. The discontinuities obviously originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use the continuous activation functions. Historically, the so-called <strong>sigmoid</strong></p>
+<p>Coming back to the contour chart above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and non-differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so-called <strong>sigmoid</strong></p>
 <div class="math notranslate nohighlight">
 \[ \sigma(s)=\frac{1}{1+e^{-s}}\]</div>
 <p>has been used in many practical applications of ANNs.</p>
@@ -393,7 +435,8 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 </div>
 </div>
 <p>This function is of course differentiable. Moreover,</p>
-<p><span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] \)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ \sigma '(s) = \sigma (s) [1- \sigma (s)], \]</div>
 <p>which is its special feature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,17 +476,17 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For smaller and smaller <span class="math notranslate nohighlight">\( T \)</span>, it approaches the previously used step function. Note that the argument of the sigmoid is the quotient</p>
+<p>For smaller and smaller <span class="math notranslate nohighlight">\( T \)</span>, the sigmoid approaches the previously used step function. Note that the argument of the sigmoid is the quotient</p>
 <p>$<span class="math notranslate nohighlight">\( s / T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 = \xi_0 + xi_1 x_1 + xi_2 x_2 \)</span>$,</p>
 <p>which means that we can always assume <span class="math notranslate nohighlight">\( T = 1 \)</span> without losing generality (<span class="math notranslate nohighlight">\( T \)</span> is the “scale”). However, we now have three independent arguments <span class="math notranslate nohighlight">\( \xi_0 \)</span>, <span class="math notranslate nohighlight">\( \xi_1 \)</span>, and <span class="math notranslate nohighlight">\( \xi_2\)</span>. Thus, it is impossible to reduce the situation to two independent parameters, as was the case above.</p>
 </div>
-<p>We will now repeat our example with the classifier, but with the activation function given by the sigmoid. The error function, with</p>
+<p>We now repeat our previous example with the classifier, but with the activation function given by the sigmoid. The error function, with</p>
 <div class="math notranslate nohighlight">
 \[y_o^{(p)}=\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)}). \]</div>
 <p>becomes</p>
 <div class="math notranslate nohighlight">
 \[E(w_0,w_1,w_2)=\sum_p \left [\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)} \right]^2.\]</div>
-<p>We run the perceptron alorithm with the sigmoid activation function 500 times:</p>
+<p>We run the perceptron algorithm with the sigmoid activation function 1000 times:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">=</span><span class="p">[[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()],[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()],[</span><span class="n">func</span><span class="o">.</span><span class="n">rn</span><span class="p">()]]</span>      <span class="c1"># random weights from [-0.5,0.5]</span>
@@ -467,27 +510,27 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   w0   w1/w0  w2/w0 error
--19.439 2.253 -4.118 0.62695
--24.146 2.288 -4.16 0.43044
--27.015 2.32 -4.208 0.27756
--29.122 2.344 -4.246 0.19078
--30.81 2.362 -4.274 0.14195
--32.227 2.376 -4.295 0.11308
--33.452 2.386 -4.31 0.09482
--34.529 2.393 -4.32 0.08244
--35.487 2.398 -4.328 0.07349
--36.347 2.402 -4.334 0.06667
+-20.294 2.047 -4.027 0.70907
+-25.019 2.095 -4.105 0.49241
+-28.223 2.119 -4.14 0.43472
+-30.701 2.133 -4.157 0.40624
+-32.73 2.141 -4.165 0.38361
+-34.448 2.146 -4.169 0.3623
+-35.934 2.15 -4.17 0.34178
+-37.236 2.152 -4.17 0.32231
+-38.392 2.154 -4.169 0.30412
+-39.425 2.155 -4.167 0.28733
 </pre></div>
 </div>
 </div>
 </div>
-<p>The error function now has 3 arguments, so it cannot be drawn in two dimensions. We can, however, look at its projections, e.g. with a fixed value of <span class="math notranslate nohighlight">\( w_0 \)</span>.</p>
+<p>We notice the decrease of the error as the simulation proceeds. The error function now has three independent arguments, so it cannot be drawn in two dimensions. We can, however, look at its projections, e.g. with a fixed value of <span class="math notranslate nohighlight">\( w_0 \)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.7</span><span class="p">,</span><span class="mf">3.7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ran</span><span class="o">=</span><span class="mi">20</span> 
+<span class="n">ran</span><span class="o">=</span><span class="mi">40</span> 
 <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">w1_o</span><span class="o">-</span><span class="n">ran</span><span class="p">,</span> <span class="n">w1_o</span><span class="o">+</span><span class="n">ran</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> 
 <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">w2_o</span><span class="o">-</span><span class="n">ran</span><span class="p">,</span> <span class="n">w2_o</span><span class="o">+</span><span class="n">ran</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> 
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span> 
@@ -515,13 +558,19 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the present example, when we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values are between 0 and 1. As we have discussed above, in the sigmoid, whose argument is <span class="math notranslate nohighlight">\( (w_0 + w_1 x_1 + w_2 x_2) / T\)</span>, increasing the weights is equivalent to scaling down the temperature. Then, however, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations.</p>
+<p>In the present example, when we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are un the range (0,1). As we have discussed above, in the sigmoid, whose argument is <span class="math notranslate nohighlight">\( (w_0 + w_1 x_1 + w_2 x_2) / T\)</span>, increasing the weights is equivalent to scaling down the temperature <span class="math notranslate nohighlight">\(T\)</span>. Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above.</p>
 </div>
 </div>
 <div class="section" id="steepest-descent">
 <h2>Steepest descent<a class="headerlink" href="#steepest-descent" title="Permalink to this headline">¶</a></h2>
-<p>Generic comment on minimization …</p>
-<p>For a differentiable function of multiple variables, <span class="math notranslate nohighlight">\( F (z_1, z_2, ..., z_n) \)</span>, locally the steepest slope is defined by the minus gradient of the function <span class="math notranslate nohighlight">\( F \)</span>, i.e. the slope is in the direction of the vector</p>
+<p>As we can see, the issue of optimizing the weights is reduced to a generic problem of minimizing a multi-variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. The problems with finding the minimum of multivariable functions are well known:</p>
+<ul class="simple">
+<li><p>there may be local minima, and therefore it may be difficult to find the global minimum;</p></li>
+<li><p>the minimum can be at infinity (that is, it does not exist mathematically);</p></li>
+<li><p>The function around the minimum can be very flat, so the gradient is very small, and the update in gradient methods is extremely slow;</p></li>
+</ul>
+<p>Overall, numerical minimization of functions is an art! Many methods have been developed and a proper choice for a given problem is crucial for success. Here we apply the simplest <strong>steepest descent</strong> method.</p>
+<p>For a differentiable function of multiple variables, <span class="math notranslate nohighlight">\( F (z_1, z_2, ..., z_n) \)</span>, locally the steepest slope is defined by minus the gradient of the function <span class="math notranslate nohighlight">\( F \)</span>, i.e. the steepest slope is in the direction of the vector</p>
 <div class="math notranslate nohighlight">
 \[-\left (\frac{\partial F}{\partial z_1}, \frac{\partial F}{\partial z_2}, ..., 
 \frac{\partial F}{\partial z_n} \right ), \]</div>
@@ -529,13 +578,20 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 <div class="math notranslate nohighlight">
 \[\frac{\partial F}{\partial z_1} =  \lim _ {\Delta \to 0} \frac {F (z_1 + \Delta, z_2, ..., z_n) -F (z_1, z_2, ..., z_n)} { \Delta}, \]</div>
 <p>and similarly for the other <span class="math notranslate nohighlight">\( z_i \)</span>.</p>
-<p>The method of finding the minimum of a function by the steepest descent method is given by the iterative algorithm, where we update the position at each iteration step <span class="math notranslate nohighlight">\(m\)</span> with</p>
+<p>The method of finding the minimum of a function by the steepest descent is given by the iterative algorithm, where we update the coordinates (of a searched minimum) at each iteration step <span class="math notranslate nohighlight">\(m\)</span> (shown in superscripts) with</p>
 <div class="math notranslate nohighlight">
 \[z_{i}^{(m+1)} = z_i^{(m)} - \epsilon  \, \frac{\partial F}{\partial z_i}. \]</div>
-<p>In our case, we minimize the error function</p>
+<p>In our specific case, we minimize the error function</p>
 <div class="math notranslate nohighlight">
-\[E(w_0,w_1,w_2)= \sum_p [y_o^{(p)}-y_t^{(p)}]^2=\sum_p [\sigma(s^{(p)})-y_t^{(p)}]^2=\sum_p [\sigma(w_0  x_0^{(p)}+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)}]^2, \]</div>
-<p>hence</p>
+\[E(w_0,w_1,w_2)= \sum_p [y_o^{(p)}-y_t^{(p)}]^2=\sum_p [\sigma(s^{(p)})-y_t^{(p)}]^2=\sum_p [\sigma(w_0  x_0^{(p)}+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)}]^2. \]</div>
+<p>We use the chain rule to evaluate the derivatives.</p>
+<div class="admonition-chain-rule admonition">
+<p class="admonition-title">Chain rule</p>
+<p>For a composite function</p>
+<p><span class="math notranslate nohighlight">\([f(g(x))]' = f'(g(x)) g'(x)\)</span>.</p>
+<p>For a composition of more functions <span class="math notranslate nohighlight">\([f(g(h(x)))]' = f'(g(h(x))) \,g'(h(x)) \,h'(x)\)</span>, etc.</p>
+</div>
+<p>This yields</p>
 <div class="math notranslate nohighlight">
 \[ \frac{\partial E}{\partial w_i} = \sum_p 2[\sigma(s^{(p)})-y_t^{(p)}]\, \sigma'(s^{(p)}) \,x_i^{(p)} = \sum_p 2[\sigma(s^{(p)})-y_t^{(p)}]\, \sigma(s^{(p)})\, [1-\sigma(s^{(p)})] \,x_i^{(p)}\]</div>
 <p>(derivative of square function <span class="math notranslate nohighlight">\( \times \)</span> derivative of the sigmoid <span class="math notranslate nohighlight">\( \times \)</span> derivative of <span class="math notranslate nohighlight">\( s ^ {(p)} \)</span>), where we have used the special property of the sigmoid derivative in the last equality. The steepest descent method updates the weights as follows:</p>
@@ -543,25 +599,26 @@ positive constant. In general, at least one of the weights must be nonzero to ha
 \[w_i \to w_i - \varepsilon (y_o^{(p)} -y_t^{(p)}) y_o^{(p)} (1-y_o^{(p)}) x_i.\]</div>
 <p>Note that updating always occurs, because the response <span class="math notranslate nohighlight">\( y_o^ {(p)} \)</span> is never strictly 0 or 1 for the sigmoid, whereas
 the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)} \)</span> is 0 or 1.</p>
-<p>Because <span class="math notranslate nohighlight">\( y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] \)</span> is nonzero only around <span class="math notranslate nohighlight">\( s ^ {(p)} = \)</span> 0 (see the sigmoid derivative plot earlier), thus updating only occurs near the “threshold”. This is fine, as the “problems” are near the dividing line.</p>
+<p>Because <span class="math notranslate nohighlight">\( y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] \)</span> is nonzero only around <span class="math notranslate nohighlight">\( s ^ {(p)} = \)</span> 0 (see the sigmoid’s derivative plot earlier), the updating occurs only near the threshold. This is fine, as the “problems” with misclassification happen near the dividing line.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>For comparison, the earlier perceptron algorithm is structurally very similar,</p>
 <div class="math notranslate nohighlight">
 \[w_i \to w_i - \varepsilon \,(y_o^{(p)} - y_t^{(p)}) \, x_i,\]</div>
 <p>but here the updating occurs for all points of the sample, not just near the threshold.</p>
-<p>The code for the learning algorith with the steepest descent update of weights is following:</p>
+</div>
+<p>The code for the learning algorithm with the steepest descent update of weights is following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Steepest descent for a single perceptron</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">teach_sd</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">):</span> <span class="c1"># Steepest descent for the perceptron</span>
+    
+    <span class="p">[[</span><span class="n">w0</span><span class="p">],[</span><span class="n">w1</span><span class="p">],[</span><span class="n">w2</span><span class="p">]]</span><span class="o">=</span><span class="n">w_in</span>              <span class="c1"># initial weights</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)):</span>       <span class="c1"># loop over the data sample</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>            <span class="c1"># repeat 10 times </span>
+            
+            <span class="n">yo</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w2</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># obtained answer for pont i</span>
 
-<span class="k">def</span> <span class="nf">teach_sd</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">):</span>
-    <span class="p">[[</span><span class="n">w0</span><span class="p">],[</span><span class="n">w1</span><span class="p">],[</span><span class="n">w2</span><span class="p">]]</span><span class="o">=</span><span class="n">w_in</span> 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)):</span> 
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>      
-            
-            <span class="n">yo</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">w2</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-            
-            <span class="c1"># update of weights</span>
-            <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">yo</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+            <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">yo</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>            <span class="c1"># update of weights</span>
             <span class="n">w1</span><span class="o">=</span><span class="n">w1</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">yo</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">w2</span><span class="o">=</span><span class="n">w2</span><span class="o">+</span><span class="n">eps</span><span class="o">*</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">yo</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">yo</span><span class="p">)</span><span class="o">*</span><span class="n">sample</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="p">[[</span><span class="n">w0</span><span class="p">],[</span><span class="n">w1</span><span class="p">],[</span><span class="n">w2</span><span class="p">]]</span>
@@ -587,55 +644,37 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
         <span class="n">v1_o</span><span class="o">=</span><span class="n">w1_o</span><span class="o">/</span><span class="n">w0_o</span>
         <span class="n">v2_o</span><span class="o">=</span><span class="n">w2_o</span><span class="o">/</span><span class="n">w0_o</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">w0_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v1_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v2_o</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
-              <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">error</span><span class="p">(</span><span class="n">w0_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v1_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v2_o</span><span class="p">,</span> <span class="n">samp2</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">),</span><span class="mi">5</span><span class="p">))</span>                             
-
-               
+              <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">error</span><span class="p">(</span><span class="n">w0_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v1_o</span><span class="p">,</span> <span class="n">w0_o</span><span class="o">*</span><span class="n">v2_o</span><span class="p">,</span> <span class="n">samp2</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">),</span><span class="mi">5</span><span class="p">))</span>                                          
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   w0   w1/w0  w2/w0 error
--9.485 2.271 -4.147 1.63446
--11.975 2.297 -4.173 1.16447
--13.537 2.321 -4.21 0.92417
--14.687 2.339 -4.24 0.779
--15.607 2.353 -4.262 0.68315
--16.375 2.364 -4.279 0.6152
--17.036 2.372 -4.291 0.56424
--17.615 2.378 -4.3 0.52435
--18.129 2.382 -4.307 0.49208
--18.589 2.386 -4.313 0.46532
+-9.922 2.045 -4.066 1.71663
+-12.34 2.084 -4.109 1.3084
+-13.963 2.106 -4.131 1.11614
+-15.216 2.119 -4.144 0.99522
+-16.242 2.127 -4.15 0.90891
+-17.11 2.133 -4.154 0.84295
+-17.859 2.137 -4.156 0.79043
+-18.516 2.14 -4.157 0.74747
+-19.099 2.143 -4.158 0.71167
+-19.619 2.145 -4.158 0.6814
 </pre></div>
 </div>
 </div>
 </div>
-<p>The problems with finding the minimum of multivariable functions are well known:</p>
-<ul class="simple">
-<li><p>There may be local minima, and therefore it may be difficult to find the global minimum (see example above with a function with two minima).</p></li>
-<li><p>The minimum can be at infinity (that is, it does not exist mathematically).</p></li>
-<li><p>The function around the minimum can be very flat, so the gradient is very small, and the update is extremely slow.</p></li>
-<li><p>Numerical accuracy can be a problem.</p></li>
-</ul>
-<p>Overall, numerical minimization of functions is an art!</p>
 </div>
 <div class="section" id="backprop-algorithm">
 <h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The material of this section is absolutely <strong>crucial</strong> to understanding this very important idea of training neural networks. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there will be derivations and formulas with rich notation. However, this cannot be presented more simply than below, with the necessary accuracy.</p>
-<p>In the example above, we knew in advance with what recipe we were generating points, so in this fortunate and rare situation, we were able to determine the weights exactly by simple reasoning. In general, this is not the case. As for the single neuron in the previous lecture, we want to train our network on the training sample. The difference is that now there are two layers (apart from the input) and two sets of weights: between the input and the middle layer and between the middle layer and the output.</p>
-<p>The method we derive step by step here, which is the famous <strong>back propagation algorithm (backprop)</strong> [Arthur E. Bryson, Yu-Chi Ho, 1969] for updating the weights of a multi-layer network, uses two elements:</p>
+<p>The material of this section is absolutely <strong>crucial</strong> for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.</p>
+<p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12">BH69</a>]</span> for updating the weights of a multi-layer network. It uses just two ingredients:</p>
 <ul class="simple">
 <li><p>the <strong>chain rule</strong> for computing the derivative of a composite function, known to you from the mathematical analysis, and</p></li>
 <li><p><strong>steepest descent method</strong>, explained in the previous lecture.</p></li>
 </ul>
-<div class="admonition-chain-rule admonition">
-<p class="admonition-title">Chain rule</p>
-<p>For a composite function</p>
-<p><span class="math notranslate nohighlight">\([f(g(x))]' = f'(g(x)) g'(x)\)</span>.</p>
-<p>For a composition of more functions <span class="math notranslate nohighlight">\([f(g(h(x)))]' = f'(g(h(x))) \,g'(h(x)) \,h'(x)\)</span>, etc.</p>
-</div>
-<p>We now move on to formulating the back propagation algorithm for a perceptron with any number of neuron layers, <span class="math notranslate nohighlight">\(l\)</span>, and any number of <span class="math notranslate nohighlight">\(n_l\)</span> neurons in the output layer. This generalization is conceptually very simple and is based on the same reasoning as for the case of single neuron presented earlier, involving the chain rule and the steepest descent. On the other hand, the notation becomes quite cumbersome, which can make the material seem difficult.</p>
-<p>The neurons in intermediate layers <span class="math notranslate nohighlight">\(j=1,\dots,l-1\)</span> are numbered with corresponding indices <span class="math notranslate nohighlight">\(\alpha_j=0,\dots,n_j\)</span>, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is <span class="math notranslate nohighlight">\(\alpha_l=1,\dots,n_l\)</span>.
-The error function introduced earlier is a sum over the points of the training sample and over the nodes in the otput layer:</p>
+<p>We formulate the backprop algorithm for a perceptron with any number of neuron layers, <span class="math notranslate nohighlight">\(l\)</span>. The neurons in intermediate layers <span class="math notranslate nohighlight">\(j=1,\dots,l-1\)</span> are numbered with corresponding indices <span class="math notranslate nohighlight">\(\alpha_j=0,\dots,n_j\)</span>, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is <span class="math notranslate nohighlight">\(\alpha_l=1,\dots,n_l\)</span>.
+The error function, as introduced earlier, is a sum over the points of the training sample and, additionally, over the nodes in the output layer:</p>
 <div class="math notranslate nohighlight">
 \[
 E(\{w\})=\sum_p \sum_{\alpha_l=1}^{n_l} \left[ y_{o,{\alpha_l}}^{(p)}(\{w\})-y_{t,{\alpha_l}}^{(p)}\right]^2,
@@ -679,7 +718,7 @@ f \left (\sum_{\alpha_{l-1}=1}^{n_{l-1}} f\left(
 \dots f\left( \sum_{\alpha_{0}=0}^{n_{0}} x_{\alpha_{0}}^{0} w_{\alpha_{0} \alpha_{1}}^{1}\right) w_{\alpha_{1} \alpha_{2}}^{2} + 
 x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
  \right)  w_{\alpha_{l-1} {\alpha_l}}^{l} + x_0^{l-1} w_{0 {\alpha_l}}^{l} \right)-y_{t,{\alpha_l}} \right)^2\)</span></p>
-<p>Calculating successive derivatives with respect to the weights, and going backwards, i.e. from <span class="math notranslate nohighlight">\(j=l\)</span> down to 1, we get (the evaluation requires dilligence and noticing the emerging regularity)</p>
+<p>Calculating successive derivatives with respect to the weights, and going backwards, i.e. from <span class="math notranslate nohighlight">\(j=l\)</span> down to 1, we get (the evaluation requires diligence and noticing the emerging regularity)</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial e}{\partial w^j_{\alpha_{j-1} \alpha_j}} = x_{\alpha_{j-1}}^{j-1} D_{\alpha_j}^{j} , \;\;\; \alpha_{j-1}=0,\dots,n_{j-1}, \;\; \alpha_{j}=1,\dots,n_{j},
@@ -687,11 +726,11 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <p>where</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f'(s_{\alpha_l}^{l})\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\)</span>.</p>
-<p>The last expression is a recurrence going backward. We note that to obtain <span class="math notranslate nohighlight">\(D^j\)</span>, we need <span class="math notranslate nohighlight">\(D^{j+1}\)</span>, which we have already obtained in the previos step, as well as the signal <span class="math notranslate nohighlight">\(s^j\)</span>, which we know from the outset, as we first carry out the feed forward propagation. This provides a simplification in the evaluation of derivatives and updating the weights.</p>
+<p>The last expression is a recurrence going backward. We note that to obtain <span class="math notranslate nohighlight">\(D^j\)</span>, we need <span class="math notranslate nohighlight">\(D^{j+1}\)</span>, which we have already obtained in the previous step, as well as the signal <span class="math notranslate nohighlight">\(s^j\)</span>, which we know from the feed-forward stage. This recurrence provides a simplification in the evaluation of derivatives and updating the weights.</p>
 <p>With the steepest descent prescription, the weights are updated as</p>
 <div class="math notranslate nohighlight">
 \[ w^j_{\alpha_{j-1} \alpha_j} \to  w^j_{\alpha_{j-1} \alpha_j} -\varepsilon x_{\alpha_{j-1}}^{j-1} D_{\alpha_j}^{j}, \]</div>
-<p>For the case of sigmoid we can use</p>
+<p>For the case of the sigmoid we can use</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma'(s_A^{(i)})=\sigma'(s_A^{(i)}) (1-\sigma'(s_A^{(i)})) =x_A^{(i)}(1-x_A^{(i)}).
@@ -704,12 +743,12 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <li><p>the chain rule in evaluation of derivatives.</p></li>
 </ol>
 </div>
-<p>If activation functions are diferent in various layers (denote them with <span class="math notranslate nohighlight">\(f_j\)</span> for layer <span class="math notranslate nohighlight">\(j\)</span>), then there is an obvious modification:</p>
+<p>If activation functions are different in various layers (denote them with <span class="math notranslate nohighlight">\(f_j\)</span> for layer <span class="math notranslate nohighlight">\(j\)</span>), then there is an obvious modification:</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\)</span>.</p>
 <div class="section" id="code-for-backprop">
 <h3>Code for backprop<a class="headerlink" href="#code-for-backprop" title="Permalink to this headline">¶</a></h3>
-<p>Now we present a code that implements our algorithm for networks with any number of layers and any number of neurons in the output layer. The previous one was for a single intermediate layer and one output neuron. It is simpy a programmatic implementation of the formulas derived above. In the code, we keep the notation from the above derivation.</p>
+<p>Next, we present a simple code that carries out the backprop algorithm. It is a straightforward implementation of the formulas derived above. In the code, we keep as much as we can the notation from the above derivation.</p>
 <p>The code has 12 lines only, not counting the comments!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -754,18 +793,17 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cir</span><span class="p">():</span>
-    <span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1"># coordinate 1</span>
-    <span class="n">x2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1"># coordinate 2</span>
-    <span class="k">if</span><span class="p">((</span><span class="n">x1</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="o">*</span><span class="mf">0.4</span><span class="p">):</span> <span class="c1"># inside the circle of radius 0.4</span>
-                                            <span class="c1"># centered at (0.5,0.5)</span>
+    <span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>                  <span class="c1"># coordinate 1</span>
+    <span class="n">x2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>                  <span class="c1"># coordinate 2</span>
+    <span class="k">if</span><span class="p">((</span><span class="n">x1</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="o">*</span><span class="mf">0.4</span><span class="p">):</span> <span class="c1"># inside circle, radius 0.4, center (0.5,0.5)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>                                              <span class="c1"># outside</span>
+    <span class="k">else</span><span class="p">:</span>                                  <span class="c1"># outside</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>For future generality <strong>(new convention)</strong>, we split the sample into an array of features and labels:</p>
+<p>For future generality <strong>(new convention)</strong>, we split the sample into an array of <strong>features</strong> and <strong>labels</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cir</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">)])</span> <span class="c1"># sample</span>
@@ -792,7 +830,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <img alt="../_images/backprop_53_0.png" src="../_images/backprop_53_0.png" />
 </div>
 </div>
-<p>We take the following architecture and initial parameters:</p>
+<p>We choose the following architecture and initial parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arch_c</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>                  <span class="c1"># architecture</span>
@@ -866,7 +904,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It is fascinating that we have trained the network to recognize if a point is in a circle, and it has no concept whatsoever of geometry, Euclidean distance, equation of the circle, etc. The network just learned “empirically” how to proceed on a training sample!</p>
+<p>It is fascinating that we have trained the network to recognize if a point is in a circle, and it has no concept whatsoever of geometry, Euclidean distance, equation of the circle, etc. The network has just learned “empirically” how to proceed, using a training sample!</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -874,7 +912,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 <div class="important admonition">
 <p class="admonition-title">Local minima</p>
-<p>We have mentioned before the emergence of local minima in multivariable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of weights, whereas the results on the test sample are equally good for each case. This shows that the backprop optimization end up, as anticipated, in a local minimum. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local mnima, but it does not matter!</p>
+<p>We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not matter!</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -884,39 +922,42 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 <div class="section" id="general-remarks">
 <h2>General remarks<a class="headerlink" href="#general-remarks" title="Permalink to this headline">¶</a></h2>
-<p>There are some more important nad general observations:</p>
+<p>There are some more important and general observations:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here <strong>feed-forward</strong>), but the usage on a point involves just one function call.</p></li>
+<li><p>Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here <strong>feed-forward</strong>) and evaluations of derivatives, but the usage on a point involves just one function call.</p></li>
 <li><p>The classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to trained more for improvement, and/or increase the
-size of the training sample.</p></li>
+size of the training sample, in particular near the boundary.</p></li>
 <li><p>However, a too long learning on the same training sample does not actually make sense, because the accuracy stops improving at some point.</p></li>
-<li><p>Local minima occur in bckprop, but this is by no means an obstacle to the use of the backprop algorithm. This is an important practical feature.</p></li>
-<li><p>Various improvements of the steepest descent method, or altogether different minimization methods may be used (see homework). They can largely increase the efficiency of the algorithm.</p></li>
-<li><p>When going backwards with updating the weights in subsequent layers, one may introduce an increamnet factor (see homework below). This helps with performance.</p></li>
-<li><p>Finally, different activation functions may be used to improve performance (see the following).</p></li>
+<li><p>Local minima occur in backprop, but this is by no means an obstacle to the use of the algorithm. This is an important practical feature.</p></li>
+<li><p>Various improvements of the steepest descent method, or altogether different minimization methods may be used (see exercises). They can largely increase the efficiency of the algorithm.</p></li>
+<li><p>When going backwards with updating the weights in subsequent layers, one may introduce an increasing factor (see exercises). This helps with performance.</p></li>
+<li><p>Finally, different activation functions may be used to improve performance (see the following lectures).</p></li>
 </ul>
 </div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
-<p class="admonition-title">Exercises</p>
+<p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
 <ol class="simple">
-<li><p>Prove (analytically) by taking the derivative that <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)]\)</span>. Show that the sigmoid is the only function with this property.</p></li>
-<li><p>Modify the lecture example of the classifier of points in a circle by replacing the figure into</p>
+<li><p>Prove (analytically) by evaluating the derivative that <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)]\)</span>. Show that the sigmoid is the <strong>only</strong> function with this property.</p></li>
+<li><p>Modify the lecture example of the classifier of points in a circle by replacing the figure with</p>
 <ul class="simple">
-<li><p>semicircle,</p></li>
-<li><p>two circles,</p></li>
-<li><p>ring, or</p></li>
+<li><p>semicircle;</p></li>
+<li><p>two disjoint circles;</p></li>
+<li><p>ring;</p></li>
 <li><p>any of your favorite shapes.</p></li>
 </ul>
 </li>
-<li><p>Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fractin of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.</p></li>
-<li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its <strong>weak</strong> connections, setting the coresponding weight to 0. Test this demaged network on a test sample and draw conclusions.</p></li>
+<li><p>Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.</p></li>
+<li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its <strong>weak</strong> connections, setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.</p></li>
 <li><p><strong>Scaling weights in back propagation.</strong>
 A disadvantage of using the sigmoid in the back propagation algorithm is a very slow updating of weights in layers distant from the output layer (the closer to the beginning of the network, the slower it is). A remedy here is a re-scaling the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \)</span> to the update rate, where <span class="math notranslate nohighlight">\( y \)</span> is in the range <span class="math notranslate nohighlight">\( (0, 1) \)</span>. Thus the value of <span class="math notranslate nohighlight">\( y (1-y \)</span> cannot exceed 1/4, so in the following layers (counting from the back) the product <span class="math notranslate nohighlight">\( [y (1-y] ^ n \le 1/4 ^ n\)</span>.
-To prevent this “shrinking”, the learning rate can be multiplied by <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>. Another heuristic argument [Rigler, Irvine, &amp; Vogl, 1989] suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
+To prevent this “shrinking”, the learning rate can be multiplied by <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
 <ul class="simple">
-<li><p>Enter the above recipes into the code for backpropagation.</p></li>
+<li><p>Enter the above recipes into the code for backprop.</p></li>
 <li><p>Check if they improve the algorithm performance for the deeper networks used, e.g. circle point classifier, etc.</p></li>
 <li><p>For assessment of performance, carry out the execution time measurement (e.g., using the Python <strong>time</strong> library packet).</p></li>
 </ul>

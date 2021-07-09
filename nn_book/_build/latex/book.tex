@@ -1758,7 +1758,7 @@ Generalize the above classifier to points in 3\sphinxhyphen{}dimensional space.
 \section{Two layers of neurons}
 \label{\detokenize{docs/more_layers:two-layers-of-neurons}}
 \sphinxAtStartPar
-In the previous chapter we have seen that the MCP neuron with the step activation function realizes the inequality \(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n > 0\), where \(n\) in the dimensionality of the input space. It is instructive to come up here with a geometric interpretation. Taking for definiteness \(n=2\) (the plane), the above inequality corresponds to a division into two half\sphinxhyphen{}planes. The line given by the equation
+In the previous chapter we have seen that the MCP neuron with the step activation function realizes the inequality \(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n > 0\), where \(n\) in the dimensionality of the input space. It is instructive to follow up this geometric interpretation. Taking for definiteness \(n=2\) (the plane), the above inequality corresponds to a division into two half\sphinxhyphen{}planes. As we already know, the line given by the equation
 \begin{equation*}
 \begin{split}x \cdot w=w_0+x_1 w_1 + \dots x_n w_n = 0\end{split}
 \end{equation*}
@@ -1766,14 +1766,14 @@ In the previous chapter we have seen that the MCP neuron with the step activatio
 is the \sphinxstylestrong{dividing line}.
 
 \sphinxAtStartPar
-Imagine now that we have more such conditions: two, three, etc., in general \(k\) independent conditions. Taking a conjunction of these conditions, we can build regions as shown, e.g., in \hyperref[\detokenize{docs/more_layers:regions-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:regions-fig}}}.
+Imagine now that we have more such conditions: two, three, etc., in general \(k\) independent conditions. Taking a conjunction of these conditions we can build regions as shown, e.g., in \hyperref[\detokenize{docs/more_layers:regions-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:regions-fig}}}.
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics[width=620\sphinxpxdimen]{{regions}.png}
-\caption{Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunction of 2, 3, or 4 inequality conditions, yielding \sphinxstylestrong{polygons}.}\label{\detokenize{docs/more_layers:regions-fig}}\end{figure}
+\caption{Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunctions of 2, 3, or 4 inequality conditions, yielding \sphinxstylestrong{polygons}.}\label{\detokenize{docs/more_layers:regions-fig}}\end{figure}
 
 \begin{sphinxadmonition}{note}{Convex region}
 
@@ -1793,10 +1793,10 @@ Indeed, let \(p_0=0\), and the conditions imposed by the inequalities be denoted
 \begin{split}p \cdot w =-1 + p_1 w_1 + \dots + p_k w_k = -1+\frac{p_1+\dots p_k}{k-\frac{1}{2}} > 0\end{split}
 \end{equation*}
 \sphinxAtStartPar
-if and only if all \(p_i=1\), i.e. all the conditions are true. This builds th AND gate for the incoming \(k\) boolean signals.
+if and only if all \(p_i=1\), i.e. all the conditions are true.
 
 \sphinxAtStartPar
-The architecture of networks for \(k=1\), 2, 3, or 4 conditions is shown in \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}. Starting from the second panel, we have networks with two layers of neurons, with \(k\) neurons in the intermediate layer, providing the inequality conditions, and one neuron in the output layer, acting as the AND gate. Of course, for one condition it is sufficient to have a single neuron, as in the left panel of \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}.
+Architectures of networks for \(k=1\), 2, 3, or 4 conditions are shown in \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}. Going from left to right from the second panel, we have networks with two layers of neurons and with \(k\) neurons in the intermediate layer, providing the inequality conditions, and one neuron in the output layer, acting as the AND gate. Of course, for one condition it is sufficient to have a single neuron, as shown in the left panel of \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}.
 
 \begin{figure}[htbp]
 \centering
@@ -1806,10 +1806,10 @@ The architecture of networks for \(k=1\), 2, 3, or 4 conditions is shown in \hyp
 \caption{Networks capable of classifying data in the corresponding regions of \hyperref[\detokenize{docs/more_layers:regions-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:regions-fig}}}.}\label{\detokenize{docs/more_layers:nfn-fig}}\end{figure}
 
 \sphinxAtStartPar
-With the geometric interpretation, the first neuron layer represents the \(k\) half\sphinxhyphen{}planes, and the neuron in the second layer correspond to a convex region with \(k\) sides.
+In the geometric interpretation, the first neuron layer represents the \(k\) half\sphinxhyphen{}planes, and the neuron in the second layer correspond to a convex region with \(k\) sides.
 
 \sphinxAtStartPar
-The situation generalizes in an obvious way to data in more dimensions. In that case we have more black dots in the inputs in  \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}. Geometrically, non \(n=3\) we deal with dividing planes and convex \sphinxhref{https://en.wikipedia.org/wiki/Polyhedron}{polyhedrons}, and for \(n>3\) with dividing \sphinxhref{https://en.wikipedia.org/wiki/Hyperplane}{hyperplanes} and convex \sphinxhref{https://en.wikipedia.org/wiki/Polytope}{polytopes}.
+The situation generalizes in an obvious way to data in more dimensions. In that case we have more black dots in the inputs in  \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}}. Geometrically, for \(n=3\) we deal with dividing planes and convex \sphinxhref{https://en.wikipedia.org/wiki/Polyhedron}{polyhedrons}, and for \(n>3\) with dividing \sphinxhref{https://en.wikipedia.org/wiki/Hyperplane}{hyperplanes} and convex \sphinxhref{https://en.wikipedia.org/wiki/Polytope}{polytopes}.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
@@ -1818,7 +1818,7 @@ If there are numerous neurons \(k\) in the intermediate layer, the resulting pol
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-A percepton with two\sphinxhyphen{}layers of neurons can classify points belonging to a convex region in \(n\)\sphinxhyphen{}dimensional space.
+A percepton with two neuron layers (with sufficiently many neurons in the intermediate layer) can classify points belonging to a convex region in \(n\)\sphinxhyphen{}dimensional space.
 \end{sphinxadmonition}
 
 
@@ -1840,15 +1840,17 @@ Note that the first and second neuron layers are not fully connected here, as we
 \caption{Triangle with a tringular hollow.}\label{\detokenize{docs/more_layers:tri-fig}}\end{figure}
 
 \sphinxAtStartPar
-Generalizing this argument to other shapes, one can show an important theorem that
+Generalizing this argument to other shapes, one can show an important theorem:
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-A perceptron with three or more layers with sufficiently many neurons can classify points belonging to \sphinxstylestrong{any} region in \(n\)\sphinxhyphen{}dimensional space with \(n-1\)\sphinxhyphen{}dimensional hyperplane boundaries.
+A perceptron with three or more neuron layers (with sufficiently many neurons in intermediate layers) can classify points belonging to \sphinxstylestrong{any} region in \(n\)\sphinxhyphen{}dimensional space with \(n-1\)\sphinxhyphen{}dimensional hyperplane boundaries.
 \end{sphinxadmonition}
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
 It is worth stressing here that three layers provide full functionality! Adding more layers to a classifier does not increase its capabilities.
+\end{sphinxadmonition}
 
 
 \section{Feeding forward in Python}
@@ -1871,7 +1873,7 @@ where \(n_0\) in the number of the input nodes, and \(n_i\) are the numbers of n
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-In the codes of this course we use the convention of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}}, namely, the bias is treated uniformly with the remaining signal. However, the bias notes are not included in the numbers \(n_i\) defined above. In particular, a more detailed view of the fourth panel of \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}} is
+In the codes of this course we use the convention of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}}, namely, the bias is treated uniformly with the remaining signal. However, the bias notes are not included in counting the numbers \(n_i\) defined above. In particular, a more detailed view of the fourth panel of \hyperref[\detokenize{docs/more_layers:nfn-fig}]{Fig.\@ \ref{\detokenize{docs/more_layers:nfn-fig}}} is
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{draw}\PYG{o}{.}\PYG{n}{plot\PYGZus{}net}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{)}\PYG{p}{;}
@@ -1884,19 +1886,19 @@ Here, black dots mean input, gray dots indicate the bias nodes carrying input =1
 
 \sphinxAtStartPar
 Next, we need the weights of the connections. There are \(l\) sets of weights, each one corresponding to the set of edges entering a given neuron layer from the left.
-In the above example, the first neuron layer (blue blobs to the left) has weights which form a \(3 \times 4\) matrix. Here 3 is the number of nodes in the preceding layer (including the bias node) and 4 is the number of neurons in the first neuron layer. Similarly, the weights associated with the second (output) layer form a \(4 \times 1\) matrix. Hence, in our convention, the weight matrices corresponding to subsequent neuron layers \(1, 2, \dots, l\) have dimensions
+In the above example, the first neuron layer (blue blobs to the left) has weights which form a \(3 \times 4\) matrix. Here 3 is the number of nodes in the preceding (input) layer (including the bias node) and 4 is the number of neurons in the first neuron layer. Similarly, the weights associated with the second (output) neuron layer form a \(4 \times 1\) matrix. Hence, in our convention, the weight matrices corresponding to subsequent neuron layers \(1, 2, \dots, l\) have dimensions
 \begin{equation*}
 \begin{split}
 (n_0+1)\times n_1, \; (n_1+1)\times n_2, \; \dots \; (n_{l-1}+1)\times n_l.
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-To store all the weights of a network we actually need \sphinxstylestrong{three} indices: one for the layer, one for the number of nodes in the preceding layer, and one for the number of nodes in the given layer. We could have used a three\sphinxhyphen{}dimensional array here, but since we number the neuron layers staring from 1, and arrays start numbering from 0, it is more convenient to use the Python \sphinxstylestrong{dictionary} structure. We will then store the weights as
+Thus, to store all the weights of a network we actually need \sphinxstylestrong{three} indices: one for the layer, one for the number of nodes in the preceding layer, and one for the number of nodes in the given layer. We could have used a three\sphinxhyphen{}dimensional array here, but since we number the neuron layers staring from 1, and arrays start numbering from 0, it is somewhat more convenient to use the Python \sphinxstylestrong{dictionary} structure. We then store the weights as
 \begin{equation*}
 \begin{split}w=\{1: arr^1, 2: arr^2, ..., l: arr^l\},\end{split}
 \end{equation*}
 \sphinxAtStartPar
-where \(arr^i\) is a \sphinxstylestrong{two\sphinxhyphen{}dimensional} array (matrix) of weights for the neuron layer \(i\). For the case of the above figure we could thus take, for instance
+where \(arr^i\) is a \sphinxstylestrong{two\sphinxhyphen{}dimensional} array (matrix) of weights for the neuron layer \(i\). For the case of the above figure we can take, for instance
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{w}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{:}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mf}{0.2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
@@ -1919,21 +1921,21 @@ where \(arr^i\) is a \sphinxstylestrong{two\sphinxhyphen{}dimensional} array (ma
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-For the signal propagating along the network we also use a dictionary of the form
+For the signal propagating along the network we also correspondingly use a dictionary of the form
 \begin{equation*}
 \begin{split}x=\{0: x^0, 1: x^1, 2: x^2, ..., l: x^l\},\end{split}
 \end{equation*}
 \sphinxAtStartPar
-where \(x^0\) is the input, and \(x^i\) is the output leaving the neuron layer \(i\), with \(i=1, \dots, l\). All symbols \(x^j\), \(j=0, \dots, l\), are one\sphinxhyphen{}dimensional arrays. The bias nodes are included, hence the dimensions of \(x^j\) are \(n_j+1\), except for the ouput layer which has no bias node, hence \(x^l\) has dimension \(n_l\). In other words, the dimensions of the signal arrays are equal to the total number of nodes in each layer.
+where \(x^0\) is the input, and \(x^i\) is the output leaving the neuron layer \(i\), with \(i=1, \dots, l\). All symbols \(x^j\), \(j=0, \dots, l\), are one\sphinxhyphen{}dimensional arrays. The bias nodes are included, hence the dimensions of \(x^j\) are \(n_j+1\), except for the output layer which has no bias node, hence \(x^l\) has the dimension \(n_l\). In other words, the dimensions of the signal arrays are equal to the total number of nodes in each layer.
 
 \sphinxAtStartPar
-Next, we present the corresponding formulas in rather painful detail, as this is key to avoid any possible confusion related to the notation.
+Next, we present the corresponding formulas in a rather painful detail, as this is key to avoid any possible confusion related to the notation.
 We already know from \eqref{equation:docs/mcp:eq-f0} that for a single neuron with \(n\) inputs its incoming signal is calculated as
 \begin{equation*}
 \begin{split}s = x_0 w_0 + x_1 w_1 + x_2 w_2 + ... + x_n w_n = \sum_{\beta=0}^n x_\beta w_\beta .\end{split}
 \end{equation*}
 \sphinxAtStartPar
-With more layers (index \(i\)) and neurons (\(n_i\) in layer \(i\)),
+With more layers (labeled with superscript \(i\)) and neurons (\(n_i\) in layer \(i\)),
 the notation generalizes into
 \begin{equation*}
 \begin{split}
@@ -1964,7 +1966,7 @@ x^i_0 =1, \;\; i=1,\dots,l-1,
 \end{equation*}
 \sphinxAtStartPar
 with the bias nodes set to one.
-The figure below illustrates the scheme:
+The figure below illustrates the notation.
 
 \noindent\sphinxincludegraphics{{more_layers_28_0}.png}
 
@@ -1994,18 +1996,18 @@ The implementation of the feed\sphinxhyphen{}forward propagation explained above
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
 
-    \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}                   \PYG{c+c1}{\PYGZsh{} number of neuron layers}
+    \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}                   \PYG{c+c1}{\PYGZsh{} number of the neuron layers}
     \PYG{n}{x\PYGZus{}in}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{x\PYGZus{}in}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}      \PYG{c+c1}{\PYGZsh{} input, with the bias node inserted}
     
-    \PYG{n}{x}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}                          \PYG{c+c1}{\PYGZsh{} empty dictionary}
-    \PYG{n}{x}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{x\PYGZus{}in}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} add input signal}
+    \PYG{n}{x}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}                          \PYG{c+c1}{\PYGZsh{} empty dictionary x}
+    \PYG{n}{x}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{x\PYGZus{}in}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} add input signal to x}
     
     \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)}\PYG{p}{:}          \PYG{c+c1}{\PYGZsh{} loop over layers except the last one}
         \PYG{n}{s}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{we}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} signal, matrix multiplication }
         \PYG{n}{y}\PYG{o}{=}\PYG{p}{[}\PYG{n}{f}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} output from activation}
         \PYG{n}{x}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} add bias node and update x}
 
-                                  \PYG{c+c1}{\PYGZsh{} the last layer \PYGZhy{} no adding of the bias node}
+                                  \PYG{c+c1}{\PYGZsh{} the output layer l \PYGZhy{} no adding of the bias node}
         \PYG{n}{s}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{n}{l}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{we}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} signal   }
         \PYG{n}{y}\PYG{o}{=}\PYG{p}{[}\PYG{n}{f}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{q}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{q} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} output}
         \PYG{n}{x}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{n}{l}\PYG{p}{:} \PYG{n}{y}\PYG{p}{\PYGZcb{}}\PYG{p}{)}          \PYG{c+c1}{\PYGZsh{} update x}
@@ -2014,7 +2016,10 @@ The implementation of the feed\sphinxhyphen{}forward propagation explained above
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Next, we test how \sphinxstylestrong{feed\_forward} works on a sample input. For brevity, we do not pass the input bias node of the input in the argument. It is added inside the function.
+For brevity, we do not pass the input bias node of the input in the argument. It is inserted inside the function.
+
+\sphinxAtStartPar
+Next, we test how \sphinxstylestrong{feed\_forward} works on a sample input.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{xi}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
@@ -2027,7 +2032,7 @@ Next, we test how \sphinxstylestrong{feed\_forward} works on a sample input. For
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The final output of this network is obtained as
+The output from this network is obtained as
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
@@ -2041,7 +2046,7 @@ The final output of this network is obtained as
 \section{Visualization}
 \label{\detokenize{docs/more_layers:visualization}}
 \sphinxAtStartPar
-For visualization of simple networks, in the \sphinxstylestrong{neural} library we provide some drawing functions which show the weights, as well as the signals. Function \sphinxstylestrong{plot\_net\_w} draws positive weights in red and negative in blue, with the widths reflecting their magnitude. The last parameter, here 0.5, rescales  the widths such that the graphics looks nice. Function \sphinxstylestrong{plot\_net\_w\_x}  prints in addition the values of the signal leaving the neurons in each layer.
+For visualization of simple networks, in the \sphinxstylestrong{draw} module of he \sphinxstylestrong{neural} library we provide some drawing functions which show the weights, as well as the signals. Function \sphinxstylestrong{plot\_net\_w} draws the positive weights in red and the negative ones in blue, with the widths reflecting their magnitude. The last parameter, here 0.5, rescales  the widths such that the graphics looks nice. Function \sphinxstylestrong{plot\_net\_w\_x}  prints in addition the values of the signal leaving the nodes of each layer.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{draw}\PYG{o}{.}\PYG{n}{plot\PYGZus{}net\PYGZus{}w}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{;}
@@ -2195,8 +2200,8 @@ inequality condition
 \sphinxattableend\end{savenotes}
 
 \sphinxAtStartPar
-Conditions 1\sphinxhyphen{}3 provide boundaries for the bigger traingle, and 4\sphinxhyphen{}6 for the smaller one contained in the bigger one.
-In the second neuron layer we need to realize two AND gates for conditions 1\sphinxhyphen{}3 and 4\sphinxhyphen{}6, espoectively, hence we take
+Conditions 1\sphinxhyphen{}3 provide boundaries for the bigger triangle, and 4\sphinxhyphen{}6 for the smaller one contained in the bigger one.
+In the second neuron layer we need to realize two AND gates for conditions 1\sphinxhyphen{}3 and 4\sphinxhyphen{}6, respectively, hence we take
 
 
 \begin{savenotes}\sphinxattablestart
@@ -2323,7 +2328,7 @@ Finally, in the output layer we take the \(p \wedge \! \sim \! q\)  gate, hence
 \sphinxattableend\end{savenotes}
 
 \sphinxAtStartPar
-Putting all togethr, the weight dictionary is
+Putting all this together, the weight dictionary is
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{w}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
@@ -2343,15 +2348,15 @@ Feeding forward a sample input yields
 \noindent\sphinxincludegraphics{{more_layers_45_0}.png}
 
 \sphinxAtStartPar
-We have just found that point {[}0.2,0.3{]} is within our region (1 from the output layer). Actually, we we have more information from the intermediae layers. From the second neuron layer we know that the point belongs to the bigger triangle (1 from the lower neuron) and does not belong to the smaller triangle (0 from the upper neuron). From the first neuron layer we may read the condition from the six inequalities.
+We have just found that point {[}0.2,0.3{]} is within our region (1 from the output layer). Actually, we we have more information from the intermediate layers. From the second neuron layer we know that the point belongs to the bigger triangle (1 from the lower neuron) and does not belong to the smaller triangle (0 from the upper neuron). From the first neuron layer we may read out the conditions from the six inequalities.
 
 \sphinxAtStartPar
-Next, we will test how our network works for other points. First, we define a function generating a  random point in the square \([0,1]\times [0,1]\) and pass it through the network. We assign to it label 1 if it belongs to the requested triangle with the hollow, and 0 otherwise. Subsequently, we create a large sample of such points and generate the graphics, using pink for label 1 and blue for label 0.
+Next, we test how our network works for other points. First, we define a function generating a  random point in the square \([0,1]\times [0,1]\) and pass it through the network. We assign to it label 1 if it belongs to the requested triangle with the hollow, and 0 otherwise. Subsequently, we create a large sample of such points and generate the graphics, using pink for label 1 and blue for label 0.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{po}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{xi}\PYG{o}{=}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} random point from the [0,1]x[0,1] square}
-    \PYG{n}{x}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{feed\PYGZus{}forward}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{n}{xi}\PYG{p}{)}             \PYG{c+c1}{\PYGZsh{} run feed forward}
+    \PYG{n}{x}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{feed\PYGZus{}forward}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{n}{xi}\PYG{p}{)}             \PYG{c+c1}{\PYGZsh{} feed forward}
     \PYG{k}{return} \PYG{p}{[}\PYG{n}{xi}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{xi}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}               \PYG{c+c1}{\PYGZsh{} the point\PYGZsq{}s coordinates and label}
 \end{sphinxVerbatim}
 
@@ -2361,11 +2366,11 @@ Next, we will test how our network works for other points. First, we define a fu
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[[0.83806748 0.62718519 0.        ]
- [0.46726263 0.34999938 1.        ]
- [0.69545367 0.95397076 0.        ]
- [0.19930639 0.52982584 1.        ]
- [0.41437336 0.69846145 0.        ]]
+[[0.65191479 0.84638747 0.        ]
+ [0.05214266 0.76457151 0.        ]
+ [0.90977968 0.34320228 0.        ]
+ [0.41914537 0.52844105 1.        ]
+ [0.8316971  0.19487283 0.        ]]
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{more_layers_50_0}.png}
@@ -2374,16 +2379,26 @@ Next, we will test how our network works for other points. First, we define a fu
 We can see that our little machine works perfectly well!
 
 \sphinxAtStartPar
-At this point the reader might rightly say that the preceding results are trivial: in essence, we have just been implementing some geometric conditions and their conjunctions.
+At this point the reader might again rightly say that the preceding results are trivial: in essence, we have just been implementing some geometric conditions and their conjunctions.
 
 \sphinxAtStartPar
-However, there is an important case against this apparent triviality. Imagine we have the data sample with labels, and only this, as in the example of the single MCP neuron of chapter {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP Neuron}}}}. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exacly what teaching of classifiers does: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this section, the reader should be convinced that this is perfectly possible.
+However, as in the case of single\sphinxhyphen{}layer networks, there is an important argument against this apparent triviality. Imagine again we have the data sample with labels, and only this, as in the example of the single MCP neuron of chapter {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP Neuron}}}}. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exactly what teaching of classifiers does: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this chapter, the reader should be convinced that this is perfectly possible and there is nothing magical about it!
+
+
+\section{Exercises}
+\label{\detokenize{docs/more_layers:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 \begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Design a network and run the code from this lecture for a convex region of your choice.
+
 \item {} 
 \sphinxAtStartPar
 Design and program a classifier for four categories of points belonging to regions formed by 2 intersecting lines (hint: include four output cells).
 
 \end{itemize}
+\end{sphinxadmonition}
 
 
 \chapter{Back propagation}
@@ -2392,14 +2407,14 @@ Design and program a classifier for four categories of points belonging to regio
 \section{Minimizing the error}
 \label{\detokenize{docs/backprop:minimizing-the-error}}
 \sphinxAtStartPar
-We now go back to the perceptron algorithm of chapter {\hyperref[\detokenize{docs/perceptron:perc-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Perceptron}}}} to look in some more detail at its performance as a function of weights. Note that in our example with points on the plane the condition for the pink points is given by the inequality
+We now go back to the perceptron algorithm of chapter {\hyperref[\detokenize{docs/perceptron:perc-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Perceptron}}}} to look in some greater detail at its performance as a function of weights. Recall that in our example with points on the plane the condition for the pink points is given by the inequality
 
 \sphinxAtStartPar
 \(w_0+w_1 x_1 + w_2 x_2 > 0\).
 
 \sphinxAtStartPar
 We have already mentioned the equivalence class related to dividing this inequality with a
-positive constant. In general, at least one of the weights must be nonzero to have a nontrivial condition. Suppose or definiteness that \(w_0 \neq 0\) (other cases may be treated analogously). Then we can divide both sides with \(|w_0|\)
+positive constant \(c\). In general, at least one of the weights must be nonzero to have a nontrivial condition. Suppose or definiteness that \(w_0 \neq 0\) (other cases may be treated analogously). Then we can divide both sides with \(|w_0|\) to obtain
 \begin{equation*}
 \begin{split}\frac{w_0}{|w_0|}+\frac{w_1}{|w_0|} \, x_1 + \frac{w_2}{|w_0|} \, x_2 > 0. \end{split}
 \end{equation*}
@@ -2412,7 +2427,7 @@ Introducing \(v_1=\frac{w_1}{w_0}\) and \(v_2=\frac{w_2}{w_0}\), this can be rew
 where \({\rm sgn}(w_0) = \frac{w_0}{|w_0|}\), hence we effectively have a two\sphinxhyphen{}parameter system (for each sign of \(w_0\)).
 
 \sphinxAtStartPar
-Obviously, with some values of \( v_1 \) and \( v_2 \) and for a given point from the sample, the perceptron will provide a correct or incorrect answer. It is thus natural to define the \sphinxstylestrong{error function} \(E\) such that each point of \(p\) from the sample contributes 1 if the answer is incorrect, and 0 if it is correct:
+Obviously, with some values of \( v_1 \) and \( v_2 \) and for a given point from the data sample, the perceptron provides a correct or incorrect answer. It is thus natural to define the \sphinxstylestrong{error function} \(E\) such that each point of \(p\) from the sample contributes 1 if the answer is incorrect, and 0 if it is correct:
 \begin{equation*}
 \begin{split} E(v_1,v_2)=\sum_p \left\{ \begin{array}{ll} 1 -{\rm incorrect,~}\\ 0 -{\rm correct} \end{array}\right .\end{split}
 \end{equation*}
@@ -2432,8 +2447,8 @@ Obviously, with some values of \( v_1 \) and \( v_2 \) and for a given point fro
 \PYG{l+s+sd}{    returns:}
 \PYG{l+s+sd}{    error}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{n}{er}\PYG{o}{=}\PYG{l+m+mi}{0}                           \PYG{c+c1}{\PYGZsh{} initial value of error}
-    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}   \PYG{c+c1}{\PYGZsh{} loop over data points       }
+    \PYG{n}{er}\PYG{o}{=}\PYG{l+m+mi}{0}                                       \PYG{c+c1}{\PYGZsh{} initial value of the error}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}               \PYG{c+c1}{\PYGZsh{} loop over data points       }
         \PYG{n}{yo}\PYG{o}{=}\PYG{n}{f}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{+}\PYG{n}{w2}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} obtained answer}
         \PYG{n}{er}\PYG{o}{+}\PYG{o}{=}\PYG{p}{(}\PYG{n}{yo}\PYG{o}{\PYGZhy{}}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}
                       \PYG{c+c1}{\PYGZsh{} sample[i,2] is the label}
@@ -2443,7 +2458,7 @@ Obviously, with some values of \( v_1 \) and \( v_2 \) and for a given point fro
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Atually, we have used a little trick here, in b=view if the future developments. Denoting the obtained result for a given data point as \(y_o^{(p)}\) and the true result (label) as \(y_t^{(p)}\) (both have values 0 or 1), we may write equivalently
+Actually, we have used a little trick here, in view of the future developments. Denoting the obtained result for a given data point as \(y_o^{(p)}\) and the true result (label) as \(y_t^{(p)}\) (both have values 0 or 1), we may write equivalently
 \begin{equation*}
 \begin{split} E(v_1,v_2)=\sum_p \left ( y_o^{(p)}-y_t^{(p)}\right )^2,\end{split}
 \end{equation*}
@@ -2456,14 +2471,47 @@ We repeat the simulations of chapter {\hyperref[\detokenize{docs/perceptron:perc
 \sphinxAtStartPar
 Next, we run the perceptron alogorithm:
 
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{weights}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} initial random weights}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Optimum:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{   w0  w1/w0  w2/w0 error}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}   \PYG{c+c1}{\PYGZsh{} header}
+
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.7}             \PYG{c+c1}{\PYGZsh{} initial learning speed}
+\PYG{k}{for} \PYG{n}{r} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.8}\PYG{o}{*}\PYG{n}{eps}     \PYG{c+c1}{\PYGZsh{} decrease  the learning speed is smaller}
+    \PYG{n}{weights}\PYG{o}{=}\PYG{n}{teach\PYGZus{}perceptron}\PYG{p}{(}\PYG{n}{samp2}\PYG{p}{,}\PYG{n}{eps}\PYG{p}{,}\PYG{n}{weights}\PYG{p}{,}\PYG{n}{func}\PYG{o}{.}\PYG{n}{step}\PYG{p}{)} 
+    \PYG{n}{w0\PYGZus{}o}\PYG{o}{=}\PYG{n}{weights}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}               \PYG{c+c1}{\PYGZsh{} updated weights and ratios}
+    \PYG{n}{v1\PYGZus{}o}\PYG{o}{=}\PYG{n}{weights}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{n}{weights}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{v2\PYGZus{}o}\PYG{o}{=}\PYG{n}{weights}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{n}{weights}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{w0\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{v1\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{v2\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}
+          \PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{error}\PYG{p}{(}\PYG{n}{w0\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v1\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v2\PYGZus{}o}\PYG{p}{,} \PYG{n}{samp2}\PYG{p}{,} \PYG{n}{func}\PYG{o}{.}\PYG{n}{step}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}             
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Optimum:
+   w0  w1/w0  w2/w0 error
+\PYGZhy{}0.644 1.543 \PYGZhy{}4.789 23.0
+\PYGZhy{}0.644 2.265 \PYGZhy{}5.165 16.0
+\PYGZhy{}1.002 1.775 \PYGZhy{}3.325 16.0
+\PYGZhy{}1.002 1.682 \PYGZhy{}3.477 4.0
+\PYGZhy{}0.773 2.352 \PYGZhy{}4.554 4.0
+\PYGZhy{}0.956 1.945 \PYGZhy{}3.636 7.0
+\PYGZhy{}0.81 2.216 \PYGZhy{}4.397 4.0
+\PYGZhy{}0.81 2.204 \PYGZhy{}4.416 4.0
+\PYGZhy{}0.81 2.241 \PYGZhy{}4.402 2.0
+\PYGZhy{}0.885 2.083 \PYGZhy{}3.992 0.0
+\end{sphinxVerbatim}
+
 \sphinxAtStartPar
 We note above that the final error is very small or 0 (depending on the particular simulation). It is illuminating to look at a contour map of the error function \(E(v_1, v_2)\) in the vicinity of the optimal parameters:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{3.7}\PYG{p}{,}\PYG{l+m+mf}{3.7}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 
-\PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mf}{0.01} \PYG{c+c1}{\PYGZsh{} grid step in v1 and v2 for the contour map}
-\PYG{n}{ran}\PYG{o}{=}\PYG{l+m+mf}{0.5}       \PYG{c+c1}{\PYGZsh{} plot range around (v1\PYGZus{}o, v2\PYGZus{}o)}
+\PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mf}{0.02}  \PYG{c+c1}{\PYGZsh{} grid step in v1 and v2 for the contour map}
+\PYG{n}{ran}\PYG{o}{=}\PYG{l+m+mf}{0.8}       \PYG{c+c1}{\PYGZsh{} plot range around (v1\PYGZus{}o, v2\PYGZus{}o)}
 
 \PYG{n}{v1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{v1\PYGZus{}o}\PYG{o}{\PYGZhy{}}\PYG{n}{ran}\PYG{p}{,}\PYG{n}{v1\PYGZus{}o}\PYG{o}{+}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} grid for v1}
 \PYG{n}{v2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{v2\PYGZus{}o}\PYG{o}{\PYGZhy{}}\PYG{n}{ran}\PYG{p}{,}\PYG{n}{v2\PYGZus{}o}\PYG{o}{+}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} grid for v2}
@@ -2489,13 +2537,13 @@ We note above that the final error is very small or 0 (depending on the particul
 \noindent\sphinxincludegraphics{{backprop_12_0}.png}
 
 \sphinxAtStartPar
-We can see in the plot that that the found minimum is in (or close to, depending on the simulation) the elongated region of \( v_1 \) and \( v_2\) where the error vanishes.
+We can see in the above plot that that the found minimum is in (or close to, depending on the simulation) the elongated region of \( v_1 \) and \( v_2\) where the error vanishes.
 
 
 \section{Continuous activation function}
 \label{\detokenize{docs/backprop:continuous-activation-function}}
 \sphinxAtStartPar
-Coming back to the contour chart above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and non\sphinxhyphen{}differentiable. The discontinuities obviously originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use the continuous activation functions. Historically, the so\sphinxhyphen{}called \sphinxstylestrong{sigmoid}
+Coming back to the contour chart above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and non\sphinxhyphen{}differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so\sphinxhyphen{}called \sphinxstylestrong{sigmoid}
 \begin{equation*}
 \begin{split} \sigma(s)=\frac{1}{1+e^{-s}}\end{split}
 \end{equation*}
@@ -2516,10 +2564,9 @@ has been used in many practical applications of ANNs.
 
 \sphinxAtStartPar
 This function is of course differentiable. Moreover,
-
-\sphinxAtStartPar
-\( \sigma '(s) = \sigma (s) [1- \sigma (s)] \),
-
+\begin{equation*}
+\begin{split} \sigma '(s) = \sigma (s) [1- \sigma (s)], \end{split}
+\end{equation*}
 \sphinxAtStartPar
 which is its special feature.
 
@@ -2550,7 +2597,7 @@ A sigmoid with “temperature” \( T \) is also introduced (this nomenclature i
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-For smaller and smaller \( T \), it approaches the previously used step function. Note that the argument of the sigmoid is the quotient
+For smaller and smaller \( T \), the sigmoid approaches the previously used step function. Note that the argument of the sigmoid is the quotient
 
 \sphinxAtStartPar
 \$\( s / T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 = \xi_0 + xi_1 x_1 + xi_2 x_2 \)\$,
@@ -2560,7 +2607,7 @@ which means that we can always assume \( T = 1 \) without losing generality (\( 
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-We will now repeat our example with the classifier, but with the activation function given by the sigmoid. The error function, with
+We now repeat our previous example with the classifier, but with the activation function given by the sigmoid. The error function, with
 \begin{equation*}
 \begin{split}y_o^{(p)}=\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)}). \end{split}
 \end{equation*}
@@ -2570,7 +2617,7 @@ becomes
 \begin{split}E(w_0,w_1,w_2)=\sum_p \left [\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)} \right]^2.\end{split}
 \end{equation*}
 \sphinxAtStartPar
-We run the perceptron alorithm with the sigmoid activation function 500 times:
+We run the perceptron algorithm with the sigmoid activation function 1000 times:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{weights}\PYG{o}{=}\PYG{p}{[}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{]}      \PYG{c+c1}{\PYGZsh{} random weights from [\PYGZhy{}0.5,0.5]}
@@ -2593,26 +2640,26 @@ We run the perceptron alorithm with the sigmoid activation function 500 times:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
    w0   w1/w0  w2/w0 error
-\PYGZhy{}19.439 2.253 \PYGZhy{}4.118 0.62695
-\PYGZhy{}24.146 2.288 \PYGZhy{}4.16 0.43044
-\PYGZhy{}27.015 2.32 \PYGZhy{}4.208 0.27756
-\PYGZhy{}29.122 2.344 \PYGZhy{}4.246 0.19078
-\PYGZhy{}30.81 2.362 \PYGZhy{}4.274 0.14195
-\PYGZhy{}32.227 2.376 \PYGZhy{}4.295 0.11308
-\PYGZhy{}33.452 2.386 \PYGZhy{}4.31 0.09482
-\PYGZhy{}34.529 2.393 \PYGZhy{}4.32 0.08244
-\PYGZhy{}35.487 2.398 \PYGZhy{}4.328 0.07349
-\PYGZhy{}36.347 2.402 \PYGZhy{}4.334 0.06667
+\PYGZhy{}20.294 2.047 \PYGZhy{}4.027 0.70907
+\PYGZhy{}25.019 2.095 \PYGZhy{}4.105 0.49241
+\PYGZhy{}28.223 2.119 \PYGZhy{}4.14 0.43472
+\PYGZhy{}30.701 2.133 \PYGZhy{}4.157 0.40624
+\PYGZhy{}32.73 2.141 \PYGZhy{}4.165 0.38361
+\PYGZhy{}34.448 2.146 \PYGZhy{}4.169 0.3623
+\PYGZhy{}35.934 2.15 \PYGZhy{}4.17 0.34178
+\PYGZhy{}37.236 2.152 \PYGZhy{}4.17 0.32231
+\PYGZhy{}38.392 2.154 \PYGZhy{}4.169 0.30412
+\PYGZhy{}39.425 2.155 \PYGZhy{}4.167 0.28733
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The error function now has 3 arguments, so it cannot be drawn in two dimensions. We can, however, look at its projections, e.g. with a fixed value of \( w_0 \).
+We notice the decrease of the error as the simulation proceeds. The error function now has three independent arguments, so it cannot be drawn in two dimensions. We can, however, look at its projections, e.g. with a fixed value of \( w_0 \).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{3.7}\PYG{p}{,}\PYG{l+m+mf}{3.7}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 
 \PYG{n}{delta} \PYG{o}{=} \PYG{l+m+mf}{0.5}
-\PYG{n}{ran}\PYG{o}{=}\PYG{l+m+mi}{20} 
+\PYG{n}{ran}\PYG{o}{=}\PYG{l+m+mi}{40} 
 \PYG{n}{r1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{w1\PYGZus{}o}\PYG{o}{\PYGZhy{}}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{w1\PYGZus{}o}\PYG{o}{+}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{)} 
 \PYG{n}{r2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{w2\PYGZus{}o}\PYG{o}{\PYGZhy{}}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{w2\PYGZus{}o}\PYG{o}{+}\PYG{n}{ran}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{)} 
 \PYG{n}{X}\PYG{p}{,} \PYG{n}{Y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{r1}\PYG{p}{,} \PYG{n}{r2}\PYG{p}{)} 
@@ -2637,17 +2684,34 @@ The error function now has 3 arguments, so it cannot be drawn in two dimensions.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-In the present example, when we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values are between 0 and 1. As we have discussed above, in the sigmoid, whose argument is \( (w_0 + w_1 x_1 + w_2 x_2) / T\), increasing the weights is equivalent to scaling down the temperature. Then, however, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations.
+In the present example, when we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are un the range (0,1). As we have discussed above, in the sigmoid, whose argument is \( (w_0 + w_1 x_1 + w_2 x_2) / T\), increasing the weights is equivalent to scaling down the temperature \(T\). Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above.
 \end{sphinxadmonition}
 
 
 \section{Steepest descent}
 \label{\detokenize{docs/backprop:steepest-descent}}
 \sphinxAtStartPar
-Generic comment on minimization …
+As we can see, the issue of optimizing the weights is reduced to a generic problem of minimizing a multi\sphinxhyphen{}variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. The problems with finding the minimum of multivariable functions are well known:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+there may be local minima, and therefore it may be difficult to find the global minimum;
+
+\item {} 
+\sphinxAtStartPar
+the minimum can be at infinity (that is, it does not exist mathematically);
+
+\item {} 
+\sphinxAtStartPar
+The function around the minimum can be very flat, so the gradient is very small, and the update in gradient methods is extremely slow;
+
+\end{itemize}
 
 \sphinxAtStartPar
-For a differentiable function of multiple variables, \( F (z_1, z_2, ..., z_n) \), locally the steepest slope is defined by the minus gradient of the function \( F \), i.e. the slope is in the direction of the vector
+Overall, numerical minimization of functions is an art! Many methods have been developed and a proper choice for a given problem is crucial for success. Here we apply the simplest \sphinxstylestrong{steepest descent} method.
+
+\sphinxAtStartPar
+For a differentiable function of multiple variables, \( F (z_1, z_2, ..., z_n) \), locally the steepest slope is defined by minus the gradient of the function \( F \), i.e. the steepest slope is in the direction of the vector
 \begin{equation*}
 \begin{split}-\left (\frac{\partial F}{\partial z_1}, \frac{\partial F}{\partial z_2}, ..., 
 \frac{\partial F}{\partial z_n} \right ), \end{split}
@@ -2661,17 +2725,32 @@ where the partial derivatives are defined as the limit
 and similarly for the other \( z_i \).
 
 \sphinxAtStartPar
-The method of finding the minimum of a function by the steepest descent method is given by the iterative algorithm, where we update the position at each iteration step \(m\) with
+The method of finding the minimum of a function by the steepest descent is given by the iterative algorithm, where we update the coordinates (of a searched minimum) at each iteration step \(m\) (shown in superscripts) with
 \begin{equation*}
 \begin{split}z_{i}^{(m+1)} = z_i^{(m)} - \epsilon  \, \frac{\partial F}{\partial z_i}. \end{split}
 \end{equation*}
 \sphinxAtStartPar
-In our case, we minimize the error function
+In our specific case, we minimize the error function
 \begin{equation*}
-\begin{split}E(w_0,w_1,w_2)= \sum_p [y_o^{(p)}-y_t^{(p)}]^2=\sum_p [\sigma(s^{(p)})-y_t^{(p)}]^2=\sum_p [\sigma(w_0  x_0^{(p)}+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)}]^2, \end{split}
+\begin{split}E(w_0,w_1,w_2)= \sum_p [y_o^{(p)}-y_t^{(p)}]^2=\sum_p [\sigma(s^{(p)})-y_t^{(p)}]^2=\sum_p [\sigma(w_0  x_0^{(p)}+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)}]^2. \end{split}
 \end{equation*}
 \sphinxAtStartPar
-hence
+We use the chain rule to evaluate the derivatives.
+
+\begin{sphinxadmonition}{note}{Chain rule}
+
+\sphinxAtStartPar
+For a composite function
+
+\sphinxAtStartPar
+\([f(g(x))]' = f'(g(x)) g'(x)\).
+
+\sphinxAtStartPar
+For a composition of more functions \([f(g(h(x)))]' = f'(g(h(x))) \,g'(h(x)) \,h'(x)\), etc.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+This yields
 \begin{equation*}
 \begin{split} \frac{\partial E}{\partial w_i} = \sum_p 2[\sigma(s^{(p)})-y_t^{(p)}]\, \sigma'(s^{(p)}) \,x_i^{(p)} = \sum_p 2[\sigma(s^{(p)})-y_t^{(p)}]\, \sigma(s^{(p)})\, [1-\sigma(s^{(p)})] \,x_i^{(p)}\end{split}
 \end{equation*}
@@ -2685,8 +2764,9 @@ Note that updating always occurs, because the response \( y_o^ {(p)} \) is never
 the true value (label) \( y_t ^ {(p)} \) is 0 or 1.
 
 \sphinxAtStartPar
-Because \( y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] \) is nonzero only around \( s ^ {(p)} = \) 0 (see the sigmoid derivative plot earlier), thus updating only occurs near the “threshold”. This is fine, as the “problems” are near the dividing line.
+Because \( y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] \) is nonzero only around \( s ^ {(p)} = \) 0 (see the sigmoid’s derivative plot earlier), the updating occurs only near the threshold. This is fine, as the “problems” with misclassification happen near the dividing line.
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
 For comparison, the earlier perceptron algorithm is structurally very similar,
 \begin{equation*}
@@ -2694,22 +2774,21 @@ For comparison, the earlier perceptron algorithm is structurally very similar,
 \end{equation*}
 \sphinxAtStartPar
 but here the updating occurs for all points of the sample, not just near the threshold.
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
-The code for the learning algorith with the steepest descent update of weights is following:
+The code for the learning algorithm with the steepest descent update of weights is following:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} Steepest descent for a single perceptron}
+\PYG{k}{def} \PYG{n+nf}{teach\PYGZus{}sd}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{,} \PYG{n}{eps}\PYG{p}{,} \PYG{n}{w\PYGZus{}in}\PYG{p}{,} \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} Steepest descent for the perceptron}
+    
+    \PYG{p}{[}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{]}\PYG{o}{=}\PYG{n}{w\PYGZus{}in}              \PYG{c+c1}{\PYGZsh{} initial weights}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}       \PYG{c+c1}{\PYGZsh{} loop over the data sample}
+        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}            \PYG{c+c1}{\PYGZsh{} repeat 10 times }
+            
+            \PYG{n}{yo}\PYG{o}{=}\PYG{n}{f}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{+}\PYG{n}{w2}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} obtained answer for pont i}
 
-\PYG{k}{def} \PYG{n+nf}{teach\PYGZus{}sd}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{,} \PYG{n}{eps}\PYG{p}{,} \PYG{n}{w\PYGZus{}in}\PYG{p}{,} \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{)}\PYG{p}{:}
-    \PYG{p}{[}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{]}\PYG{o}{=}\PYG{n}{w\PYGZus{}in} 
-    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:} 
-        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}      
-            
-            \PYG{n}{yo}\PYG{o}{=}\PYG{n}{f}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{+}\PYG{n}{w2}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
-            
-            \PYG{c+c1}{\PYGZsh{} update of weights}
-            \PYG{n}{w0}\PYG{o}{=}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{yo}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mi}{1}
+            \PYG{n}{w0}\PYG{o}{=}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{yo}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mi}{1}            \PYG{c+c1}{\PYGZsh{} update of weights}
             \PYG{n}{w1}\PYG{o}{=}\PYG{n}{w1}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{yo}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}
             \PYG{n}{w2}\PYG{o}{=}\PYG{n}{w2}\PYG{o}{+}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{yo}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{yo}\PYG{p}{)}\PYG{o}{*}\PYG{n}{sample}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}
     \PYG{k}{return} \PYG{p}{[}\PYG{p}{[}\PYG{n}{w0}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{n}{w2}\PYG{p}{]}\PYG{p}{]}
@@ -2734,60 +2813,31 @@ Its performance is similar to perceptron algorithm studied above.
         \PYG{n}{v1\PYGZus{}o}\PYG{o}{=}\PYG{n}{w1\PYGZus{}o}\PYG{o}{/}\PYG{n}{w0\PYGZus{}o}
         \PYG{n}{v2\PYGZus{}o}\PYG{o}{=}\PYG{n}{w2\PYGZus{}o}\PYG{o}{/}\PYG{n}{w0\PYGZus{}o}
         \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{w0\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{v1\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{v2\PYGZus{}o}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}
-              \PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{error}\PYG{p}{(}\PYG{n}{w0\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v1\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v2\PYGZus{}o}\PYG{p}{,} \PYG{n}{samp2}\PYG{p}{,} \PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}                             
-
-               
+              \PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{error}\PYG{p}{(}\PYG{n}{w0\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v1\PYGZus{}o}\PYG{p}{,} \PYG{n}{w0\PYGZus{}o}\PYG{o}{*}\PYG{n}{v2\PYGZus{}o}\PYG{p}{,} \PYG{n}{samp2}\PYG{p}{,} \PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}                                          
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
    w0   w1/w0  w2/w0 error
-\PYGZhy{}9.485 2.271 \PYGZhy{}4.147 1.63446
-\PYGZhy{}11.975 2.297 \PYGZhy{}4.173 1.16447
-\PYGZhy{}13.537 2.321 \PYGZhy{}4.21 0.92417
-\PYGZhy{}14.687 2.339 \PYGZhy{}4.24 0.779
-\PYGZhy{}15.607 2.353 \PYGZhy{}4.262 0.68315
-\PYGZhy{}16.375 2.364 \PYGZhy{}4.279 0.6152
-\PYGZhy{}17.036 2.372 \PYGZhy{}4.291 0.56424
-\PYGZhy{}17.615 2.378 \PYGZhy{}4.3 0.52435
-\PYGZhy{}18.129 2.382 \PYGZhy{}4.307 0.49208
-\PYGZhy{}18.589 2.386 \PYGZhy{}4.313 0.46532
+\PYGZhy{}9.922 2.045 \PYGZhy{}4.066 1.71663
+\PYGZhy{}12.34 2.084 \PYGZhy{}4.109 1.3084
+\PYGZhy{}13.963 2.106 \PYGZhy{}4.131 1.11614
+\PYGZhy{}15.216 2.119 \PYGZhy{}4.144 0.99522
+\PYGZhy{}16.242 2.127 \PYGZhy{}4.15 0.90891
+\PYGZhy{}17.11 2.133 \PYGZhy{}4.154 0.84295
+\PYGZhy{}17.859 2.137 \PYGZhy{}4.156 0.79043
+\PYGZhy{}18.516 2.14 \PYGZhy{}4.157 0.74747
+\PYGZhy{}19.099 2.143 \PYGZhy{}4.158 0.71167
+\PYGZhy{}19.619 2.145 \PYGZhy{}4.158 0.6814
 \end{sphinxVerbatim}
-
-\sphinxAtStartPar
-The problems with finding the minimum of multivariable functions are well known:
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-There may be local minima, and therefore it may be difficult to find the global minimum (see example above with a function with two minima).
-
-\item {} 
-\sphinxAtStartPar
-The minimum can be at infinity (that is, it does not exist mathematically).
-
-\item {} 
-\sphinxAtStartPar
-The function around the minimum can be very flat, so the gradient is very small, and the update is extremely slow.
-
-\item {} 
-\sphinxAtStartPar
-Numerical accuracy can be a problem.
-
-\end{itemize}
-
-\sphinxAtStartPar
-Overall, numerical minimization of functions is an art!
 
 
 \section{Backprop algorithm}
 \label{\detokenize{docs/backprop:backprop-algorithm}}
 \sphinxAtStartPar
-The material of this section is absolutely \sphinxstylestrong{crucial} to understanding this very important idea of training neural networks. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there will be derivations and formulas with rich notation. However, this cannot be presented more simply than below, with the necessary accuracy.
+The material of this section is absolutely \sphinxstylestrong{crucial} for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.
 
 \sphinxAtStartPar
-In the example above, we knew in advance with what recipe we were generating points, so in this fortunate and rare situation, we were able to determine the weights exactly by simple reasoning. In general, this is not the case. As for the single neuron in the previous lecture, we want to train our network on the training sample. The difference is that now there are two layers (apart from the input) and two sets of weights: between the input and the middle layer and between the middle layer and the output.
-
-\sphinxAtStartPar
-The method we derive step by step here, which is the famous \sphinxstylestrong{back propagation algorithm (backprop)} {[}Arthur E. Bryson, Yu\sphinxhyphen{}Chi Ho, 1969{]} for updating the weights of a multi\sphinxhyphen{}layer network, uses two elements:
+The formulas we derive step by step here constitute the famous \sphinxstylestrong{back propagation algorithm (backprop)} {[}\hyperlink{cite.docs/conclusion:id12}{BH69}{]} for updating the weights of a multi\sphinxhyphen{}layer network. It uses just two ingredients:
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -2799,24 +2849,9 @@ the \sphinxstylestrong{chain rule} for computing the derivative of a composite f
 
 \end{itemize}
 
-\begin{sphinxadmonition}{note}{Chain rule}
-
 \sphinxAtStartPar
-For a composite function
-
-\sphinxAtStartPar
-\([f(g(x))]' = f'(g(x)) g'(x)\).
-
-\sphinxAtStartPar
-For a composition of more functions \([f(g(h(x)))]' = f'(g(h(x))) \,g'(h(x)) \,h'(x)\), etc.
-\end{sphinxadmonition}
-
-\sphinxAtStartPar
-We now move on to formulating the back propagation algorithm for a perceptron with any number of neuron layers, \(l\), and any number of \(n_l\) neurons in the output layer. This generalization is conceptually very simple and is based on the same reasoning as for the case of single neuron presented earlier, involving the chain rule and the steepest descent. On the other hand, the notation becomes quite cumbersome, which can make the material seem difficult.
-
-\sphinxAtStartPar
-The neurons in intermediate layers \(j=1,\dots,l-1\) are numbered with corresponding indices \(\alpha_j=0,\dots,n_j\), with 0 indicating the bias node. In the output layer, having no bias node, the numbering is \(\alpha_l=1,\dots,n_l\).
-The error function introduced earlier is a sum over the points of the training sample and over the nodes in the otput layer:
+We formulate the backprop algorithm for a perceptron with any number of neuron layers, \(l\). The neurons in intermediate layers \(j=1,\dots,l-1\) are numbered with corresponding indices \(\alpha_j=0,\dots,n_j\), with 0 indicating the bias node. In the output layer, having no bias node, the numbering is \(\alpha_l=1,\dots,n_l\).
+The error function, as introduced earlier, is a sum over the points of the training sample and, additionally, over the nodes in the output layer:
 \begin{equation*}
 \begin{split}
 E(\{w\})=\sum_p \sum_{\alpha_l=1}^{n_l} \left[ y_{o,{\alpha_l}}^{(p)}(\{w\})-y_{t,{\alpha_l}}^{(p)}\right]^2,
@@ -2884,7 +2919,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
  \right)  w_{\alpha_{l-1} {\alpha_l}}^{l} + x_0^{l-1} w_{0 {\alpha_l}}^{l} \right)-y_{t,{\alpha_l}} \right)^2\)
 
 \sphinxAtStartPar
-Calculating successive derivatives with respect to the weights, and going backwards, i.e. from \(j=l\) down to 1, we get (the evaluation requires dilligence and noticing the emerging regularity)
+Calculating successive derivatives with respect to the weights, and going backwards, i.e. from \(j=l\) down to 1, we get (the evaluation requires diligence and noticing the emerging regularity)
 \begin{equation*}
 \begin{split}
 \frac{\partial e}{\partial w^j_{\alpha_{j-1} \alpha_j}} = x_{\alpha_{j-1}}^{j-1} D_{\alpha_j}^{j} , \;\;\; \alpha_{j-1}=0,\dots,n_{j-1}, \;\; \alpha_{j}=1,\dots,n_{j},
@@ -2900,7 +2935,7 @@ where
 \(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\).
 
 \sphinxAtStartPar
-The last expression is a recurrence going backward. We note that to obtain \(D^j\), we need \(D^{j+1}\), which we have already obtained in the previos step, as well as the signal \(s^j\), which we know from the outset, as we first carry out the feed forward propagation. This provides a simplification in the evaluation of derivatives and updating the weights.
+The last expression is a recurrence going backward. We note that to obtain \(D^j\), we need \(D^{j+1}\), which we have already obtained in the previous step, as well as the signal \(s^j\), which we know from the feed\sphinxhyphen{}forward stage. This recurrence provides a simplification in the evaluation of derivatives and updating the weights.
 
 \sphinxAtStartPar
 With the steepest descent prescription, the weights are updated as
@@ -2908,7 +2943,7 @@ With the steepest descent prescription, the weights are updated as
 \begin{split} w^j_{\alpha_{j-1} \alpha_j} \to  w^j_{\alpha_{j-1} \alpha_j} -\varepsilon x_{\alpha_{j-1}}^{j-1} D_{\alpha_j}^{j}, \end{split}
 \end{equation*}
 \sphinxAtStartPar
-For the case of sigmoid we can use
+For the case of the sigmoid we can use
 \begin{equation*}
 \begin{split}
 \sigma'(s_A^{(i)})=\sigma'(s_A^{(i)}) (1-\sigma'(s_A^{(i)})) =x_A^{(i)}(1-x_A^{(i)}).
@@ -2931,7 +2966,7 @@ the chain rule in evaluation of derivatives.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-If activation functions are diferent in various layers (denote them with \(f_j\) for layer \(j\)), then there is an obvious modification:
+If activation functions are different in various layers (denote them with \(f_j\) for layer \(j\)), then there is an obvious modification:
 
 \sphinxAtStartPar
 \(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})\),
@@ -2943,7 +2978,7 @@ If activation functions are diferent in various layers (denote them with \(f_j\)
 \subsection{Code for backprop}
 \label{\detokenize{docs/backprop:code-for-backprop}}
 \sphinxAtStartPar
-Now we present a code that implements our algorithm for networks with any number of layers and any number of neurons in the output layer. The previous one was for a single intermediate layer and one output neuron. It is simpy a programmatic implementation of the formulas derived above. In the code, we keep the notation from the above derivation.
+Next, we present a simple code that carries out the backprop algorithm. It is a straightforward implementation of the formulas derived above. In the code, we keep as much as we can the notation from the above derivation.
 
 \sphinxAtStartPar
 The code has 12 lines only, not counting the comments!
@@ -2988,17 +3023,16 @@ We illustrate the code on the example of a binary classifier of points inside a 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{cir}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{x1}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} coordinate 1}
-    \PYG{n}{x2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} coordinate 2}
-    \PYG{k}{if}\PYG{p}{(}\PYG{p}{(}\PYG{n}{x1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{x2}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{0.4}\PYG{o}{*}\PYG{l+m+mf}{0.4}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} inside the circle of radius 0.4}
-                                            \PYG{c+c1}{\PYGZsh{} centered at (0.5,0.5)}
+    \PYG{n}{x1}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}                  \PYG{c+c1}{\PYGZsh{} coordinate 1}
+    \PYG{n}{x2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}                  \PYG{c+c1}{\PYGZsh{} coordinate 2}
+    \PYG{k}{if}\PYG{p}{(}\PYG{p}{(}\PYG{n}{x1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{x2}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{0.4}\PYG{o}{*}\PYG{l+m+mf}{0.4}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} inside circle, radius 0.4, center (0.5,0.5)}
         \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
-    \PYG{k}{else}\PYG{p}{:}                                              \PYG{c+c1}{\PYGZsh{} outside}
+    \PYG{k}{else}\PYG{p}{:}                                  \PYG{c+c1}{\PYGZsh{} outside}
         \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-For future generality \sphinxstylestrong{(new convention)}, we split the sample into an array of features and labels:
+For future generality \sphinxstylestrong{(new convention)}, we split the sample into an array of \sphinxstylestrong{features} and \sphinxstylestrong{labels}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{sample\PYGZus{}c}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{cir}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3000}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} sample}
@@ -3020,7 +3054,7 @@ For future generality \sphinxstylestrong{(new convention)}, we split the sample 
 \noindent\sphinxincludegraphics{{backprop_53_0}.png}
 
 \sphinxAtStartPar
-We take the following architecture and initial parameters:
+We choose the following architecture and initial parameters:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{arch\PYGZus{}c}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}                  \PYG{c+c1}{\PYGZsh{} architecture}
@@ -3086,7 +3120,7 @@ The trained network looks like this:
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-It is fascinating that we have trained the network to recognize if a point is in a circle, and it has no concept whatsoever of geometry, Euclidean distance, equation of the circle, etc. The network just learned “empirically” how to proceed on a training sample!
+It is fascinating that we have trained the network to recognize if a point is in a circle, and it has no concept whatsoever of geometry, Euclidean distance, equation of the circle, etc. The network has just learned “empirically” how to proceed, using a training sample!
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{note}{Note:}
@@ -3097,7 +3131,7 @@ The result in the plot is very good, perhaps except, as always, near the boundar
 \begin{sphinxadmonition}{note}{Local minima}
 
 \sphinxAtStartPar
-We have mentioned before the emergence of local minima in multivariable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of weights, whereas the results on the test sample are equally good for each case. This shows that the backprop optimization end up, as anticipated, in a local minimum. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local mnima, but it does not matter!
+We have mentioned before the emergence of local minima in multi\sphinxhyphen{}variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not matter!
 \end{sphinxadmonition}
 
 \noindent\sphinxincludegraphics{{backprop_64_0}.png}
@@ -3106,17 +3140,17 @@ We have mentioned before the emergence of local minima in multivariable optimiza
 \section{General remarks}
 \label{\detokenize{docs/backprop:general-remarks}}
 \sphinxAtStartPar
-There are some more important nad general observations:
+There are some more important and general observations:
 
 \begin{sphinxadmonition}{note}{Note:}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi\sphinxhyphen{}parameter optimization takes very many function calls (here \sphinxstylestrong{feed\sphinxhyphen{}forward}), but the usage on a point involves just one function call.
+Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi\sphinxhyphen{}parameter optimization takes very many function calls (here \sphinxstylestrong{feed\sphinxhyphen{}forward}) and evaluations of derivatives, but the usage on a point involves just one function call.
 
 \item {} 
 \sphinxAtStartPar
 The classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to trained more for improvement, and/or increase the
-size of the training sample.
+size of the training sample, in particular near the boundary.
 
 \item {} 
 \sphinxAtStartPar
@@ -3124,45 +3158,48 @@ However, a too long learning on the same training sample does not actually make 
 
 \item {} 
 \sphinxAtStartPar
-Local minima occur in bckprop, but this is by no means an obstacle to the use of the backprop algorithm. This is an important practical feature.
+Local minima occur in backprop, but this is by no means an obstacle to the use of the algorithm. This is an important practical feature.
 
 \item {} 
 \sphinxAtStartPar
-Various improvements of the steepest descent method, or altogether different minimization methods may be used (see homework). They can largely increase the efficiency of the algorithm.
+Various improvements of the steepest descent method, or altogether different minimization methods may be used (see exercises). They can largely increase the efficiency of the algorithm.
 
 \item {} 
 \sphinxAtStartPar
-When going backwards with updating the weights in subsequent layers, one may introduce an increamnet factor (see homework below). This helps with performance.
+When going backwards with updating the weights in subsequent layers, one may introduce an increasing factor (see exercises). This helps with performance.
 
 \item {} 
 \sphinxAtStartPar
-Finally, different activation functions may be used to improve performance (see the following).
+Finally, different activation functions may be used to improve performance (see the following lectures).
 
 \end{itemize}
 \end{sphinxadmonition}
 
-\begin{sphinxadmonition}{note}{Exercises}
+
+\section{Exercises}
+\label{\detokenize{docs/backprop:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Prove (analytically) by taking the derivative that \( \sigma '(s) = \sigma (s) [1- \sigma (s)]\). Show that the sigmoid is the only function with this property.
+Prove (analytically) by evaluating the derivative that \( \sigma '(s) = \sigma (s) [1- \sigma (s)]\). Show that the sigmoid is the \sphinxstylestrong{only} function with this property.
 
 \item {} 
 \sphinxAtStartPar
-Modify the lecture example of the classifier of points in a circle by replacing the figure into
+Modify the lecture example of the classifier of points in a circle by replacing the figure with
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-semicircle,
+semicircle;
 
 \item {} 
 \sphinxAtStartPar
-two circles,
+two disjoint circles;
 
 \item {} 
 \sphinxAtStartPar
-ring, or
+ring;
 
 \item {} 
 \sphinxAtStartPar
@@ -3172,21 +3209,21 @@ any of your favorite shapes.
 
 \item {} 
 \sphinxAtStartPar
-Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fractin of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.
+Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.
 
 \item {} 
 \sphinxAtStartPar
-If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its \sphinxstylestrong{weak} connections, setting the coresponding weight to 0. Test this demaged network on a test sample and draw conclusions.
+If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its \sphinxstylestrong{weak} connections, setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.
 
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Scaling weights in back propagation.}
 A disadvantage of using the sigmoid in the back propagation algorithm is a very slow updating of weights in layers distant from the output layer (the closer to the beginning of the network, the slower it is). A remedy here is a re\sphinxhyphen{}scaling the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form \( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \) to the update rate, where \( y \) is in the range \( (0, 1) \). Thus the value of \( y (1-y \) cannot exceed 1/4, so in the following layers (counting from the back) the product \( [y (1-y] ^ n \le 1/4 ^ n\).
-To prevent this “shrinking”, the learning rate can be multiplied by \( 4 ^ n \): \( 4, 16, 64, 256, ... \). Another heuristic argument {[}Rigler, Irvine, \& Vogl, 1989{]} suggests even faster growing factors of the form \( 6 ^ n \): \( 6, 36, 216, 1296, ... \)
+To prevent this “shrinking”, the learning rate can be multiplied by \( 4 ^ n \): \( 4, 16, 64, 256, ... \).  Another heuristic argument {[}\hyperlink{cite.docs/conclusion:id13}{RIV91}{]} suggests even faster growing factors of the form \( 6 ^ n \): \( 6, 36, 216, 1296, ... \)
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Enter the above recipes into the code for backpropagation.
+Enter the above recipes into the code for backprop.
 
 \item {} 
 \sphinxAtStartPar
@@ -5723,6 +5760,9 @@ lib\PYGZus{}nn
 \bibitem[Bar16]{docs/conclusion:id5}
 \sphinxAtStartPar
 P. Barry. \sphinxstyleemphasis{Head First Python: A Brain\sphinxhyphen{}Friendly Guide}. O'Reilly Media, 2016. ISBN 9781491919491. URL: \sphinxurl{https://books.google.pl/books?id=NIqNDQAAQBAJ}.
+\bibitem[BH69]{docs/conclusion:id12}
+\sphinxAtStartPar
+A. E. Bryson and Y.\sphinxhyphen{}C. Ho. \sphinxstyleemphasis{Applied optimal control: Optimization, estimation, and control}. Waltham, Mass: Blaisdell Pub. Co., 1969.
 \bibitem[FR13]{docs/conclusion:id8}
 \sphinxAtStartPar
 J. Feldman and R. Rojas. \sphinxstyleemphasis{Neural Networks: A Systematic Introduction}. Springer Berlin Heidelberg, 2013. ISBN 9783642610684.
@@ -5747,6 +5787,9 @@ Warren S. McCulloch and Walter Pitts. The logical calculus of the ideas immanen
 \bibitem[MullerRS12]{docs/conclusion:id7}
 \sphinxAtStartPar
 B. Müller, J. Reinhardt, and M.T. Strickland. \sphinxstyleemphasis{Neural Networks: An Introduction}. Physics of Neural Networks. Springer Berlin Heidelberg, 2012. ISBN 9783642577604. URL: \sphinxurl{https://books.google.pl/books?id=on0QBwAAQBAJ}.
+\bibitem[RIV91]{docs/conclusion:id13}
+\sphinxAtStartPar
+A. K. Rigler, J. M. Irvine, and Thomas P. Vogl. Rescaling of variables in back propagation learning. \sphinxstyleemphasis{Neural Networks}, 4(2):225–229, 1991. URL: \sphinxurl{https://doi.org/10.1016/0893-6080(91)90006-Q}, \sphinxhref{https://doi.org/10.1016/0893-6080(91)90006-Q}{doi:10.1016/0893\sphinxhyphen{}6080(91)90006\sphinxhyphen{}Q}.
 \end{sphinxthebibliography}
 
 

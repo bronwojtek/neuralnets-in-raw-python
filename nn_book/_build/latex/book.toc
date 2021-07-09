@@ -38,14 +38,16 @@
 \contentsline {section}{\numberline {5.3}Feeding forward in Python}{41}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Visualization}{45}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Classifier with three neuron layers}{45}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Exercises}{48}{section.5.6}%
 \contentsline {chapter}{\numberline {6}Back propagation}{49}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Minimizing the error}{49}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Continuous activation function}{51}{section.6.2}%
+\contentsline {section}{\numberline {6.2}Continuous activation function}{52}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Steepest descent}{55}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Backprop algorithm}{57}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}Code for backprop}{59}{subsection.6.4.1}%
 \contentsline {section}{\numberline {6.5}Example with the circle}{60}{section.6.5}%
 \contentsline {section}{\numberline {6.6}General remarks}{63}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Exercises}{63}{section.6.7}%
 \contentsline {chapter}{\numberline {7}Interpolation}{65}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Simulated data}{65}{section.7.1}%
 \contentsline {section}{\numberline {7.2}ANNs for interpolation}{66}{section.7.2}%
