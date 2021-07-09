@@ -666,7 +666,7 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
 </div>
 </div>
 <div class="section" id="backprop-algorithm">
-<h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
+<span id="bpa-lab"></span><h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The material of this section is absolutely <strong>crucial</strong> for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.</p>
 <p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12">BH69</a>]</span> for updating the weights of a multi-layer network. It uses just two ingredients:</p>
 <ul class="simple">
@@ -827,7 +827,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_53_0.png" src="../_images/backprop_53_0.png" />
+<img alt="../_images/backprop_54_0.png" src="../_images/backprop_54_0.png" />
 </div>
 </div>
 <p>We choose the following architecture and initial parameters:</p>
@@ -888,7 +888,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_59_0.png" src="../_images/backprop_59_0.png" />
+<img alt="../_images/backprop_60_0.png" src="../_images/backprop_60_0.png" />
 </div>
 </div>
 <p>The trained network looks like this:</p>
@@ -899,7 +899,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_61_0.png" src="../_images/backprop_61_0.png" />
+<img alt="../_images/backprop_62_0.png" src="../_images/backprop_62_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -916,7 +916,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_64_0.png" src="../_images/backprop_64_0.png" />
+<img alt="../_images/backprop_65_0.png" src="../_images/backprop_65_0.png" />
 </div>
 </div>
 </div>
@@ -954,16 +954,16 @@ size of the training sample, in particular near the boundary.</p></li>
 <li><p>Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.</p></li>
 <li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its <strong>weak</strong> connections, setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.</p></li>
 <li><p><strong>Scaling weights in back propagation.</strong>
-A disadvantage of using the sigmoid in the back propagation algorithm is a very slow updating of weights in layers distant from the output layer (the closer to the beginning of the network, the slower it is). A remedy here is a re-scaling the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \)</span> to the update rate, where <span class="math notranslate nohighlight">\( y \)</span> is in the range <span class="math notranslate nohighlight">\( (0, 1) \)</span>. Thus the value of <span class="math notranslate nohighlight">\( y (1-y \)</span> cannot exceed 1/4, so in the following layers (counting from the back) the product <span class="math notranslate nohighlight">\( [y (1-y] ^ n \le 1/4 ^ n\)</span>.
-To prevent this “shrinking”, the learning rate can be multiplied by <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
+A disadvantage of using the sigmoid in the backprop algorithm is a very slow update of weights in layers distant from the output layer (the closer to the beginning of the network, the slower). A remedy here is a re-scaling of the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \)</span> to the update rate, where <span class="math notranslate nohighlight">\( y \)</span> is in the range <span class="math notranslate nohighlight">\( (0, 1) \)</span>. Thus the value of <span class="math notranslate nohighlight">\( y (1-y \)</span> cannot exceed 1/4, and in the subsequent layers (counting from the back) the product <span class="math notranslate nohighlight">\( [y (1-y] ^ n \le 1/4 ^ n\)</span>.
+To prevent this “shrinking”, the learning rate can be multiplied by compensating factors <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
 <ul class="simple">
 <li><p>Enter the above recipes into the code for backprop.</p></li>
-<li><p>Check if they improve the algorithm performance for the deeper networks used, e.g. circle point classifier, etc.</p></li>
+<li><p>Check if they improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.</p></li>
 <li><p>For assessment of performance, carry out the execution time measurement (e.g., using the Python <strong>time</strong> library packet).</p></li>
 </ul>
 </li>
 <li><p><strong>Steepest descent improvement.</strong>
-The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a better convergence to the (local) minimum. One of them is the recipe of <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent">Barzilai-Borwein</a> explained below. Implement this method in the back propagation algorithm. Vectors <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(n\)</span>-dimensional space are updated in subsequent iterations as <span class="math notranslate nohighlight">\( x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})\)</span>,
+The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent">Barzilai-Borwein</a> explained below. Implement this method in the back propagation algorithm. Vectors <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(n\)</span>-dimensional space are updated in subsequent iterations as <span class="math notranslate nohighlight">\( x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})\)</span>,
 where <span class="math notranslate nohighlight">\(m\)</span> numbers the iteration, and the speed of learning depends on the behavior at the two (current and previous) points:</p></li>
 </ol>
 <div class="math notranslate nohighlight">

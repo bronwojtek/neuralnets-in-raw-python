@@ -433,6 +433,7 @@ for r in range(1000):         # rounds
               np.round(error(w0_o, w0_o*v1_o, w0_o*v2_o, samp2, func.sig),5))                                          
 
 
+# (bpa-lab)=
 # ## Backprop algorithm
 
 # The material of this section is absolutely **crucial** for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.
@@ -537,8 +538,7 @@ for r in range(1000):         # rounds
 # ```
 # 
 # If activation functions are different in various layers (denote them with $f_j$ for layer $j$), then there is an obvious modification:
-# 
-# 
+
 # $D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})$, 
 # 
 # $D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1$. 
@@ -754,17 +754,17 @@ Image(filename="images/cir1-3.png",width=800)
 # 
 # 
 # 5. **Scaling weights in back propagation.**
-# A disadvantage of using the sigmoid in the back propagation algorithm is a very slow updating of weights in layers distant from the output layer (the closer to the beginning of the network, the slower it is). A remedy here is a re-scaling the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form $ \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) $ to the update rate, where $ y $ is in the range $ (0, 1) $. Thus the value of $ y (1-y $ cannot exceed 1/4, so in the following layers (counting from the back) the product $ [y (1-y] ^ n \le 1/4 ^ n$. 
-# To prevent this "shrinking", the learning rate can be multiplied by $ 4 ^ n $: $ 4, 16, 64, 256, ... $.  Another heuristic argument {cite}`rigler1991` suggests even faster growing factors of the form $ 6 ^ n $: $ 6, 36, 216, 1296, ... $
+# A disadvantage of using the sigmoid in the backprop algorithm is a very slow update of weights in layers distant from the output layer (the closer to the beginning of the network, the slower). A remedy here is a re-scaling of the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form $ \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) $ to the update rate, where $ y $ is in the range $ (0, 1) $. Thus the value of $ y (1-y $ cannot exceed 1/4, and in the subsequent layers (counting from the back) the product $ [y (1-y] ^ n \le 1/4 ^ n$. 
+# To prevent this "shrinking", the learning rate can be multiplied by compensating factors $ 4 ^ n $: $ 4, 16, 64, 256, ... $.  Another heuristic argument {cite}`rigler1991` suggests even faster growing factors of the form $ 6 ^ n $: $ 6, 36, 216, 1296, ... $
 # 
 #     - Enter the above recipes into the code for backprop.
 # 
-#     - Check if they improve the algorithm performance for the deeper networks used, e.g. circle point classifier, etc.
+#     - Check if they improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.
 # 
 #     - For assessment of performance, carry out the execution time measurement (e.g., using the Python **time** library packet).
 # 
 # 6. **Steepest descent improvement.**
-# The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a better convergence to the (local) minimum. One of them is the recipe of [Barzilai-Borwein](https://en.wikipedia.org/wiki/Gradient_descent) explained below. Implement this method in the back propagation algorithm. Vectors $x$ in $n$-dimensional space are updated in subsequent iterations as $ x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})$,
+# The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of [Barzilai-Borwein](https://en.wikipedia.org/wiki/Gradient_descent) explained below. Implement this method in the back propagation algorithm. Vectors $x$ in $n$-dimensional space are updated in subsequent iterations as $ x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})$,
 # where $m$ numbers the iteration, and the speed of learning depends on the behavior at the two (current and previous) points:
 # 
 # $$ \gamma _ {m} = \frac {\left | \left (x^{(m)}-x^{(m-1)} \right) \cdot

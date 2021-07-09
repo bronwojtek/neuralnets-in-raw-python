@@ -52,7 +52,7 @@
 \contentsline {section}{\numberline {7.1}Simulated data}{65}{section.7.1}%
 \contentsline {section}{\numberline {7.2}ANNs for interpolation}{66}{section.7.2}%
 \contentsline {subsection}{\numberline {7.2.1}Backprop for one\sphinxhyphen {}dimensional functions}{68}{subsection.7.2.1}%
-\contentsline {section}{\numberline {7.3}Remarks}{69}{section.7.3}%
+\contentsline {section}{\numberline {7.3}Exercises}{70}{section.7.3}%
 \contentsline {chapter}{\numberline {8}Rectification}{71}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Interpolation with ReLU}{72}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Classifiers with rectification}{73}{section.8.2}%
