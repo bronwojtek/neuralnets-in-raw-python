@@ -3,7 +3,7 @@
 
 # # Rectification
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -19,7 +19,7 @@ sys.path.append('./lib_nn')
 from neural import * # import my library package
 
 
-# In[2]:
+# In[3]:
 
 
 def fi(x):
@@ -31,7 +31,7 @@ def data():
     return [x,y]
 
 
-# In[3]:
+# In[4]:
 
 
 tab=np.array([data() for i in range(200)])    # data sample
@@ -39,24 +39,24 @@ features=np.delete(tab,1,1)                   # x coordinate
 labels=np.delete(tab,0,1)                     # y coordinate
 
 
-# In the previous chapter we have made a hump function from two sigmoids, we may now ask a question: can we make a sigmoid  as a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the **Rectified Linear Unit (ReLU)** function 
+# In the previous chapter we have made a hump function from two sigmoids that would form a basis function for approximation. We may now ask a follow-up question: can we make the sigmoid itself a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the **Rectified Linear Unit (ReLU)** function 
 # 
 # $$
 # {\rm ReLU}(x) = \left \{ \begin{array}{l} x {\rm ~~~ for~} x \ge 0 \\
 #                                           0 {\rm ~~~ for~} x < 0 \end{array}    \right . = {\rm max}(x,0)
 # $$
 # 
-# does (approximately) the job. The a bit ackward name comes from electonics, where such a unit is used to cut out the negative values of an electric signal. Rectification means "straightening up". The plot of ReLU looks as follows:   
+# does (approximately) the job. The a bit awkward name comes from electonics, where such a unit is used to cut off negative values of an electric signal. Rectification means "straightening up". The plot of ReLU looks as follows:   
 
-# In[4]:
+# In[5]:
 
 
 draw.plot(func.relu,title='ReLU');
 
 
-# Taking a difference of two ReLU functions with shifted arguments yield, for example, 
+# Taking a difference of two ReLU functions with shifted arguments yields, for example, 
 
-# In[5]:
+# In[6]:
 
 
 plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -70,22 +70,22 @@ plt.xlabel('z',fontsize=11)
 plt.ylabel('ReLU(z)-ReLU(z-3)',fontsize=11);
 
 
-# which looks pretty much as a sigmoid, apart for the sharp corners. One can make things smooth by taking a different function, the **softplus**,
+# which looks pretty much as a sigmoid, apart from the sharp corners. One can make things smooth by taking a different function, the **softplus**,
 # 
 # $$
 # {\rm softplus}(x)=\log \left( 1+e^x \right ),
 # $$
 # which looks as 
 
-# In[6]:
+# In[7]:
 
 
 draw.plot(func.softplus,title='softlus',start=-10,stop=10);
 
 
-# A difference of two softplus functions yields a result very similar to the sigmoid. 
+# A difference of two **softplus** functions yields a result very similar to the sigmoid. 
 
-# In[7]:
+# In[8]:
 
 
 plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -99,20 +99,24 @@ plt.xlabel('z',fontsize=11)
 plt.ylabel('softplus(z)-softplus(z-3)',fontsize=10);
 
 
-# One may then use the ReLU of softplus, or a plethora of other similar functions, for the activation. Why one should actually do this will be dicussed later. 
+# ```{note}
+# One may use the ReLU of softplus, or a plethora of other similar functions, for the activation. 
+# ```
+# 
+# Why one should actually do this will be dicussed later. 
 
 # ## Interpolation with ReLU
 
-# We will now approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and a linear function is the output layer, as above). The fuctions are taken from the module **func**.
+# We will now approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and the identity function is the output layer, as in the previous section). The functions are taken from the module **func**.
 
-# In[8]:
+# In[10]:
 
 
-fff=func.relu
+fff=func.relu    # short-hand notation
 dfff=func.drelu
 
 
-# The network must now have more neurons:
+# The network must now have more neurons, as the sigmoid "splits" into two ReLU functions:
 
 # In[9]:
 
@@ -120,6 +124,8 @@ dfff=func.drelu
 arch=[1,30,1]                   # architecture
 weights=func.set_ran_w(arch, 5) # initialize weights randomly in [-2.5,2.5]
 
+
+# We carry the simulations exactly as in the previous case:
 
 # In[10]:
 
@@ -141,6 +147,8 @@ for k in range(600): # rounds
         func.back_prop_o(features,labels,p,arch,weights,eps,
                          f=fff,df=dfff,fo=func.lin,dfo=func.dlin) # teaching
 
+
+# with the result
 
 # In[14]:
 
@@ -166,15 +174,17 @@ plt.xlabel('$x$',fontsize=11)
 plt.ylabel('$y$',fontsize=11);
 
 
-# We note again a quite safisfactory result, noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the feature of the ReLU activation function.
+# We obtain again a quite satisfactory result, noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the features of the ReLU activation function.
 
 # ##  Classifiers with rectification
 
-# There are technical reasons in favor of using [rectified functions](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) rather than sigmoid-like ones in backprop. The derivatives of sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as the small numbers multiply (this is known as the **vanishing gradient problem**). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type. 
+# There are technical reasons in favor of using [rectified functions](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) rather than sigmoid-like ones in backprop. The derivatives of the sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as the small numbers multiply (this is known as the **vanishing gradient problem**). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type. 
+# 
+# ```{note}
 # Application of rectified activation functions was one of the key tricks that allowed a breakthrough in deep ANNs in 2011.
+# ```
 # 
-# On the other hand, with ReLU it may happen that weights are set into such values that many neurons become inactive, i.e. never fire for any input, and so are effectively eliminated. This is known as the "dead neuron" probem, which arises especially when the learning speed parameter is too high. A way to reduce the problem is to use an activation function which does not have a range with zero derivative, such as the [leaky ReLU](https://en.wikipedia.org/wiki/Activation_function). Here we take it in the form 
-# 
+# On the other hand, with ReLU it may happen that some weights are set to such values that many neurons become inactive, i.e. never fire for any input, and so are effectively eliminated. This is known as the "dead neuron" or "dead body" problem, which arises especially when the learning speed parameter is too high. A way to reduce the problem is to use an activation function which does not have at all a range with zero derivative, such as the [Leaky ReLU](https://en.wikipedia.org/wiki/Activation_function). Here we take it in the form 
 # 
 # $$
 # {\rm Leaky~ReLU}(x) = \left \{ \begin{array}{ll} x &{\rm ~~~ for~} x \ge 0 \\
@@ -183,7 +193,7 @@ plt.ylabel('$y$',fontsize=11);
 # 
 # 
 
-# Next, we repeat our example with the classification of points in the circle.
+# For illustration, we repeat our example from section {ref}`circ-lab` with the classification of points in the circle with Leaky ReLU.
 
 # In[15]:
 
@@ -219,7 +229,7 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
-# We take the following architecture and initial parameters,
+# We take the following architecture and initial parameters:
 
 # In[18]:
 
@@ -229,31 +239,33 @@ weights=func.set_ran_w(arch_c,3)  # scaled random initial weights
 eps=.01                           # initial learning speed 
 
 
-# and run the algorithm in two stages: with leaky ReLu, and then with ReLU.  
+# and run the algorithm in two stages: with Leaky ReLU, and then with ReLU.  
 
 # In[19]:
 
 
 for k in range(300):    # rounds
-    eps=.9999*eps       # decrease learning speed
+    eps=.9999*eps       # decrease the learning speed
     if k%100==99: print(k+1,' ',end='')             # print progress        
     for p in range(len(features_c)):                # loop over points
         func.back_prop_o(features_c,labels_c,p,arch_c,weights,eps,
-            f=func.lrelu,df=func.dlrelu,fo=func.sig,dfo=func.dsig) # backprop
+            f=func.lrelu,df=func.dlrelu,fo=func.sig,dfo=func.dsig) 
+                    # backprop with leaky ReLU
 
 
 # In[20]:
 
 
 for k in range(700):    # rounds
-    eps=.9999*eps       # decrease learning speed
+    eps=.9999*eps       # decrease the learning speed
     if k%100==99: print(k+1,' ',end='')             # print progress        
     for p in range(len(features_c)):                # loop over points
         func.back_prop_o(features_c,labels_c,p,arch_c,weights,eps,
-            f=func.relu,df=func.drelu,fo=func.sig,dfo=func.dsig) # backprop
+            f=func.relu,df=func.drelu,fo=func.sig,dfo=func.dsig) 
+                    # backprop with ReLU
 
 
-# The result is quite satistactory, showing that the method works. With the present architecture, not surprisingly, we can notice below a polygon approxiating the cirle. 
+# The result is quite satisfactory, showing that the method works. With the present architecture and activation functions, not surprisingly, in the plot below we can notice a polygon approximating the circle. 
 
 # In[21]:
 
@@ -283,16 +295,13 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);
 
 
-# ## General remarks on backprop
+# ## Exercises
 
-# Conclude here our discussion of the supervised learning and the back proparation, we provide a number of remarks nd hints. First, in programmers life, bulding a well-functioning ANN, even for simple problems as used for illustrations up to now, can be a frustrating eperience! ...
-# 
-# Initial conditions for minimization, basen of convergence, learning stategy, improvements of steepest descent ...
-# 
-# Professional libraries, experience verified with success ...
-
-# ```{admonition} Exercises
+# ```{admonition} $~$
 # :class: warning
 # 
-# 1. Use various rectified activation functions for the binary classifiers and test then on various figures (in analogy to the example with the circe above).
+# 1. Use various rectified activation functions for the binary classifiers and test them on various shapes (in analogy to the example with the circle above).
+# 
+# 2. Convince yourself that starting backprop (with ReLU) with too large initial learning speed leads to a "dead neuron" problem and a failure of the algorithm. 
+# 
 # ```

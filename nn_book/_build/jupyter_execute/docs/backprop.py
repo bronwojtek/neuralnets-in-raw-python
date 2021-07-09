@@ -583,6 +583,7 @@ def back_prop(fe,la, p, ar, we, eps,f=func.sig,df=func.dsig):
         we[j]-=eps*np.outer(x[j-1],D[j])      
 
 
+# (circ-lab)=
 # ## Example with the circle
 
 # We illustrate the code on the example of a binary classifier of points inside a circle. 

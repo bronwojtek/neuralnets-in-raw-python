@@ -11,7 +11,7 @@ These lectures were originally given to students of computer engineering at the 
 the [Kraków School of Interdisciplinary PhD Studies](https://kisd.ifj.edu.pl/news/). They explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the code for various algorithms of neural networks is written from absolute scratch, i.e. without any use of dedicated higher-level libraries. That way one can follow all the programming steps in an explicit manner.
 
 ```{important}
-The text is brief (the pdf version has less than 140 pages), so a diligent student can complete he course in a few afternoons!
+The text is brief (the pdf version has less than 140 pages), so a diligent student can complete the course in a few afternoons!
 ```
 
 ```{note}
@@ -28,7 +28,3 @@ The reader may download the complete code in the form of
  ISBN: **978-83-962099-0-0**
 
 ![](images/barcode.gif)
-
-```python
-
-```

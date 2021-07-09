@@ -54,9 +54,9 @@
 \contentsline {subsection}{\numberline {7.2.1}Backprop for one\sphinxhyphen {}dimensional functions}{68}{subsection.7.2.1}%
 \contentsline {section}{\numberline {7.3}Exercises}{70}{section.7.3}%
 \contentsline {chapter}{\numberline {8}Rectification}{71}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Interpolation with ReLU}{72}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Classifiers with rectification}{73}{section.8.2}%
-\contentsline {section}{\numberline {8.3}General remarks on backprop}{74}{section.8.3}%
+\contentsline {section}{\numberline {8.1}Interpolation with ReLU}{73}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Classifiers with rectification}{74}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Exercises}{75}{section.8.3}%
 \contentsline {chapter}{\numberline {9}Unsupervised learning}{77}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Clusters of points}{78}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Voronoi areas}{79}{section.9.2}%

@@ -103,7 +103,7 @@ the \sphinxhref{https://kisd.ifj.edu.pl/news/}{Kraków School of Interdisciplina
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The text is brief (the pdf version has less than 140 pages), so a diligent student can complete he course in a few afternoons!
+The text is brief (the pdf version has less than 140 pages), so a diligent student can complete the course in a few afternoons!
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{note}{Note:}
@@ -124,10 +124,6 @@ ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{
 
 \sphinxAtStartPar
 \sphinxincludegraphics{{barcode}.png}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-
-\end{sphinxVerbatim}
 
 
 \chapter{Introduction}
@@ -3017,7 +3013,7 @@ The code has 12 lines only, not counting the comments!
 
 
 \section{Example with the circle}
-\label{\detokenize{docs/backprop:example-with-the-circle}}
+\label{\detokenize{docs/backprop:example-with-the-circle}}\label{\detokenize{docs/backprop:circ-lab}}
 \sphinxAtStartPar
 We illustrate the code on the example of a binary classifier of points inside a circle.
 
@@ -3476,7 +3472,7 @@ Use a network with more layers (at least 3 neuron layers) to fit the data points
 \chapter{Rectification}
 \label{\detokenize{docs/rectification:rectification}}\label{\detokenize{docs/rectification::doc}}
 \sphinxAtStartPar
-In the previous chapter we have made a hump function from two sigmoids, we may now ask a question: can we make a sigmoid  as a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the \sphinxstylestrong{Rectified Linear Unit (ReLU)} function
+In the previous chapter we have made a hump function from two sigmoids that would form a basis function for approximation. We may now ask a follow\sphinxhyphen{}up question: can we make the sigmoid itself a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the \sphinxstylestrong{Rectified Linear Unit (ReLU)} function
 \begin{equation*}
 \begin{split}
 {\rm ReLU}(x) = \left \{ \begin{array}{l} x {\rm ~~~ for~} x \ge 0 \\
@@ -3484,17 +3480,17 @@ In the previous chapter we have made a hump function from two sigmoids, we may n
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-does (approximately) the job. The a bit ackward name comes from electonics, where such a unit is used to cut out the negative values of an electric signal. Rectification means “straightening up”. The plot of ReLU looks as follows:
+does (approximately) the job. The a bit awkward name comes from electonics, where such a unit is used to cut off negative values of an electric signal. Rectification means “straightening up”. The plot of ReLU looks as follows:
 
 \noindent\sphinxincludegraphics{{rectification_5_0}.png}
 
 \sphinxAtStartPar
-Taking a difference of two ReLU functions with shifted arguments yield, for example,
+Taking a difference of two ReLU functions with shifted arguments yields, for example,
 
 \noindent\sphinxincludegraphics{{rectification_7_0}.png}
 
 \sphinxAtStartPar
-which looks pretty much as a sigmoid, apart for the sharp corners. One can make things smooth by taking a different function, the \sphinxstylestrong{softplus},
+which looks pretty much as a sigmoid, apart from the sharp corners. One can make things smooth by taking a different function, the \sphinxstylestrong{softplus},
 \begin{equation*}
 \begin{split}
 {\rm softplus}(x)=\log \left( 1+e^x \right ),
@@ -3506,31 +3502,39 @@ which looks as
 \noindent\sphinxincludegraphics{{rectification_9_0}.png}
 
 \sphinxAtStartPar
-A difference of two softplus functions yields a result very similar to the sigmoid.
+A difference of two \sphinxstylestrong{softplus} functions yields a result very similar to the sigmoid.
 
 \noindent\sphinxincludegraphics{{rectification_11_0}.png}
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-One may then use the ReLU of softplus, or a plethora of other similar functions, for the activation. Why one should actually do this will be dicussed later.
+One may use the ReLU of softplus, or a plethora of other similar functions, for the activation.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+Why one should actually do this will be dicussed later.
 
 
 \section{Interpolation with ReLU}
 \label{\detokenize{docs/rectification:interpolation-with-relu}}
 \sphinxAtStartPar
-We will now approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and a linear function is the output layer, as above). The fuctions are taken from the module \sphinxstylestrong{func}.
+We will now approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and the identity function is the output layer, as in the previous section). The functions are taken from the module \sphinxstylestrong{func}.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{fff}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{relu}
+\PYG{n}{fff}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{relu}    \PYG{c+c1}{\PYGZsh{} short\PYGZhy{}hand notation}
 \PYG{n}{dfff}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{drelu}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The network must now have more neurons:
+The network must now have more neurons, as the sigmoid “splits” into two ReLU functions:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{arch}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}                   \PYG{c+c1}{\PYGZsh{} architecture}
 \PYG{n}{weights}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{set\PYGZus{}ran\PYGZus{}w}\PYG{p}{(}\PYG{n}{arch}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} initialize weights randomly in [\PYGZhy{}2.5,2.5]}
 \end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We carry the simulations exactly as in the previous case:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.0003}          \PYG{c+c1}{\PYGZsh{} small learning speed}
@@ -3549,20 +3553,27 @@ The network must now have more neurons:
                          \PYG{n}{f}\PYG{o}{=}\PYG{n}{fff}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{dfff}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{lin}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dlin}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} teaching}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{rectification_20_0}.png}
+\sphinxAtStartPar
+with the result
+
+\noindent\sphinxincludegraphics{{rectification_22_0}.png}
 
 \sphinxAtStartPar
-We note again a quite safisfactory result, noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the feature of the ReLU activation function.
+We obtain again a quite satisfactory result, noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the features of the ReLU activation function.
 
 
 \section{Classifiers with rectification}
 \label{\detokenize{docs/rectification:classifiers-with-rectification}}
 \sphinxAtStartPar
-There are technical reasons in favor of using \sphinxhref{https://en.wikipedia.org/wiki/Rectifier\_(neural\_networks)}{rectified functions} rather than sigmoid\sphinxhyphen{}like ones in backprop. The derivatives of sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as the small numbers multiply (this is known as the \sphinxstylestrong{vanishing gradient problem}). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type.
+There are technical reasons in favor of using \sphinxhref{https://en.wikipedia.org/wiki/Rectifier\_(neural\_networks)}{rectified functions} rather than sigmoid\sphinxhyphen{}like ones in backprop. The derivatives of the sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as the small numbers multiply (this is known as the \sphinxstylestrong{vanishing gradient problem}). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
 Application of rectified activation functions was one of the key tricks that allowed a breakthrough in deep ANNs in 2011.
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
-On the other hand, with ReLU it may happen that weights are set into such values that many neurons become inactive, i.e. never fire for any input, and so are effectively eliminated. This is known as the “dead neuron” probem, which arises especially when the learning speed parameter is too high. A way to reduce the problem is to use an activation function which does not have a range with zero derivative, such as the \sphinxhref{https://en.wikipedia.org/wiki/Activation\_function}{leaky ReLU}. Here we take it in the form
+On the other hand, with ReLU it may happen that some weights are set to such values that many neurons become inactive, i.e. never fire for any input, and so are effectively eliminated. This is known as the “dead neuron” or “dead body” problem, which arises especially when the learning speed parameter is too high. A way to reduce the problem is to use an activation function which does not have at all a range with zero derivative, such as the \sphinxhref{https://en.wikipedia.org/wiki/Activation\_function}{Leaky ReLU}. Here we take it in the form
 \begin{equation*}
 \begin{split}
 {\rm Leaky~ReLU}(x) = \left \{ \begin{array}{ll} x &{\rm ~~~ for~} x \ge 0 \\
@@ -3570,10 +3581,10 @@ On the other hand, with ReLU it may happen that weights are set into such values
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-Next, we repeat our example with the classification of points in the circle.
+For illustration, we repeat our example from section {\hyperref[\detokenize{docs/backprop:circ-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Example with the circle}}}} with the classification of points in the circle with Leaky ReLU.
 
 \sphinxAtStartPar
-We take the following architecture and initial parameters,
+We take the following architecture and initial parameters:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{arch\PYGZus{}c}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{20}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}                   \PYG{c+c1}{\PYGZsh{} architecture}
@@ -3582,15 +3593,16 @@ We take the following architecture and initial parameters,
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-and run the algorithm in two stages: with leaky ReLu, and then with ReLU.
+and run the algorithm in two stages: with Leaky ReLU, and then with ReLU.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{300}\PYG{p}{)}\PYG{p}{:}    \PYG{c+c1}{\PYGZsh{} rounds}
-    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.9999}\PYG{o}{*}\PYG{n}{eps}       \PYG{c+c1}{\PYGZsh{} decrease learning speed}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.9999}\PYG{o}{*}\PYG{n}{eps}       \PYG{c+c1}{\PYGZsh{} decrease the learning speed}
     \PYG{k}{if} \PYG{n}{k}\PYG{o}{\PYGZpc{}}\PYG{k}{100}==99: print(k+1,\PYGZsq{} \PYGZsq{},end=\PYGZsq{}\PYGZsq{})             \PYGZsh{} print progress        
     \PYG{k}{for} \PYG{n}{p} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{features\PYGZus{}c}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}                \PYG{c+c1}{\PYGZsh{} loop over points}
         \PYG{n}{func}\PYG{o}{.}\PYG{n}{back\PYGZus{}prop\PYGZus{}o}\PYG{p}{(}\PYG{n}{features\PYGZus{}c}\PYG{p}{,}\PYG{n}{labels\PYGZus{}c}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{arch\PYGZus{}c}\PYG{p}{,}\PYG{n}{weights}\PYG{p}{,}\PYG{n}{eps}\PYG{p}{,}
-            \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{lrelu}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dlrelu}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dsig}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} backprop}
+            \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{lrelu}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dlrelu}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dsig}\PYG{p}{)} 
+                    \PYG{c+c1}{\PYGZsh{} backprop with leaky ReLU}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -3599,11 +3611,12 @@ and run the algorithm in two stages: with leaky ReLu, and then with ReLU.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{700}\PYG{p}{)}\PYG{p}{:}    \PYG{c+c1}{\PYGZsh{} rounds}
-    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.9999}\PYG{o}{*}\PYG{n}{eps}       \PYG{c+c1}{\PYGZsh{} decrease learning speed}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.9999}\PYG{o}{*}\PYG{n}{eps}       \PYG{c+c1}{\PYGZsh{} decrease the learning speed}
     \PYG{k}{if} \PYG{n}{k}\PYG{o}{\PYGZpc{}}\PYG{k}{100}==99: print(k+1,\PYGZsq{} \PYGZsq{},end=\PYGZsq{}\PYGZsq{})             \PYGZsh{} print progress        
     \PYG{k}{for} \PYG{n}{p} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{features\PYGZus{}c}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}                \PYG{c+c1}{\PYGZsh{} loop over points}
         \PYG{n}{func}\PYG{o}{.}\PYG{n}{back\PYGZus{}prop\PYGZus{}o}\PYG{p}{(}\PYG{n}{features\PYGZus{}c}\PYG{p}{,}\PYG{n}{labels\PYGZus{}c}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{arch\PYGZus{}c}\PYG{p}{,}\PYG{n}{weights}\PYG{p}{,}\PYG{n}{eps}\PYG{p}{,}
-            \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{relu}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{drelu}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dsig}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} backprop}
+            \PYG{n}{f}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{relu}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{drelu}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dsig}\PYG{p}{)} 
+                    \PYG{c+c1}{\PYGZsh{} backprop with ReLU}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -3611,28 +3624,23 @@ and run the algorithm in two stages: with leaky ReLu, and then with ReLU.
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The result is quite satistactory, showing that the method works. With the present architecture, not surprisingly, we can notice below a polygon approxiating the cirle.
+The result is quite satisfactory, showing that the method works. With the present architecture and activation functions, not surprisingly, in the plot below we can notice a polygon approximating the circle.
 
-\noindent\sphinxincludegraphics{{rectification_34_0}.png}
+\noindent\sphinxincludegraphics{{rectification_36_0}.png}
 
 
-\section{General remarks on backprop}
-\label{\detokenize{docs/rectification:general-remarks-on-backprop}}
-\sphinxAtStartPar
-Conclude here our discussion of the supervised learning and the back proparation, we provide a number of remarks nd hints. First, in programmers life, bulding a well\sphinxhyphen{}functioning ANN, even for simple problems as used for illustrations up to now, can be a frustrating eperience! …
-
-\sphinxAtStartPar
-Initial conditions for minimization, basen of convergence, learning stategy, improvements of steepest descent …
-
-\sphinxAtStartPar
-Professional libraries, experience verified with success …
-
-\begin{sphinxadmonition}{note}{Exercises}
+\section{Exercises}
+\label{\detokenize{docs/rectification:exercises}}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Use various rectified activation functions for the binary classifiers and test then on various figures (in analogy to the example with the circe above).
+Use various rectified activation functions for the binary classifiers and test them on various shapes (in analogy to the example with the circle above).
+
+\item {} 
+\sphinxAtStartPar
+Convince yourself that starting backprop (with ReLU) with too large initial learning speed leads to a “dead neuron” problem and a failure of the algorithm.
 
 \end{enumerate}
 \end{sphinxadmonition}
@@ -3660,13 +3668,13 @@ Invoking \PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}.py for neural
 Supervised learning discussed in previous lectures needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., in our example, whether the point is inside or outside the circle).
 
 \sphinxAtStartPar
-However, this is quite a special situation, because most often the data that we encounter do not have pre\sphinxhyphen{}assigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision.
+However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision.
 
 \sphinxAtStartPar
-Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, etc. He goes on, and finds a different flower, and records its features, and so on with the next flowers. At some point, however, he finds a flower that he already had met. More precisely, its features will be close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  They are useful in sharing the knowledge with ohers, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
+Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, etc. He goes on, and finds a different flower, and records its features, and so on with the next flowers. At some point, however, he finds a flower that he already had met. More precisely, its features will be close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
 
 \sphinxAtStartPar
-Formally, this problem of \sphinxstylestrong{unsupervised learning} is related to data classification (division into categories, or \sphinxstylestrong{clusters}, i.e. subsets of tah sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
+Formally, this problem of \sphinxstylestrong{unsupervised learning} is related to data classification (division into categories, or \sphinxstylestrong{clusters}, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
 
 
 \section{Clusters of points}
