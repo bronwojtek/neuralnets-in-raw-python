@@ -135,5 +135,5 @@ from IPython.display import display, Image, HTML
 # To repeat the calculations one-to-one, the reader should work with downloaded Jupyter notebooks, which can be obtained from ...
 # 
 # The reader should install Python and [Jupyter](https://jupyter.org)
-# to execute the lecture notebooks autonomously. Alternatively, he may use [Google Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb).
+# to execute the lecture notebooks autonomously. Alternatively, he may use [Google Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb). Appendix {ref}`app-run` provides the instructions.
 # ```

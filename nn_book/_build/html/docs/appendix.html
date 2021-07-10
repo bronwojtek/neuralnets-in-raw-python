@@ -295,11 +295,11 @@
 <span id="app-run"></span><h2>How to run the book codes<a class="headerlink" href="#how-to-run-the-book-codes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="locally">
 <h3>Locally<a class="headerlink" href="#locally" title="Permalink to this headline">¶</a></h3>
-<p>…</p>
+<p>… under construction, will appear shortly</p>
 </div>
 <div class="section" id="in-google-colab">
 <h3>In Google Colab<a class="headerlink" href="#in-google-colab" title="Permalink to this headline">¶</a></h3>
-<p>…</p>
+<p>… under construction, will appear shortly</p>
 </div>
 </div>
 <div class="section" id="neural-package">
@@ -315,20 +315,27 @@
 <div class="section" id="func-py-module">
 <h3><strong><a class="reference external" href="http://func.py">func.py</a></strong> module<a class="headerlink" href="#func-py-module" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Contains functions repeatedy used in the lecture</span>
+<span class="sd">Contains functions used in the lecture</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; step &quot;&quot;&quot;</span> <span class="c1"># komentarz w potrójnym cudzysłowie</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    step function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    </span>
+<span class="sd">    return: 1 if s&gt;0, 0 otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
-        
-<span class="k">def</span> <span class="nf">neuron</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">step</span><span class="p">):</span> <span class="c1"># (in the neural library)</span>
+   
+   
+<span class="k">def</span> <span class="nf">neuron</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">step</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    MCP neuron</span>
 
@@ -336,84 +343,167 @@
 <span class="sd">    w: array of weights [w0, w1, w2,...,wn]</span>
 <span class="sd">    f: activation function, with step as default</span>
 <span class="sd">    </span>
-<span class="sd">    return: signal=weighted sum w0 + x1 w1 + x2 w2 +...+ xn wn = x.w</span>
+<span class="sd">    return: signal=f(w0 + x1 w1 + x2 w2 +...+ xn wn) = f(x.w)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">w</span><span class="p">))</span> <span class="c1"># insert x0=1, signal s=x.w, output f(s)</span>
-    
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">w</span><span class="p">))</span>
+ 
+ 
 <span class="k">def</span> <span class="nf">sig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; sigmoid &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sigmoid</span>
+<span class="sd">     </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    T: temperature</span>
+<span class="sd">    </span>
+<span class="sd">    return: sigmoid(s)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">/</span><span class="n">T</span><span class="p">))</span>
     
+    
 <span class="k">def</span> <span class="nf">dsig</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;derivative of sigmoid&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    derivative of sigmoid</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    T: temperature</span>
+<span class="sd">    </span>
+<span class="sd">    return: dsigmoid(s,T)/ds</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">sig</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sig</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">/</span><span class="n">T</span>
     
-<span class="k">def</span> <span class="nf">lin</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; linear function &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">s</span>
     
-<span class="k">def</span> <span class="nf">dlin</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; derivative of linear function &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="mi">1</span>
-    
+<span class="k">def</span> <span class="nf">lin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    linear function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    a: constant</span>
+<span class="sd">    </span>
+<span class="sd">    return: a*s</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">s</span>
+  
+  
+<span class="k">def</span> <span class="nf">dlin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    derivative of linear function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    a: constant</span>
+<span class="sd">    </span>
+<span class="sd">    return: a</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+
 <span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; ReLU function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ReLU function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    </span>
+<span class="sd">    return: s if s&gt;0, 0 otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">s</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
 
+
 <span class="k">def</span> <span class="nf">drelu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; derivative of ReLU function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    derivative of ReLU function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    </span>
+<span class="sd">    return: 1 if s&gt;0, 0 otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
-        
+ 
+ 
 <span class="k">def</span> <span class="nf">lrelu</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; leaky ReLU function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Leaky ReLU function</span>
+<span class="sd">  </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    a: parameter</span>
+<span class="sd">    </span>
+<span class="sd">    return: s if s&gt;0, a*s otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">s</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">s</span>
 
+
 <span class="k">def</span> <span class="nf">dlrelu</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; derivative of leaky ReLU function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    derivative of Leaky ReLU function</span>
+<span class="sd">    </span>
+<span class="sd">    s: signal</span>
+<span class="sd">    a: parameter</span>
+<span class="sd">    </span>
+<span class="sd">    return: 1 if s&gt;0, a otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">a</span>
-        
+
+
 <span class="k">def</span> <span class="nf">softplus</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; softplus function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    softplus function</span>
+
+<span class="sd">    s: signal</span>
+
+<span class="sd">    return: log(1+exp(s))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
 
+
 <span class="k">def</span> <span class="nf">dsoftplus</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; derivative softplus function &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    derivative of softplus function</span>
+<span class="sd"> </span>
+<span class="sd">    s: signal</span>
+
+<span class="sd">    return: 1/(1+exp(-s))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">eucl</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span> <span class="c1"># square of the Euclidean distance</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Squqre of Euclidean distance between to points in 2-dim. space</span>
-<span class="sd">    </span>
-<span class="sd">    input: p1, p1 - arrays in the format [x1,x2]</span>
-<span class="sd">    return: square of Euclidean distance</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
-
+    
 <span class="k">def</span> <span class="nf">l2</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;for separating line&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">-</span><span class="n">w1</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">]</span>
-    
+
+
+<span class="k">def</span> <span class="nf">eucl</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Square of the Euclidean distance between two points in 2-dim. space</span>
+<span class="sd">    </span>
+<span class="sd">    input: p1, p2 - arrays in the format [x1,x2]</span>
+<span class="sd">    </span>
+<span class="sd">    return: square of the Euclidean distance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+
 <span class="k">def</span> <span class="nf">rn</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    random number from [-0.5,0.5]</span>
+<span class="sd">    return: random number from [-0.5,0.5]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span>
-    
+ 
+ 
 <span class="k">def</span> <span class="nf">point_c</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    random point from a cirle</span>
+<span class="sd">    return: array [x,y] with random point from a cirle</span>
+<span class="sd">            centered at [0.5,0.5] and radius 0.4</span>
+<span class="sd">            (used for examples)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
@@ -421,18 +511,20 @@
         <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="o">**</span><span class="mi">2</span><span class="p">:</span>
             <span class="k">break</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
-    
+ 
+ 
 <span class="k">def</span> <span class="nf">point</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    random point from [0,1]x[0,1]</span>
+<span class="sd">    return: array [x,y] with random point from [0,1]x[0,1]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
     <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
-    
+
+
 <span class="k">def</span> <span class="nf">set_ran_w</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Set weights randomly</span>
+<span class="sd">    Set network weights randomly</span>
 <span class="sd">    </span>
 <span class="sd">    input:</span>
 <span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
@@ -453,7 +545,7 @@
 
 <span class="k">def</span> <span class="nf">set_val_w</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Set weights to a constant value</span>
+<span class="sd">    Set network weights to a constant value</span>
 <span class="sd">    </span>
 <span class="sd">    input:</span>
 <span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
@@ -491,9 +583,7 @@
 <span class="sd">    x - dictionary of signals leaving subsequent layers in the format</span>
 <span class="sd">    {0: array[n_0+1],...,l-1: array[n_(l-1)+1], l: array[nl]}</span>
 <span class="sd">    (the output layer carries no bias)</span>
-<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>                   <span class="c1"># number of neuron layers</span>
     <span class="n">x_in</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># input, with the bias node inserted</span>
     
@@ -512,16 +602,19 @@
           
     <span class="k">return</span> <span class="n">x</span>
 
+
 <span class="k">def</span> <span class="nf">back_prop</span><span class="p">(</span><span class="n">fe</span><span class="p">,</span><span class="n">la</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">dsig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    back propagation algorithm</span>
+<span class="sd">    </span>
 <span class="sd">    fe - array of features</span>
 <span class="sd">    la - array of labels</span>
 <span class="sd">    p  - index of the used data point</span>
 <span class="sd">    ar - array of numbers of nodes in subsequent layers</span>
-<span class="sd">    we - disctionary of weights</span>
+<span class="sd">    we - dictionary of weights - UPDATED</span>
 <span class="sd">    eps - learning speed</span>
 <span class="sd">    f   - activation function</span>
-<span class="sd">    df  - derivaive of f</span>
+<span class="sd">    df  - derivative of f</span>
 <span class="sd">    &quot;&quot;&quot;</span>
  
     <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># number of neuron layers (= index of the output layer)</span>
@@ -565,7 +658,6 @@
 <span class="sd">    (the output layer carries no bias)</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>                   <span class="c1"># number of neuron layers</span>
     <span class="n">x_in</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># input, with the bias node inserted</span>
     
@@ -587,18 +679,19 @@
 
 <span class="k">def</span> <span class="nf">back_prop_o</span><span class="p">(</span><span class="n">fe</span><span class="p">,</span><span class="n">la</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ar</span><span class="p">,</span> <span class="n">we</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">dsig</span><span class="p">,</span> <span class="n">fo</span><span class="o">=</span><span class="n">lin</span><span class="p">,</span> <span class="n">dfo</span><span class="o">=</span><span class="n">dlin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    backprop with different output activation</span>
+<span class="sd">    </span>
 <span class="sd">    fe - array of features</span>
 <span class="sd">    la - array of labels</span>
 <span class="sd">    p  - index of the used data point</span>
 <span class="sd">    ar - array of numbers of nodes in subsequent layers</span>
-<span class="sd">    we - disctionary of weights</span>
+<span class="sd">    we - dictionary of weights - UPDATED</span>
 <span class="sd">    eps - learning speed</span>
 <span class="sd">    f   - activation function</span>
-<span class="sd">    df  - derivaive of f</span>
+<span class="sd">    df  - derivative of f</span>
 <span class="sd">    fo  - activation function in the output layer (default: linear)</span>
 <span class="sd">    dfo - derivative of fo</span>
 <span class="sd">    &quot;&quot;&quot;</span>
- 
     <span class="n">l</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># number of neuron layers (= index of the output layer)</span>
     <span class="n">nl</span><span class="o">=</span><span class="n">ar</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>    <span class="c1"># number of neurons in the otput layer</span>
    
@@ -617,7 +710,6 @@
         <span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
         <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">j</span><span class="p">:</span> <span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))]})</span>
         <span class="n">we</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-=</span><span class="n">eps</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-
     
 </pre></div>
 </div>
@@ -638,11 +730,8 @@
 <span class="sd">    Wrapper on matplotlib.pyplot library.</span>
 <span class="sd">    Plots functions passed as *args.</span>
 <span class="sd">    Functions need to accept a single number argument and return a single number.</span>
-<span class="sd">    Example usage: plot(lambda x: x * x)</span>
-<span class="sd">                   plot(func.step,func.sig)</span>
+<span class="sd">    Example usage:  plot(func.step,func.sig)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># defines range and detail level of the plot</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
 
     <span class="n">ff</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">2.3</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
@@ -659,9 +748,10 @@
 
 <span class="k">def</span> <span class="nf">plot_net_simp</span><span class="p">(</span><span class="n">n_layer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Draw the network architecture without bias nores</span>
+<span class="sd">    Draw the network architecture without bias nodes</span>
 <span class="sd">    </span>
 <span class="sd">    input: array of numbers of nodes in subsequent layers [n0, n1, n2,...]</span>
+<span class="sd">    </span>
 <span class="sd">    return: graphics object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">l_layer</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">n_layer</span><span class="p">)</span>
@@ -693,7 +783,7 @@
 
 <span class="k">def</span> <span class="nf">plot_net</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Draw network without bias nodes</span>
+<span class="sd">    Draw network with bias nodes</span>
 <span class="sd">    </span>
 <span class="sd">    input:</span>
 <span class="sd">    ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]</span>
@@ -850,6 +940,7 @@
     
     
 <span class="k">def</span> <span class="nf">l2</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w1</span><span class="p">,</span><span class="n">w2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;for separating line&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">-</span><span class="n">w1</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="n">w0</span><span class="o">+</span><span class="n">w1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span><span class="o">/</span><span class="n">w2</span><span class="p">]</span>
 
 </pre></div>

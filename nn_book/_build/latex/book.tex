@@ -97,8 +97,6 @@
 \sphinxAtStartPar
 \sphinxhref{https://www.ujk.edu.pl}{\sphinxstylestrong{Jan Kochanowski University}}, Kielce, Poland
 
-
-
 \sphinxAtStartPar
 These lectures were originally given to undergraduate students of computer engineering at the \sphinxhref{https://www.ujk.edu.pl}{Jan Kochanowski University} in Kielce, Poland, and for
 the \sphinxhref{https://kisd.ifj.edu.pl/news/}{Kraków School of Interdisciplinary PhD Studies}. They explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the code for various algorithms of neural networks is written from absolute scratch, i.e. without any use of dedicated higher\sphinxhyphen{}level libraries. That way one can follow all the programming steps in an explicit manner.
@@ -121,16 +119,11 @@ The reader may download the book codes in the form of
 \sphinxhref{https://jupyter.org}{jupyter} notebooks from …
 
 \sphinxAtStartPar
-{\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to run the book codes.
+{\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to run the book codes.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{}0\sphinxhyphen{}0} (html version) \sphinxincludegraphics{{barcode}.png}
-
-\sphinxAtStartPar
-ISBN: xxxxxx                      (pdf version)
-
-
+ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{}0\sphinxhyphen{}0} (pdf version) \sphinxincludegraphics{{barcode}.png}
 
 
 \chapter{Introduction}
@@ -314,7 +307,7 @@ To repeat the calculations one\sphinxhyphen{}to\sphinxhyphen{}one, the reader sh
 
 \sphinxAtStartPar
 The reader should install Python and \sphinxhref{https://jupyter.org}{Jupyter}
-to execute the lecture notebooks autonomously. Alternatively, he may use \sphinxhref{https://colab.research.google.com/notebooks/intro.ipynb}{Google Colaboratory}.
+to execute the lecture notebooks autonomously. Alternatively, he may use \sphinxhref{https://colab.research.google.com/notebooks/intro.ipynb}{Google Colaboratory}. Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} provides the instructions.
 \end{sphinxadmonition}
 
 
@@ -5267,13 +5260,13 @@ The references provided in the text as hyperlinks are not repeated in the litera
 \subsection{Locally}
 \label{\detokenize{docs/appendix:locally}}
 \sphinxAtStartPar
-…
+… under construction, will appear shortly
 
 
 \subsection{In Google Colab}
 \label{\detokenize{docs/appendix:in-google-colab}}
 \sphinxAtStartPar
-…
+… under construction, will appear shortly
 
 
 \section{\sphinxstylestrong{neural} package}
@@ -5294,20 +5287,27 @@ lib\PYGZus{}nn
 \label{\detokenize{docs/appendix:func-py-module}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{Contains functions repeatedy used in the lecture}
+\PYG{l+s+sd}{Contains functions used in the lecture}
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 
 
 \PYG{k}{def} \PYG{n+nf}{step}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} step \PYGZdq{}\PYGZdq{}\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} komentarz w potrójnym cudzysłowie}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    step function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: 1 if s\PYGZgt{}0, 0 otherwise}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{if} \PYG{n}{s}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{1}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{0}
-        
-\PYG{k}{def} \PYG{n+nf}{neuron}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{n}{f}\PYG{o}{=}\PYG{n}{step}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} (in the neural library)}
+   
+   
+\PYG{k}{def} \PYG{n+nf}{neuron}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{n}{f}\PYG{o}{=}\PYG{n}{step}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 \PYG{l+s+sd}{    MCP neuron}
 
@@ -5315,84 +5315,167 @@ lib\PYGZus{}nn
 \PYG{l+s+sd}{    w: array of weights [w0, w1, w2,...,wn]}
 \PYG{l+s+sd}{    f: activation function, with step as default}
 \PYG{l+s+sd}{    }
-\PYG{l+s+sd}{    return: signal=weighted sum w0 + x1 w1 + x2 w2 +...+ xn wn = x.w}
+\PYG{l+s+sd}{    return: signal=f(w0 + x1 w1 + x2 w2 +...+ xn wn) = f(x.w)}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{k}{return} \PYG{n}{f}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{w}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} insert x0=1, signal s=x.w, output f(s)}
-    
+    \PYG{k}{return} \PYG{n}{f}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{n}{w}\PYG{p}{)}\PYG{p}{)}
+ 
+ 
 \PYG{k}{def} \PYG{n+nf}{sig}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{T}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} sigmoid \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    sigmoid}
+\PYG{l+s+sd}{     }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    T: temperature}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: sigmoid(s)}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{s}\PYG{o}{/}\PYG{n}{T}\PYG{p}{)}\PYG{p}{)}
     
+    
 \PYG{k}{def} \PYG{n+nf}{dsig}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,} \PYG{n}{T}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}derivative of sigmoid\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    derivative of sigmoid}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    T: temperature}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: dsigmoid(s,T)/ds}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{n}{sig}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{sig}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{)}\PYG{o}{/}\PYG{n}{T}
     
-\PYG{k}{def} \PYG{n+nf}{lin}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} linear function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{k}{return} \PYG{n}{s}
     
-\PYG{k}{def} \PYG{n+nf}{dlin}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} derivative of linear function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{k}{return} \PYG{l+m+mi}{1}
-    
+\PYG{k}{def} \PYG{n+nf}{lin}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{a}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    linear function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    a: constant}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: a*s}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{return} \PYG{n}{a}\PYG{o}{*}\PYG{n}{s}
+  
+  
+\PYG{k}{def} \PYG{n+nf}{dlin}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{a}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    derivative of linear function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    a: constant}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: a}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{return} \PYG{n}{a}
+
+
 \PYG{k}{def} \PYG{n+nf}{relu}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} ReLU function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    ReLU function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: s if s\PYGZgt{}0, 0 otherwise}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{if} \PYG{n}{s}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{k}{return} \PYG{n}{s}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{0}
 
+
 \PYG{k}{def} \PYG{n+nf}{drelu}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} derivative of ReLU function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    derivative of ReLU function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: 1 if s\PYGZgt{}0, 0 otherwise}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{if} \PYG{n}{s}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{1}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{0}
-        
+ 
+ 
 \PYG{k}{def} \PYG{n+nf}{lrelu}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{a}\PYG{o}{=}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} leaky ReLU function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Leaky ReLU function}
+\PYG{l+s+sd}{  }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    a: parameter}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: s if s\PYGZgt{}0, a*s otherwise}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{if} \PYG{n}{s}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{k}{return} \PYG{n}{s}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{k}{return} \PYG{n}{a}\PYG{o}{*}\PYG{n}{s}
 
+
 \PYG{k}{def} \PYG{n+nf}{dlrelu}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{a}\PYG{o}{=}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} derivative of leaky ReLU function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    derivative of Leaky ReLU function}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    s: signal}
+\PYG{l+s+sd}{    a: parameter}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: 1 if s\PYGZgt{}0, a otherwise}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{if} \PYG{n}{s}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{k}{return} \PYG{l+m+mi}{1}
     \PYG{k}{else}\PYG{p}{:}
         \PYG{k}{return} \PYG{n}{a}
-        
+
+
 \PYG{k}{def} \PYG{n+nf}{softplus}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} softplus function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    softplus function}
+
+\PYG{l+s+sd}{    s: signal}
+
+\PYG{l+s+sd}{    return: log(1+exp(s))}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{log}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{)}
 
+
 \PYG{k}{def} \PYG{n+nf}{dsoftplus}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{} derivative softplus function \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    derivative of softplus function}
+\PYG{l+s+sd}{ }
+\PYG{l+s+sd}{    s: signal}
+
+\PYG{l+s+sd}{    return: 1/(1+exp(\PYGZhy{}s))}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{s}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{k}{def} \PYG{n+nf}{eucl}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{n}{p2}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} square of the Euclidean distance}
-    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    Squqre of Euclidean distance between to points in 2\PYGZhy{}dim. space}
-\PYG{l+s+sd}{    }
-\PYG{l+s+sd}{    input: p1, p1 \PYGZhy{} arrays in the format [x1,x2]}
-\PYG{l+s+sd}{    return: square of Euclidean distance}
-\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-    \PYG{k}{return} \PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}
-
+    
 \PYG{k}{def} \PYG{n+nf}{l2}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}for separating line\PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{\PYGZhy{}}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{]}
-    
+
+
+\PYG{k}{def} \PYG{n+nf}{eucl}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{n}{p2}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Square of the Euclidean distance between two points in 2\PYGZhy{}dim. space}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    input: p1, p2 \PYGZhy{} arrays in the format [x1,x2]}
+\PYG{l+s+sd}{    }
+\PYG{l+s+sd}{    return: square of the Euclidean distance}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{p2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}
+
+
 \PYG{k}{def} \PYG{n+nf}{rn}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    random number from [\PYGZhy{}0.5,0.5]}
+\PYG{l+s+sd}{    return: random number from [\PYGZhy{}0.5,0.5]}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{rand}\PYG{p}{(}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}
-    
+ 
+ 
 \PYG{k}{def} \PYG{n+nf}{point\PYGZus{}c}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    random point from a cirle}
+\PYG{l+s+sd}{    return: array [x,y] with random point from a cirle}
+\PYG{l+s+sd}{            centered at [0.5,0.5] and radius 0.4}
+\PYG{l+s+sd}{            (used for examples)}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{while} \PYG{k+kc}{True}\PYG{p}{:}
         \PYG{n}{x}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
@@ -5400,18 +5483,20 @@ lib\PYGZus{}nn
         \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{y}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{0.4}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{:}
             \PYG{k}{break}
     \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{]}\PYG{p}{)}
-    
+ 
+ 
 \PYG{k}{def} \PYG{n+nf}{point}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    random point from [0,1]x[0,1]}
+\PYG{l+s+sd}{    return: array [x,y] with random point from [0,1]x[0,1]}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{n}{x}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
     \PYG{n}{y}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}
     \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{]}\PYG{p}{)}
-    
+
+
 \PYG{k}{def} \PYG{n+nf}{set\PYGZus{}ran\PYGZus{}w}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{,}\PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    Set weights randomly}
+\PYG{l+s+sd}{    Set network weights randomly}
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    input:}
 \PYG{l+s+sd}{    ar \PYGZhy{} array of numbers of nodes in subsequent layers [n\PYGZus{}0, n\PYGZus{}1,...,n\PYGZus{}l]}
@@ -5432,7 +5517,7 @@ lib\PYGZus{}nn
 
 \PYG{k}{def} \PYG{n+nf}{set\PYGZus{}val\PYGZus{}w}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{,}\PYG{n}{a}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    Set weights to a constant value}
+\PYG{l+s+sd}{    Set network weights to a constant value}
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    input:}
 \PYG{l+s+sd}{    ar \PYGZhy{} array of numbers of nodes in subsequent layers [n\PYGZus{}0, n\PYGZus{}1,...,n\PYGZus{}l]}
@@ -5470,9 +5555,7 @@ lib\PYGZus{}nn
 \PYG{l+s+sd}{    x \PYGZhy{} dictionary of signals leaving subsequent layers in the format}
 \PYG{l+s+sd}{    \PYGZob{}0: array[n\PYGZus{}0+1],...,l\PYGZhy{}1: array[n\PYGZus{}(l\PYGZhy{}1)+1], l: array[nl]\PYGZcb{}}
 \PYG{l+s+sd}{    (the output layer carries no bias)}
-\PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-
     \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}                   \PYG{c+c1}{\PYGZsh{} number of neuron layers}
     \PYG{n}{x\PYGZus{}in}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{x\PYGZus{}in}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}      \PYG{c+c1}{\PYGZsh{} input, with the bias node inserted}
     
@@ -5491,16 +5574,19 @@ lib\PYGZus{}nn
           
     \PYG{k}{return} \PYG{n}{x}
 
+
 \PYG{k}{def} \PYG{n+nf}{back\PYGZus{}prop}\PYG{p}{(}\PYG{n}{fe}\PYG{p}{,}\PYG{n}{la}\PYG{p}{,} \PYG{n}{p}\PYG{p}{,} \PYG{n}{ar}\PYG{p}{,} \PYG{n}{we}\PYG{p}{,} \PYG{n}{eps}\PYG{p}{,}\PYG{n}{f}\PYG{o}{=}\PYG{n}{sig}\PYG{p}{,} \PYG{n}{df}\PYG{o}{=}\PYG{n}{dsig}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    back propagation algorithm}
+\PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    fe \PYGZhy{} array of features}
 \PYG{l+s+sd}{    la \PYGZhy{} array of labels}
 \PYG{l+s+sd}{    p  \PYGZhy{} index of the used data point}
 \PYG{l+s+sd}{    ar \PYGZhy{} array of numbers of nodes in subsequent layers}
-\PYG{l+s+sd}{    we \PYGZhy{} disctionary of weights}
+\PYG{l+s+sd}{    we \PYGZhy{} dictionary of weights \PYGZhy{} UPDATED}
 \PYG{l+s+sd}{    eps \PYGZhy{} learning speed}
 \PYG{l+s+sd}{    f   \PYGZhy{} activation function}
-\PYG{l+s+sd}{    df  \PYGZhy{} derivaive of f}
+\PYG{l+s+sd}{    df  \PYGZhy{} derivative of f}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
  
     \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{c+c1}{\PYGZsh{} number of neuron layers (= index of the output layer)}
@@ -5544,7 +5630,6 @@ lib\PYGZus{}nn
 \PYG{l+s+sd}{    (the output layer carries no bias)}
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-
     \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}                   \PYG{c+c1}{\PYGZsh{} number of neuron layers}
     \PYG{n}{x\PYGZus{}in}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{x\PYGZus{}in}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}      \PYG{c+c1}{\PYGZsh{} input, with the bias node inserted}
     
@@ -5566,18 +5651,19 @@ lib\PYGZus{}nn
 
 \PYG{k}{def} \PYG{n+nf}{back\PYGZus{}prop\PYGZus{}o}\PYG{p}{(}\PYG{n}{fe}\PYG{p}{,}\PYG{n}{la}\PYG{p}{,} \PYG{n}{p}\PYG{p}{,} \PYG{n}{ar}\PYG{p}{,} \PYG{n}{we}\PYG{p}{,} \PYG{n}{eps}\PYG{p}{,} \PYG{n}{f}\PYG{o}{=}\PYG{n}{sig}\PYG{p}{,} \PYG{n}{df}\PYG{o}{=}\PYG{n}{dsig}\PYG{p}{,} \PYG{n}{fo}\PYG{o}{=}\PYG{n}{lin}\PYG{p}{,} \PYG{n}{dfo}\PYG{o}{=}\PYG{n}{dlin}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    backprop with different output activation}
+\PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    fe \PYGZhy{} array of features}
 \PYG{l+s+sd}{    la \PYGZhy{} array of labels}
 \PYG{l+s+sd}{    p  \PYGZhy{} index of the used data point}
 \PYG{l+s+sd}{    ar \PYGZhy{} array of numbers of nodes in subsequent layers}
-\PYG{l+s+sd}{    we \PYGZhy{} disctionary of weights}
+\PYG{l+s+sd}{    we \PYGZhy{} dictionary of weights \PYGZhy{} UPDATED}
 \PYG{l+s+sd}{    eps \PYGZhy{} learning speed}
 \PYG{l+s+sd}{    f   \PYGZhy{} activation function}
-\PYG{l+s+sd}{    df  \PYGZhy{} derivaive of f}
+\PYG{l+s+sd}{    df  \PYGZhy{} derivative of f}
 \PYG{l+s+sd}{    fo  \PYGZhy{} activation function in the output layer (default: linear)}
 \PYG{l+s+sd}{    dfo \PYGZhy{} derivative of fo}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
- 
     \PYG{n}{l}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{c+c1}{\PYGZsh{} number of neuron layers (= index of the output layer)}
     \PYG{n}{nl}\PYG{o}{=}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}    \PYG{c+c1}{\PYGZsh{} number of neurons in the otput layer}
    
@@ -5596,7 +5682,6 @@ lib\PYGZus{}nn
         \PYG{n}{v}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{n}{j}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{we}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)}
         \PYG{n}{D}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{n}{j}\PYG{p}{:} \PYG{p}{[}\PYG{n}{u}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{df}\PYG{p}{(}\PYG{n}{v}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
         \PYG{n}{we}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{outer}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{n}{j}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{D}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)}
-
     
 \end{sphinxVerbatim}
 
@@ -5618,11 +5703,8 @@ lib\PYGZus{}nn
 \PYG{l+s+sd}{    Wrapper on matplotlib.pyplot library.}
 \PYG{l+s+sd}{    Plots functions passed as *args.}
 \PYG{l+s+sd}{    Functions need to accept a single number argument and return a single number.}
-\PYG{l+s+sd}{    Example usage: plot(lambda x: x * x)}
-\PYG{l+s+sd}{                   plot(func.step,func.sig)}
+\PYG{l+s+sd}{    Example usage:  plot(func.step,func.sig)}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-
-    \PYG{c+c1}{\PYGZsh{} defines range and detail level of the plot}
     \PYG{n}{s} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{start}\PYG{p}{,} \PYG{n}{stop}\PYG{p}{,} \PYG{n}{samples}\PYG{p}{)}
 
     \PYG{n}{ff}\PYG{o}{=}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.8}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
@@ -5639,9 +5721,10 @@ lib\PYGZus{}nn
 
 \PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}net\PYGZus{}simp}\PYG{p}{(}\PYG{n}{n\PYGZus{}layer}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    Draw the network architecture without bias nores}
+\PYG{l+s+sd}{    Draw the network architecture without bias nodes}
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    input: array of numbers of nodes in subsequent layers [n0, n1, n2,...]}
+\PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    return: graphics object}
 \PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{n}{l\PYGZus{}layer}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{n\PYGZus{}layer}\PYG{p}{)}
@@ -5673,7 +5756,7 @@ lib\PYGZus{}nn
 
 \PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}net}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{)}\PYG{p}{:}
     \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{    Draw network without bias nodes}
+\PYG{l+s+sd}{    Draw network with bias nodes}
 \PYG{l+s+sd}{    }
 \PYG{l+s+sd}{    input:}
 \PYG{l+s+sd}{    ar \PYGZhy{} array of numbers of nodes in subsequent layers [n\PYGZus{}0, n\PYGZus{}1,...,n\PYGZus{}l]}
@@ -5830,6 +5913,7 @@ lib\PYGZus{}nn
     
     
 \PYG{k}{def} \PYG{n+nf}{l2}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{,}\PYG{n}{w1}\PYG{p}{,}\PYG{n}{w2}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}for separating line\PYGZdq{}\PYGZdq{}\PYGZdq{}}
     \PYG{k}{return} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.1}\PYG{p}{,}\PYG{l+m+mf}{1.1}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{\PYGZhy{}}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{w0}\PYG{o}{+}\PYG{n}{w1}\PYG{o}{*}\PYG{l+m+mf}{1.1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{w2}\PYG{p}{]}
 
 \end{sphinxVerbatim}

@@ -1,18 +1,25 @@
 """
-Contains functions repeatedy used in the lecture
+Contains functions used in the lecture
 """
 
 import numpy as np
 
 
 def step(s):
-    """ step """ # komentarz w potrójnym cudzysłowie
+    """
+    step function
+    
+    s: signal
+    
+    return: 1 if s>0, 0 otherwise
+    """
     if s>0:
         return 1
     else:
         return 0
-        
-def neuron(x,w,f=step): # (in the neural library)
+   
+   
+def neuron(x,w,f=step):
     """
     MCP neuron
 
@@ -20,84 +27,167 @@ def neuron(x,w,f=step): # (in the neural library)
     w: array of weights [w0, w1, w2,...,wn]
     f: activation function, with step as default
     
-    return: signal=weighted sum w0 + x1 w1 + x2 w2 +...+ xn wn = x.w
+    return: signal=f(w0 + x1 w1 + x2 w2 +...+ xn wn) = f(x.w)
     """
-    return f(np.dot(np.insert(x,0,1),w)) # insert x0=1, signal s=x.w, output f(s)
-    
+    return f(np.dot(np.insert(x,0,1),w))
+ 
+ 
 def sig(s,T=1):
-    """ sigmoid """
+    """
+    sigmoid
+     
+    s: signal
+    T: temperature
+    
+    return: sigmoid(s)
+    """
     return 1/(1+np.exp(-s/T))
     
+    
 def dsig(s, T=1):
-    """derivative of sigmoid"""
+    """
+    derivative of sigmoid
+    
+    s: signal
+    T: temperature
+    
+    return: dsigmoid(s,T)/ds
+    """
     return sig(s)*(1-sig(s))/T
     
-def lin(s):
-    """ linear function """
-    return s
     
-def dlin(s):
-    """ derivative of linear function """
-    return 1
+def lin(s,a=1):
+    """
+    linear function
     
+    s: signal
+    a: constant
+    
+    return: a*s
+    """
+    return a*s
+  
+  
+def dlin(s,a=1):
+    """
+    derivative of linear function
+    
+    s: signal
+    a: constant
+    
+    return: a
+    """
+    return a
+
+
 def relu(s):
-    """ ReLU function """
+    """
+    ReLU function
+    
+    s: signal
+    
+    return: s if s>0, 0 otherwise
+    """
     if s>0:
         return s
     else:
         return 0
 
+
 def drelu(s):
-    """ derivative of ReLU function """
+    """
+    derivative of ReLU function
+    
+    s: signal
+    
+    return: 1 if s>0, 0 otherwise
+    """
     if s>0:
         return 1
     else:
         return 0
-        
+ 
+ 
 def lrelu(s,a=0.1):
-    """ leaky ReLU function """
+    """
+    Leaky ReLU function
+  
+    s: signal
+    a: parameter
+    
+    return: s if s>0, a*s otherwise
+    """
     if s>0:
         return s
     else:
         return a*s
 
+
 def dlrelu(s,a=0.1):
-    """ derivative of leaky ReLU function """
+    """
+    derivative of Leaky ReLU function
+    
+    s: signal
+    a: parameter
+    
+    return: 1 if s>0, a otherwise
+    """
     if s>0:
         return 1
     else:
         return a
-        
+
+
 def softplus(s):
-    """ softplus function """
+    """
+    softplus function
+
+    s: signal
+
+    return: log(1+exp(s))
+    """
     return np.log(1+np.exp(s))
 
+
 def dsoftplus(s):
-    """ derivative softplus function """
+    """
+    derivative of softplus function
+ 
+    s: signal
+
+    return: 1/(1+exp(-s))
+    """
     return 1/(1+np.exp(-s))
 
-def eucl(p1,p2): # square of the Euclidean distance
-    """
-    Square of Euclidean distance between to points in 2-dim. space
     
-    input: p1, p1 - arrays in the format [x1,x2]
-    return: square of Euclidean distance
-    """
-    return (p1[0]-p2[0])**2+(p1[1]-p2[1])**2
-
 def l2(w0,w1,w2):
     """for separating line"""
     return [-.1,1.1],[-(w0-w1*0.1)/w2,-(w0+w1*1.1)/w2]
+
+
+def eucl(p1,p2):
+    """
+    Square of the Euclidean distance between two points in 2-dim. space
     
+    input: p1, p2 - arrays in the format [x1,x2]
+    
+    return: square of the Euclidean distance
+    """
+    return (p1[0]-p2[0])**2+(p1[1]-p2[1])**2
+
+
 def rn():
     """
-    random number from [-0.5,0.5]
+    return: random number from [-0.5,0.5]
     """
     return np.random.rand()-0.5
-    
+ 
+ 
 def point_c():
     """
-    random point from a cirle
+    return: array [x,y] with random point from a cirle
+            centered at [0.5,0.5] and radius 0.4
+            (used for examples)
     """
     while True:
         x=np.random.random()
@@ -105,18 +195,20 @@ def point_c():
         if (x-0.5)**2+(y-0.5)**2 < 0.4**2:
             break
     return np.array([x,y])
-    
+ 
+ 
 def point():
     """
-    random point from [0,1]x[0,1]
+    return: array [x,y] with random point from [0,1]x[0,1]
     """
     x=np.random.random()
     y=np.random.random()
     return np.array([x,y])
-    
+
+
 def set_ran_w(ar,s=1):
     """
-    Set weights randomly
+    Set network weights randomly
     
     input:
     ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]
@@ -137,7 +229,7 @@ def set_ran_w(ar,s=1):
 
 def set_val_w(ar,a=0):
     """
-    Set weights to a constant value
+    Set network weights to a constant value
     
     input:
     ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]
@@ -175,9 +267,7 @@ def feed_forward(ar, we, x_in, ff=step):
     x - dictionary of signals leaving subsequent layers in the format
     {0: array[n_0+1],...,l-1: array[n_(l-1)+1], l: array[nl]}
     (the output layer carries no bias)
-    
     """
-
     l=len(ar)-1                   # number of neuron layers
     x_in=np.insert(x_in,0,1)      # input, with the bias node inserted
     
@@ -196,16 +286,19 @@ def feed_forward(ar, we, x_in, ff=step):
           
     return x
 
+
 def back_prop(fe,la, p, ar, we, eps,f=sig, df=dsig):
     """
+    back propagation algorithm
+    
     fe - array of features
     la - array of labels
     p  - index of the used data point
     ar - array of numbers of nodes in subsequent layers
-    we - disctionary of weights
+    we - dictionary of weights - UPDATED
     eps - learning speed
     f   - activation function
-    df  - derivaive of f
+    df  - derivative of f
     """
  
     l=len(ar)-1 # number of neuron layers (= index of the output layer)
@@ -249,7 +342,6 @@ def feed_forward_o(ar, we, x_in, ff=sig, ffo=lin):
     (the output layer carries no bias)
     
     """
-
     l=len(ar)-1                   # number of neuron layers
     x_in=np.insert(x_in,0,1)      # input, with the bias node inserted
     
@@ -271,18 +363,19 @@ def feed_forward_o(ar, we, x_in, ff=sig, ffo=lin):
 
 def back_prop_o(fe,la, p, ar, we, eps, f=sig, df=dsig, fo=lin, dfo=dlin):
     """
+    backprop with different output activation
+    
     fe - array of features
     la - array of labels
     p  - index of the used data point
     ar - array of numbers of nodes in subsequent layers
-    we - disctionary of weights
+    we - dictionary of weights - UPDATED
     eps - learning speed
     f   - activation function
-    df  - derivaive of f
+    df  - derivative of f
     fo  - activation function in the output layer (default: linear)
     dfo - derivative of fo
     """
- 
     l=len(ar)-1 # number of neuron layers (= index of the output layer)
     nl=ar[l]    # number of neurons in the otput layer
    

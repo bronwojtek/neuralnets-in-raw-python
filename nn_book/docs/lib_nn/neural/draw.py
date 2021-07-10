@@ -12,11 +12,8 @@ def plot(*args, title='activation function', x_label='signal', y_label='response
     Wrapper on matplotlib.pyplot library.
     Plots functions passed as *args.
     Functions need to accept a single number argument and return a single number.
-    Example usage: plot(lambda x: x * x)
-                   plot(func.step,func.sig)
+    Example usage:  plot(func.step,func.sig)
     """
-
-    # defines range and detail level of the plot
     s = np.linspace(start, stop, samples)
 
     ff=plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -33,9 +30,10 @@ def plot(*args, title='activation function', x_label='signal', y_label='response
 
 def plot_net_simp(n_layer):
     """
-    Draw the network architecture without bias nores
+    Draw the network architecture without bias nodes
     
     input: array of numbers of nodes in subsequent layers [n0, n1, n2,...]
+    
     return: graphics object
     """
     l_layer=len(n_layer)
@@ -67,7 +65,7 @@ def plot_net_simp(n_layer):
 
 def plot_net(ar):
     """
-    Draw network without bias nodes
+    Draw network with bias nodes
     
     input:
     ar - array of numbers of nodes in subsequent layers [n_0, n_1,...,n_l]
@@ -224,5 +222,5 @@ def plot_net_w_x(ar,we,wid,x):
     
     
 def l2(w0,w1,w2):
+    """for separating line"""
     return [-.1,1.1],[-(w0-w1*0.1)/w2,-(w0+w1*1.1)/w2]
-

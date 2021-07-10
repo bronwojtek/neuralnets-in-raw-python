@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  10 JUL 2021 12:54
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  10 JUL 2021 19:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1746,7 +1746,7 @@ File: backprop_24_0.png Graphic file (type bmp)
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
  [55] [56] [57]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2924--2930
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2917--2923
 []$[] [][] [][]$ 
  []
 
@@ -1848,7 +1848,7 @@ File: som_16_0.png Graphic file (type bmp)
 File: som_19_0.png Graphic file (type bmp)
 <som_19_0.png>
 
-Overfull \vbox (2.12384pt too high) detected at line 4536
+Overfull \vbox (2.12384pt too high) detected at line 4529
  []
 
 [95]
@@ -1879,7 +1879,7 @@ File: som_58_0.png Graphic file (type bmp)
 File: som_61_0.png Graphic file (type bmp)
 <som_61_0.png>
 
-Overfull \vbox (2.69862pt too high) detected at line 4845
+Overfull \vbox (2.69862pt too high) detected at line 4838
  []
 
 [102]
@@ -1935,70 +1935,78 @@ Chapter 11.
 ]
 Chapter 12.
 [117]
-Underfull \vbox (badness 10000) detected at line 5601
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5601
+Overfull \vbox (2.78596pt too high) detected at line 5686
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5601
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5601
+Overfull \vbox (2.78596pt too high) detected at line 5686
  []
 
 [119]
-Underfull \vbox (badness 10000) detected at line 5601
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5601
+Overfull \vbox (2.78596pt too high) detected at line 5686
  []
 
 [120]
-Underfull \vbox (badness 10000) detected at line 5601
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5601
+Overfull \vbox (2.78596pt too high) detected at line 5686
  []
 
 [121]
-Underfull \vbox (badness 10000) detected at line 5601
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5601
+Overfull \vbox (2.78596pt too high) detected at line 5686
  []
 
-[122] [123]
-Underfull \vbox (badness 10000) detected at line 5835
- []
-
-
-Overfull \vbox (2.78596pt too high) detected at line 5835
- []
-
-[124]
-Underfull \vbox (badness 10000) detected at line 5835
+[122]
+Underfull \vbox (badness 10000) detected at line 5686
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5835
+Overfull \vbox (2.78596pt too high) detected at line 5686
+ []
+
+[123] [124]
+Underfull \vbox (badness 10000) detected at line 5919
+ []
+
+
+Overfull \vbox (2.78596pt too high) detected at line 5919
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5835
+Underfull \vbox (badness 10000) detected at line 5919
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5835
+Overfull \vbox (2.78596pt too high) detected at line 5919
  []
 
-[126] [127] [128
+[126]
+Underfull \vbox (badness 10000) detected at line 5919
+ []
+
+
+Overfull \vbox (2.78596pt too high) detected at line 5919
+ []
+
+[127] [128] [129] [130
 
 ] (./book.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -2035,18 +2043,18 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [129
+ [131
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5901.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5901.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5985.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5985.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5901.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5901.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5985.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5985.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
 (rerunfilecheck)             Checksum: 4B9D30D14E54BC4B058D50B4EDB8954C;9015.
@@ -2054,10 +2062,10 @@ Package rerunfilecheck Info: File `book.out' has not changed.
 Here is how much of TeX's memory you used:
  41909 strings out of 479418
  954190 string characters out of 5884586
- 1849486 words of memory out of 5000000
+ 1878486 words of memory out of 5000000
  58582 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on book.pdf (133 pages).
+Output written on book.pdf (135 pages).

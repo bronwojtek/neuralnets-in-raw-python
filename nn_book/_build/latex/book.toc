@@ -85,6 +85,6 @@
 \contentsline {subsection}{\numberline {12.1.2}In Google Colab}{117}{subsection.12.1.2}%
 \contentsline {section}{\numberline {12.2}\sphinxstylestrong {neural} package}{117}{section.12.2}%
 \contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{117}{subsection.12.2.1}%
-\contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{123}{subsection.12.2.2}%
-\contentsline {section}{\numberline {12.3}How to cite}{127}{section.12.3}%
-\contentsline {chapter}{Bibliography}{129}{chapter*.3}%
+\contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{124}{subsection.12.2.2}%
+\contentsline {section}{\numberline {12.3}How to cite}{129}{section.12.3}%
+\contentsline {chapter}{Bibliography}{131}{chapter*.3}%
