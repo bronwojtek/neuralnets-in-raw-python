@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  9 JUL 2021 22:51
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  10 JUL 2021 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1845,16 +1845,20 @@ File: koha.png Graphic file (type bmp)
 File: som_16_0.png Graphic file (type bmp)
 <som_16_0.png>
  [94]
-File: som_20_0.png Graphic file (type bmp)
-<som_20_0.png>
- [95]
+File: som_19_0.png Graphic file (type bmp)
+<som_19_0.png>
+
+Overfull \vbox (2.12384pt too high) detected at line 4532
+ []
+
+[95]
 File: kaall.png Graphic file (type bmp)
 <kaall.png>
-File: som_30_0.png Graphic file (type bmp)
-<som_30_0.png>
  [96]
-File: som_32_0.png Graphic file (type bmp)
-<som_32_0.png>
+File: som_29_0.png Graphic file (type bmp)
+<som_29_0.png>
+File: som_31_0.png Graphic file (type bmp)
+<som_31_0.png>
  [97]
 File: som_41_0.png Graphic file (type bmp)
 <som_41_0.png>
@@ -1867,126 +1871,131 @@ File: som_49_0.png Graphic file (type bmp)
 File: udm.png Graphic file (type bmp)
 <udm.png>
  [100]
-File: som_55_0.png Graphic file (type bmp)
-<som_55_0.png>
+File: som_56_0.png Graphic file (type bmp)
+<som_56_0.png>
  [101]
-File: som_57_0.png Graphic file (type bmp)
-<som_57_0.png>
-File: som_60_0.png Graphic file (type bmp)
-<som_60_0.png>
- [102]
-File: som_63_0.png Graphic file (type bmp)
-<som_63_0.png>
-File: som_67_0.png Graphic file (type bmp)
-<som_67_0.png>
+File: som_58_0.png Graphic file (type bmp)
+<som_58_0.png>
+File: som_61_0.png Graphic file (type bmp)
+<som_61_0.png>
+
+Overfull \vbox (2.69862pt too high) detected at line 4841
+ []
+
+[102]
+File: som_64_0.png Graphic file (type bmp)
+<som_64_0.png>
+File: som_68_0.png Graphic file (type bmp)
+<som_68_0.png>
  [103]
-File: som_69_0.png Graphic file (type bmp)
-<som_69_0.png>
-File: som_72_0.png Graphic file (type bmp)
-<som_72_0.png>
-File: som_75_0.png Graphic file (type bmp)
-<som_75_0.png>
+File: som_70_0.png Graphic file (type bmp)
+<som_70_0.png>
+File: som_73_0.png Graphic file (type bmp)
+<som_73_0.png>
+File: som_76_0.png Graphic file (type bmp)
+<som_76_0.png>
  [104]
-File: som_79_0.jpg Graphic file (type bmp)
-<som_79_0.jpg>
+File: som_80_0.jpg Graphic file (type bmp)
+<som_80_0.jpg>
  [105]
-File: som_85_0.png Graphic file (type bmp)
-<som_85_0.png>
+File: som_86_0.png Graphic file (type bmp)
+<som_86_0.png>
  [106]
 File: kball.png Graphic file (type bmp)
 <kball.png>
-
-[107] [108]
-File: som_97_0.png Graphic file (type bmp)
-<som_97_0.png>
- [109]
+ [107] [108]
 File: som_99_0.png Graphic file (type bmp)
 <som_99_0.png>
-File: som_104_0.png Graphic file (type bmp)
-<som_104_0.png>
+ [109]
+File: som_101_0.png Graphic file (type bmp)
+<som_101_0.png>
  [110]
-File: som_106_0.png Graphic file (type bmp)
-<som_106_0.png>
+File: som_107_0.png Graphic file (type bmp)
+<som_107_0.png>
+File: som_109_0.png Graphic file (type bmp)
+<som_109_0.png>
 File: lat3.png Graphic file (type bmp)
 <lat3.png>
  [111]
-File: som_115_0.png Graphic file (type bmp)
-<som_115_0.png>
+File: som_118_0.png Graphic file (type bmp)
+<som_118_0.png>
  [112]
-File: som_121_0.png Graphic file (type bmp)
-<som_121_0.png>
+File: som_124_0.png Graphic file (type bmp)
+<som_124_0.png>
+ [113]
 File: smi32-pic.jpg Graphic file (type bmp)
 <smi32-pic.jpg>
- [113] [114
 
-]
+[114]
 Chapter 11.
-[115] [116
+[115
+
+] [116
 
 ]
 Chapter 12.
 [117]
-Underfull \vbox (badness 10000) detected at line 5549
+Underfull \vbox (badness 10000) detected at line 5606
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5549
+Overfull \vbox (2.78596pt too high) detected at line 5606
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5549
+Underfull \vbox (badness 10000) detected at line 5606
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5549
+Overfull \vbox (2.78596pt too high) detected at line 5606
  []
 
 [119]
-Underfull \vbox (badness 10000) detected at line 5549
+Underfull \vbox (badness 10000) detected at line 5606
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5549
+Overfull \vbox (2.78596pt too high) detected at line 5606
  []
 
 [120]
-Underfull \vbox (badness 10000) detected at line 5549
+Underfull \vbox (badness 10000) detected at line 5606
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5549
+Overfull \vbox (2.78596pt too high) detected at line 5606
  []
 
 [121]
-Underfull \vbox (badness 10000) detected at line 5549
+Underfull \vbox (badness 10000) detected at line 5606
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5549
+Overfull \vbox (2.78596pt too high) detected at line 5606
  []
 
 [122] [123]
-Underfull \vbox (badness 10000) detected at line 5783
+Underfull \vbox (badness 10000) detected at line 5840
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5783
+Overfull \vbox (2.78596pt too high) detected at line 5840
  []
 
 [124]
-Underfull \vbox (badness 10000) detected at line 5783
+Underfull \vbox (badness 10000) detected at line 5840
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5783
+Overfull \vbox (2.78596pt too high) detected at line 5840
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5783
+Underfull \vbox (badness 10000) detected at line 5840
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5783
+Overfull \vbox (2.78596pt too high) detected at line 5840
  []
 
 [126] [127] [128
@@ -2029,24 +2038,24 @@ braces):
  [129
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5846.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5846.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5906.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5906.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5846.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5846.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5906.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5906.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 47712600DD26367F13613A4142D09C28;8913.
+(rerunfilecheck)             Checksum: 4B9D30D14E54BC4B058D50B4EDB8954C;9015.
  ) 
 Here is how much of TeX's memory you used:
- 41906 strings out of 479418
- 954119 string characters out of 5884586
+ 41908 strings out of 479418
+ 954167 string characters out of 5884586
  1849486 words of memory out of 5000000
- 58579 multiletter control sequences out of 15000+600000
+ 58581 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s
