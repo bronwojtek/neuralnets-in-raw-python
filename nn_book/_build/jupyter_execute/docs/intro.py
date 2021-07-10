@@ -17,6 +17,7 @@
 # A useful feature is that the reader receives a [Jupyter Book](https://beta.jupyterbook.org/intro.html), which allows for 
 # a prompt download of complete codes as 
 # [jupyter](https://jupyter.org) notebooks and to do the course interactively.
+# Appendix {ref}`app-run` instructs how to do it.
 # ```
 
 # The material covers such classic topics as the perceptron and its simplest applications, supervised learning with back-propagation for data classification, unsupervised learning and clusterization, the Kohonen self-organizing networks, and the Hopfield networks with feedback. This aims to prepare the necessary ground for the recent and timely advancements (not covered here) in neural networks, such as deep learning, convolutional networks, recurrent networks, generative adversarial networks, reinforcement learning, etc.
@@ -29,8 +30,10 @@
 # ```
 
 # ```{note}
-# There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by [Daniel Kersten](http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html), done in Mathematica, from an on-line book by [Raul Rojas](https://page.mi.fu-berlin.de/rojas/neural/) (also available in a printed version {cite}`feldman2013neural`), and the from physicists' (as myself!) point of view from {cite}`muller2012neural`. 
+# There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. We only cite items which a more interested reader might look at. 
 # ```
+# 
+# With simplicity as guidance, our choice of topics took inspiration from excellent lectures by [Daniel Kersten](http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html), done in Mathematica, from an on-line book by [Raul Rojas](https://page.mi.fu-berlin.de/rojas/neural/) (also available in a printed version {cite}`feldman2013neural`), and the from physicists' (as myself!) point of view from {cite}`muller2012neural`. 
 
 # ## Biological inspiration
 

@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex book.idx"] 1625240318 "book.idx" "book.ind" "book" 1625911494
-  "book.idx" 1625911490 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex book.idx"] 1625240318 "book.idx" "book.ind" "book" 1625914454
+  "book.idx" 1625914449 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "book.ind"
   "book.ilg"
-["pdflatex"] 1625911489 "book.tex" "book.pdf" "book" 1625911494
+["pdflatex"] 1625914448 "book.tex" "book.pdf" "book" 1625914454
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -242,12 +242,12 @@
   "backprop_60_0.png" 1625846305 48286 381ca2cf0ef6fa87861af74b95c126ec ""
   "backprop_62_0.png" 1625846305 23046 639d6f3d15f8ec60de19a976d9deba26 ""
   "backprop_65_0.png" 1625846305 67681 addfff67f53944d9b977fd893ecf89a6 ""
-  "barcode.png" 1625911482 1329 0f981db4610d9729a7ba0ec90ca4d1fd ""
-  "book.aux" 1625911494 32889 c5760f6fa94c80d7e717c901af204b17 "pdflatex"
+  "barcode.png" 1625914447 1329 cc3dec904d18594c4fbd7b6eb5a33b08 ""
+  "book.aux" 1625914453 32978 53d5e417afd19afe75abe112f8a5dffe "pdflatex"
   "book.ind" 1625486555 0 d41d8cd98f00b204e9800998ecf8427e "makeindex book.idx"
-  "book.out" 1625911494 9015 4b9d30d14e54bc4b058d50b4edb8954c "pdflatex"
-  "book.tex" 1625911483 416287 2e1a3acee914b5e8870aa6fd7293b139 ""
-  "book.toc" 1625911494 7622 826489b8895d28673aafa4941b502173 "pdflatex"
+  "book.out" 1625914453 9015 4b9d30d14e54bc4b058d50b4edb8954c "pdflatex"
+  "book.tex" 1625914448 417164 77194824abb4ad68ccdf508e03ef1654 ""
+  "book.toc" 1625914453 7622 826489b8895d28673aafa4941b502173 "pdflatex"
   "brain.jpg" 1625486555 120073 22a95134bdc3d6edd0882a252ecba128 ""
   "cd.jpg" 1625486555 96687 ef6ccb3d5f7289bdf788970a25308602 ""
   "cl4_2.jpg" 1625486555 25388 1888b4f43c7855927ed6e466849130c4 ""
@@ -326,9 +326,9 @@
   "som_86_0.png" 1625911471 63135 90b82937872ebd074de08d70b2b2c7a9 ""
   "som_99_0.png" 1625911471 29667 7714a9a3f791feb86b2309231fb82754 ""
   "sphinx.sty" 1625486555 91458 532cd893425be1ee8212ce283449999c ""
-  "sphinxhighlight.sty" 1625911481 6615 02ef3c01e6bb67d3cc0658d354509680 ""
+  "sphinxhighlight.sty" 1625914447 6615 02ef3c01e6bb67d3cc0658d354509680 ""
   "sphinxmanual.cls" 1625486555 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1625911483 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1625914448 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxmulticell.sty" 1625486555 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   "tritri.png" 1625486555 8111 24341e5f31bacb259849ac42739f0460 ""
   "udm.png" 1625561698 2497 592a6693a447145b49dc86f741a79500 ""
@@ -342,9 +342,9 @@
   "unsupervised_82_0.png" 1625863803 19531 d1f41437891298c1fc43d478b4bbc1f4 ""
   "xor.png" 1625486555 20793 a870cfaf6a2b509203aae17171860456 ""
   (generated)
-  "book.toc"
+  "book.idx"
   "book.out"
   "book.log"
-  "book.pdf"
   "book.aux"
-  "book.idx"
+  "book.toc"
+  "book.pdf"

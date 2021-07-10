@@ -100,12 +100,12 @@
 
 
 \sphinxAtStartPar
-These lectures were originally given to students of computer engineering at the \sphinxhref{https://www.ujk.edu.pl}{Jan Kochanowski University} in Kielce, Poland, and for
+These lectures were originally given to undergraduate students of computer engineering at the \sphinxhref{https://www.ujk.edu.pl}{Jan Kochanowski University} in Kielce, Poland, and for
 the \sphinxhref{https://kisd.ifj.edu.pl/news/}{Kraków School of Interdisciplinary PhD Studies}. They explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the code for various algorithms of neural networks is written from absolute scratch, i.e. without any use of dedicated higher\sphinxhyphen{}level libraries. That way one can follow all the programming steps in an explicit manner.
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The text is brief (the pdf version has less than 140 pages), so a diligent student can complete the course in a few afternoons!
+The text is brief (the pdf version has only \textasciitilde{}130 pages), so a diligent student can complete the course in a few afternoons!
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{note}{Note:}
@@ -125,10 +125,10 @@ The reader may download the book codes in the form of
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{}0\sphinxhyphen{}0}
+ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{}0\sphinxhyphen{}0} (html version) \sphinxincludegraphics{{barcode}.png}
 
 \sphinxAtStartPar
-\sphinxincludegraphics{{barcode}.png}\{:height=”50\%” width=”50\%”\}
+ISBN: xxxxxx                      (pdf version)
 
 
 
@@ -151,6 +151,7 @@ The purpose of this course is to teach some basics of the omnipresent neural net
 A useful feature is that the reader receives a \sphinxhref{https://beta.jupyterbook.org/intro.html}{Jupyter Book}, which allows for
 a prompt download of complete codes as
 \sphinxhref{https://jupyter.org}{jupyter} notebooks and to do the course interactively.
+Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} instructs how to do it.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -167,8 +168,11 @@ At the end of each chapter some exercises are suggested, with the goal to famili
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. With simplicity as guidance, our choice of topics took inspiration from excellent lectures by \sphinxhref{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}{Daniel Kersten}, done in Mathematica, from an on\sphinxhyphen{}line book by \sphinxhref{https://page.mi.fu-berlin.de/rojas/neural/}{Raul Rojas} (also available in a printed version {[}\hyperlink{cite.docs/conclusion:id8}{FR13}{]}), and the from physicists’ (as myself!) point of view from {[}\hyperlink{cite.docs/conclusion:id7}{MullerRS12}{]}.
+There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. We only cite items which a more interested reader might look at.
 \end{sphinxadmonition}
+
+\sphinxAtStartPar
+With simplicity as guidance, our choice of topics took inspiration from excellent lectures by \sphinxhref{http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html}{Daniel Kersten}, done in Mathematica, from an on\sphinxhyphen{}line book by \sphinxhref{https://page.mi.fu-berlin.de/rojas/neural/}{Raul Rojas} (also available in a printed version {[}\hyperlink{cite.docs/conclusion:id8}{FR13}{]}), and the from physicists’ (as myself!) point of view from {[}\hyperlink{cite.docs/conclusion:id7}{MullerRS12}{]}.
 
 
 \section{Biological inspiration}
@@ -5240,23 +5244,14 @@ Create, for a number of countries, fictitious flags which have two colors (so ar
 \chapter{Concluding remarks}
 \label{\detokenize{docs/conclusion:concluding-remarks}}\label{\detokenize{docs/conclusion::doc}}
 \sphinxAtStartPar
-… Conclude here our discussion of the supervised learning and the back proparation, we provide a number of remarks nd hints. First, in programmers life, bulding a well\sphinxhyphen{}functioning ANN, even for simple problems as used for illustrations up to now, can be a frustrating eperience! …
+In programmers life, building a well\sphinxhyphen{}functioning ANN, even for simple problems as used for illustrations in these lectures, can be a truly frustrating experience! There are many subtleties involved on the way. To list a few that we have encountered in this course, one faces a choice of the network architecture, freedom in the initialization of hyperparameters, a choice of the initial learning speed or the neighborhood distance and their update strategy, tackles with the emergence of many local minima, a choice of the neuron activation function, or deals with the problem of “dead neurons”. Taking the right decisions is an art more than science, based on long experience of multitudes of code developers and towers of empty pizza boxes!
 
 \sphinxAtStartPar
-Neurological impossiblity of backprop.
-
-\sphinxAtStartPar
-HCP \sphinxhyphen{} Human Connectome Project \sphinxurl{http://www.humanconnectomeproject.org/}
-
-\sphinxAtStartPar
-Initial conditions for minimization, basen of convergence, learning stategy, improvements of steepest descent …
-
-\sphinxAtStartPar
-Professional libraries, experience verified with success …
+Now, having understood the basic principles behind the simples ANNs inside out, the reader may safely jump to using professional tools of modern machine learning, with the conviction that inside the black boxes there sit essentially the same little codes he met here, but with all the knowledge, tricks, provisions, and options built in. Achieving this conviction, through appreciation of simplicity, has been one of the main goals of this course.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-The references provided in the text as hyperlinks are not repeated in the list below.
+The references provided in the text as hyperlinks are not repeated in the literature list below.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -5267,7 +5262,7 @@ The references provided in the text as hyperlinks are not repeated in the list b
 \label{\detokenize{docs/appendix:appendix}}\label{\detokenize{docs/appendix::doc}}
 
 \section{How to run the book codes}
-\label{\detokenize{docs/appendix:how-to-run-the-book-codes}}
+\label{\detokenize{docs/appendix:how-to-run-the-book-codes}}\label{\detokenize{docs/appendix:app-run}}
 
 \subsection{Locally}
 \label{\detokenize{docs/appendix:locally}}
