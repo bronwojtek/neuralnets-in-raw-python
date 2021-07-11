@@ -7,10 +7,11 @@
 
 # The purpose of this course is to teach some basics of the omnipresent neural networks with [Python](https://www.python.org/) {cite}`barry2016head,matthes2019python,guttag2016`. Both the explanations of key concepts of neural networks and the illustrative programs are kept at a very elementary undergraduate, almost "high-school" level. The codes, made very simple, are described in detail. Moreover, they are written without any use of higher-level libraries for neural networks, which helps in better understanding of the explained algorithms and shows how to program them from scratch. 
 
-# ```{important}
-# **The reader may thus be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.**
-# ```
+# ```{admonition} Who is the book for?
+# :class: important
 # 
+# **The reader may be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.**
+# ```
 
 # The material covers such classic topics as the perceptron and its simplest applications, supervised learning with back-propagation for data classification, unsupervised learning and clusterization, the Kohonen self-organizing networks, and the Hopfield networks with feedback. This aims to prepare the necessary ground for the recent and timely advancements (not covered here) in neural networks, such as deep learning, convolutional networks, recurrent networks, generative adversarial networks, reinforcement learning, etc.
 # 
@@ -69,7 +70,7 @@
 # 
 # The neurons in various layers do not have to function the same way, in particular the output neurons may act differently from the others.
 # 
-# The signal from the input travels along the links (edges, synaptic connections) to the neurons in subsequent layers. In feed-forward networks it can only move forward. No going back to preceding layers or propagation among the neurons of the same layer are allowed (that would be the **recurrent** feature). As we will describe in detail in the next chapter, the signal is appropriately processed by the neurons. 
+# The signal from the input travels along the links (edges, synaptic connections) indicated with arrows to the neurons in subsequent layers. In feed-forward networks, as the one in {numref}`ffnn-fig`, it can only move forward: from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going back to preceding layers or propagation among the neurons of the same layer are allowed (that would be a **recurrent** feature). As we will describe in detail in the next chapter, the signal is appropriately processed by the neurons. 
 # 
 # In the sample network of {numref}`ffnn-fig` each neuron from a preceding layer is connected to each neuron in the following layer. Such ANNs are called **fully connected**. 
 
@@ -79,9 +80,9 @@
 # A sample feed-foward fully connected artificial neural network. The blobs represent the neurons, and the edges indicate the synaptic connections between them. The signal propagates starting from the input (black dots), via the neurons in subsequent intermediate (hidden) layers (purple blobs) and the output layer (light blue blobs), to finally end up as the output (black dots). The strength of the connections is controled by weights (hyperparameters) assigned to the edges.
 # :::
 
-# As we will learn shortly, each edge in the network has strength described with a number called **weight** (the weights are also termed **hyperparameters**). Even very small fully connected networks, such as the one of {numref}`ffnn-fig`, have very many connections (here 30), hence carry a lot of parameters. Thus, while looking innocuously, they are in fact complex multi-parametric systems. 
+# As we will learn shortly, each edge in the network has a certain "strength" described with a number called **weight** (the weights are also termed **hyperparameters**). Even very small fully connected networks, such as the one of {numref}`ffnn-fig`, have very many connections (here 30), hence carry a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact complex multi-parametric systems. 
 # 
-# Also, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter {ref}`MCP-lab`.
+# Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter {ref}`MCP-lab`.
 
 # ## Why Python
 
@@ -94,7 +95,7 @@
 # - Readability counts.
 # 
 # 
-# According to [SlashData](https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/), there are now over 10 million developers in the world who code using Python, just second after JavaScript (~14 million).
+# According to [SlashData](https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/), there are now over 10 million developers in the world using Python, just second after JavaScript (~14 million).
 
 # ### Imported packages
 
@@ -113,9 +114,11 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D   # 3D plots
 from IPython.display import display, Image, HTML # display imported graphics
 
 
-# ```{important}
-# Functions created in the course which are of repeated use, are placed in the private library package **neural**, described in Appendix {ref}`app-lab`. 
+# ```{admonition} **neural** package
+# Functions created during the course which are of repeated use, are placed in the private library package **neural**, described in Appendix {ref}`app-lab`. 
 # ```
+
+# It is imported in the following way:
 
 # In[ ]:
 
@@ -127,5 +130,5 @@ from neural import *        # import the lecture's package
 
 
 # ```{note} 
-# For brevity of the presentation, some redundant or inessential pieces of code are present only in the source Jupyter notebooks, and are not included/repeated in the book. 
+# For brevity of presentation, some redundant, such as imports of libraries, or inessential pieces of the code are present only in the downloadable source Jupyter notebooks, and are not included/repeated in the book. This makes the text more readable.
 # ```

@@ -4,14 +4,6 @@
 # (perc-lab)=
 # # Perceptron
 
-# ```{admonition} $~$
-# :class: tip
-# 
-# 
-# *Practice makes perfect*
-#                              
-# ```
-
 # In[ ]:
 
 

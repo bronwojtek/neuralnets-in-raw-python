@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 13:49
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 14:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1685,48 +1685,47 @@ File: xor.png Graphic file (type bmp)
 
 ]
 Chapter 3.
+File: memory_12_0.png Graphic file (type bmp)
+<memory_12_0.png>
 [19]
-File: memory_13_0.png Graphic file (type bmp)
-<memory_13_0.png>
+File: memory_19_0.png Graphic file (type bmp)
+<memory_19_0.png>
 File: memory_20_0.png Graphic file (type bmp)
 <memory_20_0.png>
-File: memory_21_0.png Graphic file (type bmp)
-<memory_21_0.png>
  [20] [21]
-File: memory_37_0.png Graphic file (type bmp)
-<memory_37_0.png>
+File: memory_36_0.png Graphic file (type bmp)
+<memory_36_0.png>
  [22]
-File: memory_48_0.png Graphic file (type bmp)
-<memory_48_0.png>
- [23]
-File: memory_50_0.png Graphic file (type bmp)
-<memory_50_0.png>
- [24]
-File: memory_58_0.png Graphic file (type bmp)
-<memory_58_0.png>
-File: memory_63_0.png Graphic file (type bmp)
-<memory_63_0.png>
+File: memory_47_0.png Graphic file (type bmp)
+<memory_47_0.png>
+File: memory_49_0.png Graphic file (type bmp)
+<memory_49_0.png>
+ [23] [24]
+File: memory_57_0.png Graphic file (type bmp)
+<memory_57_0.png>
+File: memory_62_0.png Graphic file (type bmp)
+<memory_62_0.png>
  [25]
-File: memory_68_0.png Graphic file (type bmp)
-<memory_68_0.png>
-File: memory_70_0.png Graphic file (type bmp)
-<memory_70_0.png>
+File: memory_67_0.png Graphic file (type bmp)
+<memory_67_0.png>
+File: memory_69_0.png Graphic file (type bmp)
+<memory_69_0.png>
  [26] [27] [28
 
 ]
 Chapter 4.
 [29] [30]
-File: perceptron_18_0.png Graphic file (type bmp)
-<perceptron_18_0.png>
+File: perceptron_17_0.png Graphic file (type bmp)
+<perceptron_17_0.png>
  [31]
-File: perceptron_29_0.png Graphic file (type bmp)
-<perceptron_29_0.png>
+File: perceptron_28_0.png Graphic file (type bmp)
+<perceptron_28_0.png>
  [32] [33]
-File: perceptron_40_0.png Graphic file (type bmp)
-<perceptron_40_0.png>
+File: perceptron_39_0.png Graphic file (type bmp)
+<perceptron_39_0.png>
  [34] [35]
-File: perceptron_55_0.png Graphic file (type bmp)
-<perceptron_55_0.png>
+File: perceptron_54_0.png Graphic file (type bmp)
+<perceptron_54_0.png>
  [36] [37] [38
 
 ]
@@ -1779,7 +1778,7 @@ File: backprop_24_0.png Graphic file (type bmp)
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
  [55] [56] [57]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2897--2903
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2889--2895
 []$[] [][] [][]$ 
  []
 
@@ -1881,7 +1880,7 @@ File: som_16_0.png Graphic file (type bmp)
 File: som_19_0.png Graphic file (type bmp)
 <som_19_0.png>
 
-Overfull \vbox (2.12384pt too high) detected at line 4509
+Overfull \vbox (2.12384pt too high) detected at line 4501
  []
 
 [95]
@@ -1912,7 +1911,7 @@ File: som_58_0.png Graphic file (type bmp)
 File: som_61_0.png Graphic file (type bmp)
 <som_61_0.png>
 
-Overfull \vbox (2.69862pt too high) detected at line 4818
+Overfull \vbox (2.69862pt too high) detected at line 4810
  []
 
 [102]
@@ -1968,75 +1967,75 @@ Chapter 11.
 ]
 Chapter 12.
 [117]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [119]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [120]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [121]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [122]
-Underfull \vbox (badness 10000) detected at line 5666
+Underfull \vbox (badness 10000) detected at line 5664
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5666
+Overfull \vbox (2.78596pt too high) detected at line 5664
  []
 
 [123] [124]
-Underfull \vbox (badness 10000) detected at line 5899
+Underfull \vbox (badness 10000) detected at line 5897
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5899
+Overfull \vbox (2.78596pt too high) detected at line 5897
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5899
+Underfull \vbox (badness 10000) detected at line 5897
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5899
+Overfull \vbox (2.78596pt too high) detected at line 5897
  []
 
 [126]
-Underfull \vbox (badness 10000) detected at line 5899
+Underfull \vbox (badness 10000) detected at line 5897
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5899
+Overfull \vbox (2.78596pt too high) detected at line 5897
  []
 
 [127] [128] [129] [130
@@ -2079,24 +2078,24 @@ braces):
  [131
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5965.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5965.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5963.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5963.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5965.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5965.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5963.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5963.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 1ED7B67EF45E3021258B6FBA0827FD15;13768.
+(rerunfilecheck)             Checksum: 861CE5556969D77B77E21A8E5A7A20E8;13900.
  ) 
 Here is how much of TeX's memory you used:
- 41988 strings out of 479418
- 955923 string characters out of 5884586
+ 41990 strings out of 479418
+ 955968 string characters out of 5884586
  1881254 words of memory out of 5000000
- 58622 multiletter control sequences out of 15000+600000
+ 58624 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s

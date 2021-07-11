@@ -296,11 +296,6 @@
                 
   <section id="models-of-memory">
 <h1>Models of memory<a class="headerlink" href="#models-of-memory" title="Permalink to this headline">¶</a></h1>
-<div class="tip admonition">
-<p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
-<p><em>Memory is the mother of all wisdom.</em></p>
-<p style="text-align:right;">Aeschylus</p>
-</div>
 <section id="heteroassociative-memory">
 <h2>Heteroassociative memory<a class="headerlink" href="#heteroassociative-memory" title="Permalink to this headline">¶</a></h2>
 <section id="pair-associations">
@@ -348,7 +343,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_13_0.png" src="../_images/memory_13_0.png" />
+<img alt="../_images/memory_12_0.png" src="../_images/memory_12_0.png" />
 </div>
 </div>
 <div class="admonition warning">
@@ -388,12 +383,12 @@
 <p>to obtain, for instance</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_20_0.png" src="../_images/memory_20_0.png" />
+<img alt="../_images/memory_19_0.png" src="../_images/memory_19_0.png" />
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_21_0.png" src="../_images/memory_21_0.png" />
+<img alt="../_images/memory_20_0.png" src="../_images/memory_20_0.png" />
 </div>
 </div>
 <p>The advantage of working with vectors is that we can use the scalar product. Note that here the scalar product between two symbols is just equal to the number of common yellow pixels. For instance, for the flattened symbols plotted above we have only two common yellow pixels:</p>
@@ -515,7 +510,7 @@ Let</p>
 <p>We note that the strength of pixels is now not necessarily equal to 0 or 1, as it was in the original symbols. The graphic representation looks as follows:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_37_0.png" src="../_images/memory_37_0.png" />
+<img alt="../_images/memory_36_0.png" src="../_images/memory_36_0.png" />
 </div>
 </div>
 <p>We should be able to see in the above picture the sequence a, A, i, I, and nothing particular in the association of Y. We almost do, but the situation is not perfect due to the nonorthogonality error discussed above.</p>
@@ -571,14 +566,14 @@ Let</p>
 <p>where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our associations (such perfection is not always the case):</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_48_0.png" src="../_images/memory_48_0.png" />
+<img alt="../_images/memory_47_0.png" src="../_images/memory_47_0.png" />
 </div>
 </div>
 <p>A representation of the just presented model of the heteroassociative memory in terms of a <strong>single-layer</strong> network of MCP neurons can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements <span class="math notranslate nohighlight">\(M_{ij}\)</span>, indicated with symbol M. The activation function is the same for all neurons and has the form of the step function.</p>
 <p>At the bottom, we indicate the elements of the input vector, <span class="math notranslate nohighlight">\(x_i\)</span>, of the signal reaching the neuron <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(s_j=\sum_i x_i M_{ij}\)</span>, and the final output <span class="math notranslate nohighlight">\(y_j=f(s_j)\)</span>.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_50_0.png" src="../_images/memory_50_0.png" />
+<img alt="../_images/memory_49_0.png" src="../_images/memory_49_0.png" />
 </div>
 </div>
 <div class="note admonition">
@@ -612,7 +607,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back the original symbols (except for Y, which was not associated with anything).</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_58_0.png" src="../_images/memory_58_0.png" />
+<img alt="../_images/memory_57_0.png" src="../_images/memory_57_0.png" />
 </div>
 </div>
 </section>
@@ -635,7 +630,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After this destruction, the input symbols look like this:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_63_0.png" src="../_images/memory_63_0.png" />
+<img alt="../_images/memory_62_0.png" src="../_images/memory_62_0.png" />
 </div>
 </div>
 </section>
@@ -658,7 +653,7 @@ It should be the symbol associated to the input.</p></li>
 <p>which yields</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_68_0.png" src="../_images/memory_68_0.png" />
+<img alt="../_images/memory_67_0.png" src="../_images/memory_67_0.png" />
 </div>
 </div>
 <p>After filtering with <span class="math notranslate nohighlight">\(b=0.9\)</span> we obtain back the original symbols:</p>
@@ -674,7 +669,7 @@ It should be the symbol associated to the input.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_70_0.png" src="../_images/memory_70_0.png" />
+<img alt="../_images/memory_69_0.png" src="../_images/memory_69_0.png" />
 </div>
 </div>
 <p>The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism.</p>
@@ -695,11 +690,11 @@ certain number of pixels randomly distorted.</p></li>
 <p class="admonition-title">Important</p>
 <p>Message: ANNs with one layer of MPC neurons can serve as very simple models of memory!</p>
 </div>
-<p>Note, however, that we constructed the memory matrices algebraically, externally, so to speak. Hence, the network has not really learned the associations from experience. There are ways to do it, but they require more advanced methods (see, e.g., <span id="id1">[<a class="reference internal" href="conclusion.html#id11">FS91</a>]</span>), similar to those covered in the following parts of these lectures.</p>
+<p>Note, however, that we constructed the memory matrices algebraically, externally, so to speak. Hence, the network has not really learned the associations from experience. There are ways to do it, but they require more advanced methods (see, e.g., <span id="id1">[]</span>), similar to those covered in the following parts of these lectures.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An implementation of the discussed memory models in Mathematica is provided in
-<span id="id2">[<a class="reference internal" href="conclusion.html#id10">Fre93</a>]</span> (<a class="reference external" href="https://library.wolfram.com/infocenter/Books/3485">https://library.wolfram.com/infocenter/Books/3485</a>) and in the already mentioned lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>.</p>
+<span id="id2">[]</span> (<a class="reference external" href="https://library.wolfram.com/infocenter/Books/3485">https://library.wolfram.com/infocenter/Books/3485</a>) and in the already mentioned lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>.</p>
 </div>
 </section>
 </section>

@@ -124,7 +124,8 @@ The codes for each chapter, in the form of
 Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to proceed with the execution of the codes.
 \end{sphinxadmonition}
 
-\begin{sphinxadmonition}{note}{Note:}
+\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
+
 \sphinxAtStartPar
 Built with \sphinxhref{https://beta.jupyterbook.org/intro.html}{Jupyter Book
 2.0} tool set, as part of the
@@ -143,7 +144,8 @@ ISBN: \sphinxstylestrong{978\sphinxhyphen{}83\sphinxhyphen{}962099\sphinxhyphen{
 \sphinxAtStartPar
 The purpose of this course is to teach some basics of the omnipresent neural networks with \sphinxhref{https://www.python.org/}{Python} {[}\hyperlink{cite.docs/conclusion:id5}{Bar16}, \hyperlink{cite.docs/conclusion:id3}{Gut16}, \hyperlink{cite.docs/conclusion:id2}{Mat19}{]}. Both the explanations of key concepts of neural networks and the illustrative programs are kept at a very elementary undergraduate, almost “high\sphinxhyphen{}school” level. The codes, made very simple, are described in detail. Moreover, they are written without any use of higher\sphinxhyphen{}level libraries for neural networks, which helps in better understanding of the explained algorithms and shows how to program them from scratch.
 
-\begin{sphinxadmonition}{important}{Important:}
+\begin{sphinxadmonition}{note}{Who is the book for?}
+
 \sphinxAtStartPar
 \sphinxstylestrong{The reader may thus be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.}
 \end{sphinxadmonition}
@@ -224,7 +226,7 @@ The simplest ANNs are the so called \sphinxstylestrong{feed forward} networks, d
 The neurons in various layers do not have to function the same way, in particular the output neurons may act differently from the others.
 
 \sphinxAtStartPar
-The signal from the input travels along the links (edges, synaptic connections) to the neurons in subsequent layers. In feed\sphinxhyphen{}forward networks it can only move forward. No going back to preceding layers or propagation among the neurons of the same layer are allowed (that would be the \sphinxstylestrong{recurrent} feature). As we will describe in detail in the next chapter, the signal is appropriately processed by the neurons.
+The signal from the input travels along the links (edges, synaptic connections) indicated with arrows to the neurons in subsequent layers. In feed\sphinxhyphen{}forward networks, as the one in \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref{\detokenize{docs/intro:ffnn-fig}}}, it can only move forward: from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going back to preceding layers or propagation among the neurons of the same layer are allowed (that would be a \sphinxstylestrong{recurrent} feature). As we will describe in detail in the next chapter, the signal is appropriately processed by the neurons.
 
 \sphinxAtStartPar
 In the sample network of \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref{\detokenize{docs/intro:ffnn-fig}}} each neuron from a preceding layer is connected to each neuron in the following layer. Such ANNs are called \sphinxstylestrong{fully connected}.
@@ -237,10 +239,10 @@ In the sample network of \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref
 \caption{A sample feed\sphinxhyphen{}foward fully connected artificial neural network. The blobs represent the neurons, and the edges indicate the synaptic connections between them. The signal propagates starting from the input (black dots), via the neurons in subsequent intermediate (hidden) layers (purple blobs) and the output layer (light blue blobs), to finally end up as the output (black dots). The strength of the connections is controled by weights (hyperparameters) assigned to the edges.}\label{\detokenize{docs/intro:ffnn-fig}}\end{figure}
 
 \sphinxAtStartPar
-As we will learn shortly, each edge in the network has strength described with a number called \sphinxstylestrong{weight} (the weights are also termed \sphinxstylestrong{hyperparameters}). Even very small fully connected networks, such as the one of \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref{\detokenize{docs/intro:ffnn-fig}}}, have very many connections (here 30), hence carry a lot of parameters. Thus, while looking innocuously, they are in fact complex multi\sphinxhyphen{}parametric systems.
+As we will learn shortly, each edge in the network has a certain “strength” described with a number called \sphinxstylestrong{weight} (the weights are also termed \sphinxstylestrong{hyperparameters}). Even very small fully connected networks, such as the one of \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref{\detokenize{docs/intro:ffnn-fig}}}, have very many connections (here 30), hence carry a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact complex multi\sphinxhyphen{}parametric systems.
 
 \sphinxAtStartPar
-Also, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP Neuron}}}}.
+Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter {\hyperref[\detokenize{docs/mcp:mcp-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{MCP Neuron}}}}.
 
 
 \section{Why Python}
@@ -271,7 +273,7 @@ Readability counts.
 \end{itemize}
 
 \sphinxAtStartPar
-According to \sphinxhref{https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/}{SlashData}, there are now over 10 million developers in the world who code using Python, just second after JavaScript (\textasciitilde{}14 million).
+According to \sphinxhref{https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/}{SlashData}, there are now over 10 million developers in the world using Python, just second after JavaScript (\textasciitilde{}14 million).
 
 
 \subsection{Imported packages}
@@ -290,10 +292,14 @@ Throughout the course we use some standard Python library packages for the numer
 \PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{display}\PYG{p}{,} \PYG{n}{Image}\PYG{p}{,} \PYG{n}{HTML} \PYG{c+c1}{\PYGZsh{} display imported graphics}
 \end{sphinxVerbatim}
 
-\begin{sphinxadmonition}{important}{Important:}
+\begin{sphinxadmonition}{note}{\sphinxstylestrong{neural} package}
+
 \sphinxAtStartPar
-Functions created in the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in Appendix {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}}.
+Functions created during the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in Appendix {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}}.
 \end{sphinxadmonition}
+
+\sphinxAtStartPar
+It is imported in the following way:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{sys}                  \PYG{c+c1}{\PYGZsh{} system }
@@ -304,7 +310,7 @@ Functions created in the course which are of repeated use, are placed in the pri
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-For brevity of the presentation, some redundant or inessential pieces of code are present only in the source Jupyter notebooks, and are not included/repeated in the book.
+For brevity of presentation, some redundant, such as imports of libraries, or inessential pieces of the code are present only in the downloadable source Jupyter notebooks, and are not included/repeated in the book. This makes the text more readable.
 \end{sphinxadmonition}
 
 
@@ -798,14 +804,6 @@ as networks of MCP neurons.
 
 \chapter{Models of memory}
 \label{\detokenize{docs/memory:models-of-memory}}\label{\detokenize{docs/memory::doc}}
-\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
-
-\sphinxAtStartPar
-\sphinxstyleemphasis{Memory is the mother of all wisdom.}
-
-
-\end{sphinxadmonition}
-
 
 \section{Heteroassociative memory}
 \label{\detokenize{docs/memory:heteroassociative-memory}}
@@ -856,7 +854,7 @@ We use the standard plotting package imported earlier. The whole set of our symb
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{sym}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} plot symbol, numbered from 0 to 4}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{memory_13_0}.png}
+\noindent\sphinxincludegraphics{{memory_12_0}.png}
 
 \begin{sphinxadmonition}{warning}{Warning:}
 \sphinxAtStartPar
@@ -893,9 +891,9 @@ We thus perform the flattening on our set,
 \sphinxAtStartPar
 to obtain, for instance
 
-\noindent\sphinxincludegraphics{{memory_20_0}.png}
+\noindent\sphinxincludegraphics{{memory_19_0}.png}
 
-\noindent\sphinxincludegraphics{{memory_21_0}.png}
+\noindent\sphinxincludegraphics{{memory_20_0}.png}
 
 \sphinxAtStartPar
 The advantage of working with vectors is that we can use the scalar product. Note that here the scalar product between two symbols is just equal to the number of common yellow pixels. For instance, for the flattened symbols plotted above we have only two common yellow pixels:
@@ -1024,7 +1022,7 @@ For the case of association to A (which should be a), the procedure yields (we u
 \sphinxAtStartPar
 We note that the strength of pixels is now not necessarily equal to 0 or 1, as it was in the original symbols. The graphic representation looks as follows:
 
-\noindent\sphinxincludegraphics{{memory_37_0}.png}
+\noindent\sphinxincludegraphics{{memory_36_0}.png}
 
 \sphinxAtStartPar
 We should be able to see in the above picture the sequence a, A, i, I, and nothing particular in the association of Y. We almost do, but the situation is not perfect due to the nonorthogonality error discussed above.
@@ -1077,7 +1075,7 @@ When operating on Ap with appropriately chosen \(b=0.9\) (the level of the assum
 \sphinxAtStartPar
 where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our associations (such perfection is not always the case):
 
-\noindent\sphinxincludegraphics{{memory_48_0}.png}
+\noindent\sphinxincludegraphics{{memory_47_0}.png}
 
 \sphinxAtStartPar
 A representation of the just presented model of the heteroassociative memory in terms of a \sphinxstylestrong{single\sphinxhyphen{}layer} network of MCP neurons can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements \(M_{ij}\), indicated with symbol M. The activation function is the same for all neurons and has the form of the step function.
@@ -1085,7 +1083,7 @@ A representation of the just presented model of the heteroassociative memory in 
 \sphinxAtStartPar
 At the bottom, we indicate the elements of the input vector, \(x_i\), of the signal reaching the neuron \(j\), \(s_j=\sum_i x_i M_{ij}\), and the final output \(y_j=f(s_j)\).
 
-\noindent\sphinxincludegraphics{{memory_50_0}.png}
+\noindent\sphinxincludegraphics{{memory_49_0}.png}
 
 \begin{sphinxadmonition}{note}{Summary of the model of the heteroassociative memory}
 \begin{enumerate}
@@ -1139,7 +1137,7 @@ The autoassociative memory model is in close analogy to the case of the heteroas
 \sphinxAtStartPar
 After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back the original symbols (except for Y, which was not associated with anything).
 
-\noindent\sphinxincludegraphics{{memory_58_0}.png}
+\noindent\sphinxincludegraphics{{memory_57_0}.png}
 
 
 \subsection{Distorting the image}
@@ -1160,7 +1158,7 @@ Now imagine that the original image gets partially destroyed, with some pixels r
 \sphinxAtStartPar
 After this destruction, the input symbols look like this:
 
-\noindent\sphinxincludegraphics{{memory_63_0}.png}
+\noindent\sphinxincludegraphics{{memory_62_0}.png}
 
 
 \subsection{Restoring the symbols}
@@ -1181,7 +1179,7 @@ We next apply our model of the autoassociative memory to all the “destroyed”
 \sphinxAtStartPar
 which yields
 
-\noindent\sphinxincludegraphics{{memory_68_0}.png}
+\noindent\sphinxincludegraphics{{memory_67_0}.png}
 
 \sphinxAtStartPar
 After filtering with \(b=0.9\) we obtain back the original symbols:
@@ -1195,7 +1193,7 @@ After filtering with \(b=0.9\) we obtain back the original symbols:
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n+nb}{filter}\PYG{p}{(}\PYG{n}{symp}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mf}{0.9}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} plot filtered symbol}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{memory_70_0}.png}
+\noindent\sphinxincludegraphics{{memory_69_0}.png}
 
 \sphinxAtStartPar
 The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism.
@@ -1278,12 +1276,6 @@ Discuss your findings and the limitations of the models.
 
 \chapter{Perceptron}
 \label{\detokenize{docs/perceptron:perceptron}}\label{\detokenize{docs/perceptron:perc-lab}}\label{\detokenize{docs/perceptron::doc}}
-\begin{sphinxadmonition}{note}{\protect\(~\protect\)}
-
-\sphinxAtStartPar
-\sphinxstyleemphasis{Practice makes perfect}
-\end{sphinxadmonition}
-
 
 \section{Supervised learning}
 \label{\detokenize{docs/perceptron:supervised-learning}}
@@ -1436,7 +1428,7 @@ Graphically, our data are shown in the figure below. We also plot the line \(x_2
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_18_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_17_0}.png}
 
 \begin{sphinxadmonition}{note}{Linearly separable sets}
 
@@ -1510,7 +1502,7 @@ At this point the reader may be a bit misled by the apparent triviality of the r
  [0.837124   0.80643535 1.        ]]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_29_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_28_0}.png}
 
 \sphinxAtStartPar
 The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}} that would carry out the binary classification.
@@ -1612,7 +1604,7 @@ Obtained weights:
 \sphinxAtStartPar
 The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.
 
-\noindent\sphinxincludegraphics{{perceptron_40_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_39_0}.png}
 
 \sphinxAtStartPar
 We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation
@@ -1713,7 +1705,7 @@ number of misclassified points =  11  per  10000  ( 0.1 \PYGZpc{} )
 \sphinxAtStartPar
 As we can see, a small number of test points are misclassified. All these points lie near the separating line.
 
-\noindent\sphinxincludegraphics{{perceptron_55_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_54_0}.png}
 
 \begin{sphinxadmonition}{note}{Misclassification}
 
@@ -5217,14 +5209,20 @@ Create, for a number of countries, fictitious flags which have two colors (so ar
 \chapter{Concluding remarks}
 \label{\detokenize{docs/conclusion:concluding-remarks}}\label{\detokenize{docs/conclusion::doc}}
 \sphinxAtStartPar
-In programmers life, building a well\sphinxhyphen{}functioning ANN, even for simple problems as used for illustrations in these lectures, can be a truly frustrating experience! There are many subtleties involved on the way. To list a few that we have encountered in this course, one faces a choice of the network architecture, freedom in the initialization of hyperparameters, a choice of the initial learning speed or the neighborhood distance and their update strategy, tackles with the emergence of many local minima, a choice of the neuron activation function, or deals with the problem of “dead neurons”. Taking the right decisions is an art more than science, based on long experience of multitudes of code developers and towers of empty pizza boxes!
+In a programmer’s life, building a well\sphinxhyphen{}functioning ANN, even for simple problems as used for illustrations in these lectures, can be a truly frustrating experience! There are many subtleties involved on the way. To list a few that we have encountered in this course, one faces a choice of the network architecture, freedom in the initialization of hyperparameters, a choice of the initial learning speed or the neighborhood distance and their update strategy, one tackles with the emergence of many local minima, a choice of the neuron activation function, or deals with the problem of “dead neurons”. Taking the right decisions is an art more than science, based on long experience of multitudes of code developers and piles of empty pizza boxes!
 
 \sphinxAtStartPar
-Now, having understood the basic principles behind the simples ANNs inside out, the reader may safely jump to using professional tools of modern machine learning, with the conviction that inside the black boxes there sit essentially the same little codes he met here, but with all the knowledge, tricks, provisions, and options built in. Achieving this conviction, through appreciation of simplicity, has been one of the main goals of this course.
+Now, having understood the basic principles behind the simplest ANNs inside out, the reader may safely jump to using professional tools of modern machine learning, with the conviction that inside the black boxes there sit essentially the same little codes he met here, but with all the knowledge, tricks, provisions, and options built in. Achieving this conviction, through appreciation of simplicity, has been one of the main goals of this course.
+
+
+\section{Acknowledgments}
+\label{\detokenize{docs/conclusion:acknowledgments}}
+\sphinxAtStartPar
+The author thanks \sphinxhref{https://www.linkedin.com/in/janbroniowski}{Jan Broniowski} for priceless technical help and for remarks to the text.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-The references provided in the text as hyperlinks are not repeated in the literature list below.
+The references provided in the text as hyperlinks are not repeated in the bibliography list below.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -5246,7 +5244,7 @@ The reader may download the \sphinxhref{https://jupyter.org}{Jupyter} notebooks 
 In the latter case, the file \sphinxstylestrong{nn\sphinxhyphen{}book.zip} should be unpacked in a working directory. The proper tree structure of the library package i \sphinxstylestrong{lib\sphinxhyphen{}nn} and of the graphics includes \sphinxstylestrong{images} will be reproduced.
 
 \sphinxAtStartPar
-Having installed Python and \sphinxhref{https://jupyter.org}{Jupyter} (preferably as \sphinxhref{https://docs.conda.io/projects/conda/en/latest/user-guide/install}{conda}, the reader can follow the instructions (specific for the operating system) to execute the lecture’s notebooks stored in directory \sphinxstylestrong{nn\sphinxhyphen{}book}.
+Having installed Python and \sphinxhref{https://jupyter.org}{Jupyter} (preferably as \sphinxhref{https://docs.conda.io/projects/conda/en/latest/user-guide/install}{conda}), the reader can follow the instructions (specific for the operating system) to execute the lecture’s notebooks stored in directory \sphinxstylestrong{nn\sphinxhyphen{}book}.
 
 
 \section{\sphinxstylestrong{neural} package}
