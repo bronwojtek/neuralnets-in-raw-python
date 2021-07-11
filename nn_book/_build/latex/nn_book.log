@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 14:56
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**book.tex
-(./book.tex
+**nn_book.tex
+(./nn_book.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06> (./jupyterBook.cls
 Document Class: jupyterBook 2020/11/06
@@ -1286,16 +1286,16 @@ LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/unicode-math/unicode-math-table.t
 ex)))
 \@indexfile=\write5
-\openout5 = `book.idx'.
+\openout5 = `nn_book.idx'.
 
 
-Writing index file book.idx
-(./book.aux
+Writing index file nn_book.idx
+(./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-\openout1 = `book.aux'.
+\openout1 = `nn_book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
 LaTeX Font Info:    ... okay on input line 87.
@@ -1376,9 +1376,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 87.
 LaTeX Info: Redefining \pageref on input line 87.
 LaTeX Info: Redefining \nameref on input line 87.
- (./book.out) (./book.out)
+ (./nn_book.out) (./nn_book.out)
 \@outlinefile=\write6
-\openout6 = `book.out'.
+\openout6 = `nn_book.out'.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 87.
@@ -1625,7 +1625,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
-(./book.toc
+(./nn_book.toc
 LaTeX Info: Redefining \rmfamily on input line 1.
 LaTeX Info: Redefining \sffamily on input line 1.
 LaTeX Info: Redefining \ttfamily on input line 1.
@@ -1641,7 +1641,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 
 ])
 \tf@toc=\write7
-\openout7 = `book.toc'.
+\openout7 = `nn_book.toc'.
 
  [2]
 File: barcode.png Graphic file (type bmp)
@@ -2040,7 +2040,7 @@ Overfull \vbox (2.78596pt too high) detected at line 5897
 
 [127] [128] [129] [130
 
-] (./book.ind)
+] (./nn_book.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -2080,7 +2080,7 @@ braces):
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5963.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 5963.
- (./book.aux
+ (./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
@@ -2088,16 +2088,16 @@ LaTeX Info: Redefining \ttfamily on input line 19.
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5963.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5963.
 
-Package rerunfilecheck Info: File `book.out' has not changed.
+Package rerunfilecheck Info: File `nn_book.out' has not changed.
 (rerunfilecheck)             Checksum: 861CE5556969D77B77E21A8E5A7A20E8;13900.
  ) 
 Here is how much of TeX's memory you used:
  41990 strings out of 479418
- 955968 string characters out of 5884586
- 1881254 words of memory out of 5000000
+ 956031 string characters out of 5884586
+ 1881257 words of memory out of 5000000
  58624 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,22n,112p,1517b,556s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on book.pdf (135 pages).
+Output written on nn_book.pdf (135 pages).

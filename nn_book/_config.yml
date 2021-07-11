@@ -1,34 +1,42 @@
 title: "Explaining neural networks in raw Python: lectures in Jupyter"
 author: "Wojciech Broniowski"
 email: "Wojciech.Broniowski@ifj.edu.pl"
-release: "IFJ"
+release: "1"
 logo: 'koh.png'
 
 # Short description about the book
 description: >-
-  Basic of neural networks in python
+  Lectures explaining very basic concepts of neural networks at elementary level, requiring only a very rudimentary knowledge of Python. Various algorithms are written in raw Python from scratch, i.e. without dedicated higher-level libraries.
 
 execute:
 #  execute_notebooks           : auto
   execute_notebooks           : off
-
   timeout: -1
 
 # HTML-specific settings
 html:
-  home_page_in_navbar         : false
+  favicon              : "koh.png"
+  home_page_in_navbar  : false
+  use_edit_page_button : true
+  use_repository_button: true
+  use_issues_button    : true
 
 # Interact link settings
 notebook_interface            : "notebook"
 
-# Launch button settings
 repository:
-#  url                         : https://github.com/executablebooks/nn_scratch
-  path_to_book                : "nn_book"
+  url           : "https://github.com/bronwojtek/neuralnets-in-raw-python/"
+  branch        : master
+  path_to_book  : nn_book
 
-binder:
-#  binderhub_url               : "https://mybinder.org"
-  text                        : "Launch binder"
+# Launch button settings
+launch_buttons:
+  binder             : false
+  binderhub          : false
+  binderhub_url      : off
+  jupyterhub         : false
+  thebe              : false
+  colab              : false
 
 # LaTeX settings
 bibtex_bibfiles:
@@ -37,10 +45,10 @@ bibtex_bibfiles:
 latex:
   latex_engine                : "pdflatex"
   use_jupyterbook_latex       : true # use jupyterbook-latex for pdf builds as default
-
   latex_documents:
-    targetname: book.tex
+    targetname: nn_book.tex
     
 sphinx:
   config:
+    html_show_copyright: false
     latex_toplevel_sectioning: 'section'
