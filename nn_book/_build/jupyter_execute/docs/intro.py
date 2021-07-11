@@ -12,14 +12,6 @@
 # ```
 # 
 
-# 
-# ```{note}
-# A useful feature is that the reader receives a [Jupyter Book](https://beta.jupyterbook.org/intro.html), which allows for 
-# a prompt download of complete codes as 
-# [jupyter](https://jupyter.org) notebooks and to do the course interactively.
-# Appendix {ref}`app-run` instructs how to do it.
-# ```
-
 # The material covers such classic topics as the perceptron and its simplest applications, supervised learning with back-propagation for data classification, unsupervised learning and clusterization, the Kohonen self-organizing networks, and the Hopfield networks with feedback. This aims to prepare the necessary ground for the recent and timely advancements (not covered here) in neural networks, such as deep learning, convolutional networks, recurrent networks, generative adversarial networks, reinforcement learning, etc.
 # 
 # On the way of the course, some basic Python programing will be gently sneaked in for the newcomers. Brief explanations and comments in the codes are provided.
@@ -106,34 +98,34 @@
 
 # ### Imported packages
 
-# Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture notebook starts with the inclusion of the libraries:
+# Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture's notebook starts with the inclusion of some of these libraries:
 
 # In[2]:
 
 
-import numpy as np
+import numpy as np              # numerical
+import statistics as st         # statistics
+import matplotlib.pyplot as plt # plotting
+import matplotlib as mpl        # plotting
+import matplotlib.cm as cm      # contour plots 
 
-# plots
-import matplotlib.pyplot as plt
-
-# display imported graphics
-from IPython.display import display, Image, HTML
+from mpl_toolkits.mplot3d.axes3d import Axes3D   # 3D plots
+from IPython.display import display, Image, HTML # display imported graphics
 
 
 # ```{important}
-# Functions created in the course which are of repeated use, are placed in the private library package **neural**, described in the [Appendix](app-lab). 
+# Functions created in the course which are of repeated use, are placed in the private library package **neural**, described in Appendix {ref}`app-lab`. 
 # ```
+
+# In[ ]:
+
+
+import sys                  # system 
+sys.path.append('./lib_nn') # path to the lecture's package
+
+from neural import *        # import the lecture's package
+
 
 # ```{note} 
 # For brevity of the presentation, some redundant or inessential pieces of code are present only in the source Jupyter notebooks, and are not included/repeated in the book. 
-# ```
-
-# ### Before you begin
-
-# ```{warning}
-# 
-# To repeat the calculations one-to-one, the reader should work with downloaded Jupyter notebooks, which can be obtained from ...
-# 
-# The reader should install Python and [Jupyter](https://jupyter.org)
-# to execute the lecture notebooks autonomously. Alternatively, he may use [Google Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb). Appendix {ref}`app-run` provides the instructions.
 # ```

@@ -8,7 +8,13 @@
 
 # ### Locally
 
-# ... under construction, will appear shortly
+# The reader may download the [Jupyter](https://jupyter.org) notebooks for each chapter by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
+# 
+# In the latter case, the file **nn-book.zip** should be unpacked in a working directory. The proper tree structure of the library package in **lib-nn** and of the graphics includes in **images** will be reproduced. 
+# 
+# Having installed Python and [Jupyter](https://jupyter.org) (preferably as [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install) , the reader can follow the instructions (specific for the operating system) to execute the notebooks from directory **nn-book**.
+# 
+# 
 
 # ### In Google Colab
 

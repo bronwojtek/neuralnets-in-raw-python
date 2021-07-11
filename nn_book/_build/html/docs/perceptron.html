@@ -289,23 +289,6 @@
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
 <p><em>Practice makes perfect</em></p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>                  <span class="c1"># system library</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> <span class="c1"># path to my library package</span>
-
-<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span>        <span class="c1"># import my library package</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We only show new imported packages in the text, with the previous imports, such as <strong>numpy</strong>, repeated but hidden.</p>
-<p>Here we load for the first time the lecture’s <strong>neural</strong> package (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>).</p>
-</div>
 <div class="section" id="supervised-learning">
 <h2>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
 <p>We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has</p>
@@ -409,7 +392,7 @@ is used to assess if a data item has a particular feature, or not - just two pos
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_19_0.png" src="../_images/perceptron_19_0.png" />
+<img alt="../_images/perceptron_18_0.png" src="../_images/perceptron_18_0.png" />
 </div>
 </div>
 <div class="important admonition">
@@ -474,7 +457,7 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_30_0.png" src="../_images/perceptron_30_0.png" />
+<img alt="../_images/perceptron_29_0.png" src="../_images/perceptron_29_0.png" />
 </div>
 </div>
 <p>The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a> that would carry out the binary classification.</p>
@@ -560,7 +543,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_41_0.png" src="../_images/perceptron_41_0.png" />
+<img alt="../_images/perceptron_40_0.png" src="../_images/perceptron_40_0.png" />
 </div>
 </div>
 <p>We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation</p>
@@ -659,7 +642,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>As we can see, a small number of test points are misclassified. All these points lie near the separating line.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_56_0.png" src="../_images/perceptron_56_0.png" />
+<img alt="../_images/perceptron_55_0.png" src="../_images/perceptron_55_0.png" />
 </div>
 </div>
 <div class="note admonition">

@@ -258,11 +258,6 @@
      Imported packages
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#before-you-begin">
-     Before you begin
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -284,13 +279,6 @@
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><strong>The reader may thus be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.</strong></p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A useful feature is that the reader receives a <a class="reference external" href="https://beta.jupyterbook.org/intro.html">Jupyter Book</a>, which allows for
-a prompt download of complete codes as
-<a class="reference external" href="https://jupyter.org">jupyter</a> notebooks and to do the course interactively.
-Appendix <a class="reference internal" href="appendix.html#app-run"><span class="std std-ref">How to run the book codes</span></a> instructs how to do it.</p>
 </div>
 <p>The material covers such classic topics as the perceptron and its simplest applications, supervised learning with back-propagation for data classification, unsupervised learning and clusterization, the Kohonen self-organizing networks, and the Hopfield networks with feedback. This aims to prepare the necessary ground for the recent and timely advancements (not covered here) in neural networks, such as deep learning, convolutional networks, recurrent networks, generative adversarial networks, reinforcement learning, etc.</p>
 <p>On the way of the course, some basic Python programing will be gently sneaked in for the newcomers. Brief explanations and comments in the codes are provided.</p>
@@ -353,36 +341,38 @@ Appendix <a class="reference internal" href="appendix.html#app-run"><span class=
 <p>According to <a class="reference external" href="https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/">SlashData</a>, there are now over 10 million developers in the world who code using Python, just second after JavaScript (~14 million).</p>
 <div class="section" id="imported-packages">
 <h3>Imported packages<a class="headerlink" href="#imported-packages" title="Permalink to this headline">¶</a></h3>
-<p>Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture notebook starts with the inclusion of the libraries:</p>
+<p>Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture’s notebook starts with the inclusion of some of these libraries:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>              <span class="c1"># numerical</span>
+<span class="kn">import</span> <span class="nn">statistics</span> <span class="k">as</span> <span class="nn">st</span>         <span class="c1"># statistics</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>        <span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>      <span class="c1"># contour plots </span>
 
-<span class="c1"># plots</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># display imported graphics</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d.axes3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>   <span class="c1"># 3D plots</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span> <span class="c1"># display imported graphics</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Functions created in the course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in the <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>.</p>
+<p>Functions created in the course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in Appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>                  <span class="c1"># system </span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> <span class="c1"># path to the lecture&#39;s package</span>
+
+<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span>        <span class="c1"># import the lecture&#39;s package</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For brevity of the presentation, some redundant or inessential pieces of code are present only in the source Jupyter notebooks, and are not included/repeated in the book.</p>
-</div>
-</div>
-<div class="section" id="before-you-begin">
-<h3>Before you begin<a class="headerlink" href="#before-you-begin" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>To repeat the calculations one-to-one, the reader should work with downloaded Jupyter notebooks, which can be obtained from …</p>
-<p>The reader should install Python and <a class="reference external" href="https://jupyter.org">Jupyter</a>
-to execute the lecture notebooks autonomously. Alternatively, he may use <a class="reference external" href="https://colab.research.google.com/notebooks/intro.ipynb">Google Colaboratory</a>. Appendix <a class="reference internal" href="appendix.html#app-run"><span class="std std-ref">How to run the book codes</span></a> provides the instructions.</p>
 </div>
 </div>
 </div>

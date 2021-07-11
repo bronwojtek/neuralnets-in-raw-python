@@ -21,10 +21,10 @@ Built with [Jupyter Book
 ```
 
 ```{important}
-The reader may download the book codes in the form of 
-[jupyter](https://jupyter.org) notebooks from ... 
+The reader may download the book codes of each chapter in the form of 
+[Jupyter](https://jupyter.org) notebooks by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
 
-{ref}`app-run` explains step-by-step how to run the book codes.
+Appendix {ref}`app-run` explains step-by-step how to proceed with execution locally.
 ```
 
 ISBN: **978-83-962099-0-0** (pdf version) ![](images/barcode.gif)

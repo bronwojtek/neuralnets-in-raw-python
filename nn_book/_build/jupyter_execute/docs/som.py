@@ -1077,11 +1077,11 @@ plt.ylabel('signal',fontsize=11);
 # ```{admonition} $~$
 # :class: warning
 # 
-# 1. Construct a Kohonen mapping form a disjoint 2D shape on a 2D grid of neurons.
+# 1. Construct a Kohonen mapping form a disjoint 2D shape into a 2D grid of neurons.
 # 
 # 2. Construct a Kohonen mapping for a case where the points in the input space are not distributed uniformly, but denser in some region(s).  
 # 
-# 3. Create, for a number of countries, fictitious flags which have two colors (so are described with 6 RGB numbers). Construct a Kohonen map on a 2-dim. grid. Plot the resulting $U$-matrix.
+# 3. Create, for a number of countries, fictitious flags which have two colors (so are described with 6 RGB numbers). Construct a Kohonen map into a 2-dim. grid. Plot the resulting $U$-matrix.
 # 
 # 3. [Lateral inhibition](https://en.wikipedia.org/wiki/Lateral_inhibition) has "side-effects" seen in optical delusions. Describe the [Mach illusion](https://en.wikipedia.org/wiki/Mach_bands) in Python. 
 # ```

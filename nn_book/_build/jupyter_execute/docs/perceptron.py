@@ -22,11 +22,6 @@ from IPython.display import display, Image
 
 # plotting
 import matplotlib.pyplot as plt
-
-
-# In[4]:
-
-
 import matplotlib as mpl
 
 import sys                  # system library

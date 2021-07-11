@@ -72,7 +72,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 10, 2021}
+\date{Jul 11, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -115,11 +115,11 @@ Built with \sphinxhref{https://beta.jupyterbook.org/intro.html}{Jupyter Book
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The reader may download the book codes in the form of
-\sphinxhref{https://jupyter.org}{jupyter} notebooks from …
+The reader may download the book codes of each chapter in the form of
+\sphinxhref{https://jupyter.org}{Jupyter} notebooks by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from \sphinxhref{https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}{ujk.edu.pl/strony/Wojciech.Broniowski/nn}.
 
 \sphinxAtStartPar
-{\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to run the book codes.
+Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to proceed with execution locally.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -137,14 +137,6 @@ The purpose of this course is to teach some basics of the omnipresent neural net
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
 \sphinxstylestrong{The reader may thus be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.}
-\end{sphinxadmonition}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxAtStartPar
-A useful feature is that the reader receives a \sphinxhref{https://beta.jupyterbook.org/intro.html}{Jupyter Book}, which allows for
-a prompt download of complete codes as
-\sphinxhref{https://jupyter.org}{jupyter} notebooks and to do the course interactively.
-Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} instructs how to do it.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -276,38 +268,34 @@ According to \sphinxhref{https://developer-tech.com/news/2021/apr/27/slashdata-j
 \subsection{Imported packages}
 \label{\detokenize{docs/intro:imported-packages}}
 \sphinxAtStartPar
-Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture notebook starts with the inclusion of the libraries:
+Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture’s notebook starts with the inclusion of some of these libraries:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}              \PYG{c+c1}{\PYGZsh{} numerical}
+\PYG{k+kn}{import} \PYG{n+nn}{statistics} \PYG{k}{as} \PYG{n+nn}{st}         \PYG{c+c1}{\PYGZsh{} statistics}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt} \PYG{c+c1}{\PYGZsh{} plotting}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}        \PYG{c+c1}{\PYGZsh{} plotting}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{cm} \PYG{k}{as} \PYG{n+nn}{cm}      \PYG{c+c1}{\PYGZsh{} contour plots }
 
-\PYG{c+c1}{\PYGZsh{} plots}
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-
-\PYG{c+c1}{\PYGZsh{} display imported graphics}
-\PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{display}\PYG{p}{,} \PYG{n}{Image}\PYG{p}{,} \PYG{n}{HTML}
+\PYG{k+kn}{from} \PYG{n+nn}{mpl\PYGZus{}toolkits}\PYG{n+nn}{.}\PYG{n+nn}{mplot3d}\PYG{n+nn}{.}\PYG{n+nn}{axes3d} \PYG{k+kn}{import} \PYG{n}{Axes3D}   \PYG{c+c1}{\PYGZsh{} 3D plots}
+\PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{display}\PYG{p}{,} \PYG{n}{Image}\PYG{p}{,} \PYG{n}{HTML} \PYG{c+c1}{\PYGZsh{} display imported graphics}
 \end{sphinxVerbatim}
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-Functions created in the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in the {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Appendix}}}}.
+Functions created in the course which are of repeated use, are placed in the private library package \sphinxstylestrong{neural}, described in Appendix {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}}.
 \end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{sys}                  \PYG{c+c1}{\PYGZsh{} system }
+\PYG{n}{sys}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./lib\PYGZus{}nn}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} path to the lecture\PYGZsq{}s package}
+
+\PYG{k+kn}{from} \PYG{n+nn}{neural} \PYG{k+kn}{import} \PYG{o}{*}        \PYG{c+c1}{\PYGZsh{} import the lecture\PYGZsq{}s package}
+\end{sphinxVerbatim}
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
 For brevity of the presentation, some redundant or inessential pieces of code are present only in the source Jupyter notebooks, and are not included/repeated in the book.
-\end{sphinxadmonition}
-
-
-\subsection{Before you begin}
-\label{\detokenize{docs/intro:before-you-begin}}
-\begin{sphinxadmonition}{warning}{Warning:}
-\sphinxAtStartPar
-To repeat the calculations one\sphinxhyphen{}to\sphinxhyphen{}one, the reader should work with downloaded Jupyter notebooks, which can be obtained from …
-
-\sphinxAtStartPar
-The reader should install Python and \sphinxhref{https://jupyter.org}{Jupyter}
-to execute the lecture notebooks autonomously. Alternatively, he may use \sphinxhref{https://colab.research.google.com/notebooks/intro.ipynb}{Google Colaboratory}. Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} provides the instructions.
 \end{sphinxadmonition}
 
 
@@ -1287,23 +1275,6 @@ Discuss your findings and the limitations of the models.
 \sphinxstyleemphasis{Practice makes perfect}
 \end{sphinxadmonition}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}
-
-\PYG{k+kn}{import} \PYG{n+nn}{sys}                  \PYG{c+c1}{\PYGZsh{} system library}
-\PYG{n}{sys}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./lib\PYGZus{}nn}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} path to my library package}
-
-\PYG{k+kn}{from} \PYG{n+nn}{neural} \PYG{k+kn}{import} \PYG{o}{*}        \PYG{c+c1}{\PYGZsh{} import my library package}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxAtStartPar
-We only show new imported packages in the text, with the previous imports, such as \sphinxstylestrong{numpy}, repeated but hidden.
-
-\sphinxAtStartPar
-Here we load for the first time the lecture’s \sphinxstylestrong{neural} package (see {\hyperref[\detokenize{docs/appendix:app-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{neural package}}}}).
-\end{sphinxadmonition}
-
 
 \section{Supervised learning}
 \label{\detokenize{docs/perceptron:supervised-learning}}
@@ -1456,7 +1427,7 @@ Graphically, our data are shown in the figure below. We also plot the line \(x_2
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}x\PYGZus{}2\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_19_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_18_0}.png}
 
 \begin{sphinxadmonition}{note}{Linearly separable sets}
 
@@ -1530,7 +1501,7 @@ At this point the reader may be a bit misled by the apparent triviality of the r
  [0.837124   0.80643535 1.        ]]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{perceptron_30_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_29_0}.png}
 
 \sphinxAtStartPar
 The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of \hyperref[\detokenize{docs/mcp:mcp2-fig}]{Fig.\@ \ref{\detokenize{docs/mcp:mcp2-fig}}} that would carry out the binary classification.
@@ -1632,7 +1603,7 @@ Obtained weights:
 \sphinxAtStartPar
 The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.
 
-\noindent\sphinxincludegraphics{{perceptron_41_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_40_0}.png}
 
 \sphinxAtStartPar
 We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation
@@ -1733,7 +1704,7 @@ number of misclassified points =  11  per  10000  ( 0.1 \PYGZpc{} )
 \sphinxAtStartPar
 As we can see, a small number of test points are misclassified. All these points lie near the separating line.
 
-\noindent\sphinxincludegraphics{{perceptron_56_0}.png}
+\noindent\sphinxincludegraphics{{perceptron_55_0}.png}
 
 \begin{sphinxadmonition}{note}{Misclassification}
 
@@ -5216,7 +5187,7 @@ Actually, \sphinxstylestrong{pyramidal neurons}, present i.a. in the neocortex, 
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Construct a Kohonen mapping form a disjoint 2D shape on a 2D grid of neurons.
+Construct a Kohonen mapping form a disjoint 2D shape into a 2D grid of neurons.
 
 \item {} 
 \sphinxAtStartPar
@@ -5224,7 +5195,7 @@ Construct a Kohonen mapping for a case where the points in the input space are n
 
 \item {} 
 \sphinxAtStartPar
-Create, for a number of countries, fictitious flags which have two colors (so are described with 6 RGB numbers). Construct a Kohonen map on a 2\sphinxhyphen{}dim. grid. Plot the resulting \(U\)\sphinxhyphen{}matrix.
+Create, for a number of countries, fictitious flags which have two colors (so are described with 6 RGB numbers). Construct a Kohonen map into a 2\sphinxhyphen{}dim. grid. Plot the resulting \(U\)\sphinxhyphen{}matrix.
 
 \item {} 
 \sphinxAtStartPar
@@ -5260,13 +5231,13 @@ The references provided in the text as hyperlinks are not repeated in the litera
 \subsection{Locally}
 \label{\detokenize{docs/appendix:locally}}
 \sphinxAtStartPar
-… under construction, will appear shortly
+The reader may download the \sphinxhref{https://jupyter.org}{Jupyter} notebooks for each chapter by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from \sphinxhref{https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}{ujk.edu.pl/strony/Wojciech.Broniowski/nn}.
 
-
-\subsection{In Google Colab}
-\label{\detokenize{docs/appendix:in-google-colab}}
 \sphinxAtStartPar
-… under construction, will appear shortly
+In the latter case, the file \sphinxstylestrong{nn\sphinxhyphen{}book.zip} should be unpacked in a working directory. The proper tree structure of the library package in \sphinxstylestrong{lib\sphinxhyphen{}nn} and of the graphics includes in \sphinxstylestrong{images} will be reproduced.
+
+\sphinxAtStartPar
+Having installed Python and \sphinxhref{https://jupyter.org}{Jupyter} (preferably as \sphinxhref{https://docs.conda.io/projects/conda/en/latest/user-guide/install}{conda} , the reader can follow the instructions (specific for the operating system) to execute the notebooks from directory \sphinxstylestrong{nn\sphinxhyphen{}book}.
 
 
 \section{\sphinxstylestrong{neural} package}
