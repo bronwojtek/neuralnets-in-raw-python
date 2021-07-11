@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Appendix &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,17 +34,17 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -284,18 +285,18 @@
         
               <div>
                 
-  <div class="section" id="appendix">
+  <section id="appendix">
 <h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="how-to-run-the-book-codes">
+<section id="how-to-run-the-book-codes">
 <span id="app-run"></span><h2>How to run the book codes<a class="headerlink" href="#how-to-run-the-book-codes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="locally">
+<section id="locally">
 <h3>Locally<a class="headerlink" href="#locally" title="Permalink to this headline">¶</a></h3>
-<p>The reader may download the <a class="reference external" href="https://jupyter.org">Jupyter</a> notebooks for each chapter by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from <a class="reference external" href="https://ujk.edu.pl/strony/Wojciech.Broniowski/nn">ujk.edu.pl/strony/Wojciech.Broniowski/nn</a>.</p>
-<p>In the latter case, the file <strong>nn-book.zip</strong> should be unpacked in a working directory. The proper tree structure of the library package in <strong>lib-nn</strong> and of the graphics includes in <strong>images</strong> will be reproduced.</p>
-<p>Having installed Python and <a class="reference external" href="https://jupyter.org">Jupyter</a> (preferably as <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install">conda</a> , the reader can follow the instructions (specific for the operating system) to execute the notebooks from directory <strong>nn-book</strong>.</p>
-</div>
-</div>
-<div class="section" id="neural-package">
+<p>The reader may download the <a class="reference external" href="https://jupyter.org">Jupyter</a> notebooks for each chapter by clicking the download icon on the right in the top bar when viewing the book. The complete set of files may also by downloaded from <a class="reference external" href="https://ujk.edu.pl/strony/Wojciech.Broniowski/nn">ujk.edu.pl/strony/Wojciech.Broniowski/nn</a>.</p>
+<p>In the latter case, the file <strong>nn-book.zip</strong> should be unpacked in a working directory. The proper tree structure of the library package i <strong>lib-nn</strong> and of the graphics includes <strong>images</strong> will be reproduced.</p>
+<p>Having installed Python and <a class="reference external" href="https://jupyter.org">Jupyter</a> (preferably as <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install">conda</a>), the reader can follow the instructions (specific for the operating system) to execute the lecture’s notebooks stored in directory <strong>nn-book</strong>.</p>
+</section>
+</section>
+<section id="neural-package">
 <span id="app-lab"></span><h2><strong>neural</strong> package<a class="headerlink" href="#neural-package" title="Permalink to this headline">¶</a></h2>
 <p>The structure of the library tree is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lib_nn
@@ -305,7 +306,7 @@
     └── func.py
 </pre></div>
 </div>
-<div class="section" id="func-py-module">
+<section id="func-py-module">
 <h3><strong><a class="reference external" href="http://func.py">func.py</a></strong> module<a class="headerlink" href="#func-py-module" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Contains functions used in the lecture</span>
@@ -706,8 +707,8 @@
     
 </pre></div>
 </div>
-</div>
-<div class="section" id="draw-py-module">
+</section>
+<section id="draw-py-module">
 <h3><strong><a class="reference external" href="http://draw.py">draw.py</a></strong> module<a class="headerlink" href="#draw-py-module" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Plotting functions used in the lecture.</span>
@@ -938,9 +939,9 @@
 
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="how-to-cite">
+</section>
+</section>
+<section id="how-to-cite">
 <h2>How to cite<a class="headerlink" href="#how-to-cite" title="Permalink to this headline">¶</a></h2>
 <p>If you would like to cite this book, here is the BibTeX entry:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@book</span><span class="p">{</span><span class="n">WB2021</span><span class="p">,</span>
@@ -953,8 +954,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

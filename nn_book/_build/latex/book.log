@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 02:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  11 JUL 2021 13:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -825,174 +825,84 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \c@AlphaDecCnt=\count302
 )
 (./sphinx.sty
-Package: sphinx 2021/01/23 v3.5.0 LaTeX package (Sphinx markup)
+Package: sphinx 2021/01/27 v4.0.0 LaTeX package (Sphinx markup)
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
-s
-\f@nch@headwidth=\skip59
-\f@nch@O@elh=\skip60
-\f@nch@O@erh=\skip61
-\f@nch@O@olh=\skip62
-\f@nch@O@orh=\skip63
-\f@nch@O@elf=\skip64
-\f@nch@O@erf=\skip65
-\f@nch@O@olf=\skip66
-\f@nch@O@orf=\skip67
+(/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+\sphinxverbatimsep=\dimen271
+\sphinxverbatimborder=\dimen272
+\sphinxshadowsep=\dimen273
+\sphinxshadowsize=\dimen274
+\sphinxshadowrule=\dimen275
+\spx@notice@border=\dimen276
+
+(./sphinxoptionshyperref.sty
+File: sphinxoptionshyperref.sty 2021/01/27 hyperref
+) (./sphinxoptionsgeometry.sty
+File: sphinxoptionsgeometry.sty 2021/01/27 geometry
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2019/10/16 v2.13 Sectioning titles
-\ttl@box=\box60
-\beforetitleunit=\skip68
-\aftertitleunit=\skip69
-\ttl@plus=\dimen271
-\ttl@minus=\dimen272
-\ttl@toksa=\toks41
-\titlewidth=\dimen273
-\titlewidthlast=\dimen274
-\titlewidthfirst=\dimen275
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tabulary/tabulary.sty
-Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
-Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
-\col@sep=\dimen276
-\ar@mcellbox=\box61
-\extrarowheight=\dimen277
-\NC@list=\toks42
-\extratabsurround=\skip70
-\backup@length=\skip71
-\ar@cellbox=\box62
-)
-\TY@count=\count303
-\TY@linewidth=\dimen278
-\tymin=\dimen279
-\tymax=\dimen280
-\TY@tablewidth=\dimen281
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
-\LTleft=\skip72
-\LTright=\skip73
-\LTpre=\skip74
-\LTpost=\skip75
-\LTchunksize=\count304
-\LTcapwidth=\dimen282
-\LT@head=\box63
-\LT@firsthead=\box64
-\LT@foot=\box65
-\LT@lastfoot=\box66
-\LT@cols=\count305
-\LT@rows=\count306
-\c@LT@tables=\count307
-\c@LT@chunks=\count308
-\LT@p@ftn=\toks43
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box67
-\sift@deathcycles=\count309
-\@vwid@loff=\dimen283
-\@vwid@roff=\dimen284
-)
-(./sphinxmulticell.sty
-Package: sphinxmulticell 2017/02/23 v1.6 better span rows and columns of a tabl
-e (Sphinx team)
-\sphinx@TY@tablewidth=\dimen285
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
-Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip76
-\fb@frw=\dimen286
-\fb@frh=\dimen287
-\FrameRule=\dimen288
-\FrameSep=\dimen289
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count310
-\FV@InFile=\read3
-\FV@TabBox=\box68
-\c@FancyVerbLine=\count311
-\FV@StepNumber=\count312
-\FV@OutFile=\write4
-)
-(./footnotehyper-sphinx.sty
-Package: footnotehyper-sphinx 2021/02/04 v1.1d hyperref aware footnote.sty for 
-sphinx (JFB)
-\FNH@notes=\box69
-\FNH@toks=\toks44
-\FNH@width=\dimen290
-)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count313
-\float@exts=\toks45
-\float@box=\box70
-\@float@everytoks=\toks46
-\@floatcapt=\box71
+\c@float@type=\count303
+\float@exts=\toks41
+\float@box=\box60
+\@float@everytoks=\toks42
+\@floatcapt=\box61
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen291
-\WF@size=\dimen292
-\c@WF@wrappedlines=\count314
-\WF@box=\box72
-\WF@everypar=\toks47
+\wrapoverhang=\dimen277
+\WF@size=\dimen278
+\c@WF@wrappedlines=\count304
+\WF@box=\box62
+\WF@everypar=\toks43
 Package: wrapfig 2003/01/31  v 3.6
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/parskip/parskip.sty
-Rollback for package 'parskip' requested -> version 'v1'.
-         This corresponds to the release introduced on 2001-04-09.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty
-Package: parskip 2001/04/09 non-zero parskip adjustments
-))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/alltt.sty
-Package: alltt 1997/06/16 v2.0g defines alltt environment
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/upquote/upquote.sty
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/capt-of/capt-of.sty
 Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/needspace/needspace.sty
-Package: needspace 2010/09/12 v1.3d reserve vertical space
-)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
-\c@tracingmulticols=\count315
-\mult@box=\box73
-\multicol@leftmargin=\dimen293
-\c@unbalance=\count316
-\c@collectmore=\count317
-\doublecol@number=\count318
-\multicoltolerance=\count319
-\multicolpretolerance=\count320
-\full@width=\dimen294
-\page@free=\dimen295
-\premulticols=\dimen296
-\postmulticols=\dimen297
-\multicolsep=\skip77
-\multicolbaselineskip=\skip78
-\partial@page=\box74
-\last@line=\box75
-\maxbalancingoverflow=\dimen298
-\mult@rightbox=\box76
-\mult@grightbox=\box77
-\mult@gfirstbox=\box78
-\mult@firstbox=\box79
+\c@tracingmulticols=\count305
+\mult@box=\box63
+\multicol@leftmargin=\dimen279
+\c@unbalance=\count306
+\c@collectmore=\count307
+\doublecol@number=\count308
+\multicoltolerance=\count309
+\multicolpretolerance=\count310
+\full@width=\dimen280
+\page@free=\dimen281
+\premulticols=\dimen282
+\postmulticols=\dimen283
+\multicolsep=\skip59
+\multicolbaselineskip=\skip60
+\partial@page=\box64
+\last@line=\box65
+\maxbalancingoverflow=\dimen284
+\mult@rightbox=\box66
+\mult@grightbox=\box67
+\mult@gfirstbox=\box68
+\mult@firstbox=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
 \@tempa=\box80
 \@tempa=\box81
 \@tempa=\box82
@@ -1020,54 +930,177 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \@tempa=\box104
 \@tempa=\box105
 \@tempa=\box106
-\@tempa=\box107
-\@tempa=\box108
-\@tempa=\box109
-\@tempa=\box110
-\@tempa=\box111
-\@tempa=\box112
-\@tempa=\box113
-\@tempa=\box114
-\@tempa=\box115
-\@tempa=\box116
-\c@minrows=\count321
-\c@columnbadness=\count322
-\c@finalcolumnbadness=\count323
-\last@try=\dimen299
-\multicolovershoot=\dimen300
-\multicolundershoot=\dimen301
-\mult@nat@firstbox=\box117
-\colbreak@box=\box118
-\mc@col@check@num=\count324
+\c@minrows=\count311
+\c@columnbadness=\count312
+\c@finalcolumnbadness=\count313
+\last@try=\dimen285
+\multicolovershoot=\dimen286
+\multicolundershoot=\dimen287
+\mult@nat@firstbox=\box107
+\colbreak@box=\box108
+\mc@col@check@num=\count314
 )
-(./sphinxhighlight.sty
-Package: sphinxhighlight 2016/05/29 stylesheet for highlighting with pygments
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+(./sphinxlatexgraphics.sty
+File: sphinxlatexgraphics.sty 2021/01/27 graphics
+\spx@image@maxheight=\dimen288
+\spx@image@box=\box109
+) (./sphinxlatexadmonitions.sty
+File: sphinxlatexadmonitions.sty 2021/01/27 admonitions
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip61
+\fb@frw=\dimen289
+\fb@frh=\dimen290
+\FrameRule=\dimen291
+\FrameSep=\dimen292
 ))
-\sphinxverbatimsep=\dimen302
-\sphinxverbatimborder=\dimen303
-\sphinxshadowsep=\dimen304
-\sphinxshadowsize=\dimen305
-\sphinxshadowrule=\dimen306
-\spx@notice@border=\dimen307
-\spx@image@maxheight=\dimen308
-\spx@image@box=\box119
+(./sphinxlatexliterals.sty
+File: sphinxlatexliterals.sty 2021/01/27 code-blocks and parsed literals
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count315
+\FV@InFile=\read3
+\FV@TabBox=\box110
+\c@FancyVerbLine=\count316
+\FV@StepNumber=\count317
+\FV@OutFile=\write4
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\sphinxcontinuationbox=\box111
+\sphinxvisiblespacebox=\box112
+\sphinxVerbatim@TitleBox=\box113
+\sphinxVerbatim@ContentsBox=\box114
+\spx@scratchbox=\box115
+)
+(./sphinxlatexshadowbox.sty
+File: sphinxlatexshadowbox.sty 2021/01/27 sphinxShadowBox
+) (./sphinxhighlight.sty
+Package: sphinxhighlight 2016/05/29 stylesheet for highlighting with pygments
+) (./sphinxlatextables.sty
+File: sphinxlatextables.sty 2021/01/27 tables
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tabulary/tabulary.sty
+Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen293
+\ar@mcellbox=\box116
+\extrarowheight=\dimen294
+\NC@list=\toks44
+\extratabsurround=\skip62
+\backup@length=\skip63
+\ar@cellbox=\box117
+)
+\TY@count=\count318
+\TY@linewidth=\dimen295
+\tymin=\dimen296
+\tymax=\dimen297
+\TY@tablewidth=\dimen298
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip64
+\LTright=\skip65
+\LTpre=\skip66
+\LTpost=\skip67
+\LTchunksize=\count319
+\LTcapwidth=\dimen299
+\LT@head=\box118
+\LT@firsthead=\box119
+\LT@foot=\box120
+\LT@lastfoot=\box121
+\LT@cols=\count320
+\LT@rows=\count321
+\c@LT@tables=\count322
+\c@LT@chunks=\count323
+\LT@p@ftn=\toks45
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box122
+\sift@deathcycles=\count324
+\@vwid@loff=\dimen300
+\@vwid@roff=\dimen301
+)
+\sphinx@TY@tablewidth=\dimen302
+)
+(./sphinxlatexnumfig.sty
+File: sphinxlatexnumfig.sty 2021/01/27 numbering
+) (./sphinxlatexlists.sty
+File: sphinxlatexlists.sty 2021/01/27 lists
+)
 \c@sphinxscope=\count325
 \c@sphinxexplicit=\count326
-\sphinxcontinuationbox=\box120
-\sphinxvisiblespacebox=\box121
-\sphinxVerbatim@TitleBox=\box122
-\sphinxVerbatim@ContentsBox=\box123
-\spx@scratchbox=\box124
+ (./sphinxpackagefootnote.sty
+Package: sphinxpackagefootnote 2021/02/04 v1.1d footnotehyper adapted to sphinx
+ (Sphinx team)
+\FNH@notes=\box123
+\FNH@toks=\toks46
+\FNH@width=\dimen303
+) (./sphinxlatexindbibtoc.sty
+File: sphinxlatexindbibtoc.sty 2021/01/27 index, bib., toc
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+))
+(./sphinxlatexstylepage.sty
+File: sphinxlatexstylepage.sty 2021/01/27 page styling
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/parskip/parskip.sty
+Rollback for package 'parskip' requested -> version 'v1'.
+         This corresponds to the release introduced on 2001-04-09.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip68
+\f@nch@O@elh=\skip69
+\f@nch@O@erh=\skip70
+\f@nch@O@olh=\skip71
+\f@nch@O@orh=\skip72
+\f@nch@O@elf=\skip73
+\f@nch@O@erf=\skip74
+\f@nch@O@olf=\skip75
+\f@nch@O@orf=\skip76
+))
+(./sphinxlatexstyleheadings.sty
+File: sphinxlatexstyleheadings.sty 2021/01/27 headings
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box124
+\beforetitleunit=\skip77
+\aftertitleunit=\skip78
+\ttl@plus=\dimen304
+\ttl@minus=\dimen305
+\ttl@toksa=\toks47
+\titlewidth=\dimen306
+\titlewidthlast=\dimen307
+\titlewidthfirst=\dimen308
+))
+(./sphinxlatexstyletext.sty
+File: sphinxlatexstyletext.sty 2021/01/27 text styling
+) (./sphinxlatexobjects.sty
+File: sphinxlatexobjects.sty 2021/01/27 documentation environments
 \py@argswidth=\skip79
 \lineblockindentation=\skip80
 \DUlineblockindent=\skip81
-)
+))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
@@ -1264,32 +1297,32 @@ LaTeX Info: Redefining \ttfamily on input line 19.
 )
 \openout1 = `book.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
  ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into 
 your preamble.
- on input line 81.
+ on input line 87.
 
 \c@literalblock=\count345
 *geometry* driver: auto-detecting
@@ -1327,7 +1360,7 @@ your preamble.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box126
-Package hyperref Info: Link coloring ON on input line 81.
+Package hyperref Info: Link coloring ON on input line 87.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1340,28 +1373,28 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count346
 )
-LaTeX Info: Redefining \ref on input line 81.
-LaTeX Info: Redefining \pageref on input line 81.
-LaTeX Info: Redefining \nameref on input line 81.
+LaTeX Info: Redefining \ref on input line 87.
+LaTeX Info: Redefining \pageref on input line 87.
+LaTeX Info: Redefining \nameref on input line 87.
  (./book.out) (./book.out)
 \@outlinefile=\write6
 \openout6 = `book.out'.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 81.
+(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 87.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 81.
+(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 87.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 81.
+(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 87.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 81.
+(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 87.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 81.
+(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 87.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 81.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 87.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 81.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 87.
 
 Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             'latinmodern-math.otf' with options
@@ -1402,15 +1435,15 @@ latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 81.
+(Font)              `operators' in the math version `normal' on input line 87.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 81.
+ line 87.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 81.
+(Font)              `operators' in the math version `bold' on input line 87.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 81.
+t line 87.
 
 Package fontspec Info: latinmodern-math scale = 1.0001.
 
@@ -1481,15 +1514,15 @@ uage=dflt;"
 (fontspec)             \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 81.
+(Font)              `symbols' in the math version `normal' on input line 87.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/cmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 81.
+t line 87.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 81.
+(Font)              `symbols' in the math version `bold' on input line 87.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 81.
+t line 87.
 
 Package fontspec Info: latinmodern-math scale = 0.9999.
 
@@ -1543,45 +1576,45 @@ uage=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 8
-1.
+7.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 81.
+t line 87.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 81.
+(Font)              `largesymbols' in the math version `bold' on input line 87.
 
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 81.
-LaTeX Info: Redefining \rmfamily on input line 81.
-LaTeX Info: Redefining \sffamily on input line 81.
-LaTeX Info: Redefining \ttfamily on input line 81.
-Package hyperref Info: Option `pageanchor' set `false' on input line 84.
+t line 87.
+LaTeX Info: Redefining \rmfamily on input line 87.
+LaTeX Info: Redefining \sffamily on input line 87.
+LaTeX Info: Redefining \ttfamily on input line 87.
+Package hyperref Info: Option `pageanchor' set `false' on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 17.28183pt on input line 84.
+(Font)              scaled to size 17.28183pt on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.00128pt on input line 84.
+(Font)              scaled to size 12.00128pt on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 84.
+(Font)              scaled to size 10.00107pt on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 17.27815pt on input line 84.
+(Font)              scaled to size 17.27815pt on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 84.
+(Font)              scaled to size 11.99872pt on input line 90.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 84.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 84.
+(Font)              scaled to size 9.99893pt on input line 90.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 90.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 90.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 84
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 90
 .
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
@@ -1746,7 +1779,7 @@ File: backprop_24_0.png Graphic file (type bmp)
 File: backprop_29_0.png Graphic file (type bmp)
 <backprop_29_0.png>
  [55] [56] [57]
-Overfull \hbox (30.07668pt too wide) in paragraph at lines 2888--2894
+Overfull \hbox (30.07668pt too wide) in paragraph at lines 2897--2903
 []$[] [][] [][]$ 
  []
 
@@ -1848,7 +1881,7 @@ File: som_16_0.png Graphic file (type bmp)
 File: som_19_0.png Graphic file (type bmp)
 <som_19_0.png>
 
-Overfull \vbox (2.12384pt too high) detected at line 4500
+Overfull \vbox (2.12384pt too high) detected at line 4509
  []
 
 [95]
@@ -1879,7 +1912,7 @@ File: som_58_0.png Graphic file (type bmp)
 File: som_61_0.png Graphic file (type bmp)
 <som_61_0.png>
 
-Overfull \vbox (2.69862pt too high) detected at line 4809
+Overfull \vbox (2.69862pt too high) detected at line 4818
  []
 
 [102]
@@ -1935,75 +1968,75 @@ Chapter 11.
 ]
 Chapter 12.
 [117]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [119]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [120]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [121]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [122]
-Underfull \vbox (badness 10000) detected at line 5657
+Underfull \vbox (badness 10000) detected at line 5666
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5657
+Overfull \vbox (2.78596pt too high) detected at line 5666
  []
 
 [123] [124]
-Underfull \vbox (badness 10000) detected at line 5890
+Underfull \vbox (badness 10000) detected at line 5899
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5890
+Overfull \vbox (2.78596pt too high) detected at line 5899
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5890
+Underfull \vbox (badness 10000) detected at line 5899
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5890
+Overfull \vbox (2.78596pt too high) detected at line 5899
  []
 
 [126]
-Underfull \vbox (badness 10000) detected at line 5890
+Underfull \vbox (badness 10000) detected at line 5899
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 5890
+Overfull \vbox (2.78596pt too high) detected at line 5899
  []
 
 [127] [128] [129] [130
@@ -2046,24 +2079,24 @@ braces):
  [131
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5956.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5956.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5965.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5965.
  (./book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5956.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5956.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 5965.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5965.
 
 Package rerunfilecheck Info: File `book.out' has not changed.
-(rerunfilecheck)             Checksum: 4B9D30D14E54BC4B058D50B4EDB8954C;9015.
+(rerunfilecheck)             Checksum: 1ED7B67EF45E3021258B6FBA0827FD15;13768.
  ) 
 Here is how much of TeX's memory you used:
- 41907 strings out of 479418
- 954130 string characters out of 5884586
- 1880485 words of memory out of 5000000
- 58580 multiletter control sequences out of 15000+600000
+ 41988 strings out of 479418
+ 955923 string characters out of 5884586
+ 1881254 words of memory out of 5000000
+ 58622 multiletter control sequences out of 15000+600000
  537822 words of font info for 104 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1514b,556s stack positions out of 5000i,500n,10000p,200000b,80000s

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Models of memory &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,23 +34,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -141,7 +142,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lib_app.html">
+  <a class="reference internal" href="appendix.html">
    Appendix
   </a>
  </li>
@@ -293,16 +294,16 @@
         
               <div>
                 
-  <div class="section" id="models-of-memory">
+  <section id="models-of-memory">
 <h1>Models of memory<a class="headerlink" href="#models-of-memory" title="Permalink to this headline">¶</a></h1>
 <div class="tip admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
 <p><em>Memory is the mother of all wisdom.</em></p>
 <p style="text-align:right;">Aeschylus</p>
 </div>
-<div class="section" id="heteroassociative-memory">
+<section id="heteroassociative-memory">
 <h2>Heteroassociative memory<a class="headerlink" href="#heteroassociative-memory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pair-associations">
+<section id="pair-associations">
 <h3>Pair associations<a class="headerlink" href="#pair-associations" title="Permalink to this headline">¶</a></h3>
 <p>We now pass to further illustrations of elementary capabilities of ANNs, describing two very simple models of memory based on linear algebra, supplemented with (nonlinear) filtering. Speaking of memory here, a word of caution is in place. We have rather simplistic tools in mind here, which are far from the actual complex and hitherto not comprehended memory mechanism operating in our brain. The present understanding is that these mechanism involve feed-back, which goes beyond the considered feed-forward networks.</p>
 <p>The first considered model concerns the so called <strong>heterassociative</strong> memory, where some objects (here graphic bitmap symbols) are joined in pairs. In particular, we take the set of five graphical symbols, {A, a, I, i, Y}, and define two pair associations: A <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> a and I <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> i, that is between different (hetero) symbols. Y remains unassociated.</p>
@@ -409,8 +410,8 @@
 </div>
 </div>
 <p>It is clear that one can use the scalar product as a measure of similarity between the symbols. For the following method to work, the symbols should not be too similar, as then they could be “confused”.</p>
-</div>
-<div class="section" id="memory-matrix">
+</section>
+<section id="memory-matrix">
 <h3>Memory matrix<a class="headerlink" href="#memory-matrix" title="Permalink to this headline">¶</a></h3>
 <p>The next algebraic concept we need is the <strong>outer product</strong>. For two vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>, it is defined as <span class="math notranslate nohighlight">\(v w^T = v \otimes w\)</span> (as opposed to the scalar product, where <span class="math notranslate nohighlight">\(w^T v = w \cdot v\)</span>). Here <span class="math notranslate nohighlight">\(T\)</span> denotes transposition. The result is a matrix with the number of rows equal to the length of <span class="math notranslate nohighlight">\(v\)</span>, and the number of columns equal to the length of <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>For example, with</p>
@@ -518,10 +519,10 @@ Let</p>
 </div>
 </div>
 <p>We should be able to see in the above picture the sequence a, A, i, I, and nothing particular in the association of Y. We almost do, but the situation is not perfect due to the nonorthogonality error discussed above.</p>
-</div>
-<div class="section" id="applying-a-filter">
+</section>
+<section id="applying-a-filter">
 <h3>Applying a filter<a class="headerlink" href="#applying-a-filter" title="Permalink to this headline">¶</a></h3>
-<p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="lib_app.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
+<p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span> <span class="c1"># system library</span>
@@ -593,11 +594,11 @@ Let</p>
 It should be the symbol associated to the input.</p></li>
 </ol>
 </div>
-</div>
-</div>
-<div class="section" id="autoassociative-memory">
+</section>
+</section>
+<section id="autoassociative-memory">
 <h2>Autoassociative memory<a class="headerlink" href="#autoassociative-memory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="self-associations">
+<section id="self-associations">
 <h3>Self-associations<a class="headerlink" href="#self-associations" title="Permalink to this headline">¶</a></h3>
 <p>The autoassociative memory model is in close analogy to the case of the heteroassociatine memory, but now the symbol is associated <strong>with itself</strong>. Why we do such a thing will become clear shortly, when we consider distorted input. We thus define the association matrix as follows:</p>
 <div class="cell docutils container">
@@ -614,8 +615,8 @@ It should be the symbol associated to the input.</p></li>
 <img alt="../_images/memory_58_0.png" src="../_images/memory_58_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="distorting-the-image">
+</section>
+<section id="distorting-the-image">
 <h3>Distorting the image<a class="headerlink" href="#distorting-the-image" title="Permalink to this headline">¶</a></h3>
 <p>Now imagine that the original image gets partially destroyed, with some pixels randomly altered from 1 to 0 and vice versa.</p>
 <div class="cell docutils container">
@@ -637,8 +638,8 @@ It should be the symbol associated to the input.</p></li>
 <img alt="../_images/memory_63_0.png" src="../_images/memory_63_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="restoring-the-symbols">
+</section>
+<section id="restoring-the-symbols">
 <h3>Restoring the symbols<a class="headerlink" href="#restoring-the-symbols" title="Permalink to this headline">¶</a></h3>
 <p>We next apply our model of the autoassociative memory to all the “destroyed” symbols:</p>
 <div class="cell docutils container">
@@ -700,9 +701,9 @@ certain number of pixels randomly distorted.</p></li>
 <p>An implementation of the discussed memory models in Mathematica is provided in
 <span id="id2">[<a class="reference internal" href="conclusion.html#id10">Fre93</a>]</span> (<a class="reference external" href="https://library.wolfram.com/infocenter/Books/3485">https://library.wolfram.com/infocenter/Books/3485</a>) and in the already mentioned lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="exercises">
+</section>
+</section>
+<section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -714,8 +715,8 @@ certain number of pixels randomly distorted.</p></li>
 </ul>
 <p>Discuss your findings and the limitations of the models.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
