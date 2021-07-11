@@ -20,11 +20,12 @@ Built with [Jupyter Book
 [ExecutableBookProject](https://ebp.jupyterbook.org/en/latest/).  
 ```
 
-```{important}
+```{admonition} How to use the book codes
+:class: important
 The reader may download the book codes of each chapter in the form of 
 [Jupyter](https://jupyter.org) notebooks by clicking the download icon on the right in the top bar. The complete set of files may also by downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
 
-Appendix {ref}`app-run` explains step-by-step how to proceed with execution locally.
+Appendix {ref}`app-run` explains step-by-step how to proceed with the execution locally.
 ```
 
 ISBN: **978-83-962099-0-0** (pdf version) ![](images/barcode.gif)
