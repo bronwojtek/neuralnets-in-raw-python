@@ -52,3 +52,5 @@ sphinx:
   config:
     html_show_copyright: false
     latex_toplevel_sectioning: 'section'
+#    latex_show_urls: 'footnote'
+    latex_elements.papersize: a4paper
