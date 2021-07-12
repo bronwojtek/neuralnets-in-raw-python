@@ -15,9 +15,7 @@
 
 # The author thanks [Jan Broniowski](https://www.linkedin.com/in/janbroniowski) for priceless technical help and for remarks to the text.
 
-# ```{note}
-# The references provided in the text as hyperlinks are not repeated in the bibliography list below.
-# ```
+# 
 
 # ```{bibliography} ../_bibliography/references.bib
 # ```

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  12 JUL 2021 13:47
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  12 JUL 2021 19:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1808,17 +1808,18 @@ Chapter 9.
 ]
 File: unsupervised_10_0.png Graphic file (type bmp)
 <unsupervised_10_0.png>
+ [70]
 File: unsupervised_15_0.png Graphic file (type bmp)
 <unsupervised_15_0.png>
- [70]
-File: unsupervised_24_0.png Graphic file (type bmp)
-<unsupervised_24_0.png>
- [71] [72]
-File: unsupervised_37_0.png Graphic file (type bmp)
-<unsupervised_37_0.png>
+ [71]
+File: unsupervised_25_0.png Graphic file (type bmp)
+<unsupervised_25_0.png>
+ [72]
+File: unsupervised_38_0.png Graphic file (type bmp)
+<unsupervised_38_0.png>
  [73]
-File: unsupervised_44_0.png Graphic file (type bmp)
-<unsupervised_44_0.png>
+File: unsupervised_46_0.png Graphic file (type bmp)
+<unsupervised_46_0.png>
  [74]
 File: cl4_2.png Graphic file (type bmp)
 <cl4_2.png>
@@ -1827,15 +1828,15 @@ File: cl5.jpg Graphic file (type bmp)
  [75] [76]
 File: cd.jpg Graphic file (type bmp)
 <cd.jpg>
- [77]
-File: unsupervised_70_0.png Graphic file (type bmp)
-<unsupervised_70_0.png>
- [78] [79]
-File: unsupervised_76_0.png Graphic file (type bmp)
-<unsupervised_76_0.png>
+ [77] [78]
+File: unsupervised_73_0.png Graphic file (type bmp)
+<unsupervised_73_0.png>
+ [79]
+File: unsupervised_79_0.png Graphic file (type bmp)
+<unsupervised_79_0.png>
  [80]
-File: unsupervised_82_0.png Graphic file (type bmp)
-<unsupervised_82_0.png>
+File: unsupervised_86_0.png Graphic file (type bmp)
+<unsupervised_86_0.png>
  [81] [82]
 Chapter 10.
 File: koha.png Graphic file (type bmp)
@@ -1866,13 +1867,13 @@ File: som_50_0.png Graphic file (type bmp)
 <som_50_0.png>
  [89]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 4723.
+(Font)              scaled to size 14.40152pt on input line 4744.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 4723.
+(Font)              scaled to size 14.39845pt on input line 4744.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4723.
+(hyperref)                removing `math shift' on input line 4744.
 
 File: udm.png Graphic file (type bmp)
 <udm.png>
@@ -1896,108 +1897,109 @@ File: som_75_0.png Graphic file (type bmp)
 <som_75_0.png>
 File: som_78_0.png Graphic file (type bmp)
 <som_78_0.png>
-File: som_82_0.jpg Graphic file (type bmp)
-<som_82_0.jpg>
+File: som_83_0.jpg Graphic file (type bmp)
+<som_83_0.jpg>
  [94]
-File: som_88_0.png Graphic file (type bmp)
-<som_88_0.png>
+File: som_89_0.png Graphic file (type bmp)
+<som_89_0.png>
  [95]
 File: kball.png Graphic file (type bmp)
 <kball.png>
- [96]
-File: som_101_0.png Graphic file (type bmp)
-<som_101_0.png>
- [97]
+ [96] [97]
 File: som_103_0.png Graphic file (type bmp)
 <som_103_0.png>
+File: som_105_0.png Graphic file (type bmp)
+<som_105_0.png>
  [98]
-File: som_109_0.png Graphic file (type bmp)
-<som_109_0.png>
 File: som_111_0.png Graphic file (type bmp)
 <som_111_0.png>
+File: som_113_0.png Graphic file (type bmp)
+<som_113_0.png>
+ [99]
 File: lat3.png Graphic file (type bmp)
 <lat3.png>
- [99]
-File: som_120_0.png Graphic file (type bmp)
-<som_120_0.png>
  [100]
-File: som_126_0.png Graphic file (type bmp)
-<som_126_0.png>
+File: som_122_0.png Graphic file (type bmp)
+<som_122_0.png>
+File: som_128_0.png Graphic file (type bmp)
+<som_128_0.png>
+ [101]
 File: smi32-pic.jpg Graphic file (type bmp)
 <smi32-pic.jpg>
- [101] [102]
-Chapter 11.
-[103
+ [102] [103]
+[104
 
-] [104
+]
+Chapter 11.
+[105] [106
 
 ]
 Chapter 12.
-[105] [106]
-Underfull \vbox (badness 10000) detected at line 5703
+[107] [108]
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5703
- []
-
-[107]
-Underfull \vbox (badness 10000) detected at line 5703
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5703
- []
-
-[108]
-Underfull \vbox (badness 10000) detected at line 5703
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5703
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 [109]
-Underfull \vbox (badness 10000) detected at line 5703
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5703
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 [110]
-Underfull \vbox (badness 10000) detected at line 5703
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5703
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
-[111] [112]
-Underfull \vbox (badness 10000) detected at line 5936
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5936
- []
-
-[113]
-Underfull \vbox (badness 10000) detected at line 5936
+[111]
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5936
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
-[114]
-Underfull \vbox (badness 10000) detected at line 5936
+[112]
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5936
+Underfull \vbox (badness 10000) detected at line 5740
  []
 
-[115] [116] (./nn_book.ind)
+[113] [114]
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+[115]
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+[116]
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5973
+ []
+
+[117] [118] (./nn_book.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -2032,30 +2034,30 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [117
+ [119
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6002.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6002.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6039.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6039.
  (./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6002.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6002.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6039.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6039.
 
 Package rerunfilecheck Info: File `nn_book.out' has not changed.
-(rerunfilecheck)             Checksum: C03AC417624978EF971DBCC7EA71DA79;9147.
+(rerunfilecheck)             Checksum: 37A5E5EE19191B24C08D462644D6227E;9074.
  ) 
 Here is how much of TeX's memory you used:
  41920 strings out of 479418
- 954586 string characters out of 5884586
- 1883474 words of memory out of 5000000
+ 954576 string characters out of 5884586
+ 1884474 words of memory out of 5000000
  58590 multiletter control sequences out of 15000+600000
  538948 words of font info for 111 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1520b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nn_book.pdf (121 pages).
+Output written on nn_book.pdf (123 pages).

@@ -3654,20 +3654,26 @@ Convince yourself that starting backprop (with ReLU) with too large initial lear
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Supervised learning, discussed in previous lectures, needs a teacher or a training sample with labels, where we know a priori the characteristics of the data (e.g., as in one of our examples, whether a given point is inside or outside the circle).
+Supervised learning, discussed in previous lectures, needs a teacher or a training sample with labels, where we know \sphinxstylestrong{a priori} characteristics of the data (e.g., as in one of our examples, whether a given point is inside or outside the circle).
 
 \sphinxAtStartPar
 However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision or labels floating around.
 
 \sphinxAtStartPar
-Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, scent, etc. He goes on, finds a different flower, records its features, and so on and on with subsequent flowers. At some point, however, he finds a flower that he already had met. More precisely, its features are close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes that it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end of his quest, he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  They are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
+Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, scent, etc. He goes on, finds a different flower, records its features, and so on and on with subsequent flowers. At some point, however, he finds a flower that he already had met. More precisely, its features are close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes that it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end of his quest, he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  These labels, or names, are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.
 
 \sphinxAtStartPar
-Formally, this problem of \sphinxstylestrong{unsupervised learning} is related to data classification (division into categories, or \sphinxstylestrong{clusters}, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
+Formally, the described problem of \sphinxstylestrong{unsupervised learning} is related to data classification (division into categories, or \sphinxstylestrong{clusters}, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.
 
 
 \section{Clusters of points}
 \label{\detokenize{docs/unsupervised:clusters-of-points}}
+\sphinxAtStartPar
+Here is our simplified version of the alien botanist exploration.
+
+\sphinxAtStartPar
+Consider points on the plane that are randomly generated. Their distribution is not homogeneous, but is concentrated in four clusters: A, B, C, and D. For example, we can set appropriate limits for the coordinates \(x_1\) and \(x_2\) when randomly generating points of a given category. We use the numpy \sphinxstylestrong{random.uniform(a,b)} function, giving a uniformly distributed number between a and b:
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{pA}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{k}{return} \PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mf}{.75}\PYG{p}{,} \PYG{l+m+mf}{.95}\PYG{p}{)}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mf}{.7}\PYG{p}{,} \PYG{l+m+mf}{.9}\PYG{p}{)}\PYG{p}{]} 
@@ -3698,10 +3704,10 @@ Our data looks like this:
 \noindent\sphinxincludegraphics{{unsupervised_10_0}.png}
 
 \sphinxAtStartPar
-If we show the above picture to someone, he will undoubtedly state that the are four clusters. But what algorithm is used to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment, let us jump ahead and assume we know the clusters. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other.
+If we show the above picture to someone, This the person will undoubtedly state that there are four clusters. But what algorithm is being used to determine this? We will construct such an algorithm shortly and will be able to carry out clusterization. For the moment, let us jump ahead and assume we \sphinxstylestrong{know} what the clusters are. Clearly, in our example the clusters are well defined, i.e. visibly separated from each other.
 
 \sphinxAtStartPar
-One can represent clusters with \sphinxstylestrong{representative points} that lie somewhere within the cluster. For example, one could take an item belonging to a given cluster as its representative, or in each cluster one can evaluate the mean position of its points and use it as its representative point:
+One can represent clusters with \sphinxstylestrong{representative points} that lie somewhere within the cluster. For example, one could take an item belonging to a given cluster as its representative, or for each cluster one can evaluate the mean position of its points and use it as a representative point:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{rA}\PYG{o}{=}\PYG{p}{[}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]}
@@ -3711,7 +3717,7 @@ One can represent clusters with \sphinxstylestrong{representative points} that l
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We add thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves this precisely this purpose).
+(we have used the \sphinxstylestrong{statistics} module to evaluate the mean). We append thus defined characteristic points to our graphics. For visual convenience, we assign a color for each category (after having the clusters, we may assign labels, and the color here serves precisely this purpose).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{col}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{magenta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
@@ -3743,16 +3749,16 @@ We add thus defined characteristic points to our graphics. For visual convenienc
 \section{Voronoi areas}
 \label{\detokenize{docs/unsupervised:voronoi-areas}}\label{\detokenize{docs/unsupervised:vor-lab}}
 \sphinxAtStartPar
-Having the situation as in the figure above, i.e. some representative points present, we can divide the entire plane into areas according to the following Voronoi criterion, which is a simple geometric notion:
+Having the situation as in the figure above, i.e. with the representative points determined, we can divide the entire plane into areas according to the following Voronoi criterion, which is a simple geometric notion:
 
 \begin{sphinxadmonition}{note}{Voronoi areas}
 
 \sphinxAtStartPar
-Consider point \(P\) in a metric space, where we have a number representative points (also called the Voronoi points). The representative point \(R\) closest to \(P\) determines its category. All such points \(P\) form a Voronoi area of \(R\).
+Consider a metric space in which there are a number of representative points (the Voronoi points) \(R\). For a given point \(P\) one determines the distances to all \(R\). If there is a strict minimum among these distances (the closest point \(R_m\)), then by definition \(P\) belongs to the Voronoi area of \(R_m\). If there is no strict minimum, then \(P\) belongs to a boundary between some Voronoi regions. The construction divides the whole space into Voronoi areas and their boundaries.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Let us define the color of the point P in our plane as the color of the nearest representative point. To do it, we first need (the square of) a distance function (here Euclidean) between two points in 2\sphinxhyphen{}dim. space:
+Returning to our example, let us then define the color of a point P in our square as the color of the nearest representative point. To do it, we first need (the square of) the distance function (here Euclidean) between two points in 2\sphinxhyphen{}dim. space:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{eucl}\PYG{p}{(}\PYG{n}{p1}\PYG{p}{,}\PYG{n}{p2}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} square of the Euclidean distance}
@@ -3760,7 +3766,7 @@ Let us define the color of the point P in our plane as the color of the nearest 
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Then we find the nearest representative point and determine its color:
+Then, with \sphinxstylestrong{np.argmin}, we find the nearest representative point and determine its color:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{col\PYGZus{}char}\PYG{p}{(}\PYG{n}{p}\PYG{p}{)}\PYG{p}{:}
@@ -3769,8 +3775,10 @@ Then we find the nearest representative point and determine its color:
     \PYG{k}{return} \PYG{n}{col}\PYG{p}{[}\PYG{n}{ind\PYGZus{}min}\PYG{p}{]}                                \PYG{c+c1}{\PYGZsh{} color of the nearest point}
 \end{sphinxVerbatim}
 
+\sphinxAtStartPar
+for instance
+
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} e.g.}
 \PYG{n}{col\PYGZus{}char}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{.5}\PYG{p}{,}\PYG{l+m+mf}{.5}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
@@ -3779,27 +3787,30 @@ Then we find the nearest representative point and determine its color:
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The result is the following division of the plane, with straight\sphinxhyphen{}line boundaries between the neighboring areas:
+The result of running this coloring for points in our square (we take here a sufficiently dense sample of 70\textbackslash{}tims 70\$ points) is its following division into the Voronoi areas:
 
-\noindent\sphinxincludegraphics{{unsupervised_24_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_25_0}.png}
+
+\sphinxAtStartPar
+It is easy to prove that the boundaries between neighboring areas are straight lines.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-A practical message here is that once we have the characteristic points, we can use Voronoi’s criterion for classification of data
+A practical message here is that once we have determined the characteristic points, we can use Voronoi’s criterion for a classification of data.
 \end{sphinxadmonition}
 
 
 \section{Naive clusterization}
 \label{\detokenize{docs/unsupervised:naive-clusterization}}
 \sphinxAtStartPar
-Now the “real” botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points with \sphinxstylestrong{concatenate}:
+Now we go back to the alien botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points with \sphinxstylestrong{np.concatenate}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{alls}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{concatenate}\PYG{p}{(}\PYG{p}{(}\PYG{n}{samA}\PYG{p}{,} \PYG{n}{samB}\PYG{p}{,} \PYG{n}{samC}\PYG{p}{,} \PYG{n}{samD}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-and shuffle them:
+and shuffle them with \sphinxstylestrong{np.random.shuffle}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}
@@ -3812,7 +3823,7 @@ The data visualization looks as in the first plot of this chapter.
 We now want to somehow create representative points, but a priori we don’t know where they should be, or even how many of them there are. Very different strategies are possible here. Their common feature is that the position of the representative points is updated as the sample data is processed.
 
 \sphinxAtStartPar
-Let us start with just one representative point, \(\vec{R}\). Not very ambitious, but in the end we will at least know some mean characteristics of the sample. The initial position  position is \( R=(R_1, R_2) \), a two dimensional vector in \([0,1]\times [0,1]\). After reading a data point \(P\) with coordinates \( (x_1 ^ P, x_2 ^ P) \), \(R\) changes as follows:
+Let us start with just one representative point, \(\vec{R}\). Not very ambitious, but in the end we will at least know some mean characteristics of the sample. The initial position is \( R=(R_1, R_2) \), a two dimensional vector in \([0,1]\times [0,1]\). After reading a data point \(P\) with coordinates \( (x_1 ^ P, x_2 ^ P) \), \(R\) changes as follows:
 \begin{equation*}
 \begin{split} (R_1, R_2) \to (R_1, R_2) + \varepsilon (x_1 ^P-R_1, x_2 ^P-R_2), \end{split}
 \end{equation*}
@@ -3835,7 +3846,7 @@ The following code implements the above prescription:
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{round   location}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
-\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}              \PYG{c+c1}{\PYGZsh{} initial learning speed}
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}                         \PYG{c+c1}{\PYGZsh{} initial learning speed}
 
 \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{:}            \PYG{c+c1}{\PYGZsh{} rounds}
     \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.85}\PYG{o}{*}\PYG{n}{eps}               \PYG{c+c1}{\PYGZsh{} decrease the learning speed }
@@ -3847,22 +3858,22 @@ The following code implements the above prescription:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 initial location:
-[0.281 0.897]
+[0.052 0.069]
 round   location
-5      [0.52  0.477]
-10      [0.624 0.467]
-15      [0.618 0.485]
-20      [0.607 0.484]
-25      [0.613 0.488]
-30      [0.614 0.49 ]
-35      [0.614 0.49 ]
-40      [0.614 0.489]
-45      [0.614 0.489]
-50      [0.615 0.489]
+5      [0.57  0.613]
+10      [0.577 0.454]
+15      [0.587 0.506]
+20      [0.608 0.491]
+25      [0.607 0.485]
+30      [0.61  0.487]
+35      [0.61  0.488]
+40      [0.61  0.488]
+45      [0.61  0.488]
+50      [0.61  0.488]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-We can see that the position of the characteristic point converges. Actually, it becomes very close to the average location of all the points,
+We can see that the position of the characteristic point converges. Actually, it becomes very close to the mean location of all the points of the sample,
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{R\PYGZus{}mean}\PYG{o}{=}\PYG{p}{[}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}\PYG{n}{st}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]}
@@ -3870,16 +3881,16 @@ We can see that the position of the characteristic point converges. Actually, it
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-[0.615 0.489]
+[0.61  0.488]
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
 We have decided a priori to have just one category, and here is our plot of the result for the characteristic point, indicated with a gray blob:
 
-\noindent\sphinxincludegraphics{{unsupervised_37_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_38_0}.png}
 
 \sphinxAtStartPar
-One is, of course, not satisfied with the above, so let us try to generalize the algorithm for the case of several (\( n_R> \) 1) representative points.
+One is, of course, not satisfied with the above (things are not classified with one category), so let us try to generalize the algorithm for the case of several (\( n_R> \) 1) representative points.
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -3899,17 +3910,17 @@ The position of the other representative points remains unchanged. This strategy
 
 \item {} 
 \sphinxAtStartPar
-We repeat the rounds, reducing the learning speed \( \varepsilon \) each time, until we are happy.
+We repeat the rounds, reducing the learning speed \( \varepsilon \) each time, until we are happy with the result.
 
 \end{itemize}
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-The \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all} strategy is an important concept in ANN modeling. The competing neurons in a layer fight for the signal, and the one that wins, takes it all (its weighs get updated), while the losers get nothing.
+The \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}all} strategy is an important concept in the ANN training. The competing neurons in a layer fight for the “reward”, and the one that wins, takes it all (its weighs get updated), while the losers get nothing.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-So let’s consider two representative points that we initialize randomly:
+Let us then consider two representative points that we initialize randomly:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{R1}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
@@ -3917,7 +3928,7 @@ So let’s consider two representative points that we initialize randomly:
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Then we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only the winner:
+Next, we carry out the above algorithm. For each data point we find the nearest representative point out of the two, and update only the winner:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{initial locations:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
@@ -3933,35 +3944,42 @@ Then we carry out the above algorithm. For each data point we find the nearest r
         \PYG{n}{p}\PYG{o}{=}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}   
         \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R1}\PYG{p}{)}\PYG{p}{,} \PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R2}\PYG{p}{)}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} squares of distances}
         \PYG{n}{ind\PYGZus{}min} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}               \PYG{c+c1}{\PYGZsh{} index of the minimum}
-        \PYG{k}{if} \PYG{n}{ind\PYGZus{}min}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{:}           \PYG{c+c1}{\PYGZsh{} if R1 closer to the new data point}
-            \PYG{n}{R1}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R1}\PYG{p}{)}
-        \PYG{k}{else}\PYG{p}{:}                    \PYG{c+c1}{\PYGZsh{} if R2 closer ...}
-            \PYG{n}{R2}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R2}\PYG{p}{)}            
+        \PYG{k}{if} \PYG{n}{ind\PYGZus{}min}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{:}         \PYG{c+c1}{\PYGZsh{} if R1 closer to the new data point}
+            \PYG{n}{R1}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R1}\PYG{p}{)}     \PYG{c+c1}{\PYGZsh{} update R1                }
+        \PYG{k}{else}\PYG{p}{:}                  \PYG{c+c1}{\PYGZsh{} if R2 closer ... }
+            \PYG{n}{R2}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{R2}\PYG{p}{)}     \PYG{c+c1}{\PYGZsh{} update R2       }
 
     \PYG{k}{if} \PYG{n}{j}\PYG{o}{\PYGZpc{}}\PYG{k}{5}==4: print(j+1,\PYGZdq{}    \PYGZdq{}, np.round(R1,3), np.round(R2,3))  
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 initial locations:
-[0.583 0.354] [0.532 0.225]
+[0.843 0.331] [0.245 0.808]
 rounds  locations
-5      [0.567 0.652] [0.821 0.086]
-10      [0.565 0.66 ] [0.807 0.098]
-15      [0.527 0.652] [0.806 0.103]
-20      [0.539 0.654] [0.804 0.102]
-25      [0.537 0.653] [0.804 0.102]
-30      [0.537 0.653] [0.804 0.102]
-35      [0.536 0.652] [0.804 0.102]
-40      [0.536 0.652] [0.804 0.102]
+5      [0.77  0.107] [0.491 0.623]
+10      [0.797 0.1  ] [0.478 0.639]
+15      [0.795 0.097] [0.534 0.644]
+20      [0.797 0.097] [0.53  0.654]
+25      [0.797 0.097] [0.53  0.654]
+30      [0.797 0.097] [0.53  0.654]
+35      [0.797 0.097] [0.53  0.654]
+40      [0.797 0.097] [0.53  0.654]
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_44_0}.png}
+\sphinxAtStartPar
+The result is this:
+
+\noindent\sphinxincludegraphics{{unsupervised_46_0}.png}
 
 \sphinxAtStartPar
 One of the characteristic points “specializes” in the lower right cluster, and the other in the remaining points.
 
 \sphinxAtStartPar
-We continue, analogously, with four representative points.
+Next, we continue, completely analogously, with four representative points.
+
+\sphinxAtStartPar
+The result for two different initial conditions of the characteristic points is
+shown in \hyperref[\detokenize{docs/unsupervised:p-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:p-fig}}}.
 
 \begin{figure}[htbp]
 \centering
@@ -3971,10 +3989,10 @@ We continue, analogously, with four representative points.
 \caption{Left: proper characteristic points. Right: one “dead body”.}\label{\detokenize{docs/unsupervised:p-fig}}\end{figure}
 
 \sphinxAtStartPar
-Running the case of four categories, we notice that it does not always give the “correct”/expected answer. Quite often one of the representative points is not updated at all and becomes the so\sphinxhyphen{}called \sphinxstylestrong{dead body}. This is because the other representative points always win, i.e. one of them is always closer to each data point of the sample than the “corpse”.
+We notice that the procedure does not always give the “correct”/expected answer. Quite often one of the representative points is not updated at all and becomes the so\sphinxhyphen{}called \sphinxstylestrong{dead body}. This is because the other representative points always win, i.e. one of them is always closer to each data point of the sample than the “corpse”. Certainly, this is an unsatisfactory situation.
 
 \sphinxAtStartPar
-When we set up five characteristic points, several situation may occur, as shown in the figure below. Sometimes, depending on the initialization, a cluster is split into two smaller ones, sometimes dead bodies occur.
+When we set up five characteristic points, depending on the random initialization, several situation may occur, as shown in \hyperref[\detokenize{docs/unsupervised:id1}]{Fig.\@ \ref{\detokenize{docs/unsupervised:id1}}}. Sometimes a cluster is split into two smaller ones, sometimes dead bodies occur.
 
 \begin{figure}[htbp]
 \centering
@@ -3984,13 +4002,13 @@ When we set up five characteristic points, several situation may occur, as shown
 \caption{From left to right: 5 characteristic points with one cluster split into two, with another cluster split into two, one dead body, and two dead bodies.}\label{\detokenize{docs/unsupervised:id1}}\end{figure}
 
 \sphinxAtStartPar
-Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current strategy is problematic.
+Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current strategy is highly problematic and we need something better.
 
 
 \section{Clustering scale}
 \label{\detokenize{docs/unsupervised:clustering-scale}}
 \sphinxAtStartPar
-In the previous section we were trying to guess from the outset how many clusters there are in the data. This lead to problems, as usually we do not even know how many clusters there are. Actually, up to now we have not defined what precisely a cluster is, and were using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristic point, but how close? Actually, the definition must involve a scale telling us “how close is close”. For instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller one and resolve the bigger clusters into smaller ones, as in the  left panels of \hyperref[\detokenize{docs/unsupervised:id1}]{Fig.\@ \ref{\detokenize{docs/unsupervised:id1}}}.
+In the previous section we were trying to guess from the outset how many clusters there are in the data. This led to problems, as usually we do not even know how many clusters there are. Actually, up to now we have not defined what precisely a cluster is, and were using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristic point, but how close? Actually, the definition must involve a \sphinxstylestrong{scale} (a characteristic distance) telling us “how close is close”. For instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller scale and resolve the bigger clusters into smaller ones, as in two left panels of \hyperref[\detokenize{docs/unsupervised:id1}]{Fig.\@ \ref{\detokenize{docs/unsupervised:id1}}}.
 
 \begin{sphinxadmonition}{note}{Definition of cluster}
 
@@ -4006,11 +4024,11 @@ Various strategies can be used to implement this prescription. We use here the \
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Set the clustering scale \(d\) and the learning speed \(\varepsilon\). Shuffle the sample.
+Set the clustering scale \(d\) and the initial learning speed \(\varepsilon\). Shuffle the sample.
 
 \item {} 
 \sphinxAtStartPar
-Read the first data point \(P_1\) and set the first characteristic point \(R^1=P_1\). Add it to an array \(R\). Mark \(P_1\) as belonging to cluster \(1\).
+Read the first data point \(P_1\) and set the first characteristic point \(R^1=P_1\). Add it to an array \(R\) of all characteristic points. Mark \(P_1\) as belonging to cluster \(1\).
 
 \item {} 
 \sphinxAtStartPar
@@ -4028,11 +4046,11 @@ move \(R^m\) towards \(P\) with the learning speed \(\varepsilon\).Otherwise, ad
 
 \item {} 
 \sphinxAtStartPar
-Repeat from \(2.\) until all the data points are read.
+Repeat from \(2.\) until all the data points are processed.
 
 \item {} 
 \sphinxAtStartPar
-Repeat from \(2.\) a number of rounds, decreasing each time \(\varepsilon\). The result is a division of the sample into a number of clusters, and the location of corresponding characteristic points. The result may depend on the random reshuffling, hence does not have to the same when the procedure is repeated.
+Repeat from \(2.\) in a number of rounds, decreasing each time \(\varepsilon\). The result is a division of the sample into a number of clusters, and the location of corresponding characteristic points. The result may depend on the random reshuffling, hence does not have to be the same when the procedure is repeated.
 
 \end{enumerate}
 \end{sphinxadmonition}
@@ -4069,7 +4087,7 @@ Number of representative points:  4
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The outcome for various values of the clustering scale \(d\) is shown in \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}. At very low values of \(d\), smaller than the minimum separation between the points, there are as many clusters as the data points. Then, as we increase \(d\), the number of clusters decreases. At very large \(d\), of order of the of the span of the sample, there is only one cluster.
+The outcome of the algorithm for various values of the clustering scale \(d\) is shown in \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}. At very low values of \(d\), smaller than the minimum separation between the points, there are as many clusters as the data points. Then, as we increase \(d\), the number of clusters decreases. At very large \(d\), of the order of the span of the whole sample, there is only one cluster.
 
 \begin{figure}[htbp]
 \centering
@@ -4101,7 +4119,7 @@ continue the dynamical update as new data are encountered, or
 \end{itemize}
 
 \sphinxAtStartPar
-In the first case, we assign the corresponding cluster label to the data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm described above on new incoming data
+In the first case, we assign a corresponding cluster label to the new data point (our botanist knows what new flower he found), or initiate a new category if the point does not belong to any of the existing clusters. This is just a continuation of the dynamical algorithm described above for new incoming data
 
 \sphinxAtStartPar
 In the latter case (we bought the ready and closed botanist’s catalog), a data point may
@@ -4112,16 +4130,16 @@ belong to a cluster (we know its label),
 
 \item {} 
 \sphinxAtStartPar
-fall outside any cluster, then we just do not know what it is, or
+fall outside of any cluster, then we just do not know what it is, or
 
 \item {} 
 \sphinxAtStartPar
-fall into an overlapping region of two or more clusters (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}, where we only get “partial” classification.
+fall into an overlapping region of two or more clusters (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}, where we only get “partial” or ambiguous classification.
 
 \end{itemize}
 
 \sphinxAtStartPar
-Alternatively, we can use the Voronoi areas classification.
+Alternatively, we can use the Voronoi areas classification to get rid of the ambiguity.
 
 
 \subsection{Interpretation via steepest descent}
@@ -4151,23 +4169,23 @@ dynamic clusterization algorithm presented above, i.e.
 \begin{split} \vec{R} \to \vec{R} - \varepsilon (\vec{R} - \vec {x}^P). \end{split}
 \end{equation*}
 \sphinxAtStartPar
-To summarize, the algorithm used here actually involves the steepest descent method for the function \( E (\{R \})\), as discussed in previous lectures.
+To summarize, the algorithm used here actually involves the steepest descent method for the function \( E (\{R \})\), as discussed in the previous lectures.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Note, however, that the minimization used in the present algorithms also takes into account different combinatorial divisions of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when the closest representative point is changed.
+Note, however, that the minimization used in the present algorithms also takes into account different combinatorial divisions of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when its closest representative point changes.
 \end{sphinxadmonition}
 
 
 \section{Interpretation via neural networks}
 \label{\detokenize{docs/unsupervised:interpretation-via-neural-networks}}\label{\detokenize{docs/unsupervised:inn-sec}}
 \sphinxAtStartPar
-We shall now interpret the above unsupervised learning algorithm with the winner\sphinxhyphen{}take\sphinxhyphen{}all strategy in the neural network language.
+We shall now interpret the unsupervised learning algorithm used above with the winner\sphinxhyphen{}take\sphinxhyphen{}all strategy in the neural network language. We have the following sample network:
 
-\noindent\sphinxincludegraphics{{unsupervised_70_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_73_0}.png}
 
 \sphinxAtStartPar
-Our above sample network has four neurons in the intermediate neuron layer, each corresponding to one characteristic point \(\vec{R}^i\). The weights are the coordinates of \(\vec{R}^i\). There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
+It consists of four neurons in the intermediate neuron layer, each corresponding to one characteristic point \(\vec{R}^i\). The weights are the coordinates of \(\vec{R}^i\). There is one node in the output layer. We note significant differences from the perceptron discussed earlier.
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -4187,7 +4205,7 @@ The node in the last layer (MIN) indicates in which neuron of the intermediate l
 During (unsupervised) learning, an input point P “attracts” the closest characteristic point, whose weights are updated towards the coordinates of P.
 
 \sphinxAtStartPar
-The application of the above network classifies the point with coordinates \((x_1, x_2)\), assigning it the index of the representative point of a given category (here it is the number 1, 2, 3, or 4).
+The application of the above network classifies the point with coordinates \((x_1, x_2)\), assigning it the index of the closest representative point of a given category (here it is the number 1, 2, 3, or 4).
 
 
 \subsection{Representation with spherical coordinates}
@@ -4231,40 +4249,42 @@ hence
 \;\;\; = r^2 - \frac{1}{2}[ (x_1-x_2)^2 +(y_1-y_2)^2]\).
 
 \sphinxAtStartPar
-It equals (for points close to the pole) the constant \( r ^ 2 \) minus half the square of the distance between the points \( (x_1, x_2) \) and \( (y_1, y_2) \) on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3D extensions to a hemisphere.
+It equals (for points close to the pole) the constant \( r ^ 2 \) minus half the square of the distance between the points \( (x_1, x_2) \) and \( (y_1, y_2) \) on the plane! It then follows that instead of finding a minimum distance for points on the plane, as in the previous algorithm, we can find a maximum scalar product for their 3\sphinxhyphen{}dim. extensions to a hemisphere.
 
 \sphinxAtStartPar
 With the extension of the data to a hemisphere, the appropriate neural network can be viewed as follows:
 
-\noindent\sphinxincludegraphics{{unsupervised_76_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_79_0}.png}
 
 \sphinxAtStartPar
-Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in the artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest.
+Thanks to our efforts, the signal in the intermediate layer is now just a dot product of the input and the weights, as it should be in an artificial neuron. The unit in the last layer (MAX) indicates where the dot product is largest.
 
 \sphinxAtStartPar
-This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed\sphinxhyphen{}forward networks. When the neurons in the layer can communicate (recurrent \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}), they can compete, and with proper feed\sphinxhyphen{}back it is possible to enforce the winner\sphinxhyphen{}take\sphinxhyphen{}all mechanism. We discuss these aspects in section \{ref\}`lat\sphinxhyphen{}lab’.
+This MAX unit is still problematic to interpret within our present framework. Actually, it is possible, but requires going beyond feed\sphinxhyphen{}forward type networks. When the neurons in the layer can communicate (recurrent \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}), they can compete, and with proper feed\sphinxhyphen{}back it is possible to enforce the winner\sphinxhyphen{}take\sphinxhyphen{}all mechanism. We discuss these aspects in section \{ref\}`lat\sphinxhyphen{}lab’.
 
 \begin{sphinxadmonition}{note}{Hebbian rule}
 
 \sphinxAtStartPar
-On the conceptual side, we here touch upon a very important and intuitive principle in neural networks, known as the \sphinxhref{https://en.wikipedia.org/wiki/Hebbian\_theory}{Hebbian rule}. Essentially, it applies the truth “What is used, gets stronger” to synaptic connections. A repeated use of a connection makes it stronger.
+On the conceptual side, we touch upon a very important and intuitive principle in biological neural networks, known as the \sphinxhref{https://en.wikipedia.org/wiki/Hebbian\_theory}{Hebbian rule}. Essentially, it applies the truth “What is being used, gets stronger” to synaptic connections. A repeated use of a connection makes it stronger.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
 In our formulation, if a signal passes through a given connection, its weight changes accordingly, while other connections remain the same. The process takes place in an unsupervised manner and its implementation is biologically well motivated.
 
+\begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
 On the other hand, it is difficult to find a biological justification for the backprop supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful).
+\end{sphinxadmonition}
 
 
 \subsection{Scalar product maximization}
 \label{\detokenize{docs/unsupervised:scalar-product-maximization}}
 \sphinxAtStartPar
-The algorithm is now as follows:
+Now the algorithm becomes as as follows:
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Extend the points from the sample with the third coordinate, \( x_3 = \sqrt {r ^ 2-x_1 ^ 2-x_2 ^ 2} \), choosing appropriately large \( r \) so that \( r ^ 2> x_1 ^ 2 + x_2 ^ 2 \) for all sample points.
+Extend the points from the sample with the third coordinate, \( x_3 = \sqrt {r ^ 2-x_1 ^ 2-x_2 ^ 2} \), choosing appropriately large \( r \), such that \( r ^ 2> x_1 ^ 2 + x_2 ^ 2 \) for all sample points.
 
 \item {} 
 \sphinxAtStartPar
@@ -4292,7 +4312,7 @@ Renormalize the updated weight vector \( \vec {w_i} \) such that \( \vec {w} _i 
 \begin{split} \vec {w} ^ i \to \vec {w} ^ i \frac {r} {\sqrt {\vec {w} _i \cdot \vec {w} _i}}. \end{split}
 \end{equation*}
 \sphinxAtStartPar
-The remaining steps of the algorithm, such as determining the initial positions of the representative points, their dynamic creation as they encounter successive data points, etc., remain as in the previously discussed procedure.
+The remaining steps of the algorithm, such as determining the initial positions of the representative points, their dynamic creation as they encounter successive data points, etc., remain exactly as in the previously discussed procedure.
 
 \sphinxAtStartPar
 The generalization for \( n \) dimensions is obvious: we enter an additional coordinate
@@ -4309,7 +4329,7 @@ In Python:
 \PYG{n}{d}\PYG{o}{=}\PYG{l+m+mf}{0.25}
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.5}
 
-\PYG{n}{rad}\PYG{o}{=}\PYG{l+m+mi}{2} \PYG{c+c1}{\PYGZsh{} radius r}
+\PYG{n}{rad}\PYG{o}{=}\PYG{l+m+mi}{2}    \PYG{c+c1}{\PYGZsh{} radius of the hypersphere}
 
 \PYG{k}{for} \PYG{n}{r} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{25}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.85}\PYG{o}{*}\PYG{n}{eps}
@@ -4317,12 +4337,13 @@ In Python:
     \PYG{k}{if} \PYG{n}{r}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{:}
         \PYG{n}{p}\PYG{o}{=}\PYG{n}{alls}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
         \PYG{n}{R}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{p}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{n}{p}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{rad}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{p}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{p}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+                                        \PYG{c+c1}{\PYGZsh{} extension of R to the hypersphere}
     \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alls}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
         \PYG{n}{p}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} 
                     \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{rad}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{alls}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
-          \PYG{c+c1}{\PYGZsh{} rozszerzenie do półsfery}
-        \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{R}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]} 
-        \PYG{n}{ind\PYGZus{}max} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}                    \PYG{c+c1}{\PYGZsh{} maximum}
+                                        \PYG{c+c1}{\PYGZsh{} extension of p to the hypersphere}
+        \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{R}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{R}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}      \PYG{c+c1}{\PYGZsh{} array of dot products}
+        \PYG{n}{ind\PYGZus{}max} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{dist}\PYG{p}{)}                         \PYG{c+c1}{\PYGZsh{} maximum}
         \PYG{k}{if} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{ind\PYGZus{}max}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{rad}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{d}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{:}
              \PYG{n}{R}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{p}{[}\PYG{n}{p}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
         \PYG{k}{else}\PYG{p}{:}   
@@ -4335,10 +4356,10 @@ In Python:
 Number of representative points:  4
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{unsupervised_82_0}.png}
+\noindent\sphinxincludegraphics{{unsupervised_86_0}.png}
 
 \sphinxAtStartPar
-We can see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}.
+We can promptly see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. \hyperref[\detokenize{docs/unsupervised:dyn-fig}]{Fig.\@ \ref{\detokenize{docs/unsupervised:dyn-fig}}}.
 
 
 \section{Exercises}
@@ -4358,7 +4379,7 @@ Run the classification algorithms for more categories in the data sample (genera
 
 \item {} 
 \sphinxAtStartPar
-Extend the dynamic clusterization algorithm to 3 spatial dimensions.
+Extend the dynamic clusterization algorithm to a three\sphinxhyphen{}dimensional input space.
 
 \end{enumerate}
 \end{sphinxadmonition}
@@ -4378,7 +4399,7 @@ f: N \to D
 Since \(N\) is discrete, each neuron carries an index consisting of \(k\) natural numbers, denoted as \(\bar {i} = (i_1, i_2, ..., i_k)\). Typically, the dimensions in Kohonen’s networks satisfy \(n \ge k\). When \(n > k\), one talks about \sphinxstylestrong{reduction of dimensionality}, as then the input space \(D\) has more dimensions than the dimensionaiy of the grid of neurons \(N\).
 
 \sphinxAtStartPar
-Two examples of such networks are visualized in \{numref{]}\sphinxcode{\sphinxupquote{koh\sphinxhyphen{}fig}}. The left panel shows a 2\sphinxhyphen{}dim. input space \(D\), and a one dimensional grid on neurons labeled with \(i\). The input point \((x_1,x_2)\) enters all the neurons in the grid, and one of the neurons (the one with best\sphinxhyphen{}suited weights) becomes the \sphinxstylestrong{winner} (red dot). The gray oval indicates the \sphinxstylestrong{neighborhood} of the winner, to be defined accurately in the following.
+Two examples of such networks are visualized in \hyperref[\detokenize{docs/som:koh-fig}]{Fig.\@ \ref{\detokenize{docs/som:koh-fig}}}. The left panel shows a 2\sphinxhyphen{}dim. input space \(D\), and a one dimensional grid on neurons labeled with \(i\). The input point \((x_1,x_2)\) enters all the neurons in the grid, and one of the neurons (the one with best\sphinxhyphen{}suited weights) becomes the \sphinxstylestrong{winner} (red dot). The gray oval indicates the \sphinxstylestrong{neighborhood} of the winner, to be defined accurately in the following.
 
 \sphinxAtStartPar
 The right panel shows an analogous situation for the case of a 3\sphinxhyphen{}dim. input and 2\sphinxhyphen{}dim. grid of neurons, now labeled with a double index \(\bar {i} = (i_1, i_2)\). Here, for clarity, we only indicate the edges entering the winner, but they also enter all the other neurons in the grid, similarly to the left panel.
@@ -4548,7 +4569,7 @@ When presenting results of Kohonen’s algorithm, one sometimes makes plots in \
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-The plots in the \(N\)\sphinxhyphen{}space, fully equivalent in information to thr plot, e.g., in the bottom right panel of \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}, are following:
+The plots in the \(N\)\sphinxhyphen{}space, fully equivalent in information to the plot in, e.g., the bottom right panel of \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}, are following:
 
 \noindent\sphinxincludegraphics{{som_29_0}.png}
 
@@ -4590,7 +4611,7 @@ The final result, even with the same \(\delta\) and \(\varepsilon \) strategy, i
 \item {} 
 \sphinxAtStartPar
 Finally, the progress and the result of the algorithm is reminiscent of the construction of the \sphinxhref{https://en.wikipedia.org/wiki/Peano\_curve}{Peano curve} in mathematics, which fills densely an area with a line.
-As we increase number of neurons, the analogy gets closer and closer.
+As we increase the number of neurons, the analogy gets closer and closer.
 
 \end{itemize}
 \end{sphinxadmonition}
@@ -4771,7 +4792,7 @@ The result, corresponding one\sphinxhyphen{}to\sphinxhyphen{}one to the color ma
 \noindent\sphinxincludegraphics{{som_58_0}.png}
 
 \sphinxAtStartPar
-The white regions in the above figure show the clusters (they correspond one\sphinxhyphen{}to\sphinxhyphen{}one to the regions of the same color in the previously shown color map). There, the elements \(U_{ij} \simeq 0\)). The clusters are separated with the darker boundaries. The higher the dividing ridge between clusters, the darker the intensity.
+The white regions in the above figure show the clusters (they correspond one\sphinxhyphen{}to\sphinxhyphen{}one to the regions of the same color in the previously shown color map). There, the elements \(U_{ij} \simeq 0\). The clusters are separated with darker boundaries. The higher the dividing ridge between clusters, the darker the intensity.
 
 \sphinxAtStartPar
 The result may also be visualized with a 3\sphinxhyphen{}dim. plot:
@@ -4801,7 +4822,7 @@ The result may also be visualized with a 3\sphinxhyphen{}dim. plot:
 \noindent\sphinxincludegraphics{{som_60_0}.png}
 
 \sphinxAtStartPar
-We an now classify a given (new) data point according to the obtained map.
+We can now classify a given (new) data point according to the obtained map. We generate a new (normalized) RGB color:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{nd}\PYG{o}{=}\PYG{n}{rgbn}\PYG{p}{(}\PYG{p}{)}
@@ -4810,7 +4831,7 @@ We an now classify a given (new) data point according to the obtained map.
 \noindent\sphinxincludegraphics{{som_63_0}.png}
 
 \sphinxAtStartPar
-It is useful to obtain a map of distances from this point:
+It is useful to obtain a map of distances of our grid neurons from this point:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{tad}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{size}\PYG{p}{,}\PYG{n}{size}\PYG{p}{)}\PYG{p}{)}
@@ -4831,20 +4852,23 @@ It is useful to obtain a map of distances from this point:
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Closest neuron grid indices: ( 8 , 30 )
-Distance:  0.064
+Closest neuron grid indices: ( 30 , 6 )
+Distance:  0.012
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{som_66_0}.png}
 
 \sphinxAtStartPar
-The lightest region indicates the cluster, to which the new point belongs. The darker the region, the lager the distance to the corresponding neurons.
+The lightest region in the above figure indicates the cluster, to which the new point belongs. The darker the region, the larger is the distance from the corresponding neuron.
+
+\sphinxAtStartPar
+One should stress that we have obtained a classifier which not only assigns a closest cluster to a probed point, but also provides its distances from all other clusters.
 
 
 \subsection{Mapping colors on a line}
 \label{\detokenize{docs/som:mapping-colors-on-a-line}}
 \sphinxAtStartPar
-In this subsection we present an example of a reduction of 3\sphinxhyphen{}dim. data in a 1\sphinxhyphen{}dim. neuron grid. This proceeds exactly along the lines of the previous analysis, so we are brief in comments.
+In this subsection we present an example of a mapping of 3\sphinxhyphen{}dim. data into a 1\sphinxhyphen{}dim. neuron grid, hence a reduction of three dimensions into one. This proceeds exactly along the lines of the previous subsection, so we are very brief in comments.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{ns}\PYG{o}{=}\PYG{l+m+mi}{8}
@@ -4862,12 +4886,11 @@ In this subsection we present an example of a reduction of 3\sphinxhyphen{}dim. 
 \noindent\sphinxincludegraphics{{som_70_0}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{si}\PYG{o}{=}\PYG{l+m+mi}{50}  \PYG{c+c1}{\PYGZsh{} 1\PYGZhy{}dim. grid of si neurons, 3 RGB components}
-\PYG{n}{tab2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{si}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{si}\PYG{o}{=}\PYG{l+m+mi}{50}                    \PYG{c+c1}{\PYGZsh{} 1\PYGZhy{}dim. grid of si neurons, 3 RGB components}
+\PYG{n}{tab2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{si}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} neuron gri}
 
 \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{si}\PYG{p}{)}\PYG{p}{:}      
-    \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{:}                \PYG{c+c1}{\PYGZsh{} RGB components}
-        \PYG{n}{tab2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random initialization}
+    \PYG{n}{tab2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{rgbn}\PYG{p}{(}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} random initialization}
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{som_72_0}.png}
@@ -4892,7 +4915,7 @@ In this subsection we present an example of a reduction of 3\sphinxhyphen{}dim. 
 \noindent\sphinxincludegraphics{{som_75_0}.png}
 
 \sphinxAtStartPar
-We note smooth transitions between colors. The formation of clusters can be seen with the \(U\)\sphinxhyphen{}matrix, which now is, of course, one\sphinxhyphen{}dimensional:
+As expected, we note smooth transitions between colors. The formation of clusters can be seen with the \(U\)\sphinxhyphen{}matrix, which now is, of course, one\sphinxhyphen{}dimensional:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{ta2}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{si}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{)}
@@ -4904,27 +4927,27 @@ We note smooth transitions between colors. The formation of clusters can be seen
 \noindent\sphinxincludegraphics{{som_78_0}.png}
 
 \sphinxAtStartPar
-The minima (there are 8 of them, which is the multiplicity of the sample) indicate the clusters. The height of the separating peaks shows how much the neighboring colors differ.
+The minima (there are 8 of them, equal to the multiplicity of the sample) indicate the clusters. The height of the separating peaks shows how much the neighboring colors differ. Again, we see a nicely produced classifier, this time with two dimensions “hidden away”, as we reduce from three to one.
 
 
-\subsection{Wikipedia articles’ similarity}
-\label{\detokenize{docs/som:wikipedia-articles-similarity}}
+\subsection{Large reduction of dimensionality}
+\label{\detokenize{docs/som:large-reduction-of-dimensionality}}
 \sphinxAtStartPar
-The input space may have very large dimensions. In the \sphinxhref{https://en.wikipedia.org/wiki/Self-organizing\_map}{Wikipedia example} below, one takes articles from various fields and computes frequencies of words (for instance, how  many times the word “goalkeeper” has been used, divided by the total number of words in the article). Essentially, the dimensionality of \(D\) is of the order of the number of English words, a huge number \(\sim 10^5\)! Then one uses Kohonen’s algorithm to carry out a reduction into a 2\sphinxhyphen{}dim. grid of neurons. The resulting \(U\)\sphinxhyphen{}matrix is following:
+In many situations the input space may have a very large dimension. In the \sphinxhref{https://en.wikipedia.org/wiki/Self-organizing\_map}{Wikipedia example} quoted here, one takes articles from various fields and computes frequencies of used words (for instance, in a given article how  many times the word “goalkeeper” has been used, divided by the total number of words in the article). Essentially, the dimensionality of \(D\) is of the order of the number of all English words, a huge number \(\sim 10^5\)! Then, with a properly defined distance depending on these frequencies, one uses Kohonen’s algorithm to carry out a reduction into a 2\sphinxhyphen{}dim. grid of neurons. The resulting \(U\)\sphinxhyphen{}matrix can be drawn as follows:
 
-\noindent\sphinxincludegraphics{{som_82_0}.jpg}
+\noindent\sphinxincludegraphics{{som_83_0}.jpg}
 
 \sphinxAtStartPar
-Not surprisingly, we note that articles on sports are special and form a very well defined cluster. The reason is that the sport’s jargon is very specific.
+Not surprisingly, we notice that articles on sports are special and form a very well defined cluster. The reason is that the sport’s jargon is very specific. The Media are also distinguished, whereas other fields are more\sphinxhyphen{}less uniformly distributed. The example shows how we can, with a very simple method, comprehend data in a multidimensional space and see specific correlations/clusters. Whereas some conclusions may be obvious, such as the fact that sport has a unique jargon, other are less transparent, for instance the emergence of the media cluster and lack of well\sphinxhyphen{}defined clusters for other fields, e.g. for mathematics.
 
 
 \section{Mapping 2\sphinxhyphen{}dim. data into a 2\sphinxhyphen{}dim. grid}
 \label{\detokenize{docs/som:mapping-2-dim-data-into-a-2-dim-grid}}
 \sphinxAtStartPar
-Finally, we come to a very important case of mapping 2\sphinxhyphen{}dim. data in a 2\sphinxhyphen{}dim. grid. This case is realized in our vision system between the retina and the visual cortex.
+Finally, we come to a very important case of mapping 2\sphinxhyphen{}dim. data in a 2\sphinxhyphen{}dim. grid, i.e. with no dimensionality reduction. In particular, this case is realized in our vision system between the retina and the visual cortex.
 
 \sphinxAtStartPar
-The algorithm proceeds analogously to the previous cases. We initialize an \(n \times n\) grid of neurons, placing them randomly in the square \([0,1]\times [0,1]\).
+The algorithm proceeds analogously to the previous cases. We initialize an \(n \times n\) grid of neurons and place them randomly in the square \([0,1]\times [0,1]\).
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{10}
@@ -4932,9 +4955,9 @@ The algorithm proceeds analogously to the previous cases. We initialize an \(n \
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The lines, drawn to guide the eye, join the adjacent index pairs in the grid: {[}i,j{]} and {[}i+1,j{]}, or {[}i,j{]} and {[}i,j+1{]} (the neurons in the interior of the grid have 4 nearest neighbors, those at the boundary 3, except for the corners, which have only 2).
+The lines, again drawn to guide the eye, join the adjacent index pairs in the grid: {[}i,j{]} and {[}i+1,j{]}, or {[}i,j{]} and {[}i,j+1{]} (the neurons in the interior of the grid have 4 nearest neighbors, those at the boundary 3, except for the corners, which have only 2).
 
-\noindent\sphinxincludegraphics{{som_88_0}.png}
+\noindent\sphinxincludegraphics{{som_89_0}.png}
 
 \sphinxAtStartPar
 We note a total initial “chaos”, as the neurons are located randomly. Now comes Kohonen’s miracle:
@@ -4965,9 +4988,8 @@ We note a total initial “chaos”, as the neurons are located randomly. Now co
                 \PYG{n}{sam}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{n}{n}\PYG{o}{*}\PYG{n}{j}\PYG{p}{]}\PYG{o}{+}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{n}{phi2}\PYG{p}{(}\PYG{n}{ind\PYGZus{}i}\PYG{p}{,}\PYG{n}{ind\PYGZus{}j}\PYG{p}{,}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{de}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{sam}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{n}{n}\PYG{o}{*}\PYG{n}{j}\PYG{p}{]}\PYG{p}{)} 
 \end{sphinxVerbatim}
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} fl.savefig(\PYGZsq{}images/kb30000.png\PYGZsq{})}
-\end{sphinxVerbatim}
+\sphinxAtStartPar
+Here is the history of a simulation:
 
 \begin{figure}[htbp]
 \centering
@@ -4977,13 +4999,13 @@ We note a total initial “chaos”, as the neurons are located randomly. Now co
 \caption{Progress of Kohonen’s algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.}\label{\detokenize{docs/som:kohstory2-fig}}\end{figure}
 
 \sphinxAtStartPar
-As the algorithm progresses, chaos changes into nearly perfect order, with the grid placed uniformly in the square of the data, with only slight displacements from a regular arrangement. On the way, near 40 steps, we notice a phenomenon called “twist”, where many neurons have a close location and the grid is crumpled.
+As the algorithm progresses, the initial “chaos” gradually changes into a nearly perfect order, with the grid placed uniformly in the square of the data, with only slight displacements from a regular arrangement. On the way, near 40 steps, we notice a phenomenon called “twist”, where the grid is crumpled. In the twist region, many neurons, also of distant indices, have a close location in \((x_1,x_2)\).
 
 
-\section{Topological properties}
-\label{\detokenize{docs/som:topological-properties}}
+\section{Topology}
+\label{\detokenize{docs/som:topology}}
 \sphinxAtStartPar
-Recall the Voronoi construction of categories introduced in section {\hyperref[\detokenize{docs/unsupervised:vor-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Voronoi areas}}}}. One can simply use it now, treating the neurons from a grid as the Voronoi points. The Voronoi construction provides a mapping \(v\) from the data space \(D\) to the neuron space \(N\),
+Recall the Voronoi construction of categories introduced in section {\hyperref[\detokenize{docs/unsupervised:vor-lab}]{\sphinxcrossref{\DUrole{std,std-ref}{Voronoi areas}}}}. One can use it now again, treating the neurons from a grid as the Voronoi points. The Voronoi construction provides a mapping \(v\) from the data space \(D\) to the neuron space \(N\),
 \begin{equation*}
 \begin{split} 
 v: D \to N 
@@ -4993,7 +5015,8 @@ v: D \to N
 (note that this goes in the opposite direction than function \(f\) defined at the beginning of this chapter).
 
 \sphinxAtStartPar
-We take the bottom right panel of \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}}, construct the Voronoi areas for all the neurons, and thus obtain a mapping \(v\) for all poins in the \((x_1,x_2)\) square. The reader may notice that there is an ambiguity for points lying exactly at the boundaries between neighboring areas, but this can be taken care of by using an additional prescription (for instance, selecting a neuron lying at a direction which has the lowest azimuthal angle, etc.)
+The procedure is as follows:
+We take the final outcome of the algorith, such as in the  bottom right panel of \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}}, construct the Voronoi areas for all the neurons, and thus obtain a mapping \(v\) for all the points in the \((x_1,x_2)\) square. The reader may notice that there is an ambiguity for points lying exactly at the boundaries between the neighboring areas, but this can be taken care of by using an additional prescription (for instance, selecting a neuron lying at a direction which has the lowest azimuthal angle, etc.)
 
 \sphinxAtStartPar
 Now a key observation:
@@ -5001,11 +5024,11 @@ Now a key observation:
 \begin{sphinxadmonition}{note}{Topological property}
 
 \sphinxAtStartPar
-For situations such as in the bottom right panel of \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}}, mapping \(v\) has the property that when \(d_1\) and \(d_2\) from \(D\) are close to each other, then also their corresponding neurons are close, i.e. the indices \(v(d_1)\) and \(v(d_2)\) are close.
+For situations without twists, such as in the bottom right panel of \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}}, mapping \(v\) has the property that when \(d_1\) and \(d_2\) from \(D\) are close to each other, then also their corresponding neurons are close, i.e. the indices \(v(d_1)\) and \(v(d_2)\) are close.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-This observation straightforward: Since \(d_1\) and \(d_2\) are close (and we mean very close, closer than the resolution of the grid), then they must belong either to
+This observation is straightforward to prove: Since \(d_1\) and \(d_2\) are close (and we mean very close, closer than the grid spacing), they must belong either to
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
@@ -5013,18 +5036,34 @@ the same Voronoi area, where \(v(d_1)=v(d_2)\), or
 
 \item {} 
 \sphinxAtStartPar
-neighboring Voronoi areas.
+a pair of neighboring Voronoi areas.
 
 \end{itemize}
 
 \sphinxAtStartPar
-Since for the considered situation the neighboring areas have the grid indices differing by 1, the conclusion that \(v(d_1)\) and \(v(d_2)\) are close follows immediately.
+Since for the considered situation (without twists) the neighboring areas have the grid indices differing by 1, the conclusion that \(v(d_1)\) and \(v(d_2)\) are close follows immediately.
 
 \sphinxAtStartPar
-Note that this feature of Kohonen’s maps is far from trivial and does not hold for a general mapping. Imagine for instance that we stop our simulations for \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}} after 40 steps (top central panel) and are left with a “twisted” grid. In the vicinity of the twist, the indices of the adjacent Voronoi areas differ largely, and the topological property no longer holds.
+Note that this feature of Kohonen’s maps is far from trivial and does not hold for a general mapping. Imagine for instance that we stop our simulations for \hyperref[\detokenize{docs/som:kohstory2-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory2-fig}}} after 40 steps (top central panel) and are left with a “twisted” grid. In the vicinity of the twist, the indices of the adjacent Voronoi areas differ largely, and the advertised topological property no longer holds.
 
 \sphinxAtStartPar
-The discussed topological property has general and far\sphinxhyphen{}reaching consequences. First, it allows to carry over “shapes” from \(D\) to \(N\). Imagine that we have a circle in \(D\)\sphinxhyphen{}space of radius \sphinxstylestrong{rad} centered at \sphinxstylestrong{cent}. We go around it in \sphinxstylestrong{npoi} points, and for each one find a winner:
+The discussed topological property has mathematically general and far\sphinxhyphen{}reaching consequences. First, it allows to carry over “shapes” from \(D\) to \(N\). We illustrate it on an example.
+
+\sphinxAtStartPar
+Imagine that we have a circle \(C\) in \(D\)\sphinxhyphen{}space, of radius \sphinxstylestrong{rad} centered at \sphinxstylestrong{cent}. We need to find the winners in the \(N\) space for any point in \(C\). For this purpose we go around \(C\) in \sphinxstylestrong{npoi} points equally spaced in the azimuthal angle, and for each one find a winner.
+
+\sphinxAtStartPar
+\(C\) is parametrized with polar coordinates:
+\begin{equation*}
+\begin{split}
+x_1=r \cos \left( \frac{2\pi \phi}{N}  \right)+c_1, \;\;\;
+x_2=r \sin \left( \frac{2\pi \phi}{N}  \right)+c_2.
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Going to the mathematical notation to Python we use
+\(r=\)\sphinxstylestrong{rad}, \(\phi\)=\sphinxstylestrong{ph}, \(N=\)\sphinxstylestrong{npoi}, \((c_1,c_2)=\)\sphinxstylestrong{{[}cent{]}}.
+The loop over \sphinxstylestrong{ph} goes around the circle.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{rad}\PYG{o}{=}\PYG{l+m+mf}{0.35}                      \PYG{c+c1}{\PYGZsh{} radius of a circle}
@@ -5033,8 +5072,8 @@ The discussed topological property has general and far\sphinxhyphen{}reaching co
 
 \PYG{n}{wins}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}                       \PYG{c+c1}{\PYGZsh{} table of winners}
 
-\PYG{k}{for} \PYG{n}{th} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{npoi}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} go around the circle}
-    \PYG{n}{p}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{rad}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{n}{npoi}\PYG{o}{*}\PYG{n}{th}\PYG{p}{)}\PYG{p}{,}\PYG{n}{rad}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{n}{npoi}\PYG{o}{*}\PYG{n}{th}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}\PYG{n}{cent}
+\PYG{k}{for} \PYG{n}{ph} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{npoi}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} go around the circle}
+    \PYG{n}{p}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{rad}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{n}{npoi}\PYG{o}{*}\PYG{n}{ph}\PYG{p}{)}\PYG{p}{,}\PYG{n}{rad}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{n}{npoi}\PYG{o}{*}\PYG{n}{ph}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}\PYG{n}{cent}
                               \PYG{c+c1}{\PYGZsh{} the circle in polar coordinates}
     \PYG{n}{dist}\PYG{o}{=}\PYG{p}{[}\PYG{n}{func}\PYG{o}{.}\PYG{n}{eucl}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{sam}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n}\PYG{o}{*}\PYG{n}{n}\PYG{p}{)}\PYG{p}{]} 
       \PYG{c+c1}{\PYGZsh{} distances from the point on the circle to the neurons in the nxn grid}
@@ -5044,10 +5083,13 @@ The discussed topological property has general and far\sphinxhyphen{}reaching co
 \PYG{n}{ci}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{wins}\PYG{p}{)}            \PYG{c+c1}{\PYGZsh{} remove duplicates from the table      }
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_101_0}.png}
+\sphinxAtStartPar
+The result of Kohonen’s algorithm is as follows:
+
+\noindent\sphinxincludegraphics{{som_103_0}.png}
 
 \sphinxAtStartPar
-The red neurons are the winners for certain sections of the circle. When we draw these points alone in the \(N\) space, we get
+The red neurons are the winners for certain sections of the circle. When we draw these winners alone in the \(N\) space (keep in mind we are going from \(D\) to \(N\)), we get
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{2.3}\PYG{p}{,}\PYG{l+m+mf}{2.3}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
@@ -5062,10 +5104,10 @@ The red neurons are the winners for certain sections of the circle. When we draw
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}j\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_103_0}.png}
+\noindent\sphinxincludegraphics{{som_105_0}.png}
 
 \sphinxAtStartPar
-This looks as a (rough and discrete) circle. Note that in our example we only have \(n^2=100\) pixels to our disposal \sphinxhyphen{} a very low resolution. The image would look better and better with increasing \(n\). At some point one would reach the 10M pixels resolution of typical camera, and then the image would seem smooth.
+This looks pretty much as a (rough and discrete) circle. Note that in our example we only have \(n^2=100\) pixels to our disposal \sphinxhyphen{} a very low resolution. The image would look better and better with an increasing \(n\). At some point one would reach the 10M pixel resolution of typical camera, and then the image would seem smooth! We have carried over our circle from \(D\) into \(N\).
 
 \begin{sphinxadmonition}{note}{Vision}
 
@@ -5074,23 +5116,23 @@ The topological property, such as the one in the discussed Kohonen mappings, has
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Another key topological feature is the preservation of \sphinxstylestrong{connectedness}. If an area \(A\) in \(D\) is connected (is in one piece), then its image \(v(A)\) in \(N\) is also connected (we ignore the desired rigor here as to what “connected” means in a discrete space and rely on intuition). So things do not get “torn into pieces” when transforming form \(D\) to \(N\).
+Another key topological feature is the preservation of \sphinxstylestrong{connectedness}. If an area \(A\) in \(D\) is connected (so to speak, is in one piece), then its image \(v(A)\) in \(N\) is also connected (we ignore the desired rigor here as to what “connected” means in a discrete space and rely on intuition). So things do not get “torn into pieces” when transforming from \(D\) to \(N\).
 
 \sphinxAtStartPar
-Note that the discussed topological features need not be present when dimensionality is reduced, as in our previous examples. Take for instance the bottom right panel of \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}. There, many neighboring pairs of the Voronoi areas correspond to distant indices, so it is no longer true that \(v(d_1)\) and \(v(d_2)\) are close for close \(d_1\) and \(d_2\), as these points may belong to different Voronoi areas with distant indices.
+Note that the discussed topological features need not be present when the dimensionality is reduced, as in our previous examples. Take for instance the bottom right panel of \hyperref[\detokenize{docs/som:kohstory-fig}]{Fig.\@ \ref{\detokenize{docs/som:kohstory-fig}}}. There, many neighboring pairs of the Voronoi areas correspond to distant indices, so it is no longer true that \(v(d_1)\) and \(v(d_2)\) in \(N\) are close for close \(d_1\) and \(d_2\) in \(D\), as these points may belong to different Voronoi areas with \sphinxstylestrong{distant} indices.
 
 \sphinxAtStartPar
 For that case, our example with the circle looks like this:
 
-\noindent\sphinxincludegraphics{{som_109_0}.png}
-
-\sphinxAtStartPar
-When we go subsequently along the \sphinxstylestrong{grid indices} (i.e, along the blue connecting line), we get the plot below. We can see the image of our circle (red dots) as a bunch of \sphinxstylestrong{disconnected} sections. Topology is not preserved!
-
 \noindent\sphinxincludegraphics{{som_111_0}.png}
 
 \sphinxAtStartPar
-Here is the statement, not made clear in the literature:
+When we go subsequently along the \sphinxstylestrong{grid indices} (i.e. along the blue connecting line), taking \(i=1,2,\dots,100\), we obtain the plot below. We can see the image of our circle (red dots) as a bunch of \sphinxstylestrong{disconnected} red sections. The circle is torn into pieces, the \sphinxstylestrong{topology is not preserved!}
+
+\noindent\sphinxincludegraphics{{som_113_0}.png}
+
+\sphinxAtStartPar
+Here is the summarizing statement (NB not made sufficiently clear in the literature):
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
@@ -5101,13 +5143,13 @@ Topological features of Kohonen’s maps hold for equal dimensionalities of the 
 \section{Lateral inhibition}
 \label{\detokenize{docs/som:lateral-inhibition}}\label{\detokenize{docs/som:lat-lab}}
 \sphinxAtStartPar
-In a last topic of these lectures, we return to the issue of how the competition for the “winner” is realized in ANNs. Up to now, we have just used the minimum (or maximum, when the signal was extended to a hyperphere) functions in the output, but this is embarrassingly outside of the neural framework. Such an inspection of which neuron yields the strongest signal would require an “external wizard”, or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons with rules of the game.
+In the last topic of these lectures, we return to the issue of how the competition for the “winner” is realized in ANNs. Up to now (cf. section {\hyperref[\detokenize{docs/unsupervised:inn-sec}]{\sphinxcrossref{\DUrole{std,std-ref}{Interpretation via neural networks}}}}), we have just been using the minimum (or maximum, when the signal was extended to a hyperphere) in the output, though this is embarrassingly outside of the neural framework. Such an inspection of which neuron yields the strongest signal would require an “external wizard”, or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons within the rules of the game.
 
 \sphinxAtStartPar
-Actually, if the neurons in a layer “talk” to one another, we can have a contest. An architecture as in \hyperref[\detokenize{docs/som:lat-fig}]{Fig.\@ \ref{\detokenize{docs/som:lat-fig}}} allows for an arrangement of competition and a natural realization of the winner\sphinxhyphen{}take\sphinxhyphen{}most mechanism.
+Actually, if the neurons in a layer “talk” to one another, we can have a “contest” from which a winner may emerge. In particular, an architecture as in \hyperref[\detokenize{docs/som:lat-fig}]{Fig.\@ \ref{\detokenize{docs/som:lat-fig}}} allows for an arrangement of competition and a natural realization of a \sphinxstylestrong{winner\sphinxhyphen{}take\sphinxhyphen{}most} mechanism.
 
 \sphinxAtStartPar
-The type of models as presented below is known as the \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}.
+The type of models as presented below is known as the \sphinxhref{https://en.wikipedia.org/wiki/Hopfield\_network}{Hopfield networks}. Note that we depart here from the \sphinxstylestrong{feed\sphinxhyphen{}forward} limitation of \hyperref[\detokenize{docs/intro:ffnn-fig}]{Fig.\@ \ref{\detokenize{docs/intro:ffnn-fig}}} and allow for a recursive, or feed\sphinxhyphen{}back character.
 
 \begin{figure}[htbp]
 \centering
@@ -5117,14 +5159,14 @@ The type of models as presented below is known as the \sphinxhref{https://en.wik
 \caption{Network with inter\sphinxhyphen{}neuron couplings used for modeling lateral inhibition. All the neurons are connected to one another in both directions (lines without arrows).}\label{\detokenize{docs/som:lat-fig}}\end{figure}
 
 \sphinxAtStartPar
-Neuron number \(i\) receives the signal \(s_i = x w_i\), where \(x\) is the input (the same for all the neurons), and \(w_i\) is the weight. It produces an output \(y_i\), but part of it is sent to neurons \(j\) as \(F_{ji} y_i\), where \(F_{ij}\) is the coupling strength (we assume \(F_{ii}=0\) \sphinxhyphen{} no self coupling). Neuron \(i\) also receives output of neurons \(j\) in the form \(F_{ij} y_j\). The summation over all the neurons yields
+Neuron number \(i\) receives the signal \(s_i = x w_i\), where \(x\) is the input (the same for all the neurons), and \(w_i\) is the weight of neuron \(i\). The neuron produces output \(y_i\), where now a part of it is sent to neurons \(j\) as \(F_{ji} y_i\). Here \(F_{ij}\) denotes the coupling strength (we assume \(F_{ii}=0\) \sphinxhyphen{} no self coupling). Reciprocally, neuron \(i\) also receives output from neurons \(j\) in the form \(F_{ij} y_j\). The summation over all the neurons yields
 \begin{equation*}
 \begin{split} 
 y_i = s_i + \sum_{j\neq i} F_{ij} y_j, 
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-which in the matrix notation becomes \( y = s + F y\), or \(y(I-F)=s\), where \(I\) is the identity matrix. Solving for \(y\) gives
+which in the matrix notation becomes \( y = s + F y\), or \(y(I-F)=s\), where \(I\) is the identity matrix. Solving for \(y\) gives formally
 \begin{equation}\label{equation:docs/som:eq-lat}
 \begin{split}y= (I-F)^{-1} s.\end{split}
 \end{equation}
@@ -5138,14 +5180,14 @@ One needs to model appropriately the coupling matrix \(F\). We take
 \( F_ {ij} = - a \exp (- | i-j | / b) ~~ \) for \( i \neq j \), \( ~~ a, b> 0 \),
 
 \sphinxAtStartPar
-i.e. assume attenuation (negative feedback), which is strongest for close neighbors and decreases with distance with a characteristic scale \(b\).
+i.e. assume attenuation (negative feedback), which is strongest for close neighbors and decreases with distance. The decrease is controlled by a characteristic scale \(b\).
 
 \sphinxAtStartPar
-The Python implementation is as follows:
+The Python implementation is straightforward:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{ns} \PYG{o}{=} \PYG{l+m+mi}{30}\PYG{p}{;}       \PYG{c+c1}{\PYGZsh{} number of neurons}
-\PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{4}\PYG{p}{;}         \PYG{c+c1}{\PYGZsh{} parameter controling the decrease of damping with distance}
+\PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{4}\PYG{p}{;}         \PYG{c+c1}{\PYGZsh{} parameter controlling the decrease of damping with distance}
 \PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}         \PYG{c+c1}{\PYGZsh{} magnitude of damping}
 
 \PYG{n}{F}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{a}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{j}\PYG{p}{)}\PYG{o}{/}\PYG{n}{b}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)} 
@@ -5156,10 +5198,10 @@ The Python implementation is as follows:
     
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_120_0}.png}
+\noindent\sphinxincludegraphics{{som_122_0}.png}
 
 \sphinxAtStartPar
-We assume a bell\sphinxhyphen{}shaped Lorentzian input signal \(s\), with a maximum in the middle neuron. The width is controlled with the parameter \sphinxstylestrong{D}.
+We assume a bell\sphinxhyphen{}shaped Lorentzian input signal \(s\), with a maximum in the middle neuron. The width is controlled with \sphinxstylestrong{D}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{D}\PYG{o}{=}\PYG{l+m+mi}{3}
@@ -5167,7 +5209,7 @@ We assume a bell\sphinxhyphen{}shaped Lorentzian input signal \(s\), with a maxi
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Next, we solve Eq. \eqref{equation:docs/som:eq-lat} via inverting the \((I-F)\) matrix:
+Next, we solve Eq. \eqref{equation:docs/som:eq-lat} via inverting the \((I-F)\) matrix, performed with the numpy \sphinxstylestrong{linalg.inv} function. Recall that \sphinxstylestrong{dot} multiplies matrices:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{invF}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{inv}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{identity}\PYG{p}{(}\PYG{n}{ns}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{F}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} matrix inversion}
@@ -5176,22 +5218,22 @@ Next, we solve Eq. \eqref{equation:docs/som:eq-lat} via inverting the \((I-F)\) 
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-What follows is quite remarkable: the output signal \(y\) is much narrower from the input signal, which is a realization of the “winner\sphinxhyphen{}take\sphinxhyphen{}all” scenario.
+What follows is actually quite remarkable: the output signal \(y\) becomes much narrower from the input signal \(s\). This may be interpreted as a realization of the “winner\sphinxhyphen{}take\sphinxhyphen{}all” scenario. The winner “damped” he guys around him, so he puts himself on airs! The effect is smooth, with the signal visibly sharpened.
 
-\noindent\sphinxincludegraphics{{som_126_0}.png}
+\noindent\sphinxincludegraphics{{som_128_0}.png}
 
 \begin{sphinxadmonition}{note}{Lateral inhibition}
 
 \sphinxAtStartPar
-The damping of the response of neighboring neurons is called \sphinxstylestrong{lateral inhibition}. It has been found in neurobiological networks {[}\hyperlink{cite.docs/conclusion:id14}{HR72}{]}.
+The damping of the response of neighboring neurons is called \sphinxstylestrong{lateral inhibition}. It was discovered in neurobiological networks {[}\hyperlink{cite.docs/conclusion:id14}{HR72}{]}.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-The presented model is certainly too simplistic to be realistic from the point of view of biological networks. Also, it yields unnatural negative signal outside of the central peak (which we can remove with rectification). Nevertheless, the setup shows a possible way to achieve the “winner competition”, essential for unsupervised learning.
+The presented model is certainly too simplistic to be realistic from the point of view of biological networks. Also, it yields unnatural negative signal outside of the central peak (which we can remove with rectification). Nevertheless, the setup shows a possible way to achieve the “winner competition”, essential for unsupervised learning: One needs to allow for the competing neurons to interact.
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-Actually, \sphinxstylestrong{pyramidal neurons}, present i.a. in the neocortex, have as many as a few thousand dendritic spines and do realize a scenario with numerous synaptic connections. They are believed \sphinxhref{https://www.quantamagazine.org/artificial-neural-nets-finally-yield-clues-to-how-brains-learn-20210218/}{Quantamagazine} to play a crucial role in learning and cognition.
+Actually, \sphinxstylestrong{pyramidal neurons}, present i.a. in the neocortex, have as many as a few thousand dendritic spines and do realize a scenario with numerous synaptic connections. They are believed \sphinxhref{https://www.quantamagazine.org/artificial-neural-nets-finally-yield-clues-to-how-brains-learn-20210218/}{Quantamagazine} to play a crucial role in learning and cognition processes.
 \end{sphinxadmonition}
 
 \begin{figure}[htbp]
@@ -5209,19 +5251,19 @@ Actually, \sphinxstylestrong{pyramidal neurons}, present i.a. in the neocortex, 
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Construct a Kohonen mapping form a disjoint 2D shape into a 2D grid of neurons.
+Construct a Kohonen mapping form a \sphinxstylestrong{disjoint} 2D shape into a 2D grid of neurons.
 
 \item {} 
 \sphinxAtStartPar
-Construct a Kohonen mapping for a case where the points in the input space are not distributed uniformly, but denser in some region(s).
+Construct a Kohonen mapping for a case where the points in the input space are not distributed uniformly, but denser in some regions.
 
 \item {} 
 \sphinxAtStartPar
-Create, for a number of countries, fictitious flags which have two colors (so are described with 6 RGB numbers). Construct a Kohonen map into a 2\sphinxhyphen{}dim. grid. Plot the resulting \(U\)\sphinxhyphen{}matrix.
+Create, for a number of countries, fictitious flags which have two colors (hence are described with 6 RGB numbers). Construct a Kohonen map into a 2\sphinxhyphen{}dim. grid. Plot the resulting \(U\)\sphinxhyphen{}matrix and draw conclusions.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxhref{https://en.wikipedia.org/wiki/Lateral\_inhibition}{Lateral inhibition} has “side\sphinxhyphen{}effects” seen in optical delusions. Describe the \sphinxhref{https://en.wikipedia.org/wiki/Mach\_bands}{Mach illusion} in Python.
+\sphinxhref{https://en.wikipedia.org/wiki/Lateral\_inhibition}{Lateral inhibition} has “side\sphinxhyphen{}effects” seen in optical delusions. Describe the \sphinxhref{https://en.wikipedia.org/wiki/Mach\_bands}{Mach illusion}, programming it in Python.
 
 \end{enumerate}
 \end{sphinxadmonition}
@@ -5245,11 +5287,6 @@ Now, having completed this course understood the basic principles behind the sim
 \label{\detokenize{docs/conclusion:acknowledgments}}
 \sphinxAtStartPar
 The author thanks \sphinxhref{https://www.linkedin.com/in/janbroniowski}{Jan Broniowski} for priceless technical help and for remarks to the text.
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxAtStartPar
-The references provided in the text as hyperlinks are not repeated in the bibliography list below.
-\end{sphinxadmonition}
 
 \sphinxAtStartPar
 

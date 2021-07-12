@@ -62,7 +62,7 @@
 \contentsline {section}{\numberline {9.3}Naive clusterization}{72}{section.9.3}%
 \contentsline {section}{\numberline {9.4}Clustering scale}{76}{section.9.4}%
 \contentsline {subsection}{\numberline {9.4.1}Interpretation via steepest descent}{78}{subsection.9.4.1}%
-\contentsline {section}{\numberline {9.5}Interpretation via neural networks}{78}{section.9.5}%
+\contentsline {section}{\numberline {9.5}Interpretation via neural networks}{79}{section.9.5}%
 \contentsline {subsection}{\numberline {9.5.1}Representation with spherical coordinates}{79}{subsection.9.5.1}%
 \contentsline {subsection}{\numberline {9.5.2}Scalar product maximization}{81}{subsection.9.5.2}%
 \contentsline {section}{\numberline {9.6}Exercises}{82}{section.9.6}%
@@ -72,18 +72,18 @@
 \contentsline {subsection}{\numberline {10.1.2}2 dim. color map}{88}{subsection.10.1.2}%
 \contentsline {section}{\numberline {10.2}\(U\)\sphinxhyphen {}matrix}{90}{section.10.2}%
 \contentsline {subsection}{\numberline {10.2.1}Mapping colors on a line}{93}{subsection.10.2.1}%
-\contentsline {subsection}{\numberline {10.2.2}Wikipedia articles’ similarity}{94}{subsection.10.2.2}%
+\contentsline {subsection}{\numberline {10.2.2}Large reduction of dimensionality}{94}{subsection.10.2.2}%
 \contentsline {section}{\numberline {10.3}Mapping 2\sphinxhyphen {}dim. data into a 2\sphinxhyphen {}dim. grid}{95}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Topological properties}{97}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Lateral inhibition}{99}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Exercises}{101}{section.10.6}%
-\contentsline {chapter}{\numberline {11}Concluding remarks}{103}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Acknowledgments}{103}{section.11.1}%
-\contentsline {chapter}{\numberline {12}Appendix}{105}{chapter.12}%
-\contentsline {section}{\numberline {12.1}How to run the book codes}{105}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}Locally}{105}{subsection.12.1.1}%
-\contentsline {section}{\numberline {12.2}\sphinxstylestrong {neural} package}{105}{section.12.2}%
-\contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{106}{subsection.12.2.1}%
-\contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{112}{subsection.12.2.2}%
-\contentsline {section}{\numberline {12.3}How to cite}{116}{section.12.3}%
-\contentsline {chapter}{Bibliography}{117}{chapter*.3}%
+\contentsline {section}{\numberline {10.4}Topology}{96}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Lateral inhibition}{100}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Exercises}{103}{section.10.6}%
+\contentsline {chapter}{\numberline {11}Concluding remarks}{105}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Acknowledgments}{105}{section.11.1}%
+\contentsline {chapter}{\numberline {12}Appendix}{107}{chapter.12}%
+\contentsline {section}{\numberline {12.1}How to run the book codes}{107}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}Locally}{107}{subsection.12.1.1}%
+\contentsline {section}{\numberline {12.2}\sphinxstylestrong {neural} package}{107}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{108}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{114}{subsection.12.2.2}%
+\contentsline {section}{\numberline {12.3}How to cite}{118}{section.12.3}%
+\contentsline {chapter}{Bibliography}{119}{chapter*.3}%
