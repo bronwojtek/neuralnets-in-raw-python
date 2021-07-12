@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MCP Neuron &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -226,6 +225,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bronwojtek/neuralnets-in-raw-python/master?urlpath=tree/nn_book/docs/mcp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -284,9 +300,9 @@
         
               <div>
                 
-  <section id="mcp-neuron">
+  <div class="section" id="mcp-neuron">
 <span id="mcp-lab"></span><h1>MCP Neuron<a class="headerlink" href="#mcp-neuron" title="Permalink to this headline">¶</a></h1>
-<section id="definition">
+<div class="section" id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
 <p>We need a basic building block of ANNs: the artificial neuron. The first mathematical model dates back to Warren McCulloch and Walter Pitts (MCP)<span id="id1">[<a class="reference internal" href="conclusion.html#id9">MP43</a>]</span>, who proposed it in 1942, hence at the very beginning of the electronic computer age during World War II. The MCP neuron depicted in <a class="reference internal" href="#mcp1-fig"><span class="std std-numref">Fig. 4</span></a> is a basic ingredient of all ANNs discussed in this course. It is built on very simple general rules, inspired neatly by the biological neuron:</p>
 <ul class="simple">
@@ -297,12 +313,10 @@
 <li><p>In the simplest realization, the strength of the fired signal has two possible levels: on or off, i.e. 1 or 0. No intermediate values are needed.</p></li>
 <li><p>Axon terminal connects to dendrites of other neurons.</p></li>
 </ul>
-<figure class="align-default" id="mcp1-fig">
+<div class="figure align-default" id="mcp1-fig">
 <a class="reference internal image-reference" href="../_images/mcp-1a.png"><img alt="../_images/mcp-1a.png" src="../_images/mcp-1a.png" style="width: 320px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">MCP neuron: <span class="math notranslate nohighlight">\(x_i\)</span> is the input, <span class="math notranslate nohighlight">\(w_i\)</span> are the weights, <span class="math notranslate nohighlight">\(s\)</span> is the signal, <span class="math notranslate nohighlight">\(b\)</span> is the bias, and <span class="math notranslate nohighlight">\(f(s;b)\)</span> represents an activation function, yielding the output <span class="math notranslate nohighlight">\(y=f(s;b)\)</span>. The blue oval encircles the whole neuron, as used e.g. in <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>.</span><a class="headerlink" href="#mcp1-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">MCP neuron: <span class="math notranslate nohighlight">\(x_i\)</span> is the input, <span class="math notranslate nohighlight">\(w_i\)</span> are the weights, <span class="math notranslate nohighlight">\(s\)</span> is the signal, <span class="math notranslate nohighlight">\(b\)</span> is the bias, and <span class="math notranslate nohighlight">\(f(s;b)\)</span> represents an activation function, yielding the output <span class="math notranslate nohighlight">\(y=f(s;b)\)</span>. The blue oval encircles the whole neuron, as used e.g. in <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>.</span><a class="headerlink" href="#mcp1-fig" title="Permalink to this image">¶</a></p>
+</div>
 <p>Translating this into a mathematical prescription, one assigns to the input cells the numbers <span class="math notranslate nohighlight">\(x_1, x_2 \dots, x_n\)</span> (input data point). The strength of the synaptic connections is controlled with the <strong>weights</strong> <span class="math notranslate nohighlight">\(w_i\)</span>. Then the combined signal is defined as the weighted sum</p>
 <div class="math notranslate nohighlight">
 \[s=\sum_{i=1}^n x_i w_i.\]</div>
@@ -324,12 +338,10 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <p>with the summation index in <span class="math notranslate nohighlight">\(s\)</span> starting from <span class="math notranslate nohighlight">\(0\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-f0">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eq-f0" title="Permalink to this equation">¶</a></span>\[s=\sum_{i=0}^n x_i w_i = x_0 w_0+x_1 w_1 + \dots + x_n w_n.\]</div>
-<figure class="align-default" id="mcp2-fig">
+<div class="figure align-default" id="mcp2-fig">
 <a class="reference internal image-reference" href="../_images/mcp-2a.png"><img alt="../_images/mcp-2a.png" src="../_images/mcp-2a.png" style="width: 320px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Alternative, more uniform representation of the MCP neuron, with <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>.</span><a class="headerlink" href="#mcp2-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Alternative, more uniform representation of the MCP neuron, with <span class="math notranslate nohighlight">\(x_0=1\)</span> and <span class="math notranslate nohighlight">\(w_0=-b\)</span>.</span><a class="headerlink" href="#mcp2-fig" title="Permalink to this image">¶</a></p>
+</div>
 <div class="admonition-hyperparameters admonition">
 <p class="admonition-title">Hyperparameters</p>
 <p>The weights <span class="math notranslate nohighlight">\(w_0=-b,w_1,\dots,w_n\)</span> are generally referred to as <strong>hyperparameters</strong>. They determine the functionality of the MCP neuron and may be changed during the learning (training) process (see the following). However, they are kept fixed when using the trained neuron on a particular input data sample.</p>
@@ -338,8 +350,8 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <p class="admonition-title">Important</p>
 <p>An essential property of neurons in ANNs is <strong>nonlinearity</strong> of the activation function. Without this feature, the MCP neuron would simply represent a scalar product, and the feed-forward networks would just involve trivial matrix multiplications.</p>
 </div>
-</section>
-<section id="mcp-neuron-in-python">
+</div>
+<div class="section" id="mcp-neuron-in-python">
 <span id="mcp-p-lab"></span><h2>MCP neuron in Python<a class="headerlink" href="#mcp-neuron-in-python" title="Permalink to this headline">¶</a></h2>
 <p>We now implement the mathematical model of the neuron of Sec. <a class="reference internal" href="#mcp-lab"><span class="std std-ref">MCP Neuron</span></a> in Python. First, we obviously need arrays (vectors), which are represented as</p>
 <div class="cell docutils container">
@@ -526,8 +538,8 @@ neuron(x, w, f=&lt;function step at 0x7fb295f785f0&gt;)
 <p>From now on, for the brevity of presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.</p>
 </div>
 <p>Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.</p>
-</section>
-<section id="boolean-functions">
+</div>
+<div class="section" id="boolean-functions">
 <span id="bool-sec"></span><h2>Boolean functions<a class="headerlink" href="#boolean-functions" title="Permalink to this headline">¶</a></h2>
 <p>Having constructed the MCP neuron in Python, the question is: <em>What is the simplest (but still non-trivial) application we can use it for?</em> We show here that one can easily construct <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_function">boolean functions</a>, or logical networks, with the help of networks of MCP neurons. Boolean functions, by definition, have arguments and values in the set <span class="math notranslate nohighlight">\(\{ 0,1 \}\)</span>, or {True, False}.</p>
 <p>To warm up, let us start with some guesswork, where we take the neuron with the weights <span class="math notranslate nohighlight">\(w=[w_0,w_1,w_2]=[-1,0.6,0.6]\)</span> (why not). We shall here denote <span class="math notranslate nohighlight">\(x_1=p\)</span>, <span class="math notranslate nohighlight">\(x_2=q\)</span>, in accordance with the traditional notation for logical variables, where <span class="math notranslate nohighlight">\(p,q \in \{0,1\}\)</span>.</p>
@@ -594,7 +606,7 @@ neuron(x, w, f=&lt;function step at 0x7fb295f785f0&gt;)
 </div>
 </div>
 </div>
-<section id="problem-with-xor">
+<div class="section" id="problem-with-xor">
 <h3>Problem with XOR<a class="headerlink" href="#problem-with-xor" title="Permalink to this headline">¶</a></h3>
 <p>The XOR gate, or the <strong>exclusive alternative</strong>, is defined with the following logical table:</p>
 <div class="math notranslate nohighlight">
@@ -618,8 +630,8 @@ p &amp; q &amp; p \oplus q \\
 <p class="admonition-title">Important</p>
 <p>A single MCP neuron cannot represent the <strong>XOR</strong> gate.</p>
 </div>
-</section>
-<section id="xor-from-composition-of-and-nand-and-or">
+</div>
+<div class="section" id="xor-from-composition-of-and-nand-and-or">
 <h3>XOR from composition of AND, NAND and OR<a class="headerlink" href="#xor-from-composition-of-and-nand-and-or" title="Permalink to this headline">¶</a></h3>
 <p>One can solve the XOR problem by composing three MCP neurons, for instance</p>
 <div class="cell docutils container">
@@ -652,15 +664,13 @@ p &amp; q &amp; p \oplus q \\
 </div>
 </div>
 <p>The above construction corresponds to the simple network of <a class="reference internal" href="#xor-fig"><span class="std std-numref">Fig. 6</span></a>.</p>
-<figure class="align-default" id="xor-fig">
+<div class="figure align-default" id="xor-fig">
 <a class="reference internal image-reference" href="../_images/xor.png"><img alt="../_images/xor.png" src="../_images/xor.png" style="width: 260px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The XOR gate composed of the NAND, OR, and AND MCP neurons.</span><a class="headerlink" href="#xor-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The XOR gate composed of the NAND, OR, and AND MCP neurons.</span><a class="headerlink" href="#xor-fig" title="Permalink to this image">¶</a></p>
+</div>
 <p>Note that we are dealing here, for the first time, with a network having an intermediate layer, consisting of the NAND and OR neurons. This layer is indispensable to construct the XOR gate.</p>
-</section>
-<section id="xor-composed-from-nand">
+</div>
+<div class="section" id="xor-composed-from-nand">
 <h3>XOR composed from NAND<a class="headerlink" href="#xor-composed-from-nand" title="Permalink to this headline">¶</a></h3>
 <p>Within the theory of logical networks, one proves that any network (or any boolean function) can be composed of only NAND gates, or only the NOR gates. One says that the NAND (or NOR) gates are <strong>complete</strong>. In particular, the XOR gate can be constructed as</p>
 <p>[ p NAND ( p NAND q ) ] NAND [ q NAND ( p NAND q ) ],</p>
@@ -702,9 +712,9 @@ p &amp; q &amp; p \oplus q \\
 <p class="admonition-title">Conclusion</p>
 <p>ANNs (sufficiently large) can perform any calculation!</p>
 </div>
-</section>
-</section>
-<section id="exercises">
+</div>
+</div>
+<div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -717,8 +727,8 @@ p &amp; q &amp; p \oplus q \\
 </ul>
 <p>as networks of MCP neurons.</p>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

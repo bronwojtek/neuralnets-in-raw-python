@@ -8,11 +8,21 @@
 
 # ### Locally
 
-# The reader may download the [Jupyter](https://jupyter.org) notebooks for each chapter by clicking the download icon on the right in the top bar when viewing the book. The complete set of files may also by downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
+# The reader may download the [Jupyter](https://jupyter.org) notebooks for each chapter by clicking the download icon (downward arrow) on the right in the top bar when viewing the book. Alternatively, the complete set of files may be downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
 # 
-# In the latter case, the file **nn-book.zip** should be unpacked in a working directory. The proper tree structure of the library package i **lib-nn** and of the graphics includes **images** will be reproduced. 
-# 
-# Having installed Python and [Jupyter](https://jupyter.org) (preferably as [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install)), the reader can follow the instructions (specific for the operating system) to execute the lecture's notebooks stored in directory **nn-book**.
+# In the latter case, the file **nn-book.zip** should be unpacked in a chosen working directory. The proper directory tree structure of the library package **lib-nn** and of the graphics files **images** will be reproduced. 
+
+# ```
+# your_directory
+# └── nn_book
+#     ├── ...    
+#     ├── backprop.ipynb
+#     ├── ...    
+#     ├── lib-nn
+#     └── images
+# ```
+
+# Having installed Python and [Jupyter](https://jupyter.org) (preferably via [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install)), the reader can follow the instructions to open Jupyter (specific for the operating system) and execute one-by-one the lecture's notebooks stored in directory **nn-book**.
 
 # ### In Google Colab
 
@@ -21,7 +31,7 @@
 # (app-lab)=
 # ## **neural** package
 
-# The structure of the library tree is as follows:
+# The structure of the library package tree is as follows:
 
 # ```
 # lib_nn
@@ -30,6 +40,8 @@
 #     ├── draw.py
 #     └── func.py
 # ```
+
+# and consists of two modules: **func.py** and **draw.py**.
 
 # ### **func.py** module
 
@@ -667,15 +679,15 @@
 
 # ## How to cite
 
-# If you would like to cite this book, here is the BibTeX entry:
+# If you would like to cite this Jupyter Book, here is the BibTeX entry:
 
 # ```
 # @book{WB2021,
-#   title={Explaining neural networks in raw Python: lectures in Jupiter},
+#   title={"Explaining neural networks in raw Python: lectures in Jupiter"},
 #   author={Wojciech Broniowski},
 #   isbn={978-83-962099-0-0},
 #   year={2021},
-#   url={https://ujk.edu.pl/strony/Wojciech.Broniowski/xxxxx}
+#   url={https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}
 #   publisher={Wojciech Broniowski}
 # }
 # ```

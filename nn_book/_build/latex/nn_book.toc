@@ -70,7 +70,7 @@
 \contentsline {section}{\numberline {10.1}Kohonen’s algorithm}{84}{section.10.1}%
 \contentsline {subsection}{\numberline {10.1.1}2\sphinxhyphen {}dim. data and 1\sphinxhyphen {}dim. neuron grid}{84}{subsection.10.1.1}%
 \contentsline {subsection}{\numberline {10.1.2}2 dim. color map}{88}{subsection.10.1.2}%
-\contentsline {section}{\numberline {10.2}U\sphinxhyphen {}matrix}{90}{section.10.2}%
+\contentsline {section}{\numberline {10.2}\(U\)\sphinxhyphen {}matrix}{90}{section.10.2}%
 \contentsline {subsection}{\numberline {10.2.1}Mapping colors on a line}{93}{subsection.10.2.1}%
 \contentsline {subsection}{\numberline {10.2.2}Wikipedia articles’ similarity}{94}{subsection.10.2.2}%
 \contentsline {section}{\numberline {10.3}Mapping 2\sphinxhyphen {}dim. data into a 2\sphinxhyphen {}dim. grid}{95}{section.10.3}%
@@ -83,7 +83,7 @@
 \contentsline {section}{\numberline {12.1}How to run the book codes}{105}{section.12.1}%
 \contentsline {subsection}{\numberline {12.1.1}Locally}{105}{subsection.12.1.1}%
 \contentsline {section}{\numberline {12.2}\sphinxstylestrong {neural} package}{105}{section.12.2}%
-\contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{105}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.1}\sphinxstylestrong {func.py} module}{106}{subsection.12.2.1}%
 \contentsline {subsection}{\numberline {12.2.2}\sphinxstylestrong {draw.py} module}{112}{subsection.12.2.2}%
 \contentsline {section}{\numberline {12.3}How to cite}{116}{section.12.3}%
 \contentsline {chapter}{Bibliography}{117}{chapter*.3}%

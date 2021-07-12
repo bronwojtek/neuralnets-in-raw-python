@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interpolation &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -226,6 +225,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bronwojtek/neuralnets-in-raw-python/master?urlpath=tree/nn_book/docs/interpol.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -269,9 +285,9 @@
         
               <div>
                 
-  <section id="interpolation">
+  <div class="section" id="interpolation">
 <h1>Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">¶</a></h1>
-<section id="simulated-data">
+<div class="section" id="simulated-data">
 <h2>Simulated data<a class="headerlink" href="#simulated-data" title="Permalink to this headline">¶</a></h2>
 <p>So far we have been concerned with <strong>classification</strong>, i.e. with networks recognizing whether a given object (in our examples a point on a plane) has certain features. Now we pass to another practical application, namely <strong>interpolating functions</strong>. This use of ANNs has become widely popular in scientific data analyses. We illustrate the method on a simple example, which explains the basic idea and shows how the method works.</p>
 <p>Imagine you have some experimental data. Here we simulate them in an artificial way, e.g.</p>
@@ -308,8 +324,8 @@
 <div class="math notranslate nohighlight">
 \[E(\{w \}) = \sum_p (y_o^{(p)} - y^{(p)})^2. \]</div>
 <p>Since the generated <span class="math notranslate nohighlight">\(y_o\)</span> is a certain (weight-dependent) function of <span class="math notranslate nohighlight">\(x\)</span>, this method is a variant of the <strong>least squares fit</strong>, commonly used in data analysis. The difference is that in the standard least squares method the model function that we fit to the data has some simple analytic form (e.g. <span class="math notranslate nohighlight">\( f(x) = A + B x\)</span>), whereas now it is some “disguised” weight-dependent function provided by the neural network.</p>
-</section>
-<section id="anns-for-interpolation">
+</div>
+<div class="section" id="anns-for-interpolation">
 <h2>ANNs for interpolation<a class="headerlink" href="#anns-for-interpolation" title="Permalink to this headline">¶</a></h2>
 <p>To understand the fundamental idea, consider a network with just two neurons in the middle layer, with the sigmoid activation function:</p>
 <div class="cell tag_remove-input docutils container">
@@ -369,7 +385,7 @@ f = \sigma(z+3)-\sigma(z+1)+2 \sigma(z)-2\sigma(z-4)+
 <p class="admonition-title">Output layer for function approximation</p>
 <p>In ANNs used for function approximation, the activation function in the output layer is <strong>linear</strong>.</p>
 </div>
-<section id="backprop-for-one-dimensional-functions">
+<div class="section" id="backprop-for-one-dimensional-functions">
 <h3>Backprop for one-dimensional functions<a class="headerlink" href="#backprop-for-one-dimensional-functions" title="Permalink to this headline">¶</a></h3>
 <p>Let us take the architecture:</p>
 <div class="cell docutils container">
@@ -446,9 +462,9 @@ f = \sigma(z+3)-\sigma(z+1)+2 \sigma(z)-2\sigma(z-4)+
 <p class="admonition-title">Overfitting</p>
 <p>There must be much more data for fitting than the network parameters, to avoid the so-called overfitting problem. Otherwise we can fit the data with a function “fluctuating from point to point”.</p>
 </div>
-</section>
-</section>
-<section id="exercises">
+</div>
+</div>
+<div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -458,8 +474,8 @@ f = \sigma(z+3)-\sigma(z+1)+2 \sigma(z)-2\sigma(z-4)+
 <li><p>Use a network with more layers (at least 3 neuron layers) to fit the data points generated with your favorite two-variable function. Make two-dimensional contour plots for this function and for the function obtained from the neural network and compare the results (of course, they should similar if everything works).</p></li>
 </ol>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt # plotting
 from IPython.display import display, Image
 
 
+# (het-lab)=
 # ## Heteroassociative memory
 
 # ### Pair associations

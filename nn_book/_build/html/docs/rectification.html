@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rectification &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -226,6 +225,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bronwojtek/neuralnets-in-raw-python/master?urlpath=tree/nn_book/docs/rectification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -262,7 +278,7 @@
         
               <div>
                 
-  <section id="rectification">
+  <div class="section" id="rectification">
 <h1>Rectification<a class="headerlink" href="#rectification" title="Permalink to this headline">¶</a></h1>
 <p>In the previous chapter we have made a hump function from two sigmoids that would form a basis function for approximation. We may now ask a follow-up question: can we make the sigmoid itself a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the <strong>Rectified Linear Unit (ReLU)</strong> function</p>
 <div class="math notranslate nohighlight">
@@ -304,7 +320,7 @@
 <p>One may use the ReLU of softplus, or a plethora of other similar functions, for the activation.</p>
 </div>
 <p>Why one should actually do this will be dicussed later.</p>
-<section id="interpolation-with-relu">
+<div class="section" id="interpolation-with-relu">
 <h2>Interpolation with ReLU<a class="headerlink" href="#interpolation-with-relu" title="Permalink to this headline">¶</a></h2>
 <p>We will now approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and the identity function is the output layer, as in the previous section). The functions are taken from the module <strong>func</strong>.</p>
 <div class="cell docutils container">
@@ -355,8 +371,8 @@
 </div>
 </div>
 <p>We obtain again a quite satisfactory result, noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the features of the ReLU activation function.</p>
-</section>
-<section id="classifiers-with-rectification">
+</div>
+<div class="section" id="classifiers-with-rectification">
 <h2>Classifiers with rectification<a class="headerlink" href="#classifiers-with-rectification" title="Permalink to this headline">¶</a></h2>
 <p>There are technical reasons in favor of using <a class="reference external" href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">rectified functions</a> rather than sigmoid-like ones in backprop. The derivatives of the sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as the small numbers multiply (this is known as the <strong>vanishing gradient problem</strong>). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type.</p>
 <div class="admonition note">
@@ -423,8 +439,8 @@
 <img alt="../_images/rectification_36_0.png" src="../_images/rectification_36_0.png" />
 </div>
 </div>
-</section>
-<section id="exercises">
+</div>
+<div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -433,8 +449,8 @@
 <li><p>Convince yourself that starting backprop (with ReLU) with too large initial learning speed leads to a “dead neuron” problem and a failure of the algorithm.</p></li>
 </ol>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

@@ -6,7 +6,7 @@ logo: 'koh.png'
 
 # Short description about the book
 description: >-
-  Lectures explaining very basic concepts of neural networks at elementary level, requiring only a very rudimentary knowledge of Python. Various algorithms are written in raw Python from scratch, i.e. without dedicated higher-level libraries.
+  Lectures explaining basic concepts of neural networks at elementary level, requiring only a very rudimentary knowledge of Python. Various algorithms are written in raw Python from scratch, i.e. without dedicated higher-level libraries.
 
 execute:
 #  execute_notebooks           : auto
@@ -30,13 +30,13 @@ repository:
   path_to_book  : nn_book
 
 # Launch button settings
-launch_buttons:
-  binder             : false
-  binderhub          : false
-  binderhub_url      : off
-  jupyterhub         : false
-  thebe              : false
-  colab              : false
+#launch_buttons:
+#  binder             : false
+#  binderhub          : false
+#  binderhub_url      : off
+#  jupyterhub         : false
+#  thebe              : false
+#  colab              : false
 
 # LaTeX settings
 bibtex_bibfiles:
@@ -54,3 +54,4 @@ sphinx:
     latex_toplevel_sectioning: 'section'
 #    latex_show_urls: 'footnote'
     latex_elements.papersize: a4paper
+    latex_elements.pointsize: 12pt

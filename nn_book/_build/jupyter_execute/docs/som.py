@@ -18,25 +18,27 @@ sys.path.append('./lib_nn') # my path (linux, Mac OS)
 from neural import * # import my library packages
 
 
-# A very important and ingenious application of unsupervised learning are the so-called **Kohonen nets** ([Teuvo Kohonen](https://en.wikipedia.org/wiki/Teuvo_Kohonen), i.e. **self-organizing mappings (SOM)**. Consider a mapping $f$ between a **discrete** $k$-dimensional set (**grid**) of neurons and $n$-dimensional input data $D$ (continuous or discrete), 
+# A very important and ingenious application of unsupervised learning are the so-called **Kohonen networks** ([Teuvo Kohonen](https://en.wikipedia.org/wiki/Teuvo_Kohonen), a class of **self-organizing mappings (SOM)**. Consider firs a mapping $f$ between a **discrete** $k$-dimensional set (we call it a **grid** in this chapter) of neurons and $n$-dimensional input data $D$ (continuous or discrete), 
 # 
 # $$
 # f: N \to D
 # $$
 # 
-# (this is noy a Kohonen mapping yet!).
-# Since $N$ is discrete, each neuron carries an index consisting of $k$ natural numbers, denoted as $\bar {i} = (i_1, i_2, ..., i_k)$. Typically, the dimensions satisfy $n \ge k$. When $n > k$, one talks about **reduction of dimensionality**, as the input space $D$ has more dimensions than the grid of neurons. 
+# (note that **this is not a Kohonen mapping yet!**).
+# Since $N$ is discrete, each neuron carries an index consisting of $k$ natural numbers, denoted as $\bar {i} = (i_1, i_2, ..., i_k)$. Typically, the dimensions in Kohonen's networks satisfy $n \ge k$. When $n > k$, one talks about **reduction of dimensionality**, as then the input space $D$ has more dimensions than the dimensionaiy of the grid of neurons $N$. 
 # 
-# Two examples of such networks are visualized in {numref]`koh-fig`. The left panel shows a 2-dim. input space $D$, and a one dimensional grid on neurons. The input point $(x_1,x_2)$ enters all the neurons in the grid, and one of them (with best-suited weights) becomes the **winner** (red dot). The gray oval indicates the **neighborhood** of the winner. The right panel shows an analogous situation for the case of a 3-dim. input and 2-dim. grid of neurons. Here, for clarity, we only indicated the edges entering the winner, but they also enter all the other neurons, as in the left panel. 
+# Two examples of such networks are visualized in {numref]`koh-fig`. The left panel shows a 2-dim. input space $D$, and a one dimensional grid on neurons labeled with $i$. The input point $(x_1,x_2)$ enters all the neurons in the grid, and one of the neurons (the one with best-suited weights) becomes the **winner** (red dot). The gray oval indicates the **neighborhood** of the winner, to be defined accurately in the following. 
+# 
+# The right panel shows an analogous situation for the case of a 3-dim. input and 2-dim. grid of neurons, now labeled with a double index $\bar {i} = (i_1, i_2)$. Here, for clarity, we only indicate the edges entering the winner, but they also enter all the other neurons in the grid, similarly to the left panel. 
 
 # :::{figure-md} koh-fig
 # 
 # <img src="images/koha.png" width="500px">
 # 
-# Example of Kohonen networks. Left: 1-dim. grid of neurons $N$ and 2-dim. input space $D$. Right: 2-dim. grid of neurons $N$ and 3-dim. input space $D$. The red dot indicates the winner, and the gray oval marks its neighborhood.
+# Example of Kohonen's networks. Left: 1-dim. grid of neurons $N$ and 2-dim. input space $D$. Right: 2-dim. grid of neurons $N$ and 3-dim. input space $D$. The red dot indicates the winner, and the gray oval marks its neighborhood.
 # :::
 
-# One defines the neuron **proximity function**, $\phi (\bar {i}, \bar {j})$, which assigns, to a pair of neurons, a real number depending on their relative position in the grid. This function must decrease with the distance between the neuron indices. A popular choice is a Gaussian,
+# Next, one defines the neuron **proximity function**, $\phi (\bar {i}, \bar {j})$, which assigns, to a pair of neurons, a real number depending on their relative position in the grid. This function must decrease with the distance between the neuron indices. A popular choice is a Gaussian,
 # 
 # $$ \phi(\bar{i}, \bar{j})=\exp\left [ -\frac{(i_1-j_1)^2+...+(i_k-j_k)^2}{2 \delta^2} \right ] ,$$
 # 
@@ -44,12 +46,14 @@ from neural import * # import my library packages
 
 # ## Kohonen's algorithm
 
-# The set up for Kohonen's algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron $\bar{i}$ obtains weights $f\left(\bar{i}\right)$, which are elements of $D$, i.e. form $n$-dimensional vectors. One may simply think of this as placing the neurons in some locations in $D$. When an input point $P$ from $D$ is fed into the network, one looks for a closest neuron, which becomes the **winner**, exactly as in the algorithm from section {ref}`inn-sec`. However, now comes a crucial difference: Not only the winner is attracted (updated) a bit towards $P$, but also its neighbors, to a lesser and lesser extent the farther they are from the winner, as given by the proximity function.
+# The set up for Kohonen's algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron $\bar{i}$ obtains weights $f\left(\bar{i}\right)$, which are elements of $D$, i.e. form $n$-dimensional vectors. One may simply think of this procedure as placing the neurons in some locations in $D$. 
+# 
+# When an input point $P$ from $D$ is fed into the network, one looks for the closest neuron, which becomes the **winner**, exactly as in the unsupervised learning algorithm from section {ref}`inn-sec`. However, now comes a **crucial difference**: Not only the winner is attracted (updated) a bit towards $P$, but also its neighbors, to a lesser and lesser extent the farther they are from the winner, as quantified by the proximity function.
 
 # ```{admonition} Winner-take-most strategy
 # :class: important
 # 
-# Kohonen's algorithm involves the "winner take most" strategy, where not only the winner neuron is updated (as in the winner-take-all case), but also its neighbors. The neighbors update is strongest for the nearest neighbors, and gradually weakens with the distance from the winner.  
+# Kohonen's algorithm involves the "winner take most" strategy, where not only the winner neuron is updated (as in the winner-take-all case), but also its neighbors. The neighbors update is strongest for the nearest neighbors, and gradually weakens with the distance from the winner, as given by the proximity function.  
 # ```
 
 # ```{admonition} Kohnen's algorithm
@@ -57,13 +61,13 @@ from neural import * # import my library packages
 # 
 # 0. Initialize (for instance randomly) $n$-dimensional weight vectors $w_i$, $i-1,\dots,m$ for all the $m$ neurons in the grid. Set an an initial neighborhood radius $ \delta $ and an initial learning speed $ \varepsilon $.
 # 
-# 1. Choose (randomly) a data point $P$ with coordinates $x$ from the input space (possibly with an appropriate probability distribution).
+# 1. Choose (for instance, randomly) a data point $P$ with coordinates $x$ from the input space (possibly with an appropriate probability distribution).
 # 
-# 2. Find the $ \bar {l} $ neuron (the winner) for which the distance from $P$ is the smallest.
+# 2. Find the neuron (the winner) for which the distance from $P$ is the smallest. Denote its index as $ \bar {l} $.
 # 
 # 3. The weights of the winner and its neighbors are updated according to the **winner-take-most** recipe:
 # 
-# $$w_{\bar{i}} \to w_{\bar{i}} + \varepsilon \phi(\bar{i}, \bar{l})(x - w_{\bar{i}}), \hspace{1cm} i=1, . . . , m. 
+# $$w_{\bar{i}} \to w_{\bar{i}} + \varepsilon \phi(\bar{i}, \bar{l})(x - w_{\bar{i}}), \hspace{1cm} i=1, \dots , m. 
 # $$
 # 
 # 4. Loop from $1.$ for a specified number of points. 
@@ -76,16 +80,14 @@ from neural import * # import my library packages
 # ```
 
 # ###  2-dim. data and 1-dim. neuron grid
-
-# Let us see how the procedure works on a simple example. We map a grid of **num** neurons into our favorite circle (see previous chapters). Hence we deal here with the reduction of dimensions: $n=2$, $k=1$. 
-
+Let us see how the procedure works on a simple example. We map a grid of **num** neurons into interior of our favorite circle (see previous chapters). Hence we deal here with the reduction of dimensions: $n=2$, $k=1$. We take a moderate number of neurons 
 # In[66]:
 
 
 num=100 # number of neurons
 
 
-# The Gaussian proximity function
+# and the Gaussian proximity function
 
 # In[25]:
 
@@ -94,19 +96,19 @@ def phi(i,k,d):                       # proximity function
     return np.exp(-(i-k)**2/(2*d**2)) # Gaussian
 
 
-# looks as follows around the middle neuron ($k=50$) and for the width parameter $\delta=5$:
+# This function looks as follows around the middle neuron ($k=50$) and for the width parameter $\delta=5$:
 
 # In[4]:
 
 
-k=50
-d=5
+k=50     # index of the selected neuron
+d=5      # neighborhood radius delta
 
 plt.figure(figsize=(2.8,2),dpi=120)
 plt.title("Neighborhood function, $\delta$="+str(d),fontsize=10) 
 
-ind=[i for i in range(num)]
-ph= [phi(i,k,d) for i in range(num)]
+ind=[i for i in range(num)]          # neuron indices in the grid
+ph= [phi(i,k,d) for i in range(num)] # neighborhood function 
 
 plt.scatter(ind,ph,s=2)
 
@@ -114,15 +116,19 @@ plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$\phi(i,k=$'+str(k)+'$,\delta)$',fontsize=11);    
 
 
-# As a feature of a Gaussian, at $|k-i|=\delta$ the function drops to $~60\%$ of the central value, and at $|k-i|=3\delta$ to $~1\%$, a tiny fraction. Hence $\delta$ controls the size of the neighborhood of the winner. The neurons farther away from the winner than $3\delta$ are practically left uncharged. 
+# As a feature of a Gaussian, at $|k-i|=\delta$ the function drops to $~60\%$ of the central value, and at $|k-i|=3\delta$ to $~1\%$, a tiny fraction. Hence $\delta$ controls the size of the neighborhood of the winner. The neurons farther away from the winner than, say, $3\delta$ are practically left uncharged. 
 # 
-# We initiate the network by by placing the grid in the circle, with a random location of each neuron. As said, this amounts to assigning weights to the neuron equal to this location. An auxiliary line is drawn to guide the eye sequentially along the neuron indices: $1,2,3,\dots m$.
+# We initiate the network by by placing the grid inside the circle, with a random location of each neuron. As said, this amounts to assigning weights to the neuron equal to its location. An auxiliary line is drawn to guide the eye sequentially along the neuron indices: $1,2,3,\dots m$. The line has no other meaning.
+# 
+# The weights (neuron locations) are stored in array **W**:
 
 # In[67]:
 
 
 W=np.array([func.point_c() for _ in range(num)]) # random initialization of weights
 
+
+# As a result of the initial randomness, the neurons are, of course, "chaotically" distributed:
 
 # In[68]:
 
@@ -139,9 +145,7 @@ plt.xlabel('$x_1$',fontsize=11)
 plt.ylabel('$x_2$',fontsize=11);    
 
 
-# As a result, the neurons are, of course, are chaotically distributed inside the circle.
-# 
-# Next, we initialize the parameters and run the algorithm:
+# Next, we initialize the parameters **eps** amd **delta** and run the algorithm. Its structure is analogous to the previously discussed codes and is a straightforward implementation of the steps spelled out in the previous section. For that reason, we only provide the comments in the code.
 
 # In[69]:
 
@@ -155,16 +159,16 @@ ste=0    # inital number of caried out steps
 
 
 # Kohonen's algorithm
-for _ in range(150): # rounds
-    eps=eps*.98      # dicrease learning speed
-    de=de*.95        # ... and the neighborhood distance
-    for _ in range(100):        # loop over points
-        p=func.point_c()        # random point
-        ste=ste+1               # count steps
+for _ in range(150):              # rounds
+    eps=eps*.98                   # dicrease learning speed
+    de=de*.95                     # ... and the neighborhood distance
+    for _ in range(100):          # loop over points
+        p=func.point_c()          # random point
+        ste=ste+1                 # count steps
         dist=[func.eucl(p,W[k]) for k in range(num)] 
          # array of squares of Euclidean disances between p and the neuron locations
         ind_min = np.argmin(dist) # index of the winner
-        for k in range(num):      # for all the neurons
+        for k in range(num):      # loop over all the neurons
             W[k]+=eps*phi(ind_min,k,de)*(p-W[k]) 
              # update of the neuron locations (weights), depending on proximity
 
@@ -185,14 +189,8 @@ plt.ylabel('$x_2$',fontsize=11)
 plt.tight_layout();    
 
 
-# In[10]:
-
-
-# fk.savefig('images/ka200000.png');
-
-
-# As the algorithm progresses (see {numref}`kohstory-fig`) the neuron grid first "straightens up", and then gradually fills the whole space $D$ (circle) in such a way that the neurons with adjacent indices are located close to each other. 
-# Figuratively speaking, a new point $x$ attracts towards itself the nearest neuron (the winner), and to a weaker extent its neighbors. At the beginning of the algorithm the neighborhood distance **de** is large, so large chunks of the neighboring neurons in the input grid are pulled together, and the arrangement looks as the top right corner of {numref}`kohstory-fig`. At later stages **de** becomes smaller, so only the winner and possibly its very immediate neighbors are attracted to a new point. 
+# As the above algorithm progresses (see {numref}`kohstory-fig`) the neuron grid first disentangles, and then gradually fills the whole space $D$ (circle) in such a way that the neurons with adjacent indices are located close to each other. 
+# Figuratively speaking, a new point $P$ attracts towards itself the nearest neuron (the winner), but also, to a weaker extent, its neighbors. At the beginning of the algorithm the neighborhood distance **de** is large, so large chunks of the neighboring neurons in the input grid are pulled together towards $P$, and the arrangement looks as in the top right corner of {numref}`kohstory-fig`. At later stages **de** reduces, so only the winner and possibly its very immediate neighbors are attracted to a new point. 
 # After completion (bottom right panel), individual neurons "specialize" (are close to) in a certain data area. 
 # 
 # In the present example, after about 20000 steps the result practically stops to change. 
@@ -205,18 +203,20 @@ plt.tight_layout();
 # Progress of Kohonen's algorithm. The line, drawn to guide the eye, connects neurons with adjacent indices.
 # :::
 
-# ```{admonition} Kohonen network as a classifier
+# ```{admonition} Kohonen's network as a classifier
 # :class: note
 # 
-# Having the trained network, we may use it as a classifier similarly as in chapter {\ref}`un-lab`. We label a point from $D$ with the index of the nearest neuron. One can use the Voronoi construction, see section {ref}`vor_lab` below.
+# Having the trained network, we may use it as a classifier similarly as in chapter {\ref}`un-lab`. We label a point from $D$ with the index of the nearest neuron. One can interpret this as a Voronoi construction, see section {ref}`vor_lab`.
 # ```
 
-# The plots in {numref}`kohstory-fig` are in coordinates $(x_1,x_2)$, that is, from the "point of view" of the $D$-space. One may also look at the result from the point of view of the $N$-space, i.e. plot $x_1$ and $x_2$ as functions of the neuron index $i$. 
+# The plots in {numref}`kohstory-fig` are made in coordinates $(x_1,x_2)$, that is, from the "point of view" of the input $D$-space. One may also look at the result from the point of view of the $N$-space, i.e. plot $x_1$ and $x_2$ as functions of the neuron index $i$. 
 # 
-# ```{note}
-# Actually, when presenting results of Kohonen's algorithm, one sometimes makes plots in $D$-space, and sometimes in $N$-space, which may lead to some confusion.
+# ```{admonition} Caution
+# :class: note 
+# 
+# When presenting results of Kohonen's algorithm, one sometimes makes plots in $D$-space, and sometimes in $N$-space, which may lead to some confusion.
 # ```
-# The plots in the $N$-space, equivalent in information to the bottom right panel of {numref}`kohstory-fig` look as
+# The plots in the $N$-space, fully equivalent in information to thr plot, e.g., in the bottom right panel of {numref}`kohstory-fig`, are following:
 
 # In[11]:
 
@@ -238,7 +238,7 @@ plt.ylabel('$x_1,x_2$',fontsize=11)
 plt.legend(('$x_1$','$x_2$'),fontsize=10);    
 
 
-# We note that the jumps in the above plotted curves are small. This can be presented quantitatively in the histogram below, where we can see that the average distance between the neurons is about 0.07.
+# We note that the jumps in the above plotted curves are small, since the subsequent neurons are close to each other. This feature can be presented quantitatively as in the histogram below, where we can see that the average distance between the neurons is about 0.07, and the spread is between 0.05 and 0.10.
 
 # In[12]:
 
@@ -257,24 +257,23 @@ plt.hist(dd, bins=10, density=True);   # histogram
 # ```{admonition} Remarks
 # :class: note 
 # 
-# - We took a situation in which the data space with the dimension $n = 2$ is "sampled" by a discrete set of neurons forming  $k=1$-dimensional grid. Hence we have dimensional reduction.
+# - We took a situation in which the data space with the dimension $n = 2$ is "sampled" by a discrete set of neurons forming  $k=1$-dimensional grid. Hence we encounter dimensional reduction.
 # 
-# - The outcome of the algorithm is a network in which a given neuron "focuses" on data from its vicinity. In a general case where the data are non-uniformly distributed, the neurons would fill the area containing more data more densely.
+# - The outcome of the algorithm is a network in which a given neuron "focuses" on data from its vicinity. In a general case, where the data can be non-uniformly distributed, the neurons would fill the area containing more data more densely.
 # 
-# - The fact that there are no line intersections is a manifestation of topological features, discussed in detail below. 
+# - The policy of choosing initial $\delta$ and $\varepsilon $ parameters and reducing them appropriately in subsequent rounds is based on experience and is non-trivial. The results depend significantly on this choice.
 # 
-# - The policy of choosing initial $\delta$ and $\varepsilon $ parameters and reducing them appropriately in subsequent rounds is based on experience and non-trivial.
-# 
-# - The final result is not unequivocal, i.e. running the algorithm with a different initialization of the weights (initial positions of neurons) yields a different outcome, equally "good".
+# - The final result, even with the same $\delta$ and $\varepsilon $ strategy, is not unequivocal, i.e. running the algorithm with a different initialization of the weights (initial positions of neurons) yields different outcomes, usually equally "good".
 # 
 # - Finally, the progress and the result of the algorithm is reminiscent of the construction of the [Peano curve](https://en.wikipedia.org/wiki/Peano_curve) in mathematics, which fills densely an area with a line.
+# As we increase number of neurons, the analogy gets closer and closer.
 # ```
 
 # ### 2 dim. color map
 
-# Now we pass to a case of 3-dim. data and 2-dim. neuron grid, which is a situation from the right panel of {numref}`koh-fig`. An RGB color is described with three numbers $[r,g,b]$ from $[0,1]$, so it can nicely serve as input in our example.
+# Now we pass to a case of 3-dim. data and 2-dim. neuron grid, which is a situation from the right panel of {numref}`koh-fig` (hence also with dimensionality reduction). As we know, an RGB color is described with three numbers $[r,g,b]$ from $[0,1]$, so it can nicely serve as input in our example.
 # 
-# The distance squared between two colors (this is just a distance between two points in the 3-dim. space) is taken in the Euclidean form 
+# The distance squared between two colors (this is just a distance between two points in the 3-dim. space) is taken in the Euclidean form:
 
 # In[2]:
 
@@ -287,7 +286,7 @@ def dist3(p1,p2):
     return (p1[0]-p2[0])**2+(p1[1]-p2[1])**2+(p1[2]-p2[2])**2
 
 
-# The proximity function is a Gaussian in two dimensions:
+# The proximity function is now a Gaussian in two dimensions:
 
 # In[3]:
 
@@ -296,7 +295,7 @@ def phi2(ix,iy,kx,ky,d):  # proximity function for 2-dim. grid
     return np.exp(-((ix-kx)**2+(iy-ky)**2)/(d**2))  # Gaussian
 
 
-# We also normalize the RGB colors such that $r^2+g^2+B^2=1$. This makes the perceived intensity of colors similar (this normalization an be dropped as irrelevant for the method to work).  
+# We also decide to normalize the RGB colors such that $r^2+g^2+b^2=1$. This makes the perceived intensity of colors similar (this normalization could be dropped, as irrelevant for the method to work).  
 
 # In[4]:
 
@@ -307,7 +306,7 @@ def rgbn():
     return np.array([r,g,b]/norm)                                  # normalized RGB
 
 
-# Next, we generate a sample of **ns** points with (normalized) RGB colors:
+# Next, we generate and plot a sample of **ns** points with (normalized) RGB colors:
 
 # In[5]:
 
@@ -320,7 +319,7 @@ plt.axis('off')
 for i in range(ns): plt.scatter(i,0,color=samp[i], s=15); 
 
 
-# We use **size** x **size** grid of neurons. Each neuron's position (that is its color) in the 3-dim. $D$-space is initialized randomly:
+# We use a 2-dim. **size** x **size** grid of neurons. Each neuron's position (that is its color) in the 3-dim. $D$-space is initialized randomly:
 
 # In[6]:
 
@@ -354,7 +353,7 @@ plt.ylabel('$j$',fontsize=11);
 
 
 eps=.5   # initial parameters
-de = 20   
+de = 20  
 
 
 # In[9]:
@@ -366,17 +365,19 @@ for _ in range(150):    # rounds
     for s in range(ns): # loop over the points in the data sample       
         p=samp[s]       # point from the sample
         dist=[[dist3(p,tab[i][j]) for j in range(size)] for i in range(size)] 
-                        # distance to all neurons
+                        # distance of p from all neurons
         ind_min = np.argmin(dist) # the winner index
-        ind_x=ind_min//size       # a trick to get a 2-dim index
-        ind_y=ind_min%size
+        ind_1=ind_min//size       # a trick to get a 2-dim index
+        ind_2=ind_min%size
 
         for j in range(size): 
             for i in range(size):
-                tab[i][j]+=eps*phi2(ind_x,ind_y,i,j,de)*(p-tab[i][j]) # update         
+                tab[i][j]+=eps*phi2(ind_1,ind_2,i,j,de)*(p-tab[i][j]) # update         
 
 
-# As a result, we get an arrangement of our color sample in two dimensions in such a way that the neighboring areas in the grid have a similar color (note the plot is in the $N$-space):
+# A word of explanation is in place here, concerning the numpy **argmin** function. For a 2-dim. array it provides the index of the minimum in the corresponding **flattened** array (cf. section {ref}`het-lab`). Hence, to get the indices in the two dimensions, we need to apply the operations **//** (integer division) and **%** (remainder). For instance, in an array **ind_min=53**, then **ind_1=ind_min//size=53//10=5** and **ind_2=ind_min%size=53//10=3**.
+
+# As a result of the above code, we get an arrangement of our color sample in two dimensions in such a way that the neighboring areas in the grid have a similar color "specializing" on the color of a given sample point (note the plot is in the $N$-space):
 
 # In[10]:
 
@@ -397,14 +398,14 @@ plt.ylabel('$j$',fontsize=11);
 # 
 # - The areas for the individual colors of the sample have a comparable area. Generally, the area is proportional to the frequency of the data point in the sample.
 # 
-# - To get sharper boundaries between the regions, de has to shrink faster than eps. Then, in the final stage of learning, the neuron update process takes place with a small neighborhood radius and more resolution can be achieved.
+# - To get sharper boundaries between the regions, **de** would have to shrink even faster compared to **eps**. Then, in the final stage of learning, the neuron update process takes place within a smaller neighborhood radius and more resolution in the boundaries can be achieved.
 # ```
 
-# ## U-matrix
+# ## $U$-matrix
 
-# A convenient way to present the results of Kohonen's algorithm when the grid is 2-dimensional is via the **unified distance matrix** (shortly **U-matrix**). The idea is to plot a 2-dimensional grayscale map with the intensity given by the averaged distance (in $D$-space) of the neuron to its immediate neighbors, and not a neuron property itself (such as the color in the plot above). This is particularly useful when the dimension of the input space is large, when it is difficult to visualize the results directly.
+# A convenient way to present the results of Kohonen's algorithm when the grid is 2-dimensional is via the **unified distance matrix** (shortly **$U$-matrix**). The idea is to plot a 2-dimensional grayscale map in $N$-space with the intensity given by the averaged distance (in $D$-space) of the given neuron to its immediate neighbors, and not a neuron property itself (such as its color in the figure above). This is particularly useful when the dimension of the input space is large, hence it is difficult to visualize the results directly.
 # 
-# The definition of a U-matrix element $U_{ij}$ is explained in {numref}`udm-fig`. Let $d$ be the distance in $D$-space and $[i,j]$ denote the neuron of indices $i,j$ . We take
+# The definition of a $U$-matrix element $U_{ij}$ is explained in {numref}`udm-fig`. Let $d$ be the distance in $D$-space and $[i,j]$ denote the neuron of indices $i,j$ . We take
 # 
 # $$
 # U_{ij}=\sqrt{d\left([i,j],[i+1,j]\right)^2+d\left([i,j],[i-1,j]\right)^2+
@@ -415,22 +416,24 @@ plt.ylabel('$j$',fontsize=11);
 # 
 # <img src="images/udm.png" width="150px">
 # 
-# Construction of $U_{ij}$: the geometric average of the distances along the indicated links.
+# Construction of $U_{ij}$: a geometric average of the distances along the indicated links.
 # :::
 
-# The Python implementation is following:
+# The Python implementation of the above definition is following:
 
-# In[11]:
+# In[ ]:
 
 
-udm=np.zeros((size-2,size-2))    # create U-matrix with elements set to 0
+udm=np.zeros((size-2,size-2))    # initiaize U-matrix with elements set to 0
 
-for i in range(1,size-1):        # loops ober the neurons in the grid
+for i in range(1,size-1):        # loops over the neurons in the grid
     for j in range(1,size-1):
         udm[i-1][j-1]=np.sqrt(dist3(tab[i][j],tab[i][j+1])+dist3(tab[i][j],tab[i][j-1])+
                             dist3(tab[i][j],tab[i+1][j])+dist3(tab[i][j],tab[i-1][j]))
                                  # U-matrix as explained above
 
+
+# The result, corresponding one-to-one to the color map above, can be presented in a contour plot:
 
 # In[12]:
 
@@ -438,7 +441,7 @@ for i in range(1,size-1):        # loops ober the neurons in the grid
 plt.figure(figsize=(2.3,2.3),dpi=120)
 plt.title("U-matrix",fontsize=11) 
 
-for i in range(size-2): # loops over indices excluding the boundary of the grid
+for i in range(size-2): # loops over indices, excluding the boundaries of the grid
     for j in range(size-2):
         plt.scatter(i+1,j+1,color=[0,0,0,2*udm[i][j]], s=10) 
                         # color format: [R,G,B,intensity], 2 just scales up
@@ -446,7 +449,7 @@ plt.xlabel('$i$',fontsize=11)
 plt.ylabel('$j$',fontsize=11);
 
 
-# The white regions in the above figure show the clusters (they correspond one-to-one to the regions of the same color in the previous plot), separated with the darker boundaries. The higher is the boundary between clusters, the darker the intensity.
+# The white regions in the above figure show the clusters (they correspond one-to-one to the regions of the same color in the previously shown color map). There, the elements $U_{ij} \simeq 0$). The clusters are separated with the darker boundaries. The higher the dividing ridge between clusters, the darker the intensity.
 # 
 # The result may also be visualized with a 3-dim. plot:
 

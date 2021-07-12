@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Introduction &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -226,6 +225,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bronwojtek/neuralnets-in-raw-python/master?urlpath=tree/nn_book/docs/intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -274,70 +290,66 @@
         
               <div>
                 
-  <section id="introduction">
+  <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<section id="purpose-of-these-lectures">
+<div class="section" id="purpose-of-these-lectures">
 <h2>Purpose of these lectures<a class="headerlink" href="#purpose-of-these-lectures" title="Permalink to this headline">¶</a></h2>
-<p>The purpose of this course is to teach some basics of the omnipresent neural networks with <a class="reference external" href="https://www.python.org/">Python</a> <span id="id1">[<a class="reference internal" href="conclusion.html#id5">Bar16</a>, <a class="reference internal" href="conclusion.html#id3">Gut16</a>, <a class="reference internal" href="conclusion.html#id2">Mat19</a>]</span>. Both the explanations of key concepts of neural networks and the illustrative programs are kept at a very elementary undergraduate, almost “high-school” level. The codes, made very simple, are described in detail. Moreover, they are written without any use of higher-level libraries for neural networks, which helps in better understanding of the explained algorithms and shows how to program them from scratch.</p>
+<p>The goal of this course is to teach some basics of the omnipresent neural networks with <a class="reference external" href="https://www.python.org/">Python</a> <span id="id1">[<a class="reference internal" href="conclusion.html#id5">Bar16</a>, <a class="reference internal" href="conclusion.html#id3">Gut16</a>, <a class="reference internal" href="conclusion.html#id2">Mat19</a>]</span>. Both the explanations of key concepts of neural networks and the illustrative programs are kept at a very elementary undergraduate, almost “high-school” level. The codes, made very simple, are described in detail. Moreover, they are written without any use of higher-level libraries for neural networks, which helps in better understanding of the explained algorithms and shows how to program them from scratch.</p>
 <div class="important admonition">
 <p class="admonition-title">Who is the book for?</p>
 <p><strong>The reader may be a complete novice, only slightly acquainted with Python (or actually any other programming language) and Jupyter.</strong></p>
 </div>
 <p>The material covers such classic topics as the perceptron and its simplest applications, supervised learning with back-propagation for data classification, unsupervised learning and clusterization, the Kohonen self-organizing networks, and the Hopfield networks with feedback. This aims to prepare the necessary ground for the recent and timely advancements (not covered here) in neural networks, such as deep learning, convolutional networks, recurrent networks, generative adversarial networks, reinforcement learning, etc.</p>
-<p>On the way of the course, some basic Python programing will be gently sneaked in for the newcomers. Brief explanations and comments in the codes are provided.</p>
+<p>On the way of the course, some basic Python programing will be gently sneaked in for the newcomers. Guiding explanations and comments in the codes are provided.</p>
 <div class="warning admonition">
 <p class="admonition-title">Exercises</p>
 <p>At the end of each chapter some exercises are suggested, with the goal to familiarize the reader with the covered topics and the little codes. Most of exercises involve simple modifications/extensions of appropriate pieces of the lecture material.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="note admonition">
+<p class="admonition-title">Literature</p>
 <p>There are countless textbooks and lecture notes devoted the matters discussed in this course, hence the author will not attempt to present an even incomplete list of literature. We only cite items which a more interested reader might look at.</p>
 </div>
-<p>With simplicity as guidance, our choice of topics took inspiration from excellent lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>, done in Mathematica, from an on-line book by <a class="reference external" href="https://page.mi.fu-berlin.de/rojas/neural/">Raul Rojas</a> (also available in a printed version <span id="id2">[<a class="reference internal" href="conclusion.html#id8">FR13</a>]</span>), and the from physicists’ (as myself!) point of view from <span id="id3">[<a class="reference internal" href="conclusion.html#id7">MullerRS12</a>]</span>.</p>
-</section>
-<section id="biological-inspiration">
+<p>With simplicity as guidance, our choice of topics took inspiration from detailed lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>, illustrated in Mathematica, from an on-line book by <a class="reference external" href="https://page.mi.fu-berlin.de/rojas/neural/">Raul Rojas</a> (also available in a printed version <span id="id2">[<a class="reference internal" href="conclusion.html#id8">FR13</a>]</span>), and the from <strong>physicists’</strong> (as myself!) point of view from <span id="id3">[<a class="reference internal" href="conclusion.html#id7">MullerRS12</a>]</span>.</p>
+</div>
+<div class="section" id="biological-inspiration">
 <h2>Biological inspiration<a class="headerlink" href="#biological-inspiration" title="Permalink to this headline">¶</a></h2>
-<p>Inspiration for computational mathematical models discussed in this course originates from the biological structure of our neural system <span id="id4">[<a class="reference internal" href="conclusion.html#id6">KSJ+12</a>]</span>. The central nervous system (the brain) contains a huge number (<span class="math notranslate nohighlight">\(\sim 10^{11}\)</span>) of <a class="reference external" href="https://human-memory.net/brain-neurons-synapses/">neurons</a>, which may be viewed as tiny elementary processor units. They receive a signal via <strong>dendrites</strong>, and in case it is strong enough, the nucleus decides (a computation done here!) to “fire” an output signal along its <strong>axon</strong>, where it is subsequently passed via axon terminals to dendrites of other neurons. The axon-dendrite connections (the <strong>synaptic</strong> connections) may be weak or strong, modifying the stimulus. Moreover, the strength of the synaptic connections may change in time (<a class="reference external" href="https://en.wikipedia.org/wiki/Hebbian_theory">Hebbian rule</a> tells us that the connections get stronger if they are being used repeatedly). In this sense, the neuron is “programmable”.</p>
-<figure class="align-default" id="neuron-fig">
+<p>Inspiration for computational mathematical models discussed in this course originates from the biological structure of our neural system <span id="id4">[<a class="reference internal" href="conclusion.html#id6">KSJ+12</a>]</span>. The central nervous system (the brain) contains a huge number (<span class="math notranslate nohighlight">\(\sim 10^{11}\)</span>) of <a class="reference external" href="https://human-memory.net/brain-neurons-synapses/">neurons</a>, which may be viewed as tiny elementary processor units. They receive a signal via <strong>dendrites</strong>, and in case it is strong enough, the nucleus decides (a computation done here!) to “fire” an output signal along the <strong>axon</strong>, where it is subsequently passed via axon terminals to dendrites of other neurons. The axon-dendrite connections (the <strong>synaptic</strong> connections) may be weak or strong, modifying the passed stimulus. Moreover, the strength of the synaptic connections may change in time (<a class="reference external" href="https://en.wikipedia.org/wiki/Hebbian_theory">Hebbian rule</a> tells us that the connections get stronger if they are being used repeatedly). In this sense, the neuron is “programmable”.</p>
+<div class="figure align-default" id="neuron-fig">
 <a class="reference internal image-reference" href="../_images/neuron-structure.jpg"><img alt="../_images/neuron-structure.jpg" src="../_images/neuron-structure.jpg" style="width: 450px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Biological neuron (from <a class="reference external" href="https://training.seer.cancer.gov/anatomy/nervous/tissue.html">https://training.seer.cancer.gov/anatomy/nervous/tissue.html</a>).</span><a class="headerlink" href="#neuron-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>We may ask ourselves if the number of neurons in the brain should really be termed so “huge” as usually claimed. Let us compare it to the computing devices with memory chips. The number of <span class="math notranslate nohighlight">\(10^{11}\)</span> neurons roughly correspond to the number of transistors in a 10GB memory chip, which does not impress us so much, as these days we may buy such a device for 2$ or so.</p>
-<p>Also, the speed of traveling of the nerve impulses, which is due to electrochemical processes, is not impressive, either. Fastest signals, such as those related to muscle positioning, travel at speeds up to 120m/s (the myelin sheaths are essential to achieve them). The touch signals reach about 80m/s, whereas pain is transmitted only at comparatively very slow speeds of 0.6m/s. This is the reason why when you drop a hammer on your toe, you sense it immediately, but the pain reaches your brain with a delay of ~1s, as it has to pass the distance of ~1.5m. On the other hand, in electronic devices the signal travels along the wires at speeds of the order of the speed of light, <span class="math notranslate nohighlight">\(\sim 300000{\rm km/s}=3\times 10^{8}{\rm m/s}\)</span>!</p>
-<p>For humans, the average <a class="reference external" href="https://backyardbrains.com/experiments/reactiontime">reaction time</a> is 0.25s to a visual stimulus, 0.17s to an audio stimulus, and 0.15s to a touch. Thus setting the threshold time for a false start in sprints at 0.1s is safely below a possible reaction of a runner. These are very slow reactions compared to electronic responses.</p>
-<p>Based on the energy consumption of the brain, one can estimate that on the average a cortical neuron <a class="reference external" href="https://aiimpacts.org/rate-of-neuron-firing/">fires</a> about once per 6 seconds. Likewise, it is unlikely that an average cortical neuron fires more than once per second. Multiplying the firing rate by the number of all the cortical neurons, <span class="math notranslate nohighlight">\(\sim 1.6 \times 10^{10}\)</span>, yields about <span class="math notranslate nohighlight">\(3 \times 10^{9}\)</span> firings/s in the cortex, or 3GHz. This is the rate of a typical processor chip! So if a firing is identified with an elementary calculation, the combined power of the brain is comparable to that of a standard computer processor.</p>
-<p>The above facts might indicate that, from a point of view of naive comparisons with silicon-based chips, the human brain is nothing so special. So what is it that gives us our unique abilities: amazing visual and audio pattern recognition, thinking, consciousness, intuition, imagination? The answer is linked to an amazing architecture of the brain, where each neuron (processor unit) is connected via synapses to, on the average, 10000 (!) other neurons. This feature makes it radically different and immensely more complicated than the architecture consisting of the control unit, processor, and memory in our computers (the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">von Neumann machine</a> architecture). There, the number of connections is of the order of the number of bits of memory. In contrast, there are about <span class="math notranslate nohighlight">\(10^{15}\)</span> synaptic connections in the human brain. As mentioned, the connections may be “programmed” to get stronger or weaker. If, for he sake of a simple estimate, we approximated the connection strength by just two states of a synapse, 0 or 1, the total number of combinatorial configurations of such a system would be <span class="math notranslate nohighlight">\(2^{10^{15}}\)</span> - a humongous number. Most of such configuration, of course, never realize in practice, nevertheless the number of possible configuration states of the brain, or the “programs” it can run, is truly immense.</p>
-<p>In recent years, with powerful imaging techniques, it became possible to map the connections in the brain with unprecedented resolution, where single nerve bundles are visible. The efforts are part of the <a class="reference external" href="http://www.humanconnectomeproject.org">Human Connectome Project</a>, with the ultimate goal to map one-to-one the human brain architecture. For the fruit fly, the <a class="reference external" href="https://en.wikipedia.org/wiki/Drosophila_connectome">drosophila connectome project</a> is well advanced.</p>
-<figure class="align-default" id="connectome-fig">
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Biological neuron (from <a class="reference external" href="https://training.seer.cancer.gov/anatomy/nervous/tissue.html">https://training.seer.cancer.gov/anatomy/nervous/tissue.html</a>).</span><a class="headerlink" href="#neuron-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>We may ask ourselves if the number of neurons in the brain should really be termed so “huge” as usually claimed. Let us compare it to the computing devices with memory chips. The number of <span class="math notranslate nohighlight">\(10^{11}\)</span> neurons roughly corresponds to the number of transistors in a 10GB memory chip, which does not impress us so much, as these days we may buy such a device for 2$ or so.</p>
+<p>Moreover, the speed of traveling of the nerve impulses, which is due to electrochemical processes, is not impressive, either. Fastest signals, such as those related to muscle positioning, travel at speeds up to 120m/s (the myelin sheaths are essential to achieve them). The touch signals reach about 80m/s, whereas pain is transmitted only at comparatively very slow speeds of 0.6m/s. This is the reason why when you drop a hammer on your toe, you sense it immediately, but the pain reaches your brain with a delay of ~1s, as it has to pass the distance of ~1.5m. On the other hand, in electronic devices the signal travels along the wires at speeds of the order of the speed of light, <span class="math notranslate nohighlight">\(\sim 300000{\rm km/s}=3\times 10^{8}{\rm m/s}\)</span>!</p>
+<p>For humans, the average <a class="reference external" href="https://backyardbrains.com/experiments/reactiontime">reaction time</a> is 0.25s to a visual stimulus, 0.17s to an audio stimulus, and 0.15s to a touch. Thus setting the threshold time for a false start in sprints at 0.1s is safely below a possible reaction of a runner. These are extremely slow reactions compared to electronic responses.</p>
+<p>Based on the energy consumption of the brain, one can estimate that on the average a cortical neuron <a class="reference external" href="https://aiimpacts.org/rate-of-neuron-firing/">fires</a> about once per 6 seconds. Likewise, it is unlikely that an average cortical neuron fires more than once per second. Multiplying the firing rate by the number of all the cortical neurons, <span class="math notranslate nohighlight">\(\sim 1.6 \times 10^{10}\)</span>, yields about <span class="math notranslate nohighlight">\(3 \times 10^{9}\)</span> firings/s in the cortex, or 3GHz. This is the rate of a typical processor chip! Hence if the firing is identified with an elementary calculation, the thus defined power of the brain is comparable to that of a standard computer processor.</p>
+<p>The above facts might indicate that, from a point of view of naive comparisons with silicon-based chips, the human brain is nothing so special. So what is it that gives us our unique abilities: amazing visual and audio pattern recognition, thinking, consciousness, intuition, imagination? The answer is linked to an amazing architecture of the brain, where each neuron (processor unit) is connected via synapses to, on the average, 10000 (!) other neurons. This feature makes it radically different and immensely more complicated than the architecture consisting of a control unit, processor, and memory in our computers (the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">von Neumann machine</a> architecture). There, the number of connections is of the order of the number of bits of the memory. In contrast, there are about <span class="math notranslate nohighlight">\(10^{15}\)</span> synaptic connections in the human brain. As mentioned, the connections may be “programmed” to get stronger or weaker. If, for the sake of a simple estimate, we approximated the connection strength by just two states of a synapse, 0 or 1, the total number of combinatorial configurations of such a system would be <span class="math notranslate nohighlight">\(2^{10^{15}}\)</span> - a humongous number. Most of such configuration, of course, never realize in practice, nevertheless the number of possible configuration states of the brain, or the “programs” it can run, is truly immense.</p>
+<p>In recent years, with developing powerful imaging techniques, it became possible to map the connections in the brain with unprecedented resolution, where single nerve bundles are visible. The efforts are part of the <a class="reference external" href="http://www.humanconnectomeproject.org">Human Connectome Project</a>, with the ultimate goal to map one-to-one the human brain architecture. For the much simpler fruit fly, the <a class="reference external" href="https://en.wikipedia.org/wiki/Drosophila_connectome">drosophila connectome project</a> is very well advanced.</p>
+<div class="figure align-default" id="connectome-fig">
 <a class="reference internal image-reference" href="../_images/brain.jpg"><img alt="../_images/brain.jpg" src="../_images/brain.jpg" style="width: 280px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">White matter fiber architecture of the brain (from Human Connectome Project <a class="reference external" href="http://www.humanconnectomeproject.org/gallery/">humanconnectomeproject.org</a>)</span><a class="headerlink" href="#connectome-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">White matter fiber architecture of the brain (from the Human Connectome Project <a class="reference external" href="http://www.humanconnectomeproject.org/gallery/">humanconnectomeproject.org</a>)</span><a class="headerlink" href="#connectome-fig" title="Permalink to this image">¶</a></p>
+</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The “immense connectivity” feature, with zillions of neurons serving as parallel elementary processors, makes the brain a completely different computational model from the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann machine</a> (i.e. our everyday computers).</p>
+<p>The “immense connectivity” feature, with zillions of neurons serving as parallel elementary processors, makes the brain a completely different computational device from the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann machine</a> (i.e. our everyday computers).</p>
 </div>
-</section>
-<section id="feed-forward-networks">
+</div>
+<div class="section" id="feed-forward-networks">
 <h2>Feed-forward networks<a class="headerlink" href="#feed-forward-networks" title="Permalink to this headline">¶</a></h2>
-<p>The neurophysiological research of the brain provides important guidelines for mathematical models used in artificial neural networks (<strong>ANN</strong>s). Conversely, the advances in algorithms of ANNs frequently bring us closer to understanding of how our “brain computer” may actually work!</p>
-<p>The simplest ANNs are the so called <strong>feed forward</strong> networks, depicted in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>. They consist of the <strong>input</strong> layer (black dots), which just represents digitized data, and layers of neurons (blobs). The number of neurons in each layer may be different. The complexity of the network and the tasks it may accomplish increase with the number of layers and the number of neurons. Networks with one layer of neurons are called <strong>single-layer</strong> networks. The last layer (light blue blobs) is called the <strong>output layer</strong>. In multi-layer networks the neuron layers preceding the output layer (purple blobs) are called <strong>intermediate layers</strong>. If the number of layers is large (e.g. as many as 64, 128, …), we deal with <strong>deep networks</strong>.</p>
-<p>The neurons in various layers do not have to function the same way, in particular the output neurons may act differently from the others.</p>
-<p>The signal from the input travels along the links (edges, synaptic connections) indicated with arrows to the neurons in subsequent layers. In feed-forward networks, as the one in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, it can only move forward: from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going back to preceding layers or propagation among the neurons of the same layer are allowed (that would be a <strong>recurrent</strong> feature). As we will describe in detail in the next chapter, the signal is appropriately processed by the neurons.</p>
+<p>The neurophysiological research of the brain provides important guidelines for mathematical models used in artificial neural networks (<strong>ANN</strong>s). Conversely, the advances in algorithmics of ANNs frequently bring us closer to understanding of how our “brain computer” may actually work!</p>
+<p>The simplest ANNs are the so called <strong>feed forward</strong> networks, exemplified in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>. They consist of an <strong>input</strong> layer (black dots), which just represents digitized data, and layers of neurons (colored blobs). The number of neurons in each layer may be different. The complexity of the network and the tasks it may accomplish increase, naturally, with the number of layers and the number of neurons.</p>
+<p>In the remaining part of this section we give, in a rather dense format, a bunch of important definitions:</p>
+<p>Networks with one layer of neurons are called <strong>single-layer</strong> networks. The last layer (light blue blobs) is called the <strong>output layer</strong>. In multi-layer (more than one neuron layer) networks the neuron layers preceding the output layer (purple blobs) are called <strong>intermediate layers</strong>. If the number of layers is large (e.g. as many as 64, 128, …), we deal with the recent “ground-breaking” <strong>deep networks</strong>.</p>
+<p>Neurons in various layers do not have to function the same way, in particular the output neurons may act differently from the others.</p>
+<p>The signal from the input travels along the links (edges, synaptic connections), indicated with arrows, to the neurons in subsequent layers. In feed-forward networks, as the one in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, it can only move forward (from left to right in the figure): from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going backward to preceding layers, or parallel propagation among the neurons of the same layer, are allowed. This would be a <strong>recurrent</strong> feature that we touch upon in section <a class="reference internal" href="som.html#lat-lab"><span class="std std-ref">Lateral inhibition</span></a>.</p>
+<p>As we describe in detail in the following chapters, the traveling signal is appropriately <strong>processed</strong> by the neurons, hence the device carries out a computation: input is being transformed into output.</p>
 <p>In the sample network of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a> each neuron from a preceding layer is connected to each neuron in the following layer. Such ANNs are called <strong>fully connected</strong>.</p>
-<figure class="align-default" id="ffnn-fig">
+<div class="figure align-default" id="ffnn-fig">
 <a class="reference internal image-reference" href="../_images/feed_f.png"><img alt="../_images/feed_f.png" src="../_images/feed_f.png" style="width: 300px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">A sample feed-foward fully connected artificial neural network. The blobs represent the neurons, and the edges indicate the synaptic connections between them. The signal propagates starting from the input (black dots), via the neurons in subsequent intermediate (hidden) layers (purple blobs) and the output layer (light blue blobs), to finally end up as the output (black dots). The strength of the connections is controled by weights (hyperparameters) assigned to the edges.</span><a class="headerlink" href="#ffnn-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>As we will learn shortly, each edge in the network has a certain “strength” described with a number called <strong>weight</strong> (the weights are also termed <strong>hyperparameters</strong>). Even very small fully connected networks, such as the one of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, have very many connections (here 30), hence carry a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact complex multi-parametric systems.</p>
-<p>Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP Neuron</span></a>.</p>
-</section>
-<section id="why-python">
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">A sample feed-foward fully connected artificial neural network. The colored blobs represent the neurons, and the edges indicate the synaptic connections. The signal propagates starting from the input (black dots), via the neurons in subsequent intermediate (hidden) layers (purple blobs), to the output layer (light blue blobs). The strength of the connections is controled by weights (hyperparameters) assigned to the edges.</span><a class="headerlink" href="#ffnn-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>As we will discuss in greater detail shortly, each edge (synaptic connection) in the network has a certain “strength” described with a number called <strong>weight</strong> (the weights are also termed <strong>hyperparameters</strong>). Even very small fully connected networks, such as the one of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, have very many connections (here 30), hence contain a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact very complex multi-parametric systems. Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP Neuron</span></a>.</p>
+</div>
+<div class="section" id="why-python">
 <h2>Why Python<a class="headerlink" href="#why-python" title="Permalink to this headline">¶</a></h2>
 <p>The choice of  <a class="reference external" href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> for the little codes of this course needs almost no explanation. Let us only quote <a class="reference external" href="https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)">Tim Peters</a>:</p>
 <ul class="simple">
@@ -347,10 +359,10 @@
 <li><p>Complex is better than complicated.</p></li>
 <li><p>Readability counts.</p></li>
 </ul>
-<p>According to <a class="reference external" href="https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/">SlashData</a>, there are now over 10 million developers in the world using Python, just second after JavaScript (~14 million).</p>
-<section id="imported-packages">
+<p>According to <a class="reference external" href="https://developer-tech.com/news/2021/apr/27/slashdata-javascript-python-boast-largest-developer-communities/">SlashData</a>, there are now over 10 million developers in the world using Python, just second after JavaScript (~14 million). In particular, it proves very practical in applications to ANNs.</p>
+<div class="section" id="imported-packages">
 <h3>Imported packages<a class="headerlink" href="#imported-packages" title="Permalink to this headline">¶</a></h3>
-<p>Throughout the course we use some standard Python library packages for the numerics and plotting (as stressed, we do not use any libraries dedicated to neural networks). Each lecture’s notebook starts with the inclusion of some of these libraries:</p>
+<p>Throughout this course we use some standard Python library packages for the numerics, plotting, etc. As stressed, we do not use any libraries specifically dedicated to neural networks. Each lecture’s notebook starts with the inclusion of some of these libraries:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>              <span class="c1"># numerical</span>
@@ -367,9 +379,9 @@
 </div>
 <div class="admonition-neural-package admonition">
 <p class="admonition-title"><strong>neural</strong> package</p>
-<p>Functions created during the course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in Appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>.</p>
+<p>Functions created during this course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>.</p>
 </div>
-<p>It is imported in the following way:</p>
+<p>Assuming the package is in the relative subdirectory <strong>lib_nn</strong>, it is imported in the following way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>                  <span class="c1"># system </span>
@@ -380,13 +392,14 @@
 </div>
 </div>
 </div>
+<p>See appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a> for further details.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For brevity of presentation, some redundant (e.g. imports of libraries) or inessential pieces of the code are present only in the downloadable source Jupyter notebooks, and are not included/repeated in the book. This makes the text more readable.</p>
+<p>For brevity of presentation, some redundant (e.g. imports of libraries) or inessential pieces of the code are present only in the downloadable source Jupyter notebooks, and are not included/repeated in the book. This makes the text more concise and readable.</p>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

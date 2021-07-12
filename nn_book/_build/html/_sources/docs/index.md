@@ -16,7 +16,7 @@ the [Kraków School of Interdisciplinary PhD Studies](https://kisd.ifj.edu.pl/ne
 ```{admonition} Brevity
 :class: note
 
-The text is brief (the pdf printout has only ~120 pages including the appendix), so a diligent student can complete the course in a few afternoons!
+The text is brief (the pdf printout has ~120 pages including the appendix), so a diligent student can complete the course in a few afternoons!
 ```
 
 
@@ -25,7 +25,7 @@ The text is brief (the pdf printout has only ~120 pages including the appendix),
 
 A major advantage of executable books is that the reader may enjoy running the source codes himself, modifying them and playing around. 
 The codes for each chapter, in the form of 
-[Jupyter](https://jupyter.org) notebooks, can be downloaded by clicking the "arrow-down" icon on the right in the top bar when viewing the book in a browser. A complete set of files is also abailable from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
+[Jupyter](https://jupyter.org) notebooks, can be downloaded by clicking the "arrow-down" icon on the right in the top bar when viewing the book in a browser. A complete set of files is also available from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
 
 Appendix {ref}`app-run` explains step-by-step how to proceed with the execution of the codes.
 ```
@@ -38,4 +38,8 @@ Built with [Jupyter Book
 ```
 
 
-ISBN: **978-83-962099-0-0** (pdf version) ![](images/barcode.gif)
+
+ISBN: **978-83-962099-0-0** (pdf version) 
+
+![](images/barcode.png)
+
