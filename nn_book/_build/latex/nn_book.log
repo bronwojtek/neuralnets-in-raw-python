@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  12 JUL 2021 19:00
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  13 JUL 2021 00:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1683,21 +1683,21 @@ Chapter 4.
 [25
 
 ] [26]
-File: perceptron_17_0.png Graphic file (type bmp)
-<perceptron_17_0.png>
+File: perceptron_16_0.png Graphic file (type bmp)
+<perceptron_16_0.png>
  [27]
-File: perceptron_28_0.png Graphic file (type bmp)
-<perceptron_28_0.png>
+File: perceptron_27_0.png Graphic file (type bmp)
+<perceptron_27_0.png>
  [28] [29]
-File: perceptron_39_0.png Graphic file (type bmp)
-<perceptron_39_0.png>
+File: perceptron_38_0.png Graphic file (type bmp)
+<perceptron_38_0.png>
  [30]
 Overfull \vbox (10.15604pt too high) detected at line 1710
  []
 
 [31]
-File: perceptron_54_0.png Graphic file (type bmp)
-<perceptron_54_0.png>
+File: perceptron_53_0.png Graphic file (type bmp)
+<perceptron_53_0.png>
  [32]
 Chapter 5.
 File: regions.png Graphic file (type bmp)
@@ -1735,41 +1735,42 @@ File: more_layers_50_0.png Graphic file (type bmp)
 ]
 Chapter 6.
 [43] [44]
-File: backprop_12_0.png Graphic file (type bmp)
-<backprop_12_0.png>
+File: backprop_14_0.png Graphic file (type bmp)
+<backprop_14_0.png>
  [45]
-File: backprop_18_0.png Graphic file (type bmp)
-<backprop_18_0.png>
-File: backprop_21_0.png Graphic file (type bmp)
-<backprop_21_0.png>
-File: backprop_24_0.png Graphic file (type bmp)
-<backprop_24_0.png>
- [46] [47]
-File: backprop_29_0.png Graphic file (type bmp)
-<backprop_29_0.png>
- [48] [49] [50]
-Overfull \hbox (46.8638pt too wide) in paragraph at lines 2900--2906
+File: backprop_19_0.png Graphic file (type bmp)
+<backprop_19_0.png>
+ [46]
+File: backprop_22_0.png Graphic file (type bmp)
+<backprop_22_0.png>
+File: backprop_25_0.png Graphic file (type bmp)
+<backprop_25_0.png>
+ [47] [48]
+File: backprop_30_0.png Graphic file (type bmp)
+<backprop_30_0.png>
+ [49] [50] [51]
+Overfull \hbox (46.8638pt too wide) in paragraph at lines 2947--2953
 []$[] [][] [][]$ 
  []
 
-[51] [52]
-File: backprop_54_0.png Graphic file (type bmp)
-<backprop_54_0.png>
- [53]
-File: backprop_60_0.png Graphic file (type bmp)
-<backprop_60_0.png>
+[52] [53]
+File: backprop_55_0.png Graphic file (type bmp)
+<backprop_55_0.png>
  [54]
-File: backprop_62_0.png Graphic file (type bmp)
-<backprop_62_0.png>
-File: backprop_65_0.png Graphic file (type bmp)
-<backprop_65_0.png>
- [55] [56] [57] [58
-
-]
+File: backprop_61_0.png Graphic file (type bmp)
+<backprop_61_0.png>
+ [55]
+File: backprop_63_0.png Graphic file (type bmp)
+<backprop_63_0.png>
+File: backprop_66_0.png Graphic file (type bmp)
+<backprop_66_0.png>
+ [56] [57] [58]
 Chapter 7.
 File: interpol_7_0.png Graphic file (type bmp)
 <interpol_7_0.png>
-[59]
+[59
+
+]
 File: interpol_11_0.png Graphic file (type bmp)
 <interpol_11_0.png>
 File: interpol_13_0.png Graphic file (type bmp)
@@ -1867,13 +1868,13 @@ File: som_50_0.png Graphic file (type bmp)
 <som_50_0.png>
  [89]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 4744.
+(Font)              scaled to size 14.40152pt on input line 4791.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 4744.
+(Font)              scaled to size 14.39845pt on input line 4791.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4744.
+(hyperref)                removing `math shift' on input line 4791.
 
 File: udm.png Graphic file (type bmp)
 <udm.png>
@@ -1936,67 +1937,67 @@ Chapter 11.
 ]
 Chapter 12.
 [107] [108]
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 [109]
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 [110]
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 [111]
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 [112]
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5740
+Underfull \vbox (badness 10000) detected at line 5787
  []
 
 [113] [114]
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 [115]
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 [116]
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5973
+Underfull \vbox (badness 10000) detected at line 6020
  []
 
 [117] [118] (./nn_book.ind)
@@ -2038,24 +2039,24 @@ braces):
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6039.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6039.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6086.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6086.
  (./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6039.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6039.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6086.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6086.
 
 Package rerunfilecheck Info: File `nn_book.out' has not changed.
 (rerunfilecheck)             Checksum: 37A5E5EE19191B24C08D462644D6227E;9074.
  ) 
 Here is how much of TeX's memory you used:
- 41920 strings out of 479418
- 954576 string characters out of 5884586
- 1884474 words of memory out of 5000000
- 58590 multiletter control sequences out of 15000+600000
+ 41921 strings out of 479418
+ 954600 string characters out of 5884586
+ 1883472 words of memory out of 5000000
+ 58591 multiletter control sequences out of 15000+600000
  538948 words of font info for 111 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1520b,560s stack positions out of 5000i,500n,10000p,200000b,80000s

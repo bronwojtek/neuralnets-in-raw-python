@@ -308,16 +308,16 @@
 <h2>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
 <p>We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has</p>
 <ul class="simple">
-<li><p>some <strong>architecture</strong>, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, …);</p></li>
+<li><p>a certain <strong>architecture</strong>, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, …);</p></li>
 <li><p><strong>weights (hyperparameters)</strong>, with specific values, defining the network’s functionality.</p></li>
 </ul>
 <p>The prime practical question is how to set (for a given architecture) the weights such that a requested goal is realized, i.e., a given input yields a desired output.
-In the tasks discussed earlier, the weights could be constructed <em>a priori</em>, be it for the logical gates or for the memory models. However, for more involved applications we want to have an “easier” way of determining the weights. Actually, for complicated problems a “theoretical” determination of weights is not possible at all. This is the basic reason for inventing <strong>learning algorithms</strong>, which automatically adjust the weights with the help of the data.</p>
-<p>In this chapter we begin to explore such algorithms with the <strong>supervised learning</strong>, used for data classification.</p>
+In the tasks discussed earlier, the weights could be constructed <em>a priori</em>, be it for the logical gates or for the memory models. However, for more involved applications we want to have an “easier” way of determining the weights. Actually, for complicated problems a “theoretical” a priori determination of weights is not possible at all. This is the basic reason for inventing <strong>learning algorithms</strong>, which automatically adjust the weights with the help of the available data.</p>
+<p>In this chapter we begin to explore such algorithms with the <strong>supervised learning</strong> approach, used i.a. for data classification.</p>
 <div class="important admonition">
 <p class="admonition-title">Supervised learning</p>
-<p>In this strategy, the data must possess <strong>labels</strong> which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat, dog,…), which are the labels.
-The labeled data are split into a <strong>training</strong> sample and a <strong>test</strong> sample.</p>
+<p>In this strategy, the data must possess <strong>labels</strong> which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat, dog,…), which are called the labels.
+The labeled data are then split into a <strong>training</strong> sample and a <strong>test</strong> sample.</p>
 <p>The basic steps of supervised learning for a given ANN are following:</p>
 <ul class="simple">
 <li><p>Initialize somehow the weights, for instance randomly or to zero.</p></li>
@@ -327,7 +327,7 @@ The labeled data are split into a <strong>training</strong> sample and a <strong
 <li><p>Test the trained ANN on a test sample.</p></li>
 </ul>
 <p>If satisfied, you have a desired trained ANN performing a specific task (like classification), which can be used on new, unlabeled data. If not, you can split the sample in the training and the test parts in a different way and repeat the procedure from the beginning. Also, you may try to acquire more data (which may be expensive), or change your network’s architecture.</p>
-<p>The term “supervised” comes form the interpretation of the procedure where the labels are held by a “teacher”, who thus knows which answers are correct and which are wrong, and who <strong>supervises</strong> that way the training process.</p>
+<p>The term “supervised” comes form an interpretation of the procedure where the labels are held by a “teacher”, who thus knows which answers are correct and which are wrong, and who <strong>supervises</strong> that way the training process. Of course, a computer program “supervises itself”.</p>
 </div>
 </div>
 <div class="section" id="perceptron-as-a-binary-classifier">
@@ -407,7 +407,7 @@ is used to assess if a data item has a particular feature, or not - just two pos
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_17_0.png" src="../_images/perceptron_17_0.png" />
+<img alt="../_images/perceptron_16_0.png" src="../_images/perceptron_16_0.png" />
 </div>
 </div>
 <div class="important admonition">
@@ -472,14 +472,14 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_28_0.png" src="../_images/perceptron_28_0.png" />
+<img alt="../_images/perceptron_27_0.png" src="../_images/perceptron_27_0.png" />
 </div>
 </div>
 <p>The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a> that would carry out the binary classification.</p>
 </div>
 </div>
 <div class="section" id="perceptron-algorithm">
-<h2>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">¶</a></h2>
+<span id="lab-pa"></span><h2>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>We could still try to figure out somehow the proper weights for the present example and find the dividing line, for instance with a ruler and pencil, but this is not the point. We wish to have a systematic algorithmic procedure that will effortlessly work for this one and any similar situation. The answer is the already mentioned <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron">perceptron algorithm</a>.</p>
 <p>Before presenting the algorithm, let us remark that the MCP neuron with some set of weights <span class="math notranslate nohighlight">\(w_0, w_1, w_2\)</span> always yields some answer for a labeled data point, correct or wrong. For example</p>
 <div class="cell docutils container">
@@ -558,7 +558,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_39_0.png" src="../_images/perceptron_39_0.png" />
+<img alt="../_images/perceptron_38_0.png" src="../_images/perceptron_38_0.png" />
 </div>
 </div>
 <p>We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation</p>
@@ -657,7 +657,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>As we can see, a small number of test points are misclassified. All these points lie near the separating line.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_54_0.png" src="../_images/perceptron_54_0.png" />
+<img alt="../_images/perceptron_53_0.png" src="../_images/perceptron_53_0.png" />
 </div>
 </div>
 <div class="note admonition">

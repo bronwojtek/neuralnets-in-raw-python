@@ -3,7 +3,7 @@
 
 # # Back propagation
 
-# In[7]:
+# In[1]:
 
 
 import numpy as np              # numeric
@@ -19,31 +19,34 @@ sys.path.append('./lib_nn') # my path (linux, Mac OS)
 from neural import * # import my library packages
 
 
+# In this chapter we show in detail  how to carry out supervised learning for multilayer classifiers discussed in chapter {ref}`more-lab`. Since the method is based on minimizing the number of erroneous answers on a test sample, we begin with a thorough discussion of the problem of error minimization in our setup.  
+
 # ## Minimizing the error 
 
-# We now go back to the perceptron algorithm of chapter {ref}`perc-lab` to look in some greater detail at its performance as a function of weights. Recall that in our example with points on the plane the condition for the pink points is given by the inequality
+# Recall that in our example with points on the plane from chapter {ref}`perc-lab`, the condition for the pink points was given by the inequality
 # 
 # $w_0+w_1 x_1 + w_2 x_2 > 0$.
 # 
-# We have already mentioned the equivalence class related to dividing this inequality with a 
-# positive constant $c$. In general, at least one of the weights must be nonzero to have a nontrivial condition. Suppose or definiteness that $w_0 \neq 0$ (other cases may be treated analogously). Then we can divide both sides with $|w_0|$ to obtain
+# We have already briefly mentioned the equivalence class related to dividing this inequality with a positive constant $c$. In general, at least one of the weights in the condition must be nonzero to have a nontrivial condition. Suppose or definiteness that $w_0 \neq 0$ (other cases may be treated analogously). Then we can divide both sides of the inequality with $|w_0|$ to obtain
 # 
 # $$\frac{w_0}{|w_0|}+\frac{w_1}{|w_0|} \, x_1 + \frac{w_2}{|w_0|} \, x_2 > 0. $$
 # 
-# Introducing $v_1=\frac{w_1}{w_0}$ and $v_2=\frac{w_2}{w_0}$, this can be rewritten in the form
+# Introducing the short-hand notation $v_1=\frac{w_1}{w_0}$ and $v_2=\frac{w_2}{w_0}$, this can be rewritten in the form
 # 
 # $${\rm sgn}(w_0)( 1+v_1 \, x_1 +v_2 \, x_2) > 0,$$
 # 
-# where ${\rm sgn}(w_0) = \frac{w_0}{|w_0|}$, hence we effectively have a two-parameter system (for each sign of $w_0$). 
+# where the sign ${\rm sgn}(w_0) = \frac{w_0}{|w_0|}$, hence we effectively have a two-parameter system (for each sign of $w_0$). 
 #  
 # Obviously, with some values of $ v_1 $ and $ v_2 $ and for a given point from the data sample, the perceptron provides a correct or incorrect answer. It is thus natural to define the **error function** $E$ such that each point of $p$ from the sample contributes 1 if the answer is incorrect, and 0 if it is correct:
 # 
 # 
 # $$ E(v_1,v_2)=\sum_p \left\{ \begin{array}{ll} 1 -{\rm incorrect,~}\\ 0 -{\rm correct} \end{array}\right .$$
 # 
-# $E$ is thus the number of misclassified points. We can easily construct this function for a labeled data sample in the format [x1, x2, label]:
+# $E$ is thus interpreted as the number of misclassified points. 
+# 
+# We can easily construct this function in Python:
 
-# In[8]:
+# In[2]:
 
 
 def error(w0, w1 ,w2, sample, f=func.step):
@@ -52,7 +55,8 @@ def error(w0, w1 ,w2, sample, f=func.step):
     
     inputs:
     w0, w1, w2 - weights
-    sample - labeled data sample in format [x1, x1, label]
+    sample - array of labeled data points p 
+             p in an array in the format [x1, x1, label]
     f - activation function
     
     returns:
@@ -73,28 +77,9 @@ def error(w0, w1 ,w2, sample, f=func.step):
 # 
 # $$ E(v_1,v_2)=\sum_p \left ( y_o^{(p)}-y_t^{(p)}\right )^2,$$
 # 
-# which is the programmed formula. Indeed, when  $y_o^{(p)}=y_t^{(p)}$ (correct answer) the contribution of the point is 0, and when $y_o^{(p)}\neq y_t^{(p)}$ (wrong answer) the contribution is $(\pm 1)^2=1$. 
+# which is the formula programmed above. Indeed, when  $y_o^{(p)}=y_t^{(p)}$ (correct answer) the contribution of the point is 0, and when $y_o^{(p)}\neq y_t^{(p)}$ (wrong answer) the contribution is $(\pm 1)^2=1$. 
 
-# In[9]:
-
-
-# Algorithm of supervised learning for a single perceptron (see the previous parts)
-
-def teach_perceptron(sample, eps, w_in, f=func.step):
-    [[w0],[w1],[w2]]=w_in 
-    for i in range(len(sample)): 
-        for k in range(10):      
-            
-            yo=f(w0+w1*sample[i,0]+w2*sample[i,1])
-            
-            # update of weights
-            w0=w0+eps*(sample[i,2]-yo)*1
-            w1=w1+eps*(sample[i,2]-yo)*sample[i,0]
-            w2=w2+eps*(sample[i,2]-yo)*sample[i,1]
-    return [[w0],[w1],[w2]]
-
-
-# In[10]:
+# In[3]:
 
 
 def point2():
@@ -106,18 +91,53 @@ def point2():
         return np.array([x1,x2,0]) # add label 0
 
 
-# In[11]:
+# In[4]:
 
 
 samp2=np.array([point2() for _ in range(200)])              
 
 
 # 
-# We repeat the simulations of chapter {ref}`perc-lab` for the sample **samp2** of 200 points (the sample was built with $w_0=-0.25$, $w_1=-0.52$, and $w_2=1$, which corresponds to $v_1=2.08$ and $v_2=-4$, with ${\rm sgn}(w_0)=-1$). Then we evaluate the error function $E(v_1,v_2)$.
-# 
-# Next, we run the perceptron alogorithm:
+# We repeat the simulations of chapter {ref}`perc-lab` to generate the labeled data sample **samp2** of 200 points (the sample is built with $w_0=-0.25$, $w_1=-0.52$, and $w_2=1$, which corresponds to $v_1=2.08$ and $v_2=-4$, with ${\rm sgn}(w_0)=-1$). 
 
-# In[13]:
+# We now need again the perceptron algorithm of section {ref}`lab-pa`. In our special case, it operates on a sample of two-dimensional labeled data. For convenience, a single round of the algorithm can be collected into a function as follows:
+
+# In[5]:
+
+
+def teach_perceptron(sample, eps, w_in, f=func.step):
+    """
+    Supervised learning for a single perceptron (single MCP neuron) 
+    for a sample of 2-dim. labeled data
+       
+    input:
+    sample - array of two-dimensional labeled data points p
+             p is an array in the format [x1,x2,label]
+             label = 0 or 1
+    eps    - learning speed
+    w_in   - initial weights in the format [[w0], [w1], [w2]]
+    f      - activation function
+    
+    return: updated weights in the format [[w0], [w1], [w2]]
+    """
+    [[w0],[w1],[w2]]=w_in         # define w0, w1, and w2
+    for i in range(len(sample)):  # loop over the whole sample
+        for k in range(10):       # repeat 10 times  
+            
+            yo=f(w0+w1*sample[i,0]+w2*sample[i,1]) # output from the neuron, f(x.w)
+            
+            # update of weights according to the perceptron algorithm formula
+            w0=w0+eps*(sample[i,2]-yo)*1
+            w1=w1+eps*(sample[i,2]-yo)*sample[i,0]
+            w2=w2+eps*(sample[i,2]-yo)*sample[i,1]
+            
+    return [[w0],[w1],[w2]]       # updated weights
+
+
+# 
+# Next, we trace the action of the perceptron algorithm, watching how it modifies the error function $E(v_1,v_2)$ introduced above. We start from random weights, and then carry out 10 rounds of the above-defined **teach_perceptron** function, printing out the updated weights and the corresponding error:
+
+# In[6]:
 
 
 weights=[[func.rn()], [func.rn()], [func.rn()]] # initial random weights
@@ -125,11 +145,13 @@ weights=[[func.rn()], [func.rn()], [func.rn()]] # initial random weights
 print("Optimum:")
 print("   w0  w1/w0  w2/w0 error")   # header
 
-eps=0.7             # initial learning speed
-for r in range(10): # rounds
-    eps=0.8*eps     # decrease  the learning speed is smaller
+eps=0.7                 # initial learning speed
+for r in range(10):     # rounds
+    eps=0.8*eps         # decrease the learning speed
     weights=teach_perceptron(samp2,eps,weights,func.step) 
-    w0_o=weights[0][0]               # updated weights and ratios
+                        # see the top of this chapter
+        
+    w0_o=weights[0][0]  # updated weights and ratios
     v1_o=weights[1][0]/weights[0][0]
     v2_o=weights[2][0]/weights[0][0]
     
@@ -137,9 +159,13 @@ for r in range(10): # rounds
           np.round(error(w0_o, w0_o*v1_o, w0_o*v2_o, samp2, func.step),0))             
 
 
-# We note above that the final error is very small or 0 (depending on the particular simulation). It is illuminating to look at a contour map of the error function $E(v_1, v_2)$ in the vicinity of the optimal parameters:
+# We note that in subsequent rounds the error gradually decreases (depending on a simulation, it can sometimes jump up if the learning speed is too large, but this is not a problem as long as we can get down to the minimum), reaching a final value  which is very small or 0 (depending on the particular instance of simulation). Therefore
+# the perceptron algorithm, as we already experienced in chapter {ref}`perc-lab`, **minimizes the error on the training sample**.  
+# 
+# 
+# It is illuminating to look at a contour map of the error function $E(v_1, v_2)$ in the vicinity of the optimal parameters:
 
-# In[15]:
+# In[7]:
 
 
 fig, ax = plt.subplots(figsize=(3.7,3.7),dpi=120)
@@ -149,13 +175,16 @@ ran=0.8       # plot range around (v1_o, v2_o)
 
 v1 = np.arange(v1_o-ran,v1_o+ran, delta) # grid for v1
 v2 = np.arange(v2_o-ran,v2_o+ran, delta) # grid for v2
-X, Y = np.meshgrid(v1, v2) 
+X, Y = np.meshgrid(v1, v2)               # mesh for the contour plot
 
 Z=np.array([[error(-1,-v1[i],-v2[j],samp2,func.step) 
+             # we use the scaling property of the error function here 
              for i in range(len(v1))] for j in range(len(v2))]) # values of E(v1,v2) 
 
 CS = ax.contour(X, Y, Z, [1,5,10,15,20,25,30,35,40,45,50])
-ax.clabel(CS, inline=1, fmt='%1.0f', fontsize=9) # contour labels
+                        # explicit contour level values
+    
+ax.clabel(CS, inline=1, fmt='%1.0f', fontsize=9) # contour label format
 
 ax.set_title('Error function', fontsize=11)
 ax.set_aspect(aspect=1)
@@ -168,23 +197,17 @@ ax.scatter(v1_o, v2_o, s=20,c='red',label='found minimum') # our found optimal p
 ax.legend(); 
 
 
-# We can see in the above plot that that the found minimum is in (or close to, depending on the simulation) the elongated region of $ v_1 $ and $ v_2$ where the error vanishes. 
+# The obtained minimum is inside (or close to, depending on the simulation) an elongated region of $ v_1 $ and $ v_2$ where the error vanishes. 
 
 # ## Continuous activation function
 
-# In[16]:
-
-
-print(Z)
-
-
-# Coming back to the contour chart above, we can see that the lines are "serrated". This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and non-differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so-called **sigmoid**
+# Looking closely at the contour map above, we can see that the lines are "serrated". This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and hence non-differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so-called **sigmoid**
 # 
 # $$ \sigma(s)=\frac{1}{1+e^{-s}}$$
 # 
 # has been used in many practical applications of ANNs.
 
-# In[17]:
+# In[8]:
 
 
 # sigmoid, a.k.a. the logistic function, or simply (1+arctanh(-s/2))/2 
@@ -192,7 +215,7 @@ def sig(s):
     return 1/(1+np.exp(-s))
 
 
-# In[18]:
+# In[9]:
 
 
 draw.plot(sig,start=-10,stop=10,title='Sigmoid');
@@ -204,7 +227,7 @@ draw.plot(sig,start=-10,stop=10,title='Sigmoid');
 # 
 # which is its special feature.
 
-# In[19]:
+# In[10]:
 
 
 # derivative of sigmoid
@@ -212,7 +235,7 @@ def dsig(s):
      return sig(s)*(1-sig(s))
 
 
-# In[20]:
+# In[11]:
 
 
 draw.plot(dsig,start=-10,stop=10,title='Derivative of sigmoid'); 
@@ -222,7 +245,7 @@ draw.plot(dsig,start=-10,stop=10,title='Derivative of sigmoid');
 # 
 # $$\sigma(s;T)=\frac{1}{1+e^{-s/T}}.$$
 
-# In[21]:
+# In[12]:
 
 
 # sigmoid with temperature T
@@ -230,7 +253,7 @@ def sig_T(s,T):
     return 1/(1+np.exp(-s/T))
 
 
-# In[22]:
+# In[13]:
 
 
 plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -251,25 +274,29 @@ plt.xlabel('signal',fontsize=11)
 plt.ylabel('response',fontsize=11);
 
 
-# ```{note}
-# For smaller and smaller $ T $, the sigmoid approaches the previously used step function. Note that the argument of the sigmoid is the quotient
 # 
-# $$ s / T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 = \xi_0 + xi_1 x_1 + xi_2 x_2 $$,
+# For smaller and smaller $T$, the sigmoid approaches the previously used step function. 
 # 
-# which means that we can always assume $ T = 1 $ without losing generality ($ T $ is the "scale"). However, we now have three independent arguments $ \xi_0 $, $ \xi_1 $, and $ \xi_2$. Thus, it is impossible to reduce the situation to two independent parameters, as was the case above.
-# ```
+# 
+# Note that the argument of the sigmoid is the quotient
+# 
+# $$
+# s/T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 = \xi_0 + \xi_1 x_1 + \xi_2 x_2,
+# $$
+# 
+# which means that we can always take $ T = 1 $ without losing generality ($ T $ is the "scale"). However, we now have three independent arguments $ \xi_0 $, $ \xi_1 $, and $ \xi_2$, so it is impossible to reduce the present situation to only two independent parameters, as was the case in the previous section.
 
-# We now repeat our previous example with the classifier, but with the activation function given by the sigmoid. The error function, with 
+# We now repeat our example with the classifier, but with the activation function given by the sigmoid. The error function, with the answers
 # 
-# $$y_o^{(p)}=\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)}). $$ 
+# $$y_o^{(p)}=\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)}), $$ 
 # 
 # becomes
 # 
 # $$E(w_0,w_1,w_2)=\sum_p \left [\sigma(w_0+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)} \right]^2.$$
 # 
-# We run the perceptron algorithm with the sigmoid activation function 1000 times:
+# We run the perceptron algorithm with the sigmoid activation function 1000 times, printing out every 100th step:
 
-# In[23]:
+# In[30]:
 
 
 weights=[[func.rn()],[func.rn()],[func.rn()]]      # random weights from [-0.5,0.5]
@@ -284,15 +311,15 @@ for r in range(1000):         # rounds
         w0_o=weights[0][0]               # updated weights 
         w1_o=weights[1][0] 
         w2_o=weights[2][0] 
-        v1_o=w1_o/w0_o
+        v1_o=w1_o/w0_o                   # ratios of weights
         v2_o=w2_o/w0_o
         print(np.round(w0_o,3),np.round(v1_o,3),np.round(v2_o,3),
               np.round(error(w0_o, w0_o*v1_o, w0_o*v2_o, samp2, func.sig),5))                             
 
 
-# We notice the decrease of the error as the simulation proceeds. The error function now has three independent arguments, so it cannot be drawn in two dimensions. We can, however, look at its projections, e.g. with a fixed value of $ w_0 $.
+# We notice, as expected, a gradual decrease of the error as the simulation proceeds. Since the error function now has three independent arguments, it cannot be drawn in two dimensions. We can, however, show its projection, e.g. with a fixed value of $ w_0 $, which we do below:
 
-# In[24]:
+# In[31]:
 
 
 fig, ax = plt.subplots(figsize=(3.7,3.7),dpi=120)
@@ -314,31 +341,28 @@ ax.set_aspect(aspect=1)
 ax.set_xlabel('$w_1$', fontsize=11)
 ax.set_ylabel('$w_2$', fontsize=11)
 
-ax.scatter(w1_o, w2_o, s=20,c='red',label='optimum') # our found optimal point
+ax.scatter(w1_o, w2_o, s=20,c='red',label='found minimum') # our found optimal point
 
 ax.legend();
 
 
 # ```{note}
-# In the present example, when we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are un the range (0,1). As we have discussed above, in the sigmoid, whose argument is $ (w_0 + w_1 x_1 + w_2 x_2) / T$, increasing the weights is equivalent to scaling down the temperature $T$. Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above. 
+# As we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are in the range (0,1). As we have discussed above, in the sigmoid, whose argument is $ (w_0 + w_1 x_1 + w_2 x_2) / T$, increasing the weights is equivalent to scaling down the temperature $T$. Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above. 
 # ```
 
 # ## Steepest descent
 
+# The reason of carrying out the above simulations was to drive the reader into conclusion that the issue of optimizing the weights can be reduced to a generic problem of minimizing a multi-variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. Issues associated with finding the minimum of multivariable functions are well known:
 # 
-# 
-
-# As we can see, the issue of optimizing the weights is reduced to a generic problem of minimizing a multi-variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. The problems with finding the minimum of multivariable functions are well known:
-# 
-# - there may be local minima, and therefore it may be difficult to find the global minimum;
+# - there may be local minima, and therefore it may be very difficult to find the global minimum;
 # 
 # - the minimum can be at infinity (that is, it does not exist mathematically);
 # 
-# - The function around the minimum can be very flat, so the gradient is very small, and the update in gradient methods is extremely slow;
+# - The function around the minimum can be very flat, such that the gradient is very small, and the update in gradient methods is extremely slow;
 # 
-# Overall, numerical minimization of functions is an art! Many methods have been developed and a proper choice for a given problem is crucial for success. Here we apply the simplest **steepest descent** method.  
+# Overall, numerical minimization of functions is an art! Many methods have been developed and a proper choice for a given problem is crucial for success. Here we apply the simplest variant of the **steepest descent** method.  
 # 
-# For a differentiable function of multiple variables, $ F (z_1, z_2, ..., z_n) $, locally the steepest slope is defined by minus the gradient of the function $ F $, i.e. the steepest slope is in the direction of the vector
+# For a differentiable function of multiple variables, $ F (z_1, z_2, ..., z_n) $, locally the steepest slope is defined by minus the gradient of the function $ F $, 
 # 
 # $$-\left (\frac{\partial F}{\partial z_1}, \frac{\partial F}{\partial z_2}, ..., 
 # \frac{\partial F}{\partial z_n} \right ), $$
@@ -349,15 +373,15 @@ ax.legend();
 # 
 # and similarly for the other $ z_i $.
 # 
-# The method of finding the minimum of a function by the steepest descent is given by the iterative algorithm, where we update the coordinates (of a searched minimum) at each iteration step $m$ (shown in superscripts) with
+# The method of finding the minimum of a function by the steepest descent is given by an iterative algorithm, where we update the coordinates (of a searched minimum) at each iteration step $m$ (shown in superscripts) with
 # 
 # $$z_{i}^{(m+1)} = z_i^{(m)} - \epsilon  \, \frac{\partial F}{\partial z_i}. $$ 
 
-# In our specific case, we minimize the error function 
+# We need to minimize the error function 
 # 
 # $$E(w_0,w_1,w_2)= \sum_p [y_o^{(p)}-y_t^{(p)}]^2=\sum_p [\sigma(s^{(p)})-y_t^{(p)}]^2=\sum_p [\sigma(w_0  x_0^{(p)}+w_1 x_1^{(p)} +w_2 x_2^{(p)})-y_t^{(p)}]^2. $$
 # 
-# We use the chain rule to evaluate the derivatives.
+# The **chain rule** is used to evaluate the derivatives.
 
 # ```{admonition} Chain rule
 # 
@@ -379,28 +403,28 @@ ax.legend();
 # Note that updating always occurs, because the response $ y_o^ {(p)} $ is never strictly 0 or 1 for the sigmoid, whereas
 # the true value (label) $ y_t ^ {(p)} $ is 0 or 1.
 # 
-# Because $ y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] $ is nonzero only around $ s ^ {(p)} = $ 0 (see the sigmoid's derivative plot earlier), the updating occurs only near the threshold. This is fine, as the "problems" with misclassification happen near the dividing line.
+# Because $ y_o ^ {(p)} (1-y_o ^ {(p)}) = \sigma (s ^ {(p)}) [1- \sigma (s ^ {(p)})] $ is far from zero only around $ s ^ {(p)} = $ 0 (see the sigmoid's derivative plot earlier), a significant updating occurs only near the threshold. This is fine, as the "problems" with misclassification happen near the dividing line.
 # 
 # ```{note}
-# For comparison, the earlier perceptron algorithm is structurally very similar,
+# In comparison, the earlier perceptron algorithm is structurally very similar,
 # 
 # $$w_i \to w_i - \varepsilon \,(y_o^{(p)} - y_t^{(p)}) \, x_i,$$
 # 
-# but here the updating occurs for all points of the sample, not just near the threshold.
+# but here the updating occurs with all the points from the sample, not just near the threshold.
 # ```
 # 
-# The code for the learning algorithm with the steepest descent update of weights is following:
+# The code for the learning algorithm of our perceptron with the steepest descent update of weights is following:
 
-# In[27]:
+# In[16]:
 
 
-def teach_sd(sample, eps, w_in, f=func.sig): # Steepest descent for the perceptron
+def teach_sd(sample, eps, w_in): # Steepest descent for the perceptron
     
     [[w0],[w1],[w2]]=w_in              # initial weights
     for i in range(len(sample)):       # loop over the data sample
         for k in range(10):            # repeat 10 times 
             
-            yo=f(w0+w1*sample[i,0]+w2*sample[i,1])  # obtained answer for pont i
+            yo=func.sig(w0+w1*sample[i,0]+w2*sample[i,1])  # obtained answer for pont i
 
             w0=w0+eps*(sample[i,2]-yo)*yo*(1-yo)*1            # update of weights
             w1=w1+eps*(sample[i,2]-yo)*yo*(1-yo)*sample[i,0]
@@ -408,9 +432,9 @@ def teach_sd(sample, eps, w_in, f=func.sig): # Steepest descent for the perceptr
     return [[w0],[w1],[w2]]
 
 
-# Its performance is similar to perceptron algorithm studied above.
+# Its performance is similar to the original perceptron algorithm studied above:
 
-# In[28]:
+# In[17]:
 
 
 weights=[[func.rn()],[func.rn()],[func.rn()]]      # random weights from [-0.5,0.5]
@@ -430,6 +454,8 @@ for r in range(1000):         # rounds
         print(np.round(w0_o,3),np.round(v1_o,3),np.round(v2_o,3),
               np.round(error(w0_o, w0_o*v1_o, w0_o*v2_o, samp2, func.sig),5))                                          
 
+
+# To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, which is used to minimize the error f 
 
 # (bpa-lab)=
 # ## Backprop algorithm
@@ -547,7 +573,7 @@ for r in range(1000):         # rounds
 # 
 # The code has 12 lines only, not counting the comments!
 
-# In[29]:
+# In[18]:
 
 
 def back_prop(fe,la, p, ar, we, eps,f=func.sig,df=func.dsig):
@@ -587,7 +613,7 @@ def back_prop(fe,la, p, ar, we, eps,f=func.sig,df=func.dsig):
 # We illustrate the code on the example of a binary classifier of points inside a circle. 
 # 
 
-# In[30]:
+# In[19]:
 
 
 def cir():
@@ -601,7 +627,7 @@ def cir():
 
 # For future generality **(new convention)**, we split the sample into an array of **features** and **labels**:
 
-# In[32]:
+# In[20]:
 
 
 sample_c=np.array([cir() for _ in range(3000)]) # sample
@@ -609,7 +635,7 @@ features_c=np.delete(sample_c,2,1)
 labels_c=np.delete(np.delete(sample_c,0,1),0,1)
 
 
-# In[33]:
+# In[21]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -624,20 +650,20 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # We choose the following architecture and initial parameters:
 
-# In[34]:
+# In[22]:
 
 
 arch_c=[2,4,4,1]                  # architecture
-weights=func.set_ran_w(arch_c,10) # scaled random initial weights
+weights=func.set_ran_w(arch_c,4)  # scaled random initial weights in [-5,5]
 eps=.7                            # initial learning speed 
 
 
 # The simulation takes a few minutes, 
 
-# In[36]:
+# In[23]:
 
 
-for k in range(300):   # rounds
+for k in range(1000):   # rounds
     eps=.995*eps       # decrease learning speed
     if k%100==99: print(k+1,' ',end='')             # print progress        
     for p in range(len(features_c)):                # loop over points
@@ -645,9 +671,15 @@ for k in range(300):   # rounds
                        f=func.sig,df=func.dsig) # backprop
 
 
+# In[24]:
+
+
+eps
+
+
 # whereas testing is very fast: 
 
-# In[38]:
+# In[25]:
 
 
 test=[] 
@@ -704,7 +736,7 @@ fnet=draw.plot_net_w(arch_c,weights,.1);
 # We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not matter! 
 # ```
 
-# In[35]:
+# In[28]:
 
 
 Image(filename="images/cir1-3.png",width=800)

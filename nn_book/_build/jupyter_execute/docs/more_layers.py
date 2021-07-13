@@ -268,7 +268,7 @@ plot_net_lab([3,3,2],
               2: np.array(["","$y_o=f(\Sigma \,x_a^{1} w_{a1}^{2})$"])})
 
 
-# The implementation of the feed-forward propagation explained above in Python is following:
+# The implementation of the feed-forward propagation in Python is following:
 
 # In[32]:
 
@@ -314,7 +314,7 @@ def feed_forward(ar, we, x_in, f=func.step):
     return x
 
 
-# For brevity, we do not pass the input bias node of the input in the argument. It is inserted inside the function.
+# For brevity, we adopt a convention where we do not pass the input bias node of the input in the argument. It is inserted inside the function with **np.insert(x_in,0,1)**. As usual, we use **np.dot** for matrix multiplication.  
 # 
 # Next, we test how **feed_forward** works on a sample input. 
 
@@ -448,9 +448,9 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # We can see that our little machine works perfectly well!
 # 
-# At this point the reader might again rightly say that the preceding results are trivial: in essence, we have just been implementing some geometric conditions and their conjunctions. 
+# At this point the reader might rightly say that the preceding results are trivial: in essence, we have just been implementing some geometric conditions and their conjunctions. 
 # 
-# However, as in the case of single-layer networks, there is an important argument against this apparent triviality. Imagine again we have the data sample with labels, and only this, as in the example of the single MCP neuron of chapter {ref}`MCP-lab`. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exactly what teaching of classifiers does: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this chapter, the reader should be convinced that this is perfectly possible and there is nothing magical about it! 
+# However, as in the case of single-layer networks, there is an important argument against this apparent triviality. Imagine again we have a data sample with labels, and only this, as in the example of the single MCP neuron of chapter {ref}`MCP-lab`. Then we do not have the dividing conditions to begin with and need some efficient way to find them. This is exactly what teaching of classifiers will do: its sets the weights in such a way that the proper conditions are implicitly built in. After the material of this chapter, the reader should be convinced that this is perfectly possible and there is nothing magical about it! In the next chapter we will show how to do it.
 
 # ## Exercises
 

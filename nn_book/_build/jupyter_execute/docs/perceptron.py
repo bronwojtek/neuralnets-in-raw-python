@@ -20,30 +20,24 @@ sys.path.append('./lib_nn') # path to my library package
 from neural import *        # import my library package
 
 
-# ```{note}
-# We only show new imported packages in the text, with the previous imports, such as **numpy**, repeated but hidden.
-# 
-# Here we load for the first time the lecture's **neural** package (see {ref}`app-lab`). 
-# ```
-
 # ## Supervised learning
 
 # We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has
 # 
-# - some **architecture**, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, ...);
+# - a certain **architecture**, i.e. the number of layers, number of neurons in each layer, scheme of connections between the neurons (fully connected or not, feed forward, recurrent, ...);
 # 
 # - **weights (hyperparameters)**, with specific values, defining the network's functionality.
 # 
 # The prime practical question is how to set (for a given architecture) the weights such that a requested goal is realized, i.e., a given input yields a desired output. 
-# In the tasks discussed earlier, the weights could be constructed *a priori*, be it for the logical gates or for the memory models. However, for more involved applications we want to have an "easier" way of determining the weights. Actually, for complicated problems a "theoretical" determination of weights is not possible at all. This is the basic reason for inventing **learning algorithms**, which automatically adjust the weights with the help of the data. 
+# In the tasks discussed earlier, the weights could be constructed *a priori*, be it for the logical gates or for the memory models. However, for more involved applications we want to have an "easier" way of determining the weights. Actually, for complicated problems a "theoretical" a priori determination of weights is not possible at all. This is the basic reason for inventing **learning algorithms**, which automatically adjust the weights with the help of the available data. 
 # 
-# In this chapter we begin to explore such algorithms with the **supervised learning**, used for data classification.  
+# In this chapter we begin to explore such algorithms with the **supervised learning** approach, used i.a. for data classification.  
 
 # ```{admonition} Supervised learning
 # :class: important
 # 
-# In this strategy, the data must possess **labels** which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat, dog,...), which are the labels. 
-# The labeled data are split into a **training** sample and a **test** sample. 
+# In this strategy, the data must possess **labels** which a priori determine the correct category for each point. Think for example of pictures of animals (data) and their descriptions (cat, dog,...), which are called the labels. 
+# The labeled data are then split into a **training** sample and a **test** sample. 
 # 
 # The basic steps of supervised learning for a given ANN are following:
 # 
@@ -59,7 +53,7 @@ from neural import *        # import my library package
 # 
 # If satisfied, you have a desired trained ANN performing a specific task (like classification), which can be used on new, unlabeled data. If not, you can split the sample in the training and the test parts in a different way and repeat the procedure from the beginning. Also, you may try to acquire more data (which may be expensive), or change your network's architecture.
 # 
-# The term "supervised" comes form the interpretation of the procedure where the labels are held by a "teacher", who thus knows which answers are correct and which are wrong, and who **supervises** that way the training process.
+# The term "supervised" comes form an interpretation of the procedure where the labels are held by a "teacher", who thus knows which answers are correct and which are wrong, and who **supervises** that way the training process. Of course, a computer program "supervises itself".
 # ```
 
 # ## Perceptron as a binary classifier
@@ -233,6 +227,7 @@ plt.ylabel('$x_2$',fontsize=12);
 
 # The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of {numref}`MCP2-fig` that would carry out the binary classification.
 
+# (lab-pa)=
 # ## Perceptron algorithm
 
 # We could still try to figure out somehow the proper weights for the present example and find the dividing line, for instance with a ruler and pencil, but this is not the point. We wish to have a systematic algorithmic procedure that will effortlessly work for this one and any similar situation. The answer is the already mentioned [perceptron algorithm](https://en.wikipedia.org/wiki/Perceptron). 
