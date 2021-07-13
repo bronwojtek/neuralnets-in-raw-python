@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  13 JUL 2021 00:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  13 JUL 2021 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1717,290 +1717,296 @@ File: more_layers_22_0.png Graphic file (type bmp)
  [35] [36]
 File: more_layers_28_0.png Graphic file (type bmp)
 <more_layers_28_0.png>
- [37]
-File: more_layers_37_0.png Graphic file (type bmp)
-<more_layers_37_0.png>
-File: more_layers_38_0.png Graphic file (type bmp)
-<more_layers_38_0.png>
- [38]
-File: more_layers_41_0.png Graphic file (type bmp)
-<more_layers_41_0.png>
+ [37] [38]
+File: more_layers_39_0.png Graphic file (type bmp)
+<more_layers_39_0.png>
+File: more_layers_40_0.png Graphic file (type bmp)
+<more_layers_40_0.png>
+File: more_layers_43_0.png Graphic file (type bmp)
+<more_layers_43_0.png>
  [39]
-File: more_layers_45_0.png Graphic file (type bmp)
-<more_layers_45_0.png>
-File: more_layers_50_0.png Graphic file (type bmp)
-<more_layers_50_0.png>
- [40] [41] [42
-
-]
+File: more_layers_47_0.png Graphic file (type bmp)
+<more_layers_47_0.png>
+ [40]
+File: more_layers_52_0.png Graphic file (type bmp)
+<more_layers_52_0.png>
+ [41] [42]
 Chapter 6.
-[43] [44]
-File: backprop_14_0.png Graphic file (type bmp)
-<backprop_14_0.png>
- [45]
-File: backprop_19_0.png Graphic file (type bmp)
-<backprop_19_0.png>
+[43
+
+] [44]
+Overfull \vbox (2.50108pt too high) detected at line 2609
+ []
+
+[45]
+File: backprop_15_0.png Graphic file (type bmp)
+<backprop_15_0.png>
+File: backprop_20_0.png Graphic file (type bmp)
+<backprop_20_0.png>
  [46]
-File: backprop_22_0.png Graphic file (type bmp)
-<backprop_22_0.png>
-File: backprop_25_0.png Graphic file (type bmp)
-<backprop_25_0.png>
+File: backprop_23_0.png Graphic file (type bmp)
+<backprop_23_0.png>
+File: backprop_26_0.png Graphic file (type bmp)
+<backprop_26_0.png>
  [47] [48]
-File: backprop_30_0.png Graphic file (type bmp)
-<backprop_30_0.png>
+File: backprop_31_0.png Graphic file (type bmp)
+<backprop_31_0.png>
  [49] [50] [51]
-Overfull \hbox (46.8638pt too wide) in paragraph at lines 2947--2953
+File: backprop_46_0.png Graphic file (type bmp)
+<backprop_46_0.png>
+ [52]
+Overfull \hbox (46.8638pt too wide) in paragraph at lines 2989--2995
 []$[] [][] [][]$ 
  []
 
-[52] [53]
-File: backprop_55_0.png Graphic file (type bmp)
-<backprop_55_0.png>
- [54]
-File: backprop_61_0.png Graphic file (type bmp)
-<backprop_61_0.png>
+[53] [54]
+File: backprop_59_0.png Graphic file (type bmp)
+<backprop_59_0.png>
  [55]
-File: backprop_63_0.png Graphic file (type bmp)
-<backprop_63_0.png>
-File: backprop_66_0.png Graphic file (type bmp)
-<backprop_66_0.png>
- [56] [57] [58]
+File: backprop_68_0.png Graphic file (type bmp)
+<backprop_68_0.png>
+File: backprop_70_0.png Graphic file (type bmp)
+<backprop_70_0.png>
+ [56]
+File: backprop_73_0.png Graphic file (type bmp)
+<backprop_73_0.png>
+ [57] [58] [59] [60
+
+]
 Chapter 7.
 File: interpol_7_0.png Graphic file (type bmp)
 <interpol_7_0.png>
-[59
-
-]
+[61]
 File: interpol_11_0.png Graphic file (type bmp)
 <interpol_11_0.png>
 File: interpol_13_0.png Graphic file (type bmp)
 <interpol_13_0.png>
- [60]
+ [62]
 File: interpol_15_0.png Graphic file (type bmp)
 <interpol_15_0.png>
- [61]
+ [63]
 File: interpol_25_0.png Graphic file (type bmp)
 <interpol_25_0.png>
 File: interpol_30_0.png Graphic file (type bmp)
 <interpol_30_0.png>
- [62] [63] [64]
+ [64] [65] [66]
 Chapter 8.
 File: rectification_5_0.png Graphic file (type bmp)
 <rectification_5_0.png>
 File: rectification_7_0.png Graphic file (type bmp)
 <rectification_7_0.png>
-[65
+[67
 
 ]
 File: rectification_9_0.png Graphic file (type bmp)
 <rectification_9_0.png>
 File: rectification_11_0.png Graphic file (type bmp)
 <rectification_11_0.png>
- [66]
+ [68]
 File: rectification_22_0.png Graphic file (type bmp)
 <rectification_22_0.png>
- [67]
+ [69]
 File: rectification_36_0.png Graphic file (type bmp)
 <rectification_36_0.png>
- [68]
+ [70]
 Chapter 9.
-[69
+[71
 
 ]
 File: unsupervised_10_0.png Graphic file (type bmp)
 <unsupervised_10_0.png>
- [70]
+ [72]
 File: unsupervised_15_0.png Graphic file (type bmp)
 <unsupervised_15_0.png>
- [71]
+ [73]
 File: unsupervised_25_0.png Graphic file (type bmp)
 <unsupervised_25_0.png>
- [72]
+ [74]
 File: unsupervised_38_0.png Graphic file (type bmp)
 <unsupervised_38_0.png>
- [73]
+ [75]
 File: unsupervised_46_0.png Graphic file (type bmp)
 <unsupervised_46_0.png>
- [74]
+ [76]
 File: cl4_2.png Graphic file (type bmp)
 <cl4_2.png>
 File: cl5.jpg Graphic file (type bmp)
 <cl5.jpg>
- [75] [76]
+ [77] [78]
 File: cd.jpg Graphic file (type bmp)
 <cd.jpg>
- [77] [78]
+ [79] [80]
 File: unsupervised_73_0.png Graphic file (type bmp)
 <unsupervised_73_0.png>
- [79]
+ [81]
 File: unsupervised_79_0.png Graphic file (type bmp)
 <unsupervised_79_0.png>
- [80]
+ [82]
 File: unsupervised_86_0.png Graphic file (type bmp)
 <unsupervised_86_0.png>
- [81] [82]
+ [83] [84]
 Chapter 10.
 File: koha.png Graphic file (type bmp)
 <koha.png>
-[83
+[85
 
 ]
 File: som_16_0.png Graphic file (type bmp)
 <som_16_0.png>
- [84]
+ [86]
 File: som_20_0.png Graphic file (type bmp)
 <som_20_0.png>
- [85]
+ [87]
 File: kaall.png Graphic file (type bmp)
 <kaall.png>
- [86]
+ [88]
 File: som_29_0.png Graphic file (type bmp)
 <som_29_0.png>
 File: som_31_0.png Graphic file (type bmp)
 <som_31_0.png>
- [87]
+ [89]
 File: som_41_0.png Graphic file (type bmp)
 <som_41_0.png>
- [88]
+ [90]
 File: som_44_0.png Graphic file (type bmp)
 <som_44_0.png>
 File: som_50_0.png Graphic file (type bmp)
 <som_50_0.png>
- [89]
+ [91]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 4791.
+(Font)              scaled to size 14.40152pt on input line 4859.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 4791.
+(Font)              scaled to size 14.39845pt on input line 4859.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4791.
+(hyperref)                removing `math shift' on input line 4859.
 
 File: udm.png Graphic file (type bmp)
 <udm.png>
-[90]
+[92]
 File: som_58_0.png Graphic file (type bmp)
 <som_58_0.png>
- [91]
+ [93]
 File: som_60_0.png Graphic file (type bmp)
 <som_60_0.png>
 File: som_63_0.png Graphic file (type bmp)
 <som_63_0.png>
 File: som_66_0.png Graphic file (type bmp)
 <som_66_0.png>
- [92]
+ [94]
 File: som_70_0.png Graphic file (type bmp)
 <som_70_0.png>
 File: som_72_0.png Graphic file (type bmp)
 <som_72_0.png>
- [93]
+ [95]
 File: som_75_0.png Graphic file (type bmp)
 <som_75_0.png>
 File: som_78_0.png Graphic file (type bmp)
 <som_78_0.png>
 File: som_83_0.jpg Graphic file (type bmp)
 <som_83_0.jpg>
- [94]
+ [96]
 File: som_89_0.png Graphic file (type bmp)
 <som_89_0.png>
- [95]
+ [97]
 File: kball.png Graphic file (type bmp)
 <kball.png>
- [96] [97]
+ [98] [99]
 File: som_103_0.png Graphic file (type bmp)
 <som_103_0.png>
 File: som_105_0.png Graphic file (type bmp)
 <som_105_0.png>
- [98]
+ [100]
 File: som_111_0.png Graphic file (type bmp)
 <som_111_0.png>
 File: som_113_0.png Graphic file (type bmp)
 <som_113_0.png>
- [99]
+ [101]
 File: lat3.png Graphic file (type bmp)
 <lat3.png>
- [100]
+ [102]
 File: som_122_0.png Graphic file (type bmp)
 <som_122_0.png>
 File: som_128_0.png Graphic file (type bmp)
 <som_128_0.png>
- [101]
+ [103]
 File: smi32-pic.jpg Graphic file (type bmp)
 <smi32-pic.jpg>
- [102] [103]
-[104
+ [104] [105]
+[106
 
 ]
 Chapter 11.
-[105] [106
+[107] [108
 
 ]
 Chapter 12.
-[107] [108]
-Underfull \vbox (badness 10000) detected at line 5787
+[109] [110]
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5787
- []
-
-[109]
-Underfull \vbox (badness 10000) detected at line 5787
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5787
- []
-
-[110]
-Underfull \vbox (badness 10000) detected at line 5787
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5787
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 [111]
-Underfull \vbox (badness 10000) detected at line 5787
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5787
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 [112]
-Underfull \vbox (badness 10000) detected at line 5787
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5787
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
-[113] [114]
-Underfull \vbox (badness 10000) detected at line 6020
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6020
- []
-
-[115]
-Underfull \vbox (badness 10000) detected at line 6020
+[113]
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6020
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
-[116]
-Underfull \vbox (badness 10000) detected at line 6020
+[114]
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6020
+Underfull \vbox (badness 10000) detected at line 5855
  []
 
-[117] [118] (./nn_book.ind)
+[115] [116]
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+[117]
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+[118]
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6088
+ []
+
+[119] [120] (./nn_book.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -2035,30 +2041,30 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [119
+ [121
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6086.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6086.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6154.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6154.
  (./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6086.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6086.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6154.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6154.
 
 Package rerunfilecheck Info: File `nn_book.out' has not changed.
 (rerunfilecheck)             Checksum: 37A5E5EE19191B24C08D462644D6227E;9074.
  ) 
 Here is how much of TeX's memory you used:
- 41921 strings out of 479418
- 954600 string characters out of 5884586
- 1883472 words of memory out of 5000000
- 58591 multiletter control sequences out of 15000+600000
+ 41928 strings out of 479418
+ 954762 string characters out of 5884586
+ 1884474 words of memory out of 5000000
+ 58597 multiletter control sequences out of 15000+600000
  538948 words of font info for 111 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  71i,22n,112p,1520b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nn_book.pdf (123 pages).
+Output written on nn_book.pdf (125 pages).

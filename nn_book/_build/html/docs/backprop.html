@@ -717,25 +717,36 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
 </div>
 </div>
 </div>
-<p>To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, which is used to minimize the error f</p>
+<p>To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, minimizing the error function generated with the test sample. In the next section we generalize this idea to any multi-layer feed-forward ANN.</p>
 </div>
 <div class="section" id="backprop-algorithm">
 <span id="bpa-lab"></span><h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The material of this section is absolutely <strong>crucial</strong> for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.</p>
-<p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12">BH69</a>]</span> for updating the weights of a multi-layer network. It uses just two ingredients:</p>
+<p>The material of this section is absolutely <strong>crucial</strong> for understanding of the idea of training neural networks via supervised learning. At the same time, it can be quite difficult for a reader less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, we could not find a way to present the material in a simpler way than below, keeping the necessary rigor.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12">BH69</a>]</span> for updating the weights of a multi-layer perceptron. It uses just two ingredients:</p>
 <ul class="simple">
-<li><p>the <strong>chain rule</strong> for computing the derivative of a composite function, known to you from the mathematical analysis, and</p></li>
-<li><p><strong>steepest descent method</strong>, explained in the previous lecture.</p></li>
+<li><p>the <strong>chain rule</strong> for computing the derivative of a composite function, already used above, and</p></li>
+<li><p>the <strong>steepest descent method</strong>, explained in the previous lecture.</p></li>
 </ul>
-<p>We formulate the backprop algorithm for a perceptron with any number of neuron layers, <span class="math notranslate nohighlight">\(l\)</span>. The neurons in intermediate layers <span class="math notranslate nohighlight">\(j=1,\dots,l-1\)</span> are numbered with corresponding indices <span class="math notranslate nohighlight">\(\alpha_j=0,\dots,n_j\)</span>, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is <span class="math notranslate nohighlight">\(\alpha_l=1,\dots,n_l\)</span>.
-The error function, as introduced earlier, is a sum over the points of the training sample and, additionally, over the nodes in the output layer:</p>
+</div>
+<p>Consider a perceptron with any number of neuron layers, <span class="math notranslate nohighlight">\(l\)</span>. The neurons in intermediate layers <span class="math notranslate nohighlight">\(j=1,\dots,l-1\)</span> are numbered with corresponding indices <span class="math notranslate nohighlight">\(\alpha_j=0,\dots,n_j\)</span>, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is <span class="math notranslate nohighlight">\(\alpha_l=1,\dots,n_l\)</span>. For example, the network form the plot below has</p>
+<div class="math notranslate nohighlight">
+\[l=4,\;\; \alpha_1=0,\dots,4,\;\; \alpha_2=0,\dots,5, \;\; \alpha_3=0,\dots,3, \;\; \alpha_4=1,\dots,2,\]</div>
+<p>with the indices in each layer counted from the bottom.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/backprop_46_0.png" src="../_images/backprop_46_0.png" />
+</div>
+</div>
+<p>The error function is a sum over the points of the training sample and, additionally, over the nodes in the output layer:</p>
 <div class="math notranslate nohighlight">
 \[
 E(\{w\})=\sum_p \sum_{\alpha_l=1}^{n_l} \left[ y_{o,{\alpha_l}}^{(p)}(\{w\})-y_{t,{\alpha_l}}^{(p)}\right]^2,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\( \{w \} \)</span> represent all the network weights.
-We will deal with a single point contribution to <span class="math notranslate nohighlight">\(E\)</span>, denoted as <span class="math notranslate nohighlight">\( e \)</span>.
-It is a sum over all neurons in the output layer:</p>
+A single point contribution to <span class="math notranslate nohighlight">\(E\)</span>, denoted as <span class="math notranslate nohighlight">\( e \)</span>, is
+a sum over all the neurons in the output layer:</p>
 <div class="math notranslate nohighlight">
 \[
 e(\{w\})= \sum_{{\alpha_l}=1}^{n_l}\left[ y_{o,{\alpha_l}}-y_{t,{\alpha_l}}\right]^2, 
@@ -772,7 +783,7 @@ f \left (\sum_{\alpha_{l-1}=1}^{n_{l-1}} f\left(
 \dots f\left( \sum_{\alpha_{0}=0}^{n_{0}} x_{\alpha_{0}}^{0} w_{\alpha_{0} \alpha_{1}}^{1}\right) w_{\alpha_{1} \alpha_{2}}^{2} + 
 x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
  \right)  w_{\alpha_{l-1} {\alpha_l}}^{l} + x_0^{l-1} w_{0 {\alpha_l}}^{l} \right)-y_{t,{\alpha_l}} \right)^2\)</span></p>
-<p>Calculating successive derivatives with respect to the weights, and going backwards, i.e. from <span class="math notranslate nohighlight">\(j=l\)</span> down to 1, we get (the evaluation requires diligence and noticing the emerging regularity)</p>
+<p>Calculating successive derivatives with respect to the weights, and going backwards, i.e. from <span class="math notranslate nohighlight">\(j=l\)</span> down to 1, we get (see exercises)</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial e}{\partial w^j_{\alpha_{j-1} \alpha_j}} = x_{\alpha_{j-1}}^{j-1} D_{\alpha_j}^{j} , \;\;\; \alpha_{j-1}=0,\dots,n_{j-1}, \;\; \alpha_{j}=1,\dots,n_{j},
@@ -797,9 +808,14 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <li><p>the chain rule in evaluation of derivatives.</p></li>
 </ol>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The significance of going back layer-by-layer is that one updates much less weights in one step: just those entering the layer, and not all of them. This has significance for convergence of the steepest descent method, especially for deep networks.</p>
+</div>
 <p>If activation functions are different in various layers (denote them with <span class="math notranslate nohighlight">\(f_j\)</span> for layer <span class="math notranslate nohighlight">\(j\)</span>), then there is an obvious modification:</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\)</span>.</p>
+<p>This is not infrequent, as for many applications one selects different activation function for the intermediate and the output layers.</p>
 <div class="section" id="code-for-backprop">
 <h3>Code for backprop<a class="headerlink" href="#code-for-backprop" title="Permalink to this headline">¶</a></h3>
 <p>Next, we present a simple code that carries out the backprop algorithm. It is a straightforward implementation of the formulas derived above. In the code, we keep as much as we can the notation from the above derivation.</p>
@@ -857,7 +873,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 </div>
-<p>For future generality <strong>(new convention)</strong>, we split the sample into an array of <strong>features</strong> and <strong>labels</strong>:</p>
+<p>For a future use <strong>(new convention)</strong>, we split the sample into separate arrays of <strong>features</strong> (the two coordinates) and <strong>labels</strong> (1 if the point is inside the circle, 0 otherwise):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cir</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">)])</span> <span class="c1"># sample</span>
@@ -881,7 +897,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_56_0.png" src="../_images/backprop_56_0.png" />
+<img alt="../_images/backprop_59_0.png" src="../_images/backprop_59_0.png" />
 </div>
 </div>
 <p>We choose the following architecture and initial parameters:</p>
@@ -912,6 +928,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 </div>
+<p>The reduction of the learning speed in each round give the final value, which is small, but not too small:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span>
@@ -924,7 +941,8 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 </div>
-<p>whereas testing is very fast:</p>
+<p>(a too small value would update the weights very little, so further rounds would be useless).</p>
+<p>While the learning phase was rather long, the testing is very fast:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="p">[]</span> 
@@ -954,7 +972,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_63_0.png" src="../_images/backprop_63_0.png" />
+<img alt="../_images/backprop_68_0.png" src="../_images/backprop_68_0.png" />
 </div>
 </div>
 <p>The trained network looks like this:</p>
@@ -965,7 +983,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_65_0.png" src="../_images/backprop_65_0.png" />
+<img alt="../_images/backprop_70_0.png" src="../_images/backprop_70_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -974,26 +992,26 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The result in the plot is very good, perhaps except, as always, near the boundary. In view of our discussion of chapter <a class="reference internal" href="more_layers.html#more-lab"><span class="std std-ref">More layers</span></a>, where we have set the weights of a network with three neuron layers from geometric considerations, the quality of the present result is stunning. We do not see any straight sides of a polygon, but a nicely rounded boundary.</p>
+<p>The result in the plot is pretty good, perhaps except, as always, near the boundary. In view of our discussion of chapter <a class="reference internal" href="more_layers.html#more-lab"><span class="std std-ref">More layers</span></a>, where we have set the weights of a network with three neuron layers from geometric considerations, the quality of the present result is stunning. We do not see any straight sides of a polygon, but a nicely rounded boundary. As always in these games, improving the result would require a bigger sample and longer training, which is time consuming.</p>
 </div>
 <div class="important admonition">
 <p class="admonition-title">Local minima</p>
-<p>We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not matter!</p>
+<p>We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works sufficiently well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not really matter!</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/backprop_68_0.png" src="../_images/backprop_68_0.png" />
+<img alt="../_images/backprop_73_0.png" src="../_images/backprop_73_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="general-remarks">
 <h2>General remarks<a class="headerlink" href="#general-remarks" title="Permalink to this headline">¶</a></h2>
-<p>There are some more important and general observations:</p>
+<p>There are some more important and general observations to be made:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here <strong>feed-forward</strong>) and evaluations of derivatives, but the usage on a point involves just one function call.</p></li>
-<li><p>The classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to trained more for improvement, and/or increase the
+<li><p>Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here <strong>feed-forward</strong>) and evaluations of derivatives in many rounds (we have used 1000 for the circle example), but the usage on a point involves just one function call.</p></li>
+<li><p>A classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to train more for improvement, and/or increase the
 size of the training sample, in particular near the boundary.</p></li>
 <li><p>However, a too long learning on the same training sample does not actually make sense, because the accuracy stops improving at some point.</p></li>
 <li><p>Local minima occur in backprop, but this is by no means an obstacle to the use of the algorithm. This is an important practical feature.</p></li>
@@ -1009,6 +1027,7 @@ size of the training sample, in particular near the boundary.</p></li>
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
 <ol class="simple">
 <li><p>Prove (analytically) by evaluating the derivative that <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)]\)</span>. Show that the sigmoid is the <strong>only</strong> function with this property.</p></li>
+<li><p>Derive backprop formulas for network with one- and two intermediate layers. Note an emerging regularity (recurrence), and prove the general formulas for any number of intermediate layers.</p></li>
 <li><p>Modify the lecture example of the classifier of points in a circle by replacing the figure with</p>
 <ul class="simple">
 <li><p>semicircle;</p></li>
@@ -1017,19 +1036,19 @@ size of the training sample, in particular near the boundary.</p></li>
 <li><p>any of your favorite shapes.</p></li>
 </ul>
 </li>
-<li><p>Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.</p></li>
-<li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its <strong>weak</strong> connections, setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.</p></li>
+<li><p>Repeat 3., experimenting with the number of layers and neurons, but remember that a large number of them increases the computational time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum/practical architecture for each of the considered figures.</p></li>
+<li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 3. and remove one of its <strong>weak</strong> connections (first, find it by inspecting the weights), setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.</p></li>
 <li><p><strong>Scaling weights in back propagation.</strong>
 A disadvantage of using the sigmoid in the backprop algorithm is a very slow update of weights in layers distant from the output layer (the closer to the beginning of the network, the slower). A remedy here is a re-scaling of the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \)</span> to the update rate, where <span class="math notranslate nohighlight">\( y \)</span> is in the range <span class="math notranslate nohighlight">\( (0, 1) \)</span>. Thus the value of <span class="math notranslate nohighlight">\( y (1-y \)</span> cannot exceed 1/4, and in the subsequent layers (counting from the back) the product <span class="math notranslate nohighlight">\( [y (1-y] ^ n \le 1/4 ^ n\)</span>.
 To prevent this “shrinking”, the learning rate can be multiplied by compensating factors <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
 <ul class="simple">
-<li><p>Enter the above recipes into the code for backprop.</p></li>
-<li><p>Check if they improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.</p></li>
+<li><p>Enter the above two recipes into the code for backprop.</p></li>
+<li><p>Check if they indeed improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.</p></li>
 <li><p>For assessment of performance, carry out the execution time measurement (e.g., using the Python <strong>time</strong> library packet).</p></li>
 </ul>
 </li>
 <li><p><strong>Steepest descent improvement.</strong>
-The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent">Barzilai-Borwein</a> explained below. Implement this method in the back propagation algorithm. Vectors <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(n\)</span>-dimensional space are updated in subsequent iterations as <span class="math notranslate nohighlight">\( x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})\)</span>,
+The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent">Barzilai-Borwein</a> explained below. Implement this method in the back propagation algorithm. Vectors <span class="math notranslate nohighlight">\(x\)</span> in the <span class="math notranslate nohighlight">\(n\)</span>-dimensional space are updated in subsequent iterations as <span class="math notranslate nohighlight">\( x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})\)</span>,
 where <span class="math notranslate nohighlight">\(m\)</span> numbers the iteration, and the speed of learning depends on the behavior at the two (current and previous) points:</p></li>
 </ol>
 <div class="math notranslate nohighlight">

@@ -221,7 +221,7 @@ print(w[2])
 # As we already know very well, the output from a neuron is obtained by acting on its incoming input with an activation function. Thus we finally have 
 # 
 # $$ 
-# x^i_\alpha  = f(s^i_\alpha) = f \left (\sum_{\beta=0}^{n_{i-1}} x^{(i-1)}_\beta w^i_{\beta \alpha} \right), \;\; \alpha=1\dots n_i, \;\; i=1,\dots,l , \\
+# x^i_\alpha  = f(s^i_\alpha) = f \left (\sum_{\beta=0}^{n_{i-1}} x^{i-1}_\beta w^i_{\beta \alpha} \right), \;\; \alpha=1\dots n_i, \;\; i=1,\dots,l , \\
 # x^i_0 =1, \;\; i=1,\dots,l-1,  
 # $$
 # 
@@ -333,6 +333,37 @@ print(x)
 
 x[2][0]
 
+
+# ### Digression on linear networks
+
+# Let us now make the following observation. Suppose we have a network with a linear activation function $f(s)=c s$. Then the last formula from the feed-forward derivation becomes
+# 
+# 
+# $$ 
+# x^i_\alpha  = c \sum_{\beta=0}^{n_{i-1}} x^{i-1}_\beta w^i_{\beta \alpha}, \;\; \alpha=1\dots n_i, \;\; i=1,\dots,l , 
+# $$
+# 
+# or, in the matrix notation, 
+# 
+# $$
+# x^i = c x^{i-1} w^i.
+# $$
+# 
+# Iterating this, we get for the signal in the output layer
+# 
+# $$
+# x^l = c x^{l-1} w^i = c^2 x^{l-2} w^{l-1} w^l =\dots= c^l x^0 w^1 w^2 \dots w^l = 
+# x^0 W,
+# $$
+# 
+# where $W=c^l w^1 w^2 \dots w^l$. hence such a network is **equivalent** to a single-layer network with the weight matrix $W$ as specified above.
+# 
+# ```{note}
+# 
+# For that reason, it does not make sense to consider multiple layer networks with linear activation function.  
+# ```
+# 
+# 
 
 # ## Visualization
 

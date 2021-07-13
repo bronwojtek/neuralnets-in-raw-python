@@ -455,28 +455,42 @@ for r in range(1000):         # rounds
               np.round(error(w0_o, w0_o*v1_o, w0_o*v2_o, samp2, func.sig),5))                                          
 
 
-# To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, which is used to minimize the error f 
+# To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, minimizing the error function generated with the test sample. In the next section we generalize this idea to any multi-layer feed-forward ANN. 
 
 # (bpa-lab)=
 # ## Backprop algorithm
 
-# The material of this section is absolutely **crucial** for the understanding of the very important idea of training neural networks via supervised learning. At the same time, it can be quite difficult for people less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, the material cannot be presented simpler than below, keeping the necessary accuracy.
+# The material of this section is absolutely **crucial** for understanding of the idea of training neural networks via supervised learning. At the same time, it can be quite difficult for a reader less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, we could not find a way to present the material in a simpler way than below, keeping the necessary rigor.
 
-# The formulas we derive step by step here constitute the famous **back propagation algorithm (backprop)** {cite}`bryson1969` for updating the weights of a multi-layer network. It uses just two ingredients:
+# ```{note}
 # 
-# - the **chain rule** for computing the derivative of a composite function, known to you from the mathematical analysis, and
-# - **steepest descent method**, explained in the previous lecture.
+# The formulas we derive step by step here constitute the famous **back propagation algorithm (backprop)** {cite}`bryson1969` for updating the weights of a multi-layer perceptron. It uses just two ingredients:
+# 
+# - the **chain rule** for computing the derivative of a composite function, already used above, and
+# - the **steepest descent method**, explained in the previous lecture.
+# ```
 
-# We formulate the backprop algorithm for a perceptron with any number of neuron layers, $l$. The neurons in intermediate layers $j=1,\dots,l-1$ are numbered with corresponding indices $\alpha_j=0,\dots,n_j$, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is $\alpha_l=1,\dots,n_l$.
-# The error function, as introduced earlier, is a sum over the points of the training sample and, additionally, over the nodes in the output layer:
+# Consider a perceptron with any number of neuron layers, $l$. The neurons in intermediate layers $j=1,\dots,l-1$ are numbered with corresponding indices $\alpha_j=0,\dots,n_j$, with 0 indicating the bias node. In the output layer, having no bias node, the numbering is $\alpha_l=1,\dots,n_l$. For example, the network form the plot below has
+# 
+# $$l=4,\;\; \alpha_1=0,\dots,4,\;\; \alpha_2=0,\dots,5, \;\; \alpha_3=0,\dots,3, \;\; \alpha_4=1,\dots,2,$$
+# 
+# with the indices in each layer counted from the bottom.
+
+# In[37]:
+
+
+draw.plot_net([3,4,5,3,2]);
+
+
+# The error function is a sum over the points of the training sample and, additionally, over the nodes in the output layer:
 # 
 # $$
 # E(\{w\})=\sum_p \sum_{\alpha_l=1}^{n_l} \left[ y_{o,{\alpha_l}}^{(p)}(\{w\})-y_{t,{\alpha_l}}^{(p)}\right]^2,
 # $$ 
 # 
 # where $ \{w \} $ represent all the network weights.
-# We will deal with a single point contribution to $E$, denoted as $ e $.
-# It is a sum over all neurons in the output layer:
+# A single point contribution to $E$, denoted as $ e $, is
+# a sum over all the neurons in the output layer:
 # 
 # $$
 # e(\{w\})= \sum_{{\alpha_l}=1}^{n_l}\left[ y_{o,{\alpha_l}}-y_{t,{\alpha_l}}\right]^2, 
@@ -526,7 +540,7 @@ for r in range(1000):         # rounds
 # x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 #  \right)  w_{\alpha_{l-1} {\alpha_l}}^{l} + x_0^{l-1} w_{0 {\alpha_l}}^{l} \right)-y_{t,{\alpha_l}} \right)^2$
 # 
-# Calculating successive derivatives with respect to the weights, and going backwards, i.e. from $j=l$ down to 1, we get (the evaluation requires diligence and noticing the emerging regularity)
+# Calculating successive derivatives with respect to the weights, and going backwards, i.e. from $j=l$ down to 1, we get (see exercises)
 # 
 # 
 # $$
@@ -561,11 +575,18 @@ for r in range(1000):         # rounds
 # 2) the chain rule in evaluation of derivatives.
 # ```
 # 
+# ```{important}
+# 
+# The significance of going back layer-by-layer is that one updates much less weights in one step: just those entering the layer, and not all of them. This has significance for convergence of the steepest descent method, especially for deep networks.
+# ```
+# 
 # If activation functions are different in various layers (denote them with $f_j$ for layer $j$), then there is an obvious modification:
 
 # $D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})$, 
 # 
 # $D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1$. 
+
+# This is not infrequent, as for many applications one selects different activation function for the intermediate and the output layers.
 
 # ### Code for backprop
 
@@ -625,7 +646,7 @@ def cir():
         return np.array([x1,x2,0])
 
 
-# For future generality **(new convention)**, we split the sample into an array of **features** and **labels**:
+# For a future use **(new convention)**, we split the sample into separate arrays of **features** (the two coordinates) and **labels** (1 if the point is inside the circle, 0 otherwise):
 
 # In[20]:
 
@@ -671,13 +692,17 @@ for k in range(1000):   # rounds
                        f=func.sig,df=func.dsig) # backprop
 
 
+# The reduction of the learning speed in each round give the final value, which is small, but not too small:
+
 # In[24]:
 
 
 eps
 
 
-# whereas testing is very fast: 
+# (a too small value would update the weights very little, so further rounds would be useless).
+
+# While the learning phase was rather long, the testing is very fast: 
 
 # In[25]:
 
@@ -726,14 +751,14 @@ fnet=draw.plot_net_w(arch_c,weights,.1);
 # ```
 # 
 # ```{note}
-# The result in the plot is very good, perhaps except, as always, near the boundary. In view of our discussion of chapter {ref}`more-lab`, where we have set the weights of a network with three neuron layers from geometric considerations, the quality of the present result is stunning. We do not see any straight sides of a polygon, but a nicely rounded boundary.  
+# The result in the plot is pretty good, perhaps except, as always, near the boundary. In view of our discussion of chapter {ref}`more-lab`, where we have set the weights of a network with three neuron layers from geometric considerations, the quality of the present result is stunning. We do not see any straight sides of a polygon, but a nicely rounded boundary. As always in these games, improving the result would require a bigger sample and longer training, which is time consuming.
 # 
 # ```
 # 
 # ```{admonition} Local minima
 # :class: important
 # 
-# We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not matter! 
+# We have mentioned before the emergence of local minima in multi-variable optimization as a potential problem. In the figure below we show three different results of the backprop code for our classifier of points in a circle. We note that each of them has a radically different set of optimum weights, whereas the results on the test sample are, at least by eye, equally good for each case. This shows that the backprop optimization ends up, as anticipated, in different local minima. However, each of these local minima works sufficiently well and equally good. This is actually the reason why backprop can be used in practical problems: there are zillions of local minima, but it does not really matter! 
 # ```
 
 # In[28]:
@@ -744,14 +769,14 @@ Image(filename="images/cir1-3.png",width=800)
 
 # ## General remarks
 
-# There are some more important and general observations:
+# There are some more important and general observations to be made:
 # 
 # 
 # ```{note}
 # 
-# - Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here **feed-forward**) and evaluations of derivatives, but the usage on a point involves just one function call.
+# - Supervised training of an ANN takes a very long time, but using a trained ANN takes a blink of an eye. The asymmetry originates from the simple fact that the multi-parameter optimization takes very many function calls (here **feed-forward**) and evaluations of derivatives in many rounds (we have used 1000 for the circle example), but the usage on a point involves just one function call.
 # 
-# - The classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to trained more for improvement, and/or increase the 
+# - A classifier trained with backprop may work inaccurately for the points near the boundary lines. A remedy is to train more for improvement, and/or increase the 
 # size of the training sample, in particular near the boundary.
 # 
 # - However, a too long learning on the same training sample does not actually make sense, because the accuracy stops improving at some point.
@@ -772,30 +797,32 @@ Image(filename="images/cir1-3.png",width=800)
 # 
 # 1. Prove (analytically) by evaluating the derivative that $ \sigma '(s) = \sigma (s) [1- \sigma (s)]$. Show that the sigmoid is the **only** function with this property.
 # 
-# 2. Modify the lecture example of the classifier of points in a circle by replacing the figure with
+# 2. Derive backprop formulas for network with one- and two intermediate layers. Note an emerging regularity (recurrence), and prove the general formulas for any number of intermediate layers.
+# 
+# 3. Modify the lecture example of the classifier of points in a circle by replacing the figure with
 # 
 #     - semicircle;
 #     - two disjoint circles;
 #     - ring;
 #     - any of your favorite shapes.
 # 
-# 3. Repeat 2., experimenting with the number of layers and neurons, but remember that a large number of them increases the computation time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum architecture for each of the considered figures.  
+# 4. Repeat 3., experimenting with the number of layers and neurons, but remember that a large number of them increases the computational time and does not necessarily improve the result. Rank each case by the fraction of misclassified points in a test sample. Find an optimum/practical architecture for each of the considered figures.  
 # 
-# 4. If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly "damaged" (cosmic rays, alcohol, ...). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 2. and remove one of its **weak** connections, setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.
+# 4. If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly "damaged" (cosmic rays, alcohol, ...). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 3. and remove one of its **weak** connections (first, find it by inspecting the weights), setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.
 # 
 # 
 # 5. **Scaling weights in back propagation.**
 # A disadvantage of using the sigmoid in the backprop algorithm is a very slow update of weights in layers distant from the output layer (the closer to the beginning of the network, the slower). A remedy here is a re-scaling of the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form $ \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) $ to the update rate, where $ y $ is in the range $ (0, 1) $. Thus the value of $ y (1-y $ cannot exceed 1/4, and in the subsequent layers (counting from the back) the product $ [y (1-y] ^ n \le 1/4 ^ n$. 
 # To prevent this "shrinking", the learning rate can be multiplied by compensating factors $ 4 ^ n $: $ 4, 16, 64, 256, ... $.  Another heuristic argument {cite}`rigler1991` suggests even faster growing factors of the form $ 6 ^ n $: $ 6, 36, 216, 1296, ... $
 # 
-#     - Enter the above recipes into the code for backprop.
+#     - Enter the above two recipes into the code for backprop.
 # 
-#     - Check if they improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.
+#     - Check if they indeed improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.
 # 
 #     - For assessment of performance, carry out the execution time measurement (e.g., using the Python **time** library packet).
 # 
 # 6. **Steepest descent improvement.**
-# The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of [Barzilai-Borwein](https://en.wikipedia.org/wiki/Gradient_descent) explained below. Implement this method in the back propagation algorithm. Vectors $x$ in $n$-dimensional space are updated in subsequent iterations as $ x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})$,
+# The method of the steepest descent of finding the minimum of a function of many variables used in the lecture depends on the local gradient. There are much better approaches that give a faster convergence to the (local) minimum. One of them is the recipe of [Barzilai-Borwein](https://en.wikipedia.org/wiki/Gradient_descent) explained below. Implement this method in the back propagation algorithm. Vectors $x$ in the $n$-dimensional space are updated in subsequent iterations as $ x^{(m + 1)} = x^{(m)} - \gamma_m \nabla F (x^{(m)})$,
 # where $m$ numbers the iteration, and the speed of learning depends on the behavior at the two (current and previous) points:
 # 
 # $$ \gamma _ {m} = \frac {\left | \left (x^{(m)}-x^{(m-1)} \right) \cdot
