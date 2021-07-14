@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rectification &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="shortcut icon" href="../_static/koh.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unsupervised learning" href="unsupervised.html" />
+    <link rel="prev" title="Interpolation" href="interpol.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/koh.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Explaining neural networks in raw Python: lectures in Jupyter</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mcp.html">
+   MCP Neuron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="memory.html">
+   Models of memory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="perceptron.html">
+   Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="more_layers.html">
+   More layers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backprop.html">
+   Back propagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpol.html">
+   Interpolation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Rectification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unsupervised.html">
+   Unsupervised learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="som.html">
+   Self Organizing Maps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Concluding remarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix.html">
+   Appendix
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/rectification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/bronwojtek/neuralnets-in-raw-python/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/bronwojtek/neuralnets-in-raw-python//issues/new?title=Issue%20on%20page%20%2Fdocs/rectification.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/bronwojtek/neuralnets-in-raw-python/edit/master/nn_book/docs/rectification.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bronwojtek/neuralnets-in-raw-python/master?urlpath=tree/nn_book/docs/rectification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolation-with-relu">
+   Interpolation with ReLU
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classifiers-with-rectification">
+   Classifiers with rectification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="rectification">
+<h1>Rectification<a class="headerlink" href="#rectification" title="Permalink to this headline">¶</a></h1>
+<p>In the previous chapter we made a hump function from two sigmoids, which would form a basis function for approximation. We may now ask a follow-up question: can we make the sigmoid itself a linear combination (or simply difference) of some other functions. Then we could use these functions for activation of neurons in place of the sigmoid. The answer is yes. For instance, the <strong>Rectified Linear Unit (ReLU)</strong> function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+{\rm ReLU}(x) = \left \{ \begin{array}{l} x {\rm ~~~ for~} x \ge 0 \\
+                                          0 {\rm ~~~ for~} x &lt; 0 \end{array}    \right . = {\rm max}(x,0)
+\end{split}\]</div>
+<p>does (approximately) the job. The somewhat awkward name comes from electonics, where a “rectifying” (straightening up) unit is used to cut off negative values of an electric signal. The plot of ReLU looks as follows:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_5_0.png" src="../_images/rectification_5_0.png" />
+</div>
+</div>
+<p>Taking a difference of two ReLU functions with shifted arguments yields, for example,</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_7_0.png" src="../_images/rectification_7_0.png" />
+</div>
+</div>
+<p>which looks pretty much as a sigmoid, apart from the sharp corners. One can make things smooth by taking a different function, the <strong>softplus</strong>,</p>
+<div class="math notranslate nohighlight">
+\[
+{\rm softplus}(x)=\log \left( 1+e^x \right ),
+\]</div>
+<p>which looks as</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_9_0.png" src="../_images/rectification_9_0.png" />
+</div>
+</div>
+<p>A difference of two <strong>softplus</strong> functions yields a result very similar to the sigmoid.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_11_0.png" src="../_images/rectification_11_0.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One may use the ReLU of softplus, or a plethora of other similar functions, for the activation.</p>
+</div>
+<p>Why one should actually do this will be dicussed later.</p>
+<div class="section" id="interpolation-with-relu">
+<h2>Interpolation with ReLU<a class="headerlink" href="#interpolation-with-relu" title="Permalink to this headline">¶</a></h2>
+<p>We can approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and the identity function is the output layer, as in the previous section). The functions are taken from the module <strong>func</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fff</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">relu</span>    <span class="c1"># short-hand notation</span>
+<span class="n">dfff</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">drelu</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The network must now have more neurons, as the sigmoid “splits” into two ReLU functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>                   <span class="c1"># architecture</span>
+<span class="n">weights</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">set_ran_w</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># initialize weights randomly in [-2.5,2.5]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We carry the simulations exactly as in the previous case. Experience says one should stat with small learning speeds. Two sets of rounds (as in the previous chapter)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">0.0003</span>          <span class="c1"># small learning speed</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span> <span class="c1"># rounds</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>          <span class="c1"># loop over the data sample points</span>
+        <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))</span> <span class="c1"># random point</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">back_prop_o</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">pp</span><span class="p">,</span><span class="n">arch</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>
+                         <span class="n">f</span><span class="o">=</span><span class="n">fff</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">dfff</span><span class="p">,</span><span class="n">fo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">lin</span><span class="p">,</span><span class="n">dfo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dlin</span><span class="p">)</span> <span class="c1"># teaching</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">600</span><span class="p">):</span> <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.999</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span> <span class="c1"># points in sequence</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">back_prop_o</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">arch</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>
+                         <span class="n">f</span><span class="o">=</span><span class="n">fff</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">dfff</span><span class="p">,</span><span class="n">fo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">lin</span><span class="p">,</span><span class="n">dfo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dlin</span><span class="p">)</span> <span class="c1"># teaching</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>yield the result</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_22_0.png" src="../_images/rectification_22_0.png" />
+</div>
+</div>
+<p>We obtain again a quite satisfactory result (red line), noticing that the plot of the fitting function is a sequence of straight lines, simply reflecting the features of the ReLU activation function.</p>
+</div>
+<div class="section" id="classifiers-with-rectification">
+<h2>Classifiers with rectification<a class="headerlink" href="#classifiers-with-rectification" title="Permalink to this headline">¶</a></h2>
+<p>There are technical reasons in favor of using <a class="reference external" href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">rectified functions</a> rather than sigmoid-like ones in backprop. The derivatives of the sigmoid are very close to zero apart for the narrow region near the threshold. This makes updating the weights unlikely, especially when going many layers back, as then very small numbers multiply yielding essentially no update (this is known as the <strong>vanishing gradient problem</strong>). With rectified functions, the range where the derivative is large is big (for ReLU it holds for all positive coordinates), hence the problem is cured. For that reason, rectified functions are used in deep ANNs, where there are many layers, impossible to train when the activation function is of a sigmoid type.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Application of rectified activation functions was one of the key tricks that allowed a breakthrough in deep ANNs around 2011.</p>
+</div>
+<p>On the other hand, with ReLU it may happen that some weights are set to such values that many neurons become inactive, i.e. never fire for any input, and so are effectively eliminated. This is known as the “dead neuron” or “dead body” problem, which arises especially when the learning speed parameter is too high. A way to reduce the problem is to use an activation function which does not have at all a range with zero derivative, such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Activation_function">Leaky ReLU</a>. Here we take it in the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+{\rm Leaky~ReLU}(x) = \left \{ \begin{array}{ll} x &amp;{\rm ~~~ for~} x \ge 0 \\
+                                          0.1 \, x &amp;{\rm ~~~ for~} x &lt; 0 \end{array}    \right . .
+\end{split}\]</div>
+<p>For illustration, we repeat our example from section <a class="reference internal" href="backprop.html#circ-lab"><span class="std std-ref">Example with the circle</span></a> with the classification of points in the circle, now with Leaky ReLU.</p>
+<p>We take the following architecture and initial parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arch_c</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>                   <span class="c1"># architecture</span>
+<span class="n">weights</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">set_ran_w</span><span class="p">(</span><span class="n">arch_c</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># scaled random initial weights in [-1.5,1.5]</span>
+<span class="n">eps</span><span class="o">=</span><span class="mf">.01</span>                           <span class="c1"># initial learning speed </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and run the algorithm in two stages: with Leaky ReLU, and then with ReLU.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>    <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">.9999</span><span class="o">*</span><span class="n">eps</span>       <span class="c1"># decrease the learning speed</span>
+    <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="k">100</span>==99: print(k+1,&#39; &#39;,end=&#39;&#39;)             # print progress        
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features_c</span><span class="p">)):</span>                <span class="c1"># loop over points</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">back_prop_o</span><span class="p">(</span><span class="n">features_c</span><span class="p">,</span><span class="n">labels_c</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">arch_c</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>
+            <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">lrelu</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dlrelu</span><span class="p">,</span><span class="n">fo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">,</span><span class="n">dfo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dsig</span><span class="p">)</span> 
+                    <span class="c1"># backprop with leaky ReLU</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100  200  300  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">700</span><span class="p">):</span>    <span class="c1"># rounds</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">.9999</span><span class="o">*</span><span class="n">eps</span>       <span class="c1"># decrease the learning speed</span>
+    <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="k">100</span>==99: print(k+1,&#39; &#39;,end=&#39;&#39;)             # print progress        
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features_c</span><span class="p">)):</span>                <span class="c1"># loop over points</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">back_prop_o</span><span class="p">(</span><span class="n">features_c</span><span class="p">,</span><span class="n">labels_c</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">arch_c</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>
+            <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">drelu</span><span class="p">,</span><span class="n">fo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">sig</span><span class="p">,</span><span class="n">dfo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dsig</span><span class="p">)</span> 
+                    <span class="c1"># backprop with ReLU</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100  200  300  400  500  600  700  
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is quite satisfactory, showing that the method works. With the present architecture and activation functions, not surprisingly, in the plot below we can notice traces of a polygon approximating the circle.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/rectification_36_0.png" src="../_images/rectification_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="warning admonition">
+<p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
+<ol class="simple">
+<li><p>Use various rectified activation functions for the binary classifiers and test them on various shapes (in analogy to the example with the circle above).</p></li>
+<li><p>Convince yourself that starting backprop (with ReLU) with a too large initial learning speed leads to a “dead neuron” problem and a failure of the algorithm.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="interpol.html" title="previous page">Interpolation</a>
+    <a class='right-next' id="next-link" href="unsupervised.html" title="next page">Unsupervised learning</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Wojciech Broniowski<br/>
+        
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
