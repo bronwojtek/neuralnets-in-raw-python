@@ -20,11 +20,11 @@ The text is brief (the pdf printout has ~120 pages including the appendix), so a
 ```
 
 
-```{admonition} Downloads
+```{admonition} Links
 :class: tip
 
 - Jupyter Book: 
-[https://executablebooks.github.io/neuralnets-in-raw-python/docs/index.html](https://executablebooks.github.io/neuralnets-in-raw-python/docs/index.html)
+[https://bronwojtek.github.io/neuralnets-in-raw-python/docs/index.html](https://bronwojtek.github.io/neuralnets-in-raw-python/docs/index.html)
 
 - pdf and codes: [www.ifj.edu.pl/~broniows/nn](https://www.ifj.edu.pl/~broniows/nn) or [www.ujk.edu.pl/~broniows/nn](https://www.ujk.edu.pl/~broniows/nn)
 
