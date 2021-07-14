@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex nn_book.idx"] 1626033515 "nn_book.idx" "nn_book.ind" "nn_book" 1626213460
-  "nn_book.idx" 1626213456 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex nn_book.idx"] 1626033515 "nn_book.idx" "nn_book.ind" "nn_book" 1626252076
+  "nn_book.idx" 1626252071 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "nn_book.ilg"
   "nn_book.ind"
-["pdflatex"] 1626213455 "nn_book.tex" "nn_book.pdf" "nn_book" 1626213460
+["pdflatex"] 1626252070 "nn_book.tex" "nn_book.pdf" "nn_book" 1626252076
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -286,11 +286,11 @@
   "more_layers_52_0.png" 1626211742 58372 f9061300c472720028f9ce223c771759 ""
   "neuron-structure.jpg" 1625486555 144847 7de2cf8e7fbf2cccc07dec7e7b21f851 ""
   "nf1-4.png" 1625486555 80402 f26e5df32031dbe5b6212a683a88c2c1 ""
-  "nn_book.aux" 1626213460 33061 af4709c3e82a05efd82edaa058cf1645 "pdflatex"
+  "nn_book.aux" 1626252075 33061 af4709c3e82a05efd82edaa058cf1645 "pdflatex"
   "nn_book.ind" 1626033515 0 d41d8cd98f00b204e9800998ecf8427e "makeindex nn_book.idx"
-  "nn_book.out" 1626213460 9074 37a5e5ee19191b24c08d462644d6227e "pdflatex"
-  "nn_book.tex" 1626213449 437842 64fa1706c2550b89bb2cc96cac175709 ""
-  "nn_book.toc" 1626213460 7612 b1cbcf56fdf325593aafd332f954248d "pdflatex"
+  "nn_book.out" 1626252075 9074 37a5e5ee19191b24c08d462644d6227e "pdflatex"
+  "nn_book.tex" 1626252070 438308 5694d4ae0f79084e1f6191f96b4ea1bc ""
+  "nn_book.toc" 1626252075 7612 b1cbcf56fdf325593aafd332f954248d "pdflatex"
   "perceptron_16_0.png" 1626129315 27311 0c67012b8730c5d3b35a3755fcf3e688 ""
   "perceptron_27_0.png" 1626129315 22672 54d3249b125210677cfa9745203a793d ""
   "perceptron_38_0.png" 1626129315 26350 e1ea62801e8dc8d970503c7b3c29f55a ""
@@ -327,9 +327,9 @@
   "som_83_0.jpg" 1626096630 209595 0cef867640653f9eb6731b33773ccec9 ""
   "som_89_0.png" 1626096630 59797 1130db34843a18f6fe2f3fc82cded1d1 ""
   "sphinx.sty" 1623503638 91458 532cd893425be1ee8212ce283449999c ""
-  "sphinxhighlight.sty" 1626213447 6615 02ef3c01e6bb67d3cc0658d354509680 ""
+  "sphinxhighlight.sty" 1626252068 6615 02ef3c01e6bb67d3cc0658d354509680 ""
   "sphinxmanual.cls" 1623884593 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1626213449 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1626252070 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxmulticell.sty" 1623503638 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   "tritri.png" 1625486555 8111 24341e5f31bacb259849ac42739f0460 ""
   "udm.png" 1625561698 2497 592a6693a447145b49dc86f741a79500 ""
@@ -343,9 +343,9 @@
   "unsupervised_86_0.png" 1626109184 21353 bc4157be5ed49ca749a0f4cce8ad0b67 ""
   "xor.png" 1625486555 20793 a870cfaf6a2b509203aae17171860456 ""
   (generated)
-  "nn_book.idx"
-  "nn_book.log"
   "nn_book.aux"
+  "nn_book.log"
   "nn_book.out"
-  "nn_book.pdf"
+  "nn_book.idx"
   "nn_book.toc"
+  "nn_book.pdf"

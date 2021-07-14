@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  13 JUL 2021 23:57
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.3)  14 JUL 2021 10:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1692,7 +1692,7 @@ File: perceptron_27_0.png Graphic file (type bmp)
 File: perceptron_38_0.png Graphic file (type bmp)
 <perceptron_38_0.png>
  [30]
-Overfull \vbox (10.15604pt too high) detected at line 1710
+Overfull \vbox (10.15604pt too high) detected at line 1724
  []
 
 [31]
@@ -1735,7 +1735,7 @@ Chapter 6.
 [43
 
 ] [44]
-Overfull \vbox (2.50108pt too high) detected at line 2609
+Overfull \vbox (2.50108pt too high) detected at line 2623
  []
 
 [45]
@@ -1755,7 +1755,7 @@ File: backprop_31_0.png Graphic file (type bmp)
 File: backprop_46_0.png Graphic file (type bmp)
 <backprop_46_0.png>
  [52]
-Overfull \hbox (46.8638pt too wide) in paragraph at lines 2989--2995
+Overfull \hbox (46.8638pt too wide) in paragraph at lines 3003--3009
 []$[] [][] [][]$ 
  []
 
@@ -1874,13 +1874,13 @@ File: som_50_0.png Graphic file (type bmp)
 <som_50_0.png>
  [91]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 4859.
+(Font)              scaled to size 14.40152pt on input line 4873.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 4859.
+(Font)              scaled to size 14.39845pt on input line 4873.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4859.
+(hyperref)                removing `math shift' on input line 4873.
 
 File: udm.png Graphic file (type bmp)
 <udm.png>
@@ -1943,67 +1943,67 @@ Chapter 11.
 ]
 Chapter 12.
 [109] [110]
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 [111]
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 [112]
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 [113]
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 [114]
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5855
+Underfull \vbox (badness 10000) detected at line 5870
  []
 
 [115] [116]
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 [117]
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 [118]
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6088
+Underfull \vbox (badness 10000) detected at line 6103
  []
 
 [119] [120] (./nn_book.ind)
@@ -2045,15 +2045,15 @@ braces):
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6154.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6154.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6169.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6169.
  (./nn_book.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6154.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6154.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6169.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6169.
 
 Package rerunfilecheck Info: File `nn_book.out' has not changed.
 (rerunfilecheck)             Checksum: 37A5E5EE19191B24C08D462644D6227E;9074.

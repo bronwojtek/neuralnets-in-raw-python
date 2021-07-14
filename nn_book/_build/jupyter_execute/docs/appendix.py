@@ -8,7 +8,8 @@
 
 # ### Locally
 
-# The reader may download the [Jupyter](https://jupyter.org) notebooks for each chapter by clicking the download icon (downward arrow) on the right in the top bar when viewing the book. Alternatively, the complete set of files may be downloaded from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
+# The reader may download the [Jupyter](https://jupyter.org) notebooks for each chapter by clicking the download icon (downward arrow) on the right in the top bar when viewing the book. Alternatively, the complete set of files may be downloaded from 
+# [www.ifj.edu.pl/~broniows/nn](https://www.ifj.edu.pl/~broniows/nn) or [www.ujk.edu.pl/~broniows/nn](https://www.ujk.edu.pl/~broniows/nn).
 # 
 # In the latter case, the file **nn-book.zip** should be unpacked in a chosen working directory. The proper directory tree structure of the library package **lib-nn** and of the graphics files **images** will be reproduced. 
 

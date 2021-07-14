@@ -675,7 +675,7 @@ plt.ylabel('$x_2$',fontsize=11);
 
 
 arch_c=[2,4,4,1]                  # architecture
-weights=func.set_ran_w(arch_c,4)  # scaled random initial weights in [-5,5]
+weights=func.set_ran_w(arch_c,4)  # scaled random initial weights in [-2,2]
 eps=.7                            # initial learning speed 
 
 

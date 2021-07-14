@@ -72,7 +72,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 13, 2021}
+\date{Jul 14, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -111,12 +111,26 @@ the \sphinxhref{https://kisd.ifj.edu.pl/news/}{Kraków School of Interdisciplina
 The text is brief (the pdf printout has \textasciitilde{}120 pages including the appendix), so a diligent student can complete the course in a few afternoons!
 \end{sphinxadmonition}
 
+\begin{sphinxadmonition}{note}{Downloads}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Jupyter Book:
+\sphinxurl{https://executablebooks.github.io/neuralnets-in-raw-python/docs/index.html}
+
+\item {} 
+\sphinxAtStartPar
+pdf and codes: \sphinxhref{https://www.ifj.edu.pl/~broniows/nn}{www.ifj.edu.pl/\textasciitilde{}broniows/nn} or \sphinxhref{https://www.ujk.edu.pl/~broniows/nn}{www.ujk.edu.pl/\textasciitilde{}broniows/nn}
+
+\end{itemize}
+\end{sphinxadmonition}
+
 \begin{sphinxadmonition}{note}{How to use the book codes}
 
 \sphinxAtStartPar
 A major advantage of executable books is that the reader may enjoy running the source codes himself, modifying them and playing around.
 The codes for each chapter, in the form of
-\sphinxhref{https://jupyter.org}{Jupyter} notebooks, can be downloaded by clicking the “arrow\sphinxhyphen{}down” icon on the right in the top bar when viewing the book in a browser. A complete set of files is also available from \sphinxhref{https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}{ujk.edu.pl/strony/Wojciech.Broniowski/nn}.
+\sphinxhref{https://jupyter.org}{Jupyter} notebooks, can be downloaded by clicking the “arrow\sphinxhyphen{}down” icon on the right in the top bar when viewing the book in a browser. A complete set of files is also available from the links given above.
 
 \sphinxAtStartPar
 Appendix {\hyperref[\detokenize{docs/appendix:app-run}]{\sphinxcrossref{\DUrole{std,std-ref}{How to run the book codes}}}} explains step\sphinxhyphen{}by\sphinxhyphen{}step how to proceed with the execution of the codes.
@@ -3148,7 +3162,7 @@ We choose the following architecture and initial parameters:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{arch\PYGZus{}c}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}                  \PYG{c+c1}{\PYGZsh{} architecture}
-\PYG{n}{weights}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{set\PYGZus{}ran\PYGZus{}w}\PYG{p}{(}\PYG{n}{arch\PYGZus{}c}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} scaled random initial weights in [\PYGZhy{}5,5]}
+\PYG{n}{weights}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{set\PYGZus{}ran\PYGZus{}w}\PYG{p}{(}\PYG{n}{arch\PYGZus{}c}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} scaled random initial weights in [\PYGZhy{}2,2]}
 \PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{.7}                            \PYG{c+c1}{\PYGZsh{} initial learning speed }
 \end{sphinxVerbatim}
 
@@ -5416,7 +5430,8 @@ The author thanks \sphinxhref{https://www.linkedin.com/in/janbroniowski}{Jan Bro
 \subsection{Locally}
 \label{\detokenize{docs/appendix:locally}}
 \sphinxAtStartPar
-The reader may download the \sphinxhref{https://jupyter.org}{Jupyter} notebooks for each chapter by clicking the download icon (downward arrow) on the right in the top bar when viewing the book. Alternatively, the complete set of files may be downloaded from \sphinxhref{https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}{ujk.edu.pl/strony/Wojciech.Broniowski/nn}.
+The reader may download the \sphinxhref{https://jupyter.org}{Jupyter} notebooks for each chapter by clicking the download icon (downward arrow) on the right in the top bar when viewing the book. Alternatively, the complete set of files may be downloaded from
+\sphinxhref{https://www.ifj.edu.pl/~broniows/nn}{www.ifj.edu.pl/\textasciitilde{}broniows/nn} or \sphinxhref{https://www.ujk.edu.pl/~broniows/nn}{www.ujk.edu.pl/\textasciitilde{}broniows/nn}.
 
 \sphinxAtStartPar
 In the latter case, the file \sphinxstylestrong{nn\sphinxhyphen{}book.zip} should be unpacked in a chosen working directory. The proper directory tree structure of the library package \sphinxstylestrong{lib\sphinxhyphen{}nn} and of the graphics files \sphinxstylestrong{images} will be reproduced.

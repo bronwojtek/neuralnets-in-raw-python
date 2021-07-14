@@ -20,12 +20,23 @@ The text is brief (the pdf printout has ~120 pages including the appendix), so a
 ```
 
 
+```{admonition} Downloads
+:class: tip
+
+- Jupyter Book: 
+[https://executablebooks.github.io/neuralnets-in-raw-python/docs/index.html](https://executablebooks.github.io/neuralnets-in-raw-python/docs/index.html)
+
+- pdf and codes: [www.ifj.edu.pl/~broniows/nn](https://www.ifj.edu.pl/~broniows/nn) or [www.ujk.edu.pl/~broniows/nn](https://www.ujk.edu.pl/~broniows/nn)
+
+```
+
+
 ```{admonition} How to use the book codes
 :class: important
 
 A major advantage of executable books is that the reader may enjoy running the source codes himself, modifying them and playing around. 
 The codes for each chapter, in the form of 
-[Jupyter](https://jupyter.org) notebooks, can be downloaded by clicking the "arrow-down" icon on the right in the top bar when viewing the book in a browser. A complete set of files is also available from [ujk.edu.pl/strony/Wojciech.Broniowski/nn](https://ujk.edu.pl/strony/Wojciech.Broniowski/nn).
+[Jupyter](https://jupyter.org) notebooks, can be downloaded by clicking the "arrow-down" icon on the right in the top bar when viewing the book in a browser. A complete set of files is also available from the links given above.
 
 Appendix {ref}`app-run` explains step-by-step how to proceed with the execution of the codes.
 ```
