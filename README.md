@@ -9,6 +9,8 @@ ISBN: **978-83-962099-0-0** (pdf version)
 
 These undergraduate lectures explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the codes for various algorithms are written from absolute scratch, i.e. without any use of dedicated higher-level libraries. That way one can follow all the programming steps in an explicit manner.
 
+The book is intended for undergraduate students and for advanced high school pupils and their teachers.
+
 Links:
 
 - Jupyter Book: 
