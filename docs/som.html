@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Self Organizing Maps &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,23 +34,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -320,7 +321,7 @@
         
               <div>
                 
-  <div class="section" id="self-organizing-maps">
+  <section id="self-organizing-maps">
 <h1>Self Organizing Maps<a class="headerlink" href="#self-organizing-maps" title="Permalink to this headline">¶</a></h1>
 <p>A very important and ingenious application of unsupervised learning are the so-called <strong>Kohonen networks</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Teuvo_Kohonen">Teuvo Kohonen</a>, a class of <strong>self-organizing mappings (SOM)</strong>. Consider firs a mapping <span class="math notranslate nohighlight">\(f\)</span> between a <strong>discrete</strong> <span class="math notranslate nohighlight">\(k\)</span>-dimensional set (we call it a <strong>grid</strong> in this chapter) of neurons and <span class="math notranslate nohighlight">\(n\)</span>-dimensional input data <span class="math notranslate nohighlight">\(D\)</span> (continuous or discrete),</p>
 <div class="math notranslate nohighlight">
@@ -331,15 +332,17 @@ f: N \to D
 Since <span class="math notranslate nohighlight">\(N\)</span> is discrete, each neuron carries an index consisting of <span class="math notranslate nohighlight">\(k\)</span> natural numbers, denoted as <span class="math notranslate nohighlight">\(\bar {i} = (i_1, i_2, ..., i_k)\)</span>. Typically, the dimensions in Kohonen’s networks satisfy <span class="math notranslate nohighlight">\(n \ge k\)</span>. When <span class="math notranslate nohighlight">\(n &gt; k\)</span>, one talks about <strong>reduction of dimensionality</strong>, as then the input space <span class="math notranslate nohighlight">\(D\)</span> has more dimensions than the dimensionaiy of the grid of neurons <span class="math notranslate nohighlight">\(N\)</span>.</p>
 <p>Two examples of such networks are visualized in <a class="reference internal" href="#koh-fig"><span class="std std-numref">Fig. 13</span></a>. The left panel shows a 2-dim. input space <span class="math notranslate nohighlight">\(D\)</span>, and a one dimensional grid on neurons labeled with <span class="math notranslate nohighlight">\(i\)</span>. The input point <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> enters all the neurons in the grid, and one of the neurons (the one with best-suited weights) becomes the <strong>winner</strong> (red dot). The gray oval indicates the <strong>neighborhood</strong> of the winner, to be defined accurately in the following.</p>
 <p>The right panel shows an analogous situation for the case of a 3-dim. input and 2-dim. grid of neurons, now labeled with a double index <span class="math notranslate nohighlight">\(\bar {i} = (i_1, i_2)\)</span>. Here, for clarity, we only indicate the edges entering the winner, but they also enter all the other neurons in the grid, similarly to the left panel.</p>
-<div class="figure align-default" id="koh-fig">
+<figure class="align-default" id="koh-fig">
 <a class="reference internal image-reference" href="../_images/koha.png"><img alt="../_images/koha.png" src="../_images/koha.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Example of Kohonen’s networks. Left: 1-dim. grid of neurons <span class="math notranslate nohighlight">\(N\)</span> and 2-dim. input space <span class="math notranslate nohighlight">\(D\)</span>. Right: 2-dim. grid of neurons <span class="math notranslate nohighlight">\(N\)</span> and 3-dim. input space <span class="math notranslate nohighlight">\(D\)</span>. The red dot indicates the winner, and the gray oval marks its neighborhood.</span><a class="headerlink" href="#koh-fig" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Example of Kohonen’s networks. Left: 1-dim. grid of neurons <span class="math notranslate nohighlight">\(N\)</span> and 2-dim. input space <span class="math notranslate nohighlight">\(D\)</span>. Right: 2-dim. grid of neurons <span class="math notranslate nohighlight">\(N\)</span> and 3-dim. input space <span class="math notranslate nohighlight">\(D\)</span>. The red dot indicates the winner, and the gray oval marks its neighborhood.</span><a class="headerlink" href="#koh-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Next, one defines the neuron <strong>proximity function</strong>, <span class="math notranslate nohighlight">\(\phi (\bar {i}, \bar {j})\)</span>, which assigns, to a pair of neurons, a real number depending on their relative position in the grid. This function must decrease with the distance between the neuron indices. A popular choice is a Gaussian,</p>
 <div class="math notranslate nohighlight">
 \[ \phi(\bar{i}, \bar{j})=\exp\left [ -\frac{(i_1-j_1)^2+...+(i_k-j_k)^2}{2 \delta^2} \right ] ,\]</div>
 <p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the <strong>neighborhood radius</strong>. For a 1-dim. grid we have <span class="math notranslate nohighlight">\( \phi(i,j)=\exp\left [ -\frac{(i-j)^2}{2 \delta^2} \right ]\)</span>.</p>
-<div class="section" id="kohonen-s-algorithm">
+<section id="kohonen-s-algorithm">
 <h2>Kohonen’s algorithm<a class="headerlink" href="#kohonen-s-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The set up for Kohonen’s algorithm is similar to the unsupervised learning discussed in the previous chapter. Each neuron <span class="math notranslate nohighlight">\(\bar{i}\)</span> obtains weights <span class="math notranslate nohighlight">\(f\left(\bar{i}\right)\)</span>, which are elements of <span class="math notranslate nohighlight">\(D\)</span>, i.e. form <span class="math notranslate nohighlight">\(n\)</span>-dimensional vectors. One may simply think of this procedure as placing the neurons in some locations in <span class="math notranslate nohighlight">\(D\)</span>.</p>
 <p>When an input point <span class="math notranslate nohighlight">\(P\)</span> from <span class="math notranslate nohighlight">\(D\)</span> is fed into the network, one looks for the closest neuron, which becomes the <strong>winner</strong>, exactly as in the unsupervised learning algorithm from section <a class="reference internal" href="unsupervised.html#inn-sec"><span class="std std-ref">Interpretation via neural networks</span></a>. However, now comes a <strong>crucial difference</strong>: Not only the winner is attracted (updated) a bit towards <span class="math notranslate nohighlight">\(P\)</span>, but also its neighbors, to a lesser and lesser extent the farther they are from the winner, as quantified by the proximity function.</p>
@@ -367,7 +370,7 @@ Since <span class="math notranslate nohighlight">\(N\)</span> is discrete, each 
 <p class="admonition-title">Important</p>
 <p>The way the reduction of <span class="math notranslate nohighlight">\( \varepsilon \)</span> and <span class="math notranslate nohighlight">\( \delta \)</span> is done is very important for the desired outcome of the algorithm (see exercises).</p>
 </div>
-<div class="section" id="dim-data-and-1-dim-neuron-grid">
+<section id="dim-data-and-1-dim-neuron-grid">
 <h3>2-dim. data and 1-dim. neuron grid<a class="headerlink" href="#dim-data-and-1-dim-neuron-grid" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -440,10 +443,12 @@ Since <span class="math notranslate nohighlight">\(N\)</span> is discrete, each 
 Figuratively speaking, a new point <span class="math notranslate nohighlight">\(P\)</span> attracts towards itself the nearest neuron (the winner), but also, to a weaker extent, its neighbors. At the beginning of the algorithm the neighborhood distance <strong>de</strong> is large, so large chunks of the neighboring neurons in the input grid are pulled together towards <span class="math notranslate nohighlight">\(P\)</span>, and the arrangement looks as in the top right corner of <a class="reference internal" href="#kohstory-fig"><span class="std std-numref">Fig. 14</span></a>. At later stages <strong>de</strong> reduces, so only the winner and possibly its very immediate neighbors are attracted to a new point.
 After completion (bottom right panel), individual neurons “specialize” (are close to) in a certain data area.</p>
 <p>In the present example, after about 20000 steps the result practically stops to change.</p>
-<div class="figure align-default" id="kohstory-fig">
+<figure class="align-default" id="kohstory-fig">
 <a class="reference internal image-reference" href="../_images/kaall.png"><img alt="../_images/kaall.png" src="../_images/kaall.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Progress of Kohonen’s algorithm. The line, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory-fig" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Progress of Kohonen’s algorithm. The line, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="note admonition">
 <p class="admonition-title">Kohonen’s network as a classifier</p>
 <p>Having the trained network, we may use it as a classifier similarly as in chapter {\ref}<code class="docutils literal notranslate"><span class="pre">un-lab</span></code>. We label a point from <span class="math notranslate nohighlight">\(D\)</span> with the index of the nearest neuron. One can interpret this as a Voronoi construction, see section <a class="reference internal" href="unsupervised.html#vor-lab"><span class="std std-ref">Voronoi areas</span></a>.</p>
@@ -489,8 +494,8 @@ After completion (bottom right panel), individual neurons “specialize” (are 
 As we increase the number of neurons, the analogy gets closer and closer.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="dim-color-map">
+</section>
+<section id="dim-color-map">
 <h3>2 dim. color map<a class="headerlink" href="#dim-color-map" title="Permalink to this headline">¶</a></h3>
 <p>Now we pass to a case of 3-dim. data and 2-dim. neuron grid, which is a situation from the right panel of <a class="reference internal" href="#koh-fig"><span class="std std-numref">Fig. 13</span></a> (hence also with dimensionality reduction). As we know, an RGB color is described with three numbers <span class="math notranslate nohighlight">\([r,g,b]\)</span> from <span class="math notranslate nohighlight">\([0,1]\)</span>, so it can nicely serve as input in our example.</p>
 <p>The distance squared between two colors (this is just a distance between two points in the 3-dim. space) is taken in the Euclidean form:</p>
@@ -618,9 +623,9 @@ As we increase the number of neurons, the analogy gets closer and closer.</p></l
 <li><p>To get sharper boundaries between the regions, <strong>de</strong> would have to shrink even faster compared to <strong>eps</strong>. Then, in the final stage of learning, the neuron update process takes place within a smaller neighborhood radius and more resolution in the boundaries can be achieved.</p></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="u-matrix">
+</section>
+</section>
+<section id="u-matrix">
 <h2><span class="math notranslate nohighlight">\(U\)</span>-matrix<a class="headerlink" href="#u-matrix" title="Permalink to this headline">¶</a></h2>
 <p>A convenient way to present the results of Kohonen’s algorithm when the grid is 2-dimensional is via the <strong>unified distance matrix</strong> (shortly <strong><span class="math notranslate nohighlight">\(U\)</span>-matrix</strong>). The idea is to plot a 2-dimensional grayscale map in <span class="math notranslate nohighlight">\(N\)</span>-space with the intensity given by the averaged distance (in <span class="math notranslate nohighlight">\(D\)</span>-space) of the given neuron to its immediate neighbors, and not a neuron property itself (such as its color in the figure above). This is particularly useful when the dimension of the input space is large, hence it is difficult to visualize the results directly.</p>
 <p>The definition of a <span class="math notranslate nohighlight">\(U\)</span>-matrix element <span class="math notranslate nohighlight">\(U_{ij}\)</span> is explained in <a class="reference internal" href="#udm-fig"><span class="std std-numref">Fig. 15</span></a>. Let <span class="math notranslate nohighlight">\(d\)</span> be the distance in <span class="math notranslate nohighlight">\(D\)</span>-space and <span class="math notranslate nohighlight">\([i,j]\)</span> denote the neuron of indices <span class="math notranslate nohighlight">\(i,j\)</span> . We take</p>
@@ -629,10 +634,12 @@ As we increase the number of neurons, the analogy gets closer and closer.</p></l
 U_{ij}=\sqrt{d\left([i,j],[i+1,j]\right)^2+d\left([i,j],[i-1,j]\right)^2+
         d\left([i,j],[i,j+1]\right)^2+d\left([i,j],[i,j-1]\right)^2 }.
 \]</div>
-<div class="figure align-default" id="udm-fig">
+<figure class="align-default" id="udm-fig">
 <a class="reference internal image-reference" href="../_images/udm.png"><img alt="../_images/udm.png" src="../_images/udm.png" style="width: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Construction of <span class="math notranslate nohighlight">\(U_{ij}\)</span>: a geometric average of the distances along the indicated links.</span><a class="headerlink" href="#udm-fig" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Construction of <span class="math notranslate nohighlight">\(U_{ij}\)</span>: a geometric average of the distances along the indicated links.</span><a class="headerlink" href="#udm-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The Python implementation of the above definition is following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,7 +751,7 @@ Distance:  0.012
 </div>
 <p>The lightest region in the above figure indicates the cluster, to which the new point belongs. The darker the region, the larger is the distance from the corresponding neuron.</p>
 <p>One should stress that we have obtained a classifier which not only assigns a closest cluster to a probed point, but also provides its distances from all other clusters.</p>
-<div class="section" id="mapping-colors-on-a-line">
+<section id="mapping-colors-on-a-line">
 <h3>Mapping colors on a line<a class="headerlink" href="#mapping-colors-on-a-line" title="Permalink to this headline">¶</a></h3>
 <p>In this subsection we present an example of a mapping of 3-dim. data into a 1-dim. neuron grid, hence a reduction of three dimensions into one. This proceeds exactly along the lines of the previous subsection, so we are very brief in comments.</p>
 <div class="cell docutils container">
@@ -827,8 +834,8 @@ Distance:  0.012
 </div>
 </div>
 <p>The minima (there are 8 of them, equal to the multiplicity of the sample) indicate the clusters. The height of the separating peaks shows how much the neighboring colors differ. Again, we see a nicely produced classifier, this time with two dimensions “hidden away”, as we reduce from three to one.</p>
-</div>
-<div class="section" id="large-reduction-of-dimensionality">
+</section>
+<section id="large-reduction-of-dimensionality">
 <h3>Large reduction of dimensionality<a class="headerlink" href="#large-reduction-of-dimensionality" title="Permalink to this headline">¶</a></h3>
 <p>In many situations the input space may have a very large dimension. In the <a class="reference external" href="https://en.wikipedia.org/wiki/Self-organizing_map">Wikipedia example</a> quoted here, one takes articles from various fields and computes frequencies of used words (for instance, in a given article how  many times the word “goalkeeper” has been used, divided by the total number of words in the article). Essentially, the dimensionality of <span class="math notranslate nohighlight">\(D\)</span> is of the order of the number of all English words, a huge number <span class="math notranslate nohighlight">\(\sim 10^5\)</span>! Then, with a properly defined distance depending on these frequencies, one uses Kohonen’s algorithm to carry out a reduction into a 2-dim. grid of neurons. The resulting <span class="math notranslate nohighlight">\(U\)</span>-matrix can be drawn as follows:</p>
 <div class="cell tag_remove-input docutils container">
@@ -837,9 +844,9 @@ Distance:  0.012
 </div>
 </div>
 <p>Not surprisingly, we notice that articles on sports are special and form a very well defined cluster. The reason is that the sport’s jargon is very specific. The Media are also distinguished, whereas other fields are more-less uniformly distributed. The example shows how we can, with a very simple method, comprehend data in a multidimensional space and see specific correlations/clusters. Whereas some conclusions may be obvious, such as the fact that sport has a unique jargon, other are less transparent, for instance the emergence of the media cluster and lack of well-defined clusters for other fields, e.g. for mathematics.</p>
-</div>
-</div>
-<div class="section" id="mapping-2-dim-data-into-a-2-dim-grid">
+</section>
+</section>
+<section id="mapping-2-dim-data-into-a-2-dim-grid">
 <h2>Mapping 2-dim. data into a 2-dim. grid<a class="headerlink" href="#mapping-2-dim-data-into-a-2-dim-grid" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we come to a very important case of mapping 2-dim. data in a 2-dim. grid, i.e. with no dimensionality reduction. In particular, this case is realized in our vision system between the retina and the visual cortex.</p>
 <p>The algorithm proceeds analogously to the previous cases. We initialize an <span class="math notranslate nohighlight">\(n \times n\)</span> grid of neurons and place them randomly in the square <span class="math notranslate nohighlight">\([0,1]\times [0,1]\)</span>.</p>
@@ -891,13 +898,15 @@ Distance:  0.012
 </div>
 </div>
 <p>Here is the history of a simulation:</p>
-<div class="figure align-default" id="kohstory2-fig">
+<figure class="align-default" id="kohstory2-fig">
 <a class="reference internal image-reference" href="../_images/kball.png"><img alt="../_images/kball.png" src="../_images/kball.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Progress of Kohonen’s algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory2-fig" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Progress of Kohonen’s algorithm. The lines, drawn to guide the eye, connects neurons with adjacent indices.</span><a class="headerlink" href="#kohstory2-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>As the algorithm progresses, the initial “chaos” gradually changes into a nearly perfect order, with the grid placed uniformly in the square of the data, with only slight displacements from a regular arrangement. On the way, near 40 steps, we notice a phenomenon called “twist”, where the grid is crumpled. In the twist region, many neurons, also of distant indices, have a close location in <span class="math notranslate nohighlight">\((x_1,x_2)\)</span>.</p>
-</div>
-<div class="section" id="topology">
+</section>
+<section id="topology">
 <h2>Topology<a class="headerlink" href="#topology" title="Permalink to this headline">¶</a></h2>
 <p>Recall the Voronoi construction of categories introduced in section <a class="reference internal" href="unsupervised.html#vor-lab"><span class="std std-ref">Voronoi areas</span></a>. One can use it now again, treating the neurons from a grid as the Voronoi points. The Voronoi construction provides a mapping <span class="math notranslate nohighlight">\(v\)</span> from the data space <span class="math notranslate nohighlight">\(D\)</span> to the neuron space <span class="math notranslate nohighlight">\(N\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -1001,16 +1010,18 @@ The loop over <strong>ph</strong> goes around the circle.</p>
 <p class="admonition-title">Note</p>
 <p>Topological features of Kohonen’s maps hold for equal dimensionalities of the input space and the neuron grid, <span class="math notranslate nohighlight">\(n=k\)</span>, and in general do not hold for the reduced dimensionality cases, <span class="math notranslate nohighlight">\(k&lt;n\)</span>.</p>
 </div>
-</div>
-<div class="section" id="lateral-inhibition">
+</section>
+<section id="lateral-inhibition">
 <span id="lat-lab"></span><h2>Lateral inhibition<a class="headerlink" href="#lateral-inhibition" title="Permalink to this headline">¶</a></h2>
 <p>In the last topic of these lectures, we return to the issue of how the competition for the “winner” is realized in ANNs. Up to now (cf. section <a class="reference internal" href="unsupervised.html#inn-sec"><span class="std std-ref">Interpretation via neural networks</span></a>), we have just been using the minimum (or maximum, when the signal was extended to a hyperphere) in the output, though this is embarrassingly outside of the neural framework. Such an inspection of which neuron yields the strongest signal would require an “external wizard”, or some sort of a control unit. Mathematically, it is easy to imagine, but the challenge is to build it from neurons within the rules of the game.</p>
 <p>Actually, if the neurons in a layer “talk” to one another, we can have a “contest” from which a winner may emerge. In particular, an architecture as in <a class="reference internal" href="#lat-fig"><span class="std std-numref">Fig. 17</span></a> allows for an arrangement of competition and a natural realization of a <strong>winner-take-most</strong> mechanism.</p>
 <p>The type of models as presented below is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Hopfield_network">Hopfield networks</a>. Note that we depart here from the <strong>feed-forward</strong> limitation of <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a> and allow for a recursive, or feed-back character.</p>
-<div class="figure align-default" id="lat-fig">
+<figure class="align-default" id="lat-fig">
 <a class="reference internal image-reference" href="../_images/lat3.png"><img alt="../_images/lat3.png" src="../_images/lat3.png" style="width: 220px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Network with inter-neuron couplings used for modeling lateral inhibition. All the neurons are connected to one another in both directions (lines without arrows).</span><a class="headerlink" href="#lat-fig" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Network with inter-neuron couplings used for modeling lateral inhibition. All the neurons are connected to one another in both directions (lines without arrows).</span><a class="headerlink" href="#lat-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Neuron number <span class="math notranslate nohighlight">\(i\)</span> receives the signal <span class="math notranslate nohighlight">\(s_i = x w_i\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is the input (the same for all the neurons), and <span class="math notranslate nohighlight">\(w_i\)</span> is the weight of neuron <span class="math notranslate nohighlight">\(i\)</span>. The neuron produces output <span class="math notranslate nohighlight">\(y_i\)</span>, where now a part of it is sent to neurons <span class="math notranslate nohighlight">\(j\)</span> as <span class="math notranslate nohighlight">\(F_{ji} y_i\)</span>. Here <span class="math notranslate nohighlight">\(F_{ij}\)</span> denotes the coupling strength (we assume <span class="math notranslate nohighlight">\(F_{ii}=0\)</span> - no self coupling). Reciprocally, neuron <span class="math notranslate nohighlight">\(i\)</span> also receives output from neurons <span class="math notranslate nohighlight">\(j\)</span> in the form <span class="math notranslate nohighlight">\(F_{ij} y_j\)</span>. The summation over all the neurons yields</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -1079,12 +1090,14 @@ y_i = s_i + \sum_{j\neq i} F_{ij} y_j,
 <p class="admonition-title">Note</p>
 <p>Actually, <strong>pyramidal neurons</strong>, present i.a. in the neocortex, have as many as a few thousand dendritic spines and do realize a scenario with numerous synaptic connections. They are believed <a class="reference external" href="https://www.quantamagazine.org/artificial-neural-nets-finally-yield-clues-to-how-brains-learn-20210218/">Quantamagazine</a> to play a crucial role in learning and cognition processes.</p>
 </div>
-<div class="figure align-default" id="pyr-fig">
+<figure class="align-default" id="pyr-fig">
 <a class="reference internal image-reference" href="../_images/smi32-pic.jpg"><img alt="../_images/smi32-pic.jpg" src="../_images/smi32-pic.jpg" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Image of pyramidal neurons (from <a class="reference external" href="http://brainmaps.org/index.php?p=screenshots">brainmaps.org</a>)</span><a class="headerlink" href="#pyr-fig" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="exercises">
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Image of pyramidal neurons (from <a class="reference external" href="http://brainmaps.org/index.php?p=screenshots">brainmaps.org</a>)</span><a class="headerlink" href="#pyr-fig" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -1095,8 +1108,8 @@ y_i = s_i + \sum_{j\neq i} F_{ij} y_j,
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lateral_inhibition">Lateral inhibition</a> has “side-effects” seen in optical delusions. Describe the <a class="reference external" href="https://en.wikipedia.org/wiki/Mach_bands">Mach illusion</a>, programming it in Python.</p></li>
 </ol>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

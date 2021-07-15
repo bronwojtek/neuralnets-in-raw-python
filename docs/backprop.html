@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Back propagation &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,23 +34,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -305,10 +306,10 @@
         
               <div>
                 
-  <div class="section" id="back-propagation">
+  <section id="back-propagation">
 <h1>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter we show in detail  how to carry out supervised learning for multilayer classifiers discussed in chapter <a class="reference internal" href="more_layers.html#more-lab"><span class="std std-ref">More layers</span></a>. Since the method is based on minimizing the number of erroneous answers on a test sample, we begin with a thorough discussion of the problem of error minimization in our setup.</p>
-<div class="section" id="minimizing-the-error">
+<section id="minimizing-the-error">
 <h2>Minimizing the error<a class="headerlink" href="#minimizing-the-error" title="Permalink to this headline">¶</a></h2>
 <p>Recall that in our example with points on the plane from chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a>, the condition for the pink points was given by the inequality</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_1 x_1 + w_2 x_2 &gt; 0\)</span>.</p>
@@ -470,8 +471,8 @@ the perceptron algorithm, as we already experienced in chapter <a class="referen
 </div>
 </div>
 <p>The obtained minimum is inside (or close to, depending on the simulation) an elongated region of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2\)</span> where the error vanishes.</p>
-</div>
-<div class="section" id="continuous-activation-function">
+</section>
+<section id="continuous-activation-function">
 <h2>Continuous activation function<a class="headerlink" href="#continuous-activation-function" title="Permalink to this headline">¶</a></h2>
 <p>Looking closely at the contour map above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and hence non-differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so-called <strong>sigmoid</strong></p>
 <div class="math notranslate nohighlight">
@@ -613,8 +614,8 @@ s/T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 
 <p class="admonition-title">Note</p>
 <p>As we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are in the range (0,1). As we have discussed above, in the sigmoid, whose argument is <span class="math notranslate nohighlight">\( (w_0 + w_1 x_1 + w_2 x_2) / T\)</span>, increasing the weights is equivalent to scaling down the temperature <span class="math notranslate nohighlight">\(T\)</span>. Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above.</p>
 </div>
-</div>
-<div class="section" id="steepest-descent">
+</section>
+<section id="steepest-descent">
 <h2>Steepest descent<a class="headerlink" href="#steepest-descent" title="Permalink to this headline">¶</a></h2>
 <p>The reason of carrying out the above simulations was to drive the reader into conclusion that the issue of optimizing the weights can be reduced to a generic problem of minimizing a multi-variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. Issues associated with finding the minimum of multivariable functions are well known:</p>
 <ul class="simple">
@@ -718,8 +719,8 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
 </div>
 </div>
 <p>To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, minimizing the error function generated with the test sample. In the next section we generalize this idea to any multi-layer feed-forward ANN.</p>
-</div>
-<div class="section" id="backprop-algorithm">
+</section>
+<section id="backprop-algorithm">
 <span id="bpa-lab"></span><h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The material of this section is absolutely <strong>crucial</strong> for understanding of the idea of training neural networks via supervised learning. At the same time, it can be quite difficult for a reader less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, we could not find a way to present the material in a simpler way than below, keeping the necessary rigor.</p>
 <div class="admonition note">
@@ -816,7 +817,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <p><span class="math notranslate nohighlight">\(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\)</span>.</p>
 <p>This is not infrequent, as for many applications one selects different activation function for the intermediate and the output layers.</p>
-<div class="section" id="code-for-backprop">
+<section id="code-for-backprop">
 <h3>Code for backprop<a class="headerlink" href="#code-for-backprop" title="Permalink to this headline">¶</a></h3>
 <p>Next, we present a simple code that carries out the backprop algorithm. It is a straightforward implementation of the formulas derived above. In the code, we keep as much as we can the notation from the above derivation.</p>
 <p>The code has 12 lines only, not counting the comments!</p>
@@ -855,9 +856,9 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="example-with-the-circle">
+</section>
+</section>
+<section id="example-with-the-circle">
 <span id="circ-lab"></span><h2>Example with the circle<a class="headerlink" href="#example-with-the-circle" title="Permalink to this headline">¶</a></h2>
 <p>We illustrate the code on the example of a binary classifier of points inside a circle.</p>
 <div class="cell docutils container">
@@ -1003,8 +1004,8 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <img alt="../_images/backprop_73_0.png" src="../_images/backprop_73_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="general-remarks">
+</section>
+<section id="general-remarks">
 <h2>General remarks<a class="headerlink" href="#general-remarks" title="Permalink to this headline">¶</a></h2>
 <p>There are some more important and general observations to be made:</p>
 <div class="admonition note">
@@ -1020,8 +1021,8 @@ size of the training sample, in particular near the boundary.</p></li>
 <li><p>Finally, different activation functions may be used to improve performance (see the following lectures).</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="exercises">
+</section>
+<section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -1057,8 +1058,8 @@ where <span class="math notranslate nohighlight">\(m\)</span> numbers the iterat
 {\left \| \nabla F (x^{(m)}) - \nabla F (x^{(m-1)}) \right \| ^ {2}}.
 \]</div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
