@@ -4,6 +4,11 @@
 \ifdefined\pdfpxdimen
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
+\ifdefined\pdfimageresolution
+    \pdfimageresolution= \numexpr \dimexpr1in\relax/\sphinxpxdimen\relax
+\fi
+%% let collapsable pdf bookmarks panel have high depth per default
+\PassOptionsToPackage{bookmarksdepth=5}{hyperref}
 %% turn off hyperref patch of \index as sphinx.xdy xindy module takes care of
 %% suitable \hyperpage mark-up, working around hyperref-xindy incompatibility
 \PassOptionsToPackage{hyperindex=false}{hyperref}
@@ -46,6 +51,7 @@
 ]
 
 
+
 \usepackage[Bjarne]{fncychap}
 \usepackage[,numfigreset=1,mathnumfig]{sphinx}
 
@@ -72,7 +78,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 14, 2021}
+\date{Jul 15, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}

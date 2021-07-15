@@ -295,7 +295,7 @@ def filter(a,b): # a - symbol (2-dim pixel array), b - bias
        # 2-dim array with the filter applied
 
 
-# In[21]:
+# In[19]:
 
 
 def filter1(a,b): # a - symbol (1-dim pixel array), b - bias
@@ -306,7 +306,7 @@ def filter1(a,b): # a - symbol (1-dim pixel array), b - bias
 
 # When operating on Ap with appropriately chosen $b=0.9$ (the level of the assumed bias is very much relevant). This yields the result
 
-# In[19]:
+# In[20]:
 
 
 print(filter(Ap,.9))
@@ -314,7 +314,7 @@ print(filter(Ap,.9))
 
 # where we can notice a "clean" symbol a. We check that it actually works perfectly well for all our associations (such perfection is not always the case):
 
-# In[31]:
+# In[21]:
 
 
 plt.figure(figsize=(16, 6)) # figure with horizontal and vertical size
@@ -329,7 +329,7 @@ for i in range(1,6):     # loop over 5 figure panels, i is from 1 to 5
 # 
 # At the bottom, we indicate the elements of the input vector, $x_i$, of the signal reaching the neuron $j$, $s_j=\sum_i x_i M_{ij}$, and the final output $y_j=f(s_j)$.
 
-# In[32]:
+# In[22]:
 
 
 plt.figure(figsize=(16, 12)) 
@@ -407,7 +407,7 @@ plt.imshow(filter(Ap,.9));
 
 # The autoassociative memory model is in close analogy to the case of the heteroassociatine memory, but now the symbol is associated **with itself**. Why we do such a thing will become clear shortly, when we consider distorted input. We thus define the association matrix as follows:
 
-# In[33]:
+# In[23]:
 
 
 Ma=(np.outer(fA,fA)/np.dot(fA,fA)+np.outer(fa,fa)/np.dot(fa,fa)
@@ -457,7 +457,7 @@ for s in sym:                     # loop over symbols
 
 # After this destruction, the input symbols look like this:
 
-# In[34]:
+# In[27]:
 
 
 plt.figure(figsize=(16, 6)) # figure with horizontal and vertical size
@@ -472,7 +472,7 @@ for i in range(1,6):     # loop over 5 figure panels, i is from 1 to 5
 
 # We next apply our model of the autoassociative memory to all the "destroyed" symbols:
 
-# In[36]:
+# In[28]:
 
 
 Ap=np.dot(Ma,fA).reshape(12,12)
@@ -486,7 +486,7 @@ symp=[Ap,ap,Ip,ip,Yp]
 
 # which yields
 
-# In[37]:
+# In[29]:
 
 
 plt.figure(figsize=(16, 6)) # figure with horizontal and vertical size
@@ -499,7 +499,7 @@ for i in range(1,6):      # loop over 5 figure panels, i is from 1 to 5
 
 # After filtering with $b=0.9$ we obtain back the original symbols:
 
-# In[38]:
+# In[30]:
 
 
 plt.figure(figsize=(16, 6))
