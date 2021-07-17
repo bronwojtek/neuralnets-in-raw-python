@@ -688,7 +688,7 @@
 #   author={Wojciech Broniowski},
 #   isbn={978-83-962099-0-0},
 #   year={2021},
-#   url={https://ujk.edu.pl/strony/Wojciech.Broniowski/nn}
+#   url={https://ifj.edu.pl/strony/~broniows/nn}
 #   publisher={Wojciech Broniowski}
 # }
 # ```
