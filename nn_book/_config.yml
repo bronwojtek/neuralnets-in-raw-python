@@ -38,6 +38,13 @@ repository:
 #  thebe              : false
 #  colab              : false
 
+# Launch button settings
+launch_buttons:
+#  notebook_interface: classic #jupyterlab
+  binderhub_url: https://mybinder.org
+  colab_url: https://colab.research.google.com
+
+
 # LaTeX settings
 bibtex_bibfiles:
    - _bibliography/references.bib
