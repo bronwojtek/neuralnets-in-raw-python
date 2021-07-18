@@ -275,7 +275,7 @@ plt.hist(dd, bins=10, density=True);   # histogram
 # 
 # The distance squared between two colors (this is just a distance between two points in the 3-dim. space) is taken in the Euclidean form:
 
-# In[14]:
+# In[12]:
 
 
 def dist3(p1,p2): 
@@ -297,7 +297,7 @@ def phi2(ix,iy,kx,ky,d):  # proximity function for 2-dim. grid
 
 # We also decide to normalize the RGB colors such that $r^2+g^2+b^2=1$. This makes the perceived intensity of colors similar (this normalization could be dropped, as irrelevant for the method to work).  
 
-# In[4]:
+# In[14]:
 
 
 def rgbn():
@@ -458,7 +458,7 @@ plt.ylabel('$j$',fontsize=11);
 
 fig = plt.figure(figsize=(4,4),dpi=120)
 axes1 = fig.add_subplot(111, projection="3d")
-ax = fig.gca(projection='3d')
+ax = fig.gca()
 
 xx_1 = np.arange(1, size-1, 1)
 xx_2 = np.arange(1, size-1, 1)
@@ -540,7 +540,7 @@ plt.ylabel('$j$',fontsize=11);
 
 # In this subsection we present an example of a mapping of 3-dim. data into a 1-dim. neuron grid, hence a reduction of three dimensions into one. This proceeds exactly along the lines of the previous subsection, so we are very brief in comments.
 
-# In[7]:
+# In[28]:
 
 
 ns=8
@@ -555,7 +555,7 @@ for i in range(ns):
     plt.scatter(i,0,color=samp[i], s=400);
 
 
-# In[10]:
+# In[29]:
 
 
 si=50                    # 1-dim. grid of si neurons, 3 RGB components
@@ -565,7 +565,7 @@ for i in range(si):
     tab2[i]=rgbn()    # random initialization
 
 
-# In[11]:
+# In[30]:
 
 
 plt.figure(figsize=(5.5,0.5),dpi=120)
@@ -575,14 +575,14 @@ for i in range(si):
     plt.scatter(i,0,color=tab2[i], s=20); 
 
 
-# In[12]:
+# In[31]:
 
 
 eps=.5    
 de = 20   
 
 
-# In[15]:
+# In[32]:
 
 
 for _ in range(200): 
@@ -596,7 +596,7 @@ for _ in range(200):
             tab2[i]+=eps*phi(ind_min,i,de)*(p-tab2[i]) 
 
 
-# In[16]:
+# In[33]:
 
 
 plt.figure(figsize=(5.5,.5),dpi=120)
@@ -609,7 +609,7 @@ for i in range(si):
 
 # As expected, we note smooth transitions between colors. The formation of clusters can be seen with the $U$-matrix, which now is, of course, one-dimensional:
 
-# In[17]:
+# In[34]:
 
 
 ta2=np.zeros(si-2)
@@ -618,7 +618,7 @@ for i in range(1,si-1):
     ta2[i-1]=np.sqrt(dist3(tab2[i],tab2[i+1])+dist3(tab2[i],tab2[i-1]))
 
 
-# In[18]:
+# In[35]:
 
 
 plt.figure(figsize=(3.2,3.2),dpi=120)
@@ -636,15 +636,9 @@ plt.ylabel('$U_i$',fontsize=11);
 
 # ### Large reduction of dimensionality
 
-# In[ ]:
-
-
-
-
-
 # In many situations the input space may have a very large dimension. In the [Wikipedia example](https://en.wikipedia.org/wiki/Self-organizing_map) quoted here, one takes articles from various fields and computes frequencies of used words (for instance, in a given article how  many times the word "goalkeeper" has been used, divided by the total number of words in the article). Essentially, the dimensionality of $D$ is of the order of the number of all English words, a huge number $\sim 10^5$! Then, with a properly defined distance depending on these frequencies, one uses Kohonen's algorithm to carry out a reduction into a 2-dim. grid of neurons. The resulting $U$-matrix can be drawn as follows:
 
-# In[19]:
+# In[36]:
 
 
 Image(filename="images/Self_oraganizing_map_cartography.jpg",width=720)
@@ -809,7 +803,7 @@ plt.tight_layout();
 # $r=$**rad**, $\phi$=**ph**, $N=$**npoi**, $(c_1,c_2)=$**[cent]**.
 # The loop over **ph** goes around the circle.
 
-# In[43]:
+# In[42]:
 
 
 rad=0.35                      # radius of a circle
@@ -831,7 +825,7 @@ ci=np.unique(wins)            # remove duplicates from the table
 
 # The result of Kohonen's algorithm is as follows:
 
-# In[44]:
+# In[43]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -865,7 +859,7 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # The red neurons are the winners for certain sections of the circle. When we draw these winners alone in the $N$ space (keep in mind we are going from $D$ to $N$), we get
 
-# In[45]:
+# In[44]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -896,7 +890,7 @@ plt.ylabel('$j$',fontsize=11);
 # 
 # For that case, our example with the circle looks like this:
 
-# In[46]:
+# In[45]:
 
 
 rad=0.35
@@ -914,7 +908,7 @@ for th in range(npoi):    # go around the circle
 ci=np.unique(wins1)   
 
 
-# In[47]:
+# In[46]:
 
 
 plt.figure(figsize=(2.5,2.3),dpi=120)
@@ -941,7 +935,7 @@ plt.tight_layout();
 
 # When we go subsequently along the **grid indices** (i.e. along the blue connecting line), taking $i=1,2,\dots,100$, we obtain the plot below. We can see the image of our circle (red dots) as a bunch of **disconnected** red sections. The circle is torn into pieces, the **topology is not preserved!**
 
-# In[48]:
+# In[47]:
 
 
 plt.figure(figsize=(6.5,0.2),dpi=120)
@@ -1004,7 +998,7 @@ plt.xlabel('$i$',fontsize=11);
 # 
 # The Python implementation is straightforward:
 
-# In[49]:
+# In[48]:
 
 
 ns = 30;       # number of neurons
@@ -1019,7 +1013,7 @@ for i in range(ns):
     
 
 
-# In[50]:
+# In[49]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)
@@ -1036,7 +1030,7 @@ plt.ylabel('$F(i,15)$',fontsize=11);
 
 # We assume a bell-shaped Lorentzian input signal $s$, with a maximum in the middle neuron. The width is controlled with **D**:
 
-# In[51]:
+# In[50]:
 
 
 D=3
@@ -1045,7 +1039,7 @@ s = np.array([D**2/((i - ns/2)**2 + D**2) for i in range(ns)]) # Lorentzian func
 
 # Next, we solve Eq. {eq}`eq-lat` via inverting the $(I-F)$ matrix, performed with the numpy **linalg.inv** function. Recall that **dot** multiplies matrices:
 
-# In[52]:
+# In[51]:
 
 
 invF=np.linalg.inv(np.identity(ns)-F) # matrix inversion
@@ -1055,7 +1049,7 @@ y=y/y[15]                             # normalization (inessential)
 
 # What follows is actually quite remarkable: the output signal $y$ becomes much narrower from the input signal $s$. This may be interpreted as a realization of the "winner-take-all" scenario. The winner "damped" he guys around him, so he puts himself on airs! The effect is smooth, with the signal visibly sharpened.
 
-# In[53]:
+# In[52]:
 
 
 plt.figure(figsize=(2.8,2),dpi=120)

@@ -4,11 +4,6 @@
 \ifdefined\pdfpxdimen
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
-\ifdefined\pdfimageresolution
-    \pdfimageresolution= \numexpr \dimexpr1in\relax/\sphinxpxdimen\relax
-\fi
-%% let collapsable pdf bookmarks panel have high depth per default
-\PassOptionsToPackage{bookmarksdepth=5}{hyperref}
 %% turn off hyperref patch of \index as sphinx.xdy xindy module takes care of
 %% suitable \hyperpage mark-up, working around hyperref-xindy incompatibility
 \PassOptionsToPackage{hyperindex=false}{hyperref}
@@ -51,7 +46,6 @@
 ]
 
 
-
 \usepackage[Bjarne]{fncychap}
 \usepackage[,numfigreset=1,mathnumfig]{sphinx}
 
@@ -71,14 +65,20 @@
 
 
 
+        % Start of preamble defined in sphinx-jupyterbook-latex %
          \usepackage[Latin,Greek]{ucharclasses}
         \usepackage{unicode-math}
         % fixing title of the toc
         \addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
+        \hypersetup{
+            pdfencoding=auto,
+            psdextra
+        }
+        % End of preamble defined in sphinx-jupyterbook-latex %
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 17, 2021}
+\date{Jul 18, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -3189,7 +3189,7 @@ The simulation takes a few minutes,
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-The reduction of the learning speed in each round give the final value, which is small, but not too small:
+The reduction of the learning speed in each round gives the final value, which is small, but not too small:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{eps}
@@ -4935,7 +4935,7 @@ The result may also be visualized with a 3\sphinxhyphen{}dim. plot:
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{,}\PYG{n}{dpi}\PYG{o}{=}\PYG{l+m+mi}{120}\PYG{p}{)}
 \PYG{n}{axes1} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{add\PYGZus{}subplot}\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{p}{,} \PYG{n}{projection}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{3d}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\PYG{n}{ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{n}{projection}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{3d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{n}{xx\PYGZus{}1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{n}{xx\PYGZus{}2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{size}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
@@ -4987,8 +4987,8 @@ It is useful to obtain a map of distances of our grid neurons from this point:
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Closest neuron grid indices: ( 30 , 6 )
-Distance:  0.012
+Closest neuron grid indices: ( 39 , 20 )
+Distance:  0.049
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{som_66_0}.png}
@@ -5070,7 +5070,7 @@ The minima (there are 8 of them, equal to the multiplicity of the sample) indica
 \sphinxAtStartPar
 In many situations the input space may have a very large dimension. In the \sphinxhref{https://en.wikipedia.org/wiki/Self-organizing\_map}{Wikipedia example} quoted here, one takes articles from various fields and computes frequencies of used words (for instance, in a given article how  many times the word “goalkeeper” has been used, divided by the total number of words in the article). Essentially, the dimensionality of \(D\) is of the order of the number of all English words, a huge number \(\sim 10^5\)! Then, with a properly defined distance depending on these frequencies, one uses Kohonen’s algorithm to carry out a reduction into a 2\sphinxhyphen{}dim. grid of neurons. The resulting \(U\)\sphinxhyphen{}matrix can be drawn as follows:
 
-\noindent\sphinxincludegraphics{{som_83_0}.jpg}
+\noindent\sphinxincludegraphics{{som_82_0}.jpg}
 
 \sphinxAtStartPar
 Not surprisingly, we notice that articles on sports are special and form a very well defined cluster. The reason is that the sport’s jargon is very specific. The Media are also distinguished, whereas other fields are more\sphinxhyphen{}less uniformly distributed. The example shows how we can, with a very simple method, comprehend data in a multidimensional space and see specific correlations/clusters. Whereas some conclusions may be obvious, such as the fact that sport has a unique jargon, other are less transparent, for instance the emergence of the media cluster and lack of well\sphinxhyphen{}defined clusters for other fields, e.g. for mathematics.
@@ -5092,7 +5092,7 @@ The algorithm proceeds analogously to the previous cases. We initialize an \(n \
 \sphinxAtStartPar
 The lines, again drawn to guide the eye, join the adjacent index pairs in the grid: {[}i,j{]} and {[}i+1,j{]}, or {[}i,j{]} and {[}i,j+1{]} (the neurons in the interior of the grid have 4 nearest neighbors, those at the boundary 3, except for the corners, which have only 2).
 
-\noindent\sphinxincludegraphics{{som_89_0}.png}
+\noindent\sphinxincludegraphics{{som_88_0}.png}
 
 \sphinxAtStartPar
 We note a total initial “chaos”, as the neurons are located randomly. Now comes Kohonen’s miracle:
@@ -5221,7 +5221,7 @@ The loop over \sphinxstylestrong{ph} goes around the circle.
 \sphinxAtStartPar
 The result of Kohonen’s algorithm is as follows:
 
-\noindent\sphinxincludegraphics{{som_103_0}.png}
+\noindent\sphinxincludegraphics{{som_102_0}.png}
 
 \sphinxAtStartPar
 The red neurons are the winners for certain sections of the circle. When we draw these winners alone in the \(N\) space (keep in mind we are going from \(D\) to \(N\)), we get
@@ -5239,7 +5239,7 @@ The red neurons are the winners for certain sections of the circle. When we draw
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}j\PYGZdl{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{11}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_105_0}.png}
+\noindent\sphinxincludegraphics{{som_104_0}.png}
 
 \sphinxAtStartPar
 This looks pretty much as a (rough and discrete) circle. Note that in our example we only have \(n^2=100\) pixels to our disposal \sphinxhyphen{} a very low resolution. The image would look better and better with an increasing \(n\). At some point one would reach the 10M pixel resolution of typical camera, and then the image would seem smooth! We have carried over our circle from \(D\) into \(N\).
@@ -5259,12 +5259,12 @@ Note that the discussed topological features need not be present when the dimens
 \sphinxAtStartPar
 For that case, our example with the circle looks like this:
 
-\noindent\sphinxincludegraphics{{som_111_0}.png}
+\noindent\sphinxincludegraphics{{som_110_0}.png}
 
 \sphinxAtStartPar
 When we go subsequently along the \sphinxstylestrong{grid indices} (i.e. along the blue connecting line), taking \(i=1,2,\dots,100\), we obtain the plot below. We can see the image of our circle (red dots) as a bunch of \sphinxstylestrong{disconnected} red sections. The circle is torn into pieces, the \sphinxstylestrong{topology is not preserved!}
 
-\noindent\sphinxincludegraphics{{som_113_0}.png}
+\noindent\sphinxincludegraphics{{som_112_0}.png}
 
 \sphinxAtStartPar
 Here is the summarizing statement (NB not made sufficiently clear in the literature):
@@ -5333,7 +5333,7 @@ The Python implementation is straightforward:
     
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{som_122_0}.png}
+\noindent\sphinxincludegraphics{{som_121_0}.png}
 
 \sphinxAtStartPar
 We assume a bell\sphinxhyphen{}shaped Lorentzian input signal \(s\), with a maximum in the middle neuron. The width is controlled with \sphinxstylestrong{D}:
@@ -5355,7 +5355,7 @@ Next, we solve Eq. \eqref{equation:docs/som:eq-lat} via inverting the \((I-F)\) 
 \sphinxAtStartPar
 What follows is actually quite remarkable: the output signal \(y\) becomes much narrower from the input signal \(s\). This may be interpreted as a realization of the “winner\sphinxhyphen{}take\sphinxhyphen{}all” scenario. The winner “damped” he guys around him, so he puts himself on airs! The effect is smooth, with the signal visibly sharpened.
 
-\noindent\sphinxincludegraphics{{som_128_0}.png}
+\noindent\sphinxincludegraphics{{som_127_0}.png}
 
 \begin{sphinxadmonition}{note}{Lateral inhibition}
 

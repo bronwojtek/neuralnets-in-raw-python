@@ -692,7 +692,7 @@ for k in range(1000):   # rounds
                        f=func.sig,df=func.dsig) # backprop
 
 
-# The reduction of the learning speed in each round give the final value, which is small, but not too small:
+# The reduction of the learning speed in each round gives the final value, which is small, but not too small:
 
 # In[24]:
 
