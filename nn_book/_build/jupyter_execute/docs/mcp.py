@@ -43,7 +43,7 @@ from IPython.display import display, Image
 # 
 # When the combined signal $s$ is larger than the bias (threshold) $b$, the nucleus fires. i.e. the signal passed along the axon is 1. in the opposite case, the generated signal value is 0 (no firing). This is precisely what we need to mimic the biological prototype.
 
-# There is a convenient notational convention which is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as 
+# There is a convenient notational convention that is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as
 # 
 # $$
 # s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w_i +x_0 w_0 \ge 0 
@@ -115,7 +115,7 @@ np.sin(x)
 np.dot(x,w)
 
 
-# Next, we need to construct the neuron activation function, which presently is just the step function {eq}`eq-f`. 
+# Next, we need to construct the neuron activation function, which presently is just the step function {eq}`eq-f`:
 
 # In[21]:
 
@@ -230,10 +230,10 @@ plt.legend();
 
 
 # ```{note} 
-# From now on, for the brevity of presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks. 
+# From now on, for the brevity of the presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.
 # ```
 
-# Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints. 
+# Admittedly, in the last example, one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.
 
 # (bool-sec)=
 # ## Boolean functions
@@ -299,9 +299,9 @@ for p in [0,1]:
 # \end{array}
 # $$
 # 
-# This is one of possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:  
+# This is one of the possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:
 
-# From the first row of the above table it follows that for the input 0, 0 (first row) the neuron should not fire. Hence 
+# From the first row of the above table, it follows that for the input 0, 0 (first row) the neuron should not fire. Hence
 # 
 # $w_0  + 0* w_1 + 0*w_2  < 0$, or $-w_0>0$. 
 # 

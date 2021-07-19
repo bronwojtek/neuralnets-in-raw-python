@@ -3,7 +3,7 @@
 
 # # Rectification
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np              # numeric
@@ -16,7 +16,7 @@ sys.path.append('./lib_nn')
 from neural import * # import my library package
 
 
-# In[3]:
+# In[2]:
 
 
 def fi(x):
@@ -28,7 +28,7 @@ def data():
     return [x,y]
 
 
-# In[4]:
+# In[3]:
 
 
 tab=np.array([data() for i in range(200)])    # data sample
@@ -45,7 +45,7 @@ labels=np.delete(tab,0,1)                     # y coordinate
 # 
 # does (approximately) the job. The somewhat awkward name comes from electonics, where a "rectifying" (straightening up) unit is used to cut off negative values of an electric signal. The plot of ReLU looks as follows:   
 
-# In[5]:
+# In[4]:
 
 
 draw.plot(func.relu,title='ReLU');
@@ -53,7 +53,7 @@ draw.plot(func.relu,title='ReLU');
 
 # Taking a difference of two ReLU functions with shifted arguments yields, for example, 
 
-# In[6]:
+# In[5]:
 
 
 plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -72,17 +72,17 @@ plt.ylabel('ReLU(z)-ReLU(z-3)',fontsize=11);
 # $$
 # {\rm softplus}(x)=\log \left( 1+e^x \right ),
 # $$
-# which looks as 
+# which looks like
 
-# In[7]:
+# In[6]:
 
 
-draw.plot(func.softplus,title='softlus',start=-10,stop=10);
+draw.plot(func.softplus,title='softplus',start=-10,stop=10);
 
 
 # A difference of two **softplus** functions yields a result very similar to the sigmoid. 
 
-# In[8]:
+# In[7]:
 
 
 plt.figure(figsize=(2.8,2.3),dpi=120)
@@ -106,7 +106,7 @@ plt.ylabel('softplus(z)-softplus(z-3)',fontsize=10);
 
 # We can approximate our simulated data with an ANN with ReLU acivation in the intermediate layers (and the identity function is the output layer, as in the previous section). The functions are taken from the module **func**.
 
-# In[10]:
+# In[55]:
 
 
 fff=func.relu    # short-hand notation
@@ -115,7 +115,7 @@ dfff=func.drelu
 
 # The network must now have more neurons, as the sigmoid "splits" into two ReLU functions:
 
-# In[9]:
+# In[61]:
 
 
 arch=[1,30,1]                   # architecture
@@ -124,10 +124,10 @@ weights=func.set_ran_w(arch, 5) # initialize weights randomly in [-2.5,2.5]
 
 # We carry the simulations exactly as in the previous case. Experience says one should stat with small learning speeds. Two sets of rounds (as in the previous chapter)
 
-# In[10]:
+# In[62]:
 
 
-eps=0.0003          # small learning speed
+eps=0.0003         # small learning speed
 for k in range(30): # rounds
     for p in range(len(features)):          # loop over the data sample points
         pp=np.random.randint(len(features)) # random point
@@ -135,11 +135,11 @@ for k in range(30): # rounds
                          f=fff,df=dfff,fo=func.lin,dfo=func.dlin) # teaching
 
 
-# In[11]:
+# In[63]:
 
 
 for k in range(600): # rounds
-    eps=eps*.999
+    eps=eps*.995
     for p in range(len(features)): # points in sequence
         func.back_prop_o(features,labels,p,arch,weights,eps,
                          f=fff,df=dfff,fo=func.lin,dfo=func.dlin) # teaching
@@ -147,7 +147,7 @@ for k in range(600): # rounds
 
 # yield the result
 
-# In[14]:
+# In[65]:
 
 
 coo=np.linspace(0,7,25)
@@ -190,7 +190,7 @@ plt.ylabel('$y$',fontsize=11);
 
 # For illustration, we repeat our example from section {ref}`circ-lab` with the classification of points in the circle, now with Leaky ReLU.
 
-# In[15]:
+# In[13]:
 
 
 def cir():
@@ -203,7 +203,7 @@ def cir():
         return np.array([x1,x2,0])
 
 
-# In[16]:
+# In[14]:
 
 
 sample_c=np.array([cir() for _ in range(1000)]) # sample
@@ -211,7 +211,7 @@ features_c=np.delete(sample_c,2,1)
 labels_c=np.delete(np.delete(sample_c,0,1),0,1)
 
 
-# In[17]:
+# In[15]:
 
 
 plt.figure(figsize=(2.3,2.3),dpi=120)
@@ -226,7 +226,7 @@ plt.ylabel('$x_2$',fontsize=11);
 
 # We take the following architecture and initial parameters:
 
-# In[18]:
+# In[16]:
 
 
 arch_c=[2,20,1]                   # architecture
@@ -236,7 +236,7 @@ eps=.01                           # initial learning speed
 
 # and run the algorithm in two stages: with Leaky ReLU, and then with ReLU.  
 
-# In[19]:
+# In[17]:
 
 
 for k in range(300):    # rounds
@@ -248,7 +248,7 @@ for k in range(300):    # rounds
                     # backprop with leaky ReLU
 
 
-# In[20]:
+# In[18]:
 
 
 for k in range(700):    # rounds
@@ -262,7 +262,7 @@ for k in range(700):    # rounds
 
 # The result is quite satisfactory, showing that the method works. With the present architecture and activation functions, not surprisingly, in the plot below we can notice traces of a polygon approximating the circle. 
 
-# In[21]:
+# In[19]:
 
 
 test=[] 

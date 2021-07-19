@@ -303,7 +303,7 @@
 \[
 {\rm softplus}(x)=\log \left( 1+e^x \right ),
 \]</div>
-<p>which looks as</p>
+<p>which looks like</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/rectification_9_0.png" src="../_images/rectification_9_0.png" />
@@ -343,7 +343,7 @@
 <p>We carry the simulations exactly as in the previous case. Experience says one should stat with small learning speeds. Two sets of rounds (as in the previous chapter)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">0.0003</span>          <span class="c1"># small learning speed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="o">=</span><span class="mf">0.0003</span>         <span class="c1"># small learning speed</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span> <span class="c1"># rounds</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>          <span class="c1"># loop over the data sample points</span>
         <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))</span> <span class="c1"># random point</span>
@@ -356,7 +356,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">600</span><span class="p">):</span> <span class="c1"># rounds</span>
-    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.999</span>
+    <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="o">*</span><span class="mf">.995</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span> <span class="c1"># points in sequence</span>
         <span class="n">func</span><span class="o">.</span><span class="n">back_prop_o</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">arch</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span>
                          <span class="n">f</span><span class="o">=</span><span class="n">fff</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">dfff</span><span class="p">,</span><span class="n">fo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">lin</span><span class="p">,</span><span class="n">dfo</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">dlin</span><span class="p">)</span> <span class="c1"># teaching</span>

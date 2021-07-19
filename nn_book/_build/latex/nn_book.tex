@@ -78,7 +78,7 @@
         
 
 \title{Explaining neural networks in raw Python: lectures in Jupyter}
-\date{Jul 18, 2021}
+\date{Jul 19, 2021}
 \release{}
 \author{Wojciech Broniowski}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -402,7 +402,7 @@ f(s;b) = \left \{ \begin{array}{l} 1 {\rm ~for~} s \ge b \\ 0 {\rm ~for~} s < b 
 When the combined signal \(s\) is larger than the bias (threshold) \(b\), the nucleus fires. i.e. the signal passed along the axon is 1. in the opposite case, the generated signal value is 0 (no firing). This is precisely what we need to mimic the biological prototype.
 
 \sphinxAtStartPar
-There is a convenient notational convention which is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as
+There is a convenient notational convention that is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as
 \begin{equation*}
 \begin{split}
 s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w_i +x_0 w_0 \ge 0 
@@ -482,7 +482,7 @@ which is a very convenient feature when programming. We also have the scalar pro
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Next, we need to construct the neuron activation function, which presently is just the step function \eqref{equation:docs/mcp:eq-f}.
+Next, we need to construct the neuron activation function, which presently is just the step function \eqref{equation:docs/mcp:eq-f}:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{step}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}\PYG{p}{:}       \PYG{c+c1}{\PYGZsh{} step function (also in neural library package)}
@@ -604,11 +604,11 @@ When the sign of the weight \(w_1\) is negative, we get a \sphinxstylestrong{rev
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
-From now on, for the brevity of presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.
+From now on, for the brevity of the presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
-Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.
+Admittedly, in the last example, one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.
 
 
 \section{Boolean functions}
@@ -693,10 +693,10 @@ p & q & p \oplus q \\
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-This is one of possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:
+This is one of the possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:
 
 \sphinxAtStartPar
-From the first row of the above table it follows that for the input 0, 0 (first row) the neuron should not fire. Hence
+From the first row of the above table, it follows that for the input 0, 0 (first row) the neuron should not fire. Hence
 
 \sphinxAtStartPar
 \(w_0  + 0* w_1 + 0*w_2  < 0\), or \(-w_0>0\).
@@ -3629,7 +3629,7 @@ which looks pretty much as a sigmoid, apart from the sharp corners. One can make
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-which looks as
+which looks like
 
 \noindent\sphinxincludegraphics{{rectification_9_0}.png}
 
@@ -3669,7 +3669,7 @@ The network must now have more neurons, as the sigmoid “splits” into two ReL
 We carry the simulations exactly as in the previous case. Experience says one should stat with small learning speeds. Two sets of rounds (as in the previous chapter)
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.0003}          \PYG{c+c1}{\PYGZsh{} small learning speed}
+\PYG{n}{eps}\PYG{o}{=}\PYG{l+m+mf}{0.0003}         \PYG{c+c1}{\PYGZsh{} small learning speed}
 \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{30}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
     \PYG{k}{for} \PYG{n}{p} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{features}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}          \PYG{c+c1}{\PYGZsh{} loop over the data sample points}
         \PYG{n}{pp}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{features}\PYG{p}{)}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} random point}
@@ -3679,7 +3679,7 @@ We carry the simulations exactly as in the previous case. Experience says one sh
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{600}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} rounds}
-    \PYG{n}{eps}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{l+m+mf}{.999}
+    \PYG{n}{eps}\PYG{o}{=}\PYG{n}{eps}\PYG{o}{*}\PYG{l+m+mf}{.995}
     \PYG{k}{for} \PYG{n}{p} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{features}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} points in sequence}
         \PYG{n}{func}\PYG{o}{.}\PYG{n}{back\PYGZus{}prop\PYGZus{}o}\PYG{p}{(}\PYG{n}{features}\PYG{p}{,}\PYG{n}{labels}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{arch}\PYG{p}{,}\PYG{n}{weights}\PYG{p}{,}\PYG{n}{eps}\PYG{p}{,}
                          \PYG{n}{f}\PYG{o}{=}\PYG{n}{fff}\PYG{p}{,}\PYG{n}{df}\PYG{o}{=}\PYG{n}{dfff}\PYG{p}{,}\PYG{n}{fo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{lin}\PYG{p}{,}\PYG{n}{dfo}\PYG{o}{=}\PYG{n}{func}\PYG{o}{.}\PYG{n}{dlin}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} teaching}

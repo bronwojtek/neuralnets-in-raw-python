@@ -326,7 +326,7 @@
 f(s;b) = \left \{ \begin{array}{l} 1 {\rm ~for~} s \ge b \\ 0 {\rm ~for~} s &lt; b \end{array} \right .
 \end{split}\]</div>
 <p>When the combined signal <span class="math notranslate nohighlight">\(s\)</span> is larger than the bias (threshold) <span class="math notranslate nohighlight">\(b\)</span>, the nucleus fires. i.e. the signal passed along the axon is 1. in the opposite case, the generated signal value is 0 (no firing). This is precisely what we need to mimic the biological prototype.</p>
-<p>There is a convenient notational convention which is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as</p>
+<p>There is a convenient notational convention that is frequently used. Instead of splitting the bias from the input data, we may treat all uniformly. The condition for firing may be trivially transformed as</p>
 <div class="math notranslate nohighlight">
 \[
 s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w_i +x_0 w_0 \ge 0 
@@ -401,7 +401,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 </div>
 </div>
 </div>
-<p>Next, we need to construct the neuron activation function, which presently is just the step function <a class="reference internal" href="#equation-eq-f">(1)</a>.</p>
+<p>Next, we need to construct the neuron activation function, which presently is just the step function <a class="reference internal" href="#equation-eq-f">(1)</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>       <span class="c1"># step function (also in neural library package)</span>
@@ -535,9 +535,9 @@ neuron(x, w, f=&lt;function step at 0x7fb295f785f0&gt;)
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>From now on, for the brevity of presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.</p>
+<p>From now on, for the brevity of the presentation, we hide some cells of the code with repeated structure. The reader may find the complete code in the corresponding Jupyter notebooks.</p>
 </div>
-<p>Admittedly, in the last example one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.</p>
+<p>Admittedly, in the last example, one departs from the biological pattern, as negative weights are not possible to realize in a biological neuron. However, this freedom enriches the mathematical model, which clearly can be built without biological constraints.</p>
 </div>
 <div class="section" id="boolean-functions">
 <span id="bool-sec"></span><h2>Boolean functions<a class="headerlink" href="#boolean-functions" title="Permalink to this headline">¶</a></h2>
@@ -619,8 +619,8 @@ p &amp; q &amp; p \oplus q \\
 1 &amp; 1 &amp; 0
 \end{array}
 \end{split}\]</div>
-<p>This is one of possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:</p>
-<p>From the first row of the above table it follows that for the input 0, 0 (first row) the neuron should not fire. Hence</p>
+<p>This is one of the possible boolean functions of two arguments (in total, we have 16 different functions of this kind, why?). We could now try very hard to adjust the weights in our neuron to make it behave as the XOR gate, but we are doomed to fail. Here is the reason:</p>
+<p>From the first row of the above table, it follows that for the input 0, 0 (first row) the neuron should not fire. Hence</p>
 <p><span class="math notranslate nohighlight">\(w_0  + 0* w_1 + 0*w_2  &lt; 0\)</span>, or <span class="math notranslate nohighlight">\(-w_0&gt;0\)</span>.</p>
 <p>For the cases of rows 2 and 3 the neuron must fire, therefore</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_2 \ge 0\)</span> and <span class="math notranslate nohighlight">\(w_0+w_1 \ge 0\)</span>.</p>
