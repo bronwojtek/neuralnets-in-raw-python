@@ -1,5 +1,5 @@
-nn_book/_build/*
-.ipynb_checkpoints
-__pycache__/
+xnn_book/_build/*
+x.ipynb_checkpoints
+x__pycache__/
 g
 
