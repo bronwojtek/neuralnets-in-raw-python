@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perceptron &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -303,9 +302,9 @@
         
               <div>
                 
-  <section id="perceptron">
+  <div class="section" id="perceptron">
 <span id="perc-lab"></span><h1>Perceptron<a class="headerlink" href="#perceptron" title="Permalink to this headline">¶</a></h1>
-<section id="supervised-learning">
+<div class="section" id="supervised-learning">
 <h2>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h2>
 <p>We have shown in the previous chapters that even the simplest ANNs can carry out useful tasks (emulate logical networks or provide simple memory models). Generally, each ANN has</p>
 <ul class="simple">
@@ -330,8 +329,8 @@ The labeled data are then split into a <strong>training</strong> sample and a <s
 <p>If satisfied, you have a desired trained ANN performing a specific task (like classification), which can be used on new, unlabeled data. If not, you can split the sample in the training and the test parts in a different way and repeat the procedure from the beginning. Also, you may try to acquire more data (which may be expensive), or change your network’s architecture.</p>
 <p>The term “supervised” comes form an interpretation of the procedure where the labels are held by a “teacher”, who thus knows which answers are correct and which are wrong, and who <strong>supervises</strong> that way the training process. Of course, a computer program “supervises itself”.</p>
 </div>
-</section>
-<section id="perceptron-as-a-binary-classifier">
+</div>
+<div class="section" id="perceptron-as-a-binary-classifier">
 <h2>Perceptron as a binary classifier<a class="headerlink" href="#perceptron-as-a-binary-classifier" title="Permalink to this headline">¶</a></h2>
 <p>The simplest supervised learning algorithm
 is the <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron">perceptron</a>, invented in 1958 by Frank Rosenblatt. It can be used, i.a., to
@@ -341,7 +340,7 @@ is used to assess if a data item has a particular feature, or not - just two pos
 <p class="admonition-title">Remark</p>
 <p>The term <em>perceptron</em> is also used for ANNs (without or with intermediate layers) consisting of the MCP neurons (cf. Fig. <a class="reference internal" href="intro.html#ffnn-fig"><span class="std std-numref">Fig. 3</span></a> and <a class="reference internal" href="mcp.html#mcp1-fig"><span class="std std-numref">Fig. 4</span></a>), on which the perceptron algorithm is executed.</p>
 </div>
-<section id="sample-with-a-known-classification-rule">
+<div class="section" id="sample-with-a-known-classification-rule">
 <h3>Sample with a known classification rule<a class="headerlink" href="#sample-with-a-known-classification-rule" title="Permalink to this headline">¶</a></h3>
 <p>To begin, we need some training data, which we will generate as random points in a square. Thus the coordinates of the point, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>, are taken in the range <span class="math notranslate nohighlight">\([0,1]\)</span>. We define two categories: one for the points lying above the line <span class="math notranslate nohighlight">\(x_1=x_2\)</span> (call them pink), and the other for the points lying below (blue). During the generation, we check whether <span class="math notranslate nohighlight">\(x_2 &gt; x_1\)</span> or not, and assign a <strong>label</strong> to each data point equal to, correspondingly, 1 or 0. These labels are “true” answers.</p>
 <p>The function generating the above described data point with a label is</p>
@@ -451,8 +450,8 @@ w_0=0, \;\; w_1=-1, w_2=1.
 <p class="admonition-title">Observation</p>
 <p>A single MCP neuron with properly chosen weights can be used as a binary classifier for <span class="math notranslate nohighlight">\(n\)</span>-dimensional separable data.</p>
 </div>
-</section>
-<section id="sample-with-an-unknown-classification-rule">
+</div>
+<div class="section" id="sample-with-an-unknown-classification-rule">
 <h3>Sample with an unknown classification rule<a class="headerlink" href="#sample-with-an-unknown-classification-rule" title="Permalink to this headline">¶</a></h3>
 <p>At this point the reader may be a bit misled by the apparent triviality of the results. The confusion may stem from the fact that in the above example we knew from the outset the rule defining the two classes of points (<span class="math notranslate nohighlight">\(x_2&gt;x_1\)</span>, or opposite). However, in a general “real life” situation this is usually not the case! Imagine that we encounter the (labeled) data <strong>samp2</strong> looking like this:</p>
 <div class="cell docutils container">
@@ -477,9 +476,9 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 </div>
 <p>The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a> that would carry out the binary classification.</p>
-</section>
-</section>
-<section id="perceptron-algorithm">
+</div>
+</div>
+<div class="section" id="perceptron-algorithm">
 <span id="lab-pa"></span><h2>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>We could still try to figure out somehow the proper weights for the present example and find the dividing line, for instance with a ruler and pencil, but this is not the point. We wish to have a systematic algorithmic procedure that will effortlessly work for this one and any similar situation. The answer is the already mentioned <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron">perceptron algorithm</a>.</p>
 <p>Before presenting the algorithm, let us remark that the MCP neuron with some set of weights <span class="math notranslate nohighlight">\(w_0, w_1, w_2\)</span> always yields some answer for a labeled data point, correct or wrong. For example</p>
@@ -615,7 +614,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <p>The reason why the ratio values for <span class="math notranslate nohighlight">\(i=0,1,2\)</span> are not exactly the same is that the sample has a finite number of points (here 300). Thus, there is always some gap between the two classes of points and there is some room for “jiggling” the separating line a bit. With more data points this mismatch effect decreases (see the exercises).</p>
-<section id="testing-the-classifier">
+<div class="section" id="testing-the-classifier">
 <h3>Testing the classifier<a class="headerlink" href="#testing-the-classifier" title="Permalink to this headline">¶</a></h3>
 <p>Due to the limited size of the training sample and the “jiggling” effect desribed above, the classification result on a test sample is sometimes wrong. This always applies to the points near the dividing line, which is determined with accuracy depending on the multiplicity of the training sample. The code below carries out the check on a test sample. The test sample consists of labeled data generated randomly “on the flight” with the same function <strong>point2</strong> used to generate the training data before:</p>
 <div class="cell docutils container">
@@ -665,9 +664,9 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p class="admonition-title">Misclassification</p>
 <p>As it became clear, the reason for misclassification comes from the fact that the training sample does not determine the separating line precisely, but with some uncertainty, as there is a gap between the points of the training sample. For a better result, the training points would have to be “denser” in the vicinity of the separating line, or the training sample would have to be larger.</p>
 </div>
-</section>
-</section>
-<section id="exercises">
+</div>
+</div>
+<div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -677,8 +676,8 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <li><p>Generalize the above classifier to points in 3-dimensional space.</p></li>
 </ul>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

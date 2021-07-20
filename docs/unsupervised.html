@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unsupervised learning &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -23,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,23 +33,23 @@
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -313,7 +312,7 @@
         
               <div>
                 
-  <section id="unsupervised-learning">
+  <div class="section" id="unsupervised-learning">
 <span id="un-lab"></span><h1>Unsupervised learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h1>
 <div class="tip admonition">
 <p class="admonition-title">Motto</p>
@@ -324,7 +323,7 @@
 <p>However, this is quite a special situation, because most often the data that we encounter do not have preassigned labels and “are what they are”. Also, from the neurobiological or methodological point of view, we learn many facts and activities “on an ongoing basis”, classifying and then recognizing them, whilst the process goes on without any external supervision or labels floating around.</p>
 <p>Imagine an alien botanist who enters a meadow and encounters various species of flowers. He has no idea what they are and what to expect at all, as he has no prior knowledge on earthly matters. After finding the first flower, he records its features: color, size, number of petals, scent, etc. He goes on, finds a different flower, records its features, and so on and on with subsequent flowers. At some point, however, he finds a flower that he already had met. More precisely, its features are close, though not identical (the size may easily differ somewhat, so the color, etc.), to the previous instance. Hence he concludes that it belongs to the same category. The exploration goes on, and new flowers either start a new category, of join one already present. At the end of his quest, he has a catalog of flowers and now he can assign names (labels) to each species: corn poppy, bluebottle, mullein,…  These labels, or names, are useful in sharing the knowledge with others, as they summarize, so to speak, the features of the flower. Note, however, that these labels have actually never been used in the meadow exploration (learning) process.</p>
 <p>Formally, the described problem of <strong>unsupervised learning</strong> is related to data classification (division into categories, or <strong>clusters</strong>, i.e. subsets of the sample where the suitably defined distances between individual data are small, smaller than the assumed distances between clusters). Colloquially speaking, we are looking for similarities between individual data points and try to divide the sample into groups of similar objects.</p>
-<section id="clusters-of-points">
+<div class="section" id="clusters-of-points">
 <h2>Clusters of points<a class="headerlink" href="#clusters-of-points" title="Permalink to this headline">¶</a></h2>
 <p>Here is our simplified version of the alien botanist exploration.</p>
 <p>Consider points on the plane that are randomly generated. Their distribution is not homogeneous, but is concentrated in four clusters: A, B, C, and D. For example, we can set appropriate limits for the coordinates <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> when randomly generating points of a given category. We use the numpy <strong>random.uniform(a,b)</strong> function, giving a uniformly distributed number between a and b:</p>
@@ -408,8 +407,8 @@
 <img alt="../_images/unsupervised_15_0.png" src="../_images/unsupervised_15_0.png" />
 </div>
 </div>
-</section>
-<section id="voronoi-areas">
+</div>
+<div class="section" id="voronoi-areas">
 <span id="vor-lab"></span><h2><a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi areas</a><a class="headerlink" href="#voronoi-areas" title="Permalink to this headline">¶</a></h2>
 <p>Having the situation as in the figure above, i.e. with the representative points determined, we can divide the entire plane into areas according to the following Voronoi criterion, which is a simple geometric notion:</p>
 <div class="important admonition">
@@ -460,8 +459,8 @@
 <p class="admonition-title">Note</p>
 <p>A practical message here is that once we have determined the characteristic points, we can use Voronoi’s criterion for a classification of data.</p>
 </div>
-</section>
-<section id="naive-clusterization">
+</div>
+<div class="section" id="naive-clusterization">
 <h2>Naive clusterization<a class="headerlink" href="#naive-clusterization" title="Permalink to this headline">¶</a></h2>
 <p>Now we go back to the alien botanist’s problem:  imagine we have our sample, but we know nothing about how its points were generated (we do not have any labels A, B, C, D, nor colors of the points). Moreover, the data is mixed, i.e., the data points appear in a random order. So we merge our points with <strong>np.concatenate</strong>:</p>
 <div class="cell docutils container">
@@ -622,23 +621,19 @@ rounds  locations
 <p>Next, we continue, completely analogously, with four representative points.</p>
 <p>The result for two different initial conditions of the characteristic points is
 shown in <a class="reference internal" href="#p-fig"><span class="std std-numref">Fig. 10</span></a>.</p>
-<figure class="align-default" id="p-fig">
+<div class="figure align-default" id="p-fig">
 <a class="reference internal image-reference" href="../_images/cl4_2.png"><img alt="../_images/cl4_2.png" src="../_images/cl4_2.png" style="width: 500px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Left: proper characteristic points. Right: one “dead body”.</span><a class="headerlink" href="#p-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Left: proper characteristic points. Right: one “dead body”.</span><a class="headerlink" href="#p-fig" title="Permalink to this image">¶</a></p>
+</div>
 <p>We notice that the procedure does not always give the “correct”/expected answer. Quite often one of the representative points is not updated at all and becomes the so-called <strong>dead body</strong>. This is because the other representative points always win, i.e. one of them is always closer to each data point of the sample than the “corpse”. Certainly, this is an unsatisfactory situation.</p>
 <p>When we set up five characteristic points, depending on the random initialization, several situation may occur, as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 11</span></a>. Sometimes a cluster is split into two smaller ones, sometimes dead bodies occur.</p>
-<figure class="align-default" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/cl5.jpg"><img alt="../_images/cl5.jpg" src="../_images/cl5.jpg" style="width: 870px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">From left to right: 5 characteristic points with one cluster split into two, with another cluster split into two, one dead body, and two dead bodies.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">From left to right: 5 characteristic points with one cluster split into two, with another cluster split into two, one dead body, and two dead bodies.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <p>Enforcing more representative points leads to the formation of dead bodies even more often. Of course, we may disregard them, but the example shows that the current strategy is highly problematic and we need something better.</p>
-</section>
-<section id="clustering-scale">
+</div>
+<div class="section" id="clustering-scale">
 <h2>Clustering scale<a class="headerlink" href="#clustering-scale" title="Permalink to this headline">¶</a></h2>
 <p>In the previous section we were trying to guess from the outset how many clusters there are in the data. This led to problems, as usually we do not even know how many clusters there are. Actually, up to now we have not defined what precisely a cluster is, and were using some intuition only. This intuition told us that the points in the same cluster must be close to one another, or close to a characteristic point, but how close? Actually, the definition must involve a <strong>scale</strong> (a characteristic distance) telling us “how close is close”. For instance, in our example we may take a scale of about 0.2, where there are 4 clusters, but we may take a smaller scale and resolve the bigger clusters into smaller ones, as in two left panels of <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 11</span></a>.</p>
 <div class="note admonition">
@@ -696,12 +691,10 @@ Otherwise, add to <span class="math notranslate nohighlight">\(R\)</span> a new 
 </div>
 </div>
 <p>The outcome of the algorithm for various values of the clustering scale <span class="math notranslate nohighlight">\(d\)</span> is shown in <a class="reference internal" href="#dyn-fig"><span class="std std-numref">Fig. 12</span></a>. At very low values of <span class="math notranslate nohighlight">\(d\)</span>, smaller than the minimum separation between the points, there are as many clusters as the data points. Then, as we increase <span class="math notranslate nohighlight">\(d\)</span>, the number of clusters decreases. At very large <span class="math notranslate nohighlight">\(d\)</span>, of the order of the span of the whole sample, there is only one cluster.</p>
-<figure class="align-default" id="dyn-fig">
+<div class="figure align-default" id="dyn-fig">
 <a class="reference internal image-reference" href="../_images/cd.jpg"><img alt="../_images/cd.jpg" src="../_images/cd.jpg" style="width: 770px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Dynamical clustering for various values of the scale <span class="math notranslate nohighlight">\(d\)</span>.</span><a class="headerlink" href="#dyn-fig" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Dynamical clustering for various values of the scale <span class="math notranslate nohighlight">\(d\)</span>.</span><a class="headerlink" href="#dyn-fig" title="Permalink to this image">¶</a></p>
+</div>
 <p>Certainly, an algorithm will not tell us which clustering scale to use. The proper value depends on the nature of the problem. Recall our botanist. If he used a very small <span class="math notranslate nohighlight">\(d\)</span>, he would get as many categories as there are flowers in the meadow, as all flowers, even of the same species, are slightly different from one another. That would be useless. On the other extreme, if his <span class="math notranslate nohighlight">\(d\)</span> is too large, then the classification is too crude. Something in between is just right!</p>
 <div class="note admonition">
 <p class="admonition-title">Labels</p>
@@ -720,7 +713,7 @@ Otherwise, add to <span class="math notranslate nohighlight">\(R\)</span> a new 
 <li><p>fall into an overlapping region of two or more clusters (cf. <a class="reference internal" href="#dyn-fig"><span class="std std-numref">Fig. 12</span></a>, where we only get “partial” or ambiguous classification.</p></li>
 </ul>
 <p>Alternatively, we can use the Voronoi areas classification to get rid of the ambiguity.</p>
-<section id="interpretation-via-steepest-descent">
+<div class="section" id="interpretation-via-steepest-descent">
 <h3>Interpretation via steepest descent<a class="headerlink" href="#interpretation-via-steepest-descent" title="Permalink to this headline">¶</a></h3>
 <p>Let us denote a given cluster with <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(i = 1, ..., n\)</span>, where <span class="math notranslate nohighlight">\( n \)</span> is the total number of clusters. The sum of the squared distances of data points in <span class="math notranslate nohighlight">\( C_i \)</span> to its representative point <span class="math notranslate nohighlight">\( R ^ i \)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -743,9 +736,9 @@ dynamic clusterization algorithm presented above, i.e.</p>
 <p class="admonition-title">Note</p>
 <p>Note, however, that the minimization used in the present algorithms also takes into account different combinatorial divisions of points into clusters. In particular, a given data point may change its cluster assignment during the execution of the algorithm. This happens when its closest representative point changes.</p>
 </div>
-</section>
-</section>
-<section id="interpretation-via-neural-networks">
+</div>
+</div>
+<div class="section" id="interpretation-via-neural-networks">
 <span id="inn-sec"></span><h2>Interpretation via neural networks<a class="headerlink" href="#interpretation-via-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>We shall now interpret the unsupervised learning algorithm used above with the winner-take-all strategy in the neural network language. We have the following sample network:</p>
 <div class="cell tag_remove-input docutils container">
@@ -761,7 +754,7 @@ dynamic clusterization algorithm presented above, i.e.</p>
 </ul>
 <p>During (unsupervised) learning, an input point P “attracts” the closest characteristic point, whose weights are updated towards the coordinates of P.</p>
 <p>The application of the above network classifies the point with coordinates <span class="math notranslate nohighlight">\((x_1, x_2)\)</span>, assigning it the index of the closest representative point of a given category (here it is the number 1, 2, 3, or 4).</p>
-<section id="representation-with-spherical-coordinates">
+<div class="section" id="representation-with-spherical-coordinates">
 <h3>Representation with spherical coordinates<a class="headerlink" href="#representation-with-spherical-coordinates" title="Permalink to this headline">¶</a></h3>
 <p>Even with our vast “mathematical liberty”, calling the above system a neural network would be quite abusive, as it seems very far away from any neurobiological pattern. In particular, the use of a (non-linear) signal of the form <span class="math notranslate nohighlight">\(\left(\vec{R}^i-\vec{x}\right)^2\)</span> contrasts with the perceptron, where the signal entering the neurons is a (linear) weighted sum of inputs, i.e.</p>
 <div class="math notranslate nohighlight">
@@ -803,8 +796,8 @@ w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. \]</div>
 <p class="admonition-title">Note</p>
 <p>On the other hand, it is difficult to find a biological justification for the backprop supervised learning, where all weights are updated, also in layers very distant from the output. According to many researchers, it is rather a mathematical concept (but nevertheless extremely useful).</p>
 </div>
-</section>
-<section id="scalar-product-maximization">
+</div>
+<div class="section" id="scalar-product-maximization">
 <h3>Scalar product maximization<a class="headerlink" href="#scalar-product-maximization" title="Permalink to this headline">¶</a></h3>
 <p>Now the algorithm becomes as as follows:</p>
 <ul class="simple">
@@ -869,9 +862,9 @@ w_3 ^ i = \sqrt {r ^ 2-(R_1 ^i)^2 -(R_2 ^i)^2}. \]</div>
 </div>
 </div>
 <p>We can promptly see that the dot product maximization algorithm yields an almost exactly the same result as the distance squared minimization (cf. <a class="reference internal" href="#dyn-fig"><span class="std std-numref">Fig. 12</span></a>.</p>
-</section>
-</section>
-<section id="exercises">
+</div>
+</div>
+<div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -883,8 +876,8 @@ Repeat the simulations of this chapter using this metric. Draw conclusions.</p><
 <li><p>Extend the dynamic clusterization algorithm to a three-dimensional input space.</p></li>
 </ol>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
