@@ -1,5 +1,11 @@
+# python & jupyter
 nn_book/_build/*
 .ipynb_checkpoints
-.DS_Store
 __pycache__/
+
+# private scripts
 g
+
+# os & tools
+.DS_Store
+.idea
