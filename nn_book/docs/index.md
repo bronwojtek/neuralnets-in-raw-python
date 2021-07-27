@@ -4,9 +4,11 @@
 
 [**Wojciech Broniowski**](https://www.ujk.edu.pl/~broniows)
 
+<!--
 [**Jan Kochanowski University**](https://www.ujk.edu.pl), Kielce, Poland, and
 
 [**Institute of Nuclear Physics PAN**](https://www.ifj.edu.pl), Kraków
+-->
 
 <!-- #endregion -->
 
