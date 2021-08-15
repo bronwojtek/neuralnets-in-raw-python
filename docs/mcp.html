@@ -404,7 +404,7 @@ s \ge b  \to s-b \ge 0 \to \sum_{i=1}^n x_i w_i - b \ge 0 \to \sum_{i=1}^n x_i w
 <p>Next, we need to construct the neuron activation function, which presently is just the step function <a class="reference internal" href="#equation-eq-f">(1)</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>       <span class="c1"># step function (also in neural library package)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>       <span class="c1"># step function</span>
      <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>     <span class="c1"># condition satisfied</span>
         <span class="k">return</span> <span class="mi">1</span>
      <span class="k">else</span><span class="p">:</span>         <span class="c1"># otherwise</span>
