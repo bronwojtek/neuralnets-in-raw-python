@@ -11,6 +11,18 @@ These undergraduate lectures explain the very basic concepts of neural networks 
 
 The book is intended for undergraduate students and for advanced high school pupils and their teachers.
 
+
+```{admonition} How to run the book codes
+:class: important
+
+A major advantage of executable books is that the reader may enjoy running the source codes himself, modifying them and playing around. No downloading, installation or configuration are required. Simply go to 
+
+[https://bronwojtek.github.io/neuralnets-in-raw-python/docs/index.html](https://bronwojtek.github.io/neuralnets-in-raw-python/docs/index.html),
+
+in the left menu select any chapter below the Introduction, click the "rocket" icon at the top right of the screen, and choose “Binder". After some initialization time (for the first time it is rather long) the notebook can be run.
+```
+
+
 Links:
 
 - Jupyter Book: 
