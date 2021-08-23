@@ -3,7 +3,9 @@
 Complete file set for [Jupyter Book](https://beta.jupyterbook.org/intro.html)
 
 Autor: Wojciech Broniowski
+
 Date:  17 July 2021
+
 ISBN: **978-83-962099-0-0** (pdf version)
 
 
