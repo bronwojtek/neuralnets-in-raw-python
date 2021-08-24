@@ -17,6 +17,7 @@
 These lectures were originally given to undergraduate students of computer engineering at the [Jan Kochanowski University](https://www.ujk.edu.pl) in Kielce, Poland, and for
 the [Kraków School of Interdisciplinary PhD Studies](https://kisd.ifj.edu.pl/news/). They explain the very basic concepts of neural networks at a most elementary level, requiring only very rudimentary knowledge of Python, or actually any programming language. With simplicity in mind, the code for various algorithms of neural networks is written from absolute scratch, i.e. without any use of dedicated higher-level libraries. That way one can follow all the programming steps in an explicit manner.
 
+
 ```{admonition} Brevity
 :class: note
 
