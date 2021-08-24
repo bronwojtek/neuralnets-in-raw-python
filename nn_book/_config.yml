@@ -62,3 +62,7 @@ sphinx:
 #    latex_show_urls: 'footnote'
     latex_elements.papersize: a4paper
     latex_elements.pointsize: 12pt
+    
+
+google_analytics:
+  mytrackingcode: G-MY540MF7HQ
