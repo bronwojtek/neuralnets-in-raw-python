@@ -31,3 +31,14 @@ in the left menu select any chapter below the Introduction, click the "rocket" i
 - pdf: file nn_book_covers.pdf (131 pages)
 
 - codes: [www.ifj.edu.pl/~broniows/nn](https://www.ifj.edu.pl/~broniows/nn) or [www.ujk.edu.pl/~broniows/nn](https://www.ujk.edu.pl/~broniows/nn)
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MY540MF7HQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MY540MF7HQ');
+</script>
