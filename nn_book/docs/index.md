@@ -28,7 +28,7 @@ the [Kraków School of Interdisciplinary PhD Studies](https://kisd.ifj.edu.pl/ne
 ```{admonition} Brevity
 :class: note
 
-The text is brief (the pdf printout has ~120 pages including the appendix), so a diligent student can complete the course in a few afternoons!
+The text is brief (the pdf printout has ~130 pages including the appendix), so a diligent student can complete the course in a few afternoons!
 ```
 
 
