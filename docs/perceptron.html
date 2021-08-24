@@ -370,11 +370,11 @@ is used to assess if a data item has a particular feature, or not - just two pos
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  x1         x2         label
-[[0.39421929 0.18790361 0.        ]
- [0.93838154 0.78690602 0.        ]
- [0.56680192 0.46849309 0.        ]
- [0.89119929 0.60750201 0.        ]
- [0.04872589 0.40065797 1.        ]]
+[[0.30177711 0.36256864 1.        ]
+ [0.74563557 0.63263509 0.        ]
+ [0.46905767 0.66982076 1.        ]
+ [0.04018207 0.20842031 1.        ]
+ [0.04874155 0.21942538 1.        ]]
 </pre></div>
 </div>
 </div>
@@ -402,7 +402,9 @@ is used to assess if a data item has a particular feature, or not - just two pos
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>                 <span class="c1"># separating line</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>                    
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -461,11 +463,11 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.34238434 0.06775293 0.        ]
- [0.2771834  0.1100432  0.        ]
- [0.66800363 0.16046044 0.        ]
- [0.1681795  0.41494989 1.        ]
- [0.837124   0.80643535 1.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.39498232 0.30505482 0.        ]
+ [0.11269714 0.95880028 1.        ]
+ [0.29661374 0.11679508 0.        ]
+ [0.89268244 0.35261853 0.        ]
+ [0.89178862 0.25506102 0.        ]]
 </pre></div>
 </div>
 </div>
@@ -497,10 +499,10 @@ w_0=0, \;\; w_1=-1, w_2=1.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label  answer
 0      0
+1      0
 0      0
 0      1
-1      0
-1      1
+0      1
 </pre></div>
 </div>
 </div>
@@ -550,7 +552,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Obtained weights:
   w0     w1     w2
-[-0.525 -1.078  2.086]
+[-0.517 -1.084  2.071]
 </pre></div>
 </div>
 </div>
@@ -594,7 +596,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.525 -1.078  2.086]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.517 -1.084  2.071]
 </pre></div>
 </div>
 </div>
@@ -608,7 +610,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.099 2.073 2.086]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.068 2.085 2.071]
 </pre></div>
 </div>
 </div>
@@ -649,7 +651,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of misclassified points =  11  per  10000  ( 0.1 % )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of misclassified points =  12  per  10000  ( 0.1 % )
 </pre></div>
 </div>
 </div>

@@ -416,16 +416,16 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimum:
    w0  w1/w0  w2/w0 error
--0.631 1.747 -3.472 4.0
--0.631 2.129 -3.889 3.0
--0.989 1.496 -2.557 27.0
--0.702 2.127 -3.809 5.0
--0.932 1.678 -2.853 22.0
--0.748 1.88 -3.729 0.0
--0.748 1.88 -3.729 0.0
--0.748 1.88 -3.729 0.0
--0.748 1.88 -3.729 0.0
--0.748 1.88 -3.729 0.0
+-0.297 3.643 -7.231 22.0
+-0.745 2.493 -3.373 28.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
+-0.745 2.201 -4.032 0.0
 </pre></div>
 </div>
 </div>
@@ -461,7 +461,8 @@ the perceptron algorithm, as we already experienced in chapter <a class="referen
 
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">v1_o</span><span class="p">,</span> <span class="n">v2_o</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;found minimum&#39;</span><span class="p">)</span> <span class="c1"># our found optimal point</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -563,16 +564,16 @@ s/T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   w0   w1/w0  w2/w0 error
--21.024 1.877 -3.564 2.82177
--25.44 1.969 -3.702 2.01984
--28.588 2.002 -3.759 1.52735
--31.097 2.016 -3.792 1.15789
--33.2 2.023 -3.814 0.87864
--35.013 2.027 -3.829 0.6715
--36.603 2.03 -3.841 0.52004
--38.012 2.031 -3.85 0.40982
--39.272 2.032 -3.858 0.32934
--40.405 2.033 -3.864 0.27003
+-16.036 2.665 -4.64 0.37383
+-19.825 2.627 -4.588 0.25397
+-22.375 2.595 -4.547 0.19764
+-24.308 2.572 -4.52 0.16604
+-25.869 2.555 -4.501 0.14589
+-27.178 2.541 -4.487 0.13176
+-28.306 2.531 -4.476 0.12106
+-29.293 2.523 -4.467 0.11244
+-30.169 2.516 -4.46 0.10517
+-30.952 2.511 -4.454 0.09883
 </pre></div>
 </div>
 </div>
@@ -601,7 +602,8 @@ s/T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 
 
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w1_o</span><span class="p">,</span> <span class="n">w2_o</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;found minimum&#39;</span><span class="p">)</span> <span class="c1"># our found optimal point</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -703,16 +705,16 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   w0   w1/w0  w2/w0 error
--10.47 1.884 -3.593 2.43311
--12.669 1.967 -3.719 1.8197
--14.217 2.002 -3.776 1.50601
--15.449 2.019 -3.809 1.297
--16.483 2.028 -3.83 1.14314
--17.377 2.034 -3.845 1.02413
--18.165 2.038 -3.856 0.92936
--18.867 2.04 -3.864 0.85238
--19.499 2.042 -3.871 0.78892
--20.07 2.043 -3.876 0.73597
+-8.15 2.655 -4.624 1.15014
+-10.036 2.651 -4.617 0.81162
+-11.286 2.64 -4.601 0.66387
+-12.231 2.629 -4.587 0.57811
+-12.992 2.62 -4.575 0.52091
+-13.63 2.612 -4.565 0.47946
+-14.178 2.605 -4.556 0.44769
+-14.658 2.598 -4.549 0.42237
+-15.084 2.593 -4.542 0.40159
+-15.466 2.588 -4.536 0.38416
 </pre></div>
 </div>
 </div>
@@ -892,7 +894,8 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
             <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">cool</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.9</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -967,7 +970,8 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
             <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">cool</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.9</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -978,12 +982,9 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <p>The trained network looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnet</span><span class="o">=</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w</span><span class="p">(</span><span class="n">arch_c</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="mf">.1</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnet</span><span class="o">=</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w</span><span class="p">(</span><span class="n">arch_c</span><span class="p">,</span><span class="n">weights</span><span class="p">,</span><span class="mf">.1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/backprop_70_0.png" src="../_images/backprop_70_0.png" />
 </div>
 </div>
 <div class="admonition note">

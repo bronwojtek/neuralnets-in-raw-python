@@ -1,3 +1,13 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MY540MF7HQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MY540MF7HQ');
+</script>
+
 <!-- #region -->
 # Explaining neural networks in raw Python: <br> lectures in Jupiter
 
@@ -18,7 +28,7 @@ the [Kraków School of Interdisciplinary PhD Studies](https://kisd.ifj.edu.pl/ne
 ```{admonition} Brevity
 :class: note
 
-The text is brief (the pdf printout has ~120 pages including the appendix), so a diligent student can complete the course in a few afternoons!
+The text is brief (the pdf printout has ~130 pages including the appendix), so a diligent student can complete the course in a few afternoons!
 ```
 
 

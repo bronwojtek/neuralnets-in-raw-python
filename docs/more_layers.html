@@ -386,7 +386,7 @@ Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span
 <p>In the codes of this course we use the convention of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a>, namely, the bias is treated uniformly with the remaining signal. However, the bias notes are not included in counting the numbers <span class="math notranslate nohighlight">\(n_i\)</span> defined above. In particular, a more detailed view of the fourth panel of <a class="reference internal" href="#nfn-fig"><span class="std std-numref">Fig. 8</span></a> is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net</span><span class="p">(</span><span class="n">arch</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net</span><span class="p">(</span><span class="n">arch</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +571,7 @@ x^0 W,
 <p>For visualization of simple networks, in the <strong>draw</strong> module of he <strong>neural</strong> library we provide some drawing functions which show the weights, as well as the signals. Function <strong>plot_net_w</strong> draws the positive weights in red and the negative ones in blue, with the widths reflecting their magnitude. The last parameter, here 0.5, rescales  the widths such that the graphics looks nice. Function <strong>plot_net_w_x</strong>  prints in addition the values of the signal leaving the nodes of each layer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mf">0.5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -581,7 +581,7 @@ x^0 W,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w_x</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w_x</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -597,7 +597,7 @@ The network architecture is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">draw</span><span class="o">.</span><span class="n">plot_net</span><span class="p">(</span><span class="n">arch</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net</span><span class="p">(</span><span class="n">arch</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -721,7 +721,7 @@ In the second neuron layer we need to realize two AND gates for conditions 1-3 a
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xi</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span>
 <span class="n">x</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">xi</span><span class="p">)</span>
-<span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w_x</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">draw</span><span class="o">.</span><span class="n">plot_net_w_x</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -749,11 +749,11 @@ In the second neuron layer we need to realize two AND gates for conditions 1-3 a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.65191479 0.84638747 0.        ]
- [0.05214266 0.76457151 0.        ]
- [0.90977968 0.34320228 0.        ]
- [0.41914537 0.52844105 1.        ]
- [0.8316971  0.19487283 0.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.71435539 0.05281912 0.        ]
+ [0.54490285 0.59347251 0.        ]
+ [0.95485103 0.77741598 0.        ]
+ [0.71722458 0.42208055 0.        ]
+ [0.54892879 0.62149029 0.        ]]
 </pre></div>
 </div>
 </div>
