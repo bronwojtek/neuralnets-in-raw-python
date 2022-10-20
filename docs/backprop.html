@@ -315,7 +315,7 @@
 <p>In this chapter we show in detail  how to carry out supervised learning for multilayer classifiers discussed in chapter <a class="reference internal" href="more_layers.html#more-lab"><span class="std std-ref">More layers</span></a>. Since the method is based on minimizing the number of erroneous answers on a test sample, we begin with a thorough discussion of the problem of error minimization in our setup.</p>
 <div class="section" id="minimizing-the-error">
 <h2>Minimizing the error<a class="headerlink" href="#minimizing-the-error" title="Permalink to this headline">¶</a></h2>
-<p>Recall that in our example with points on the plane from chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a>, the condition for the pink points was given by the inequality</p>
+<p>Recall that in our example with points on the plane from chapter <span class="xref std std-ref">perc-lab</span>, the condition for the pink points was given by the inequality</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_1 x_1 + w_2 x_2 &gt; 0\)</span>.</p>
 <p>We have already briefly mentioned the equivalence class related to dividing this inequality with a positive constant <span class="math notranslate nohighlight">\(c\)</span>. In general, at least one of the weights in the condition must be nonzero to have a nontrivial condition. Suppose or definiteness that <span class="math notranslate nohighlight">\(w_0 \neq 0\)</span> (other cases may be treated analogously). Then we can divide both sides of the inequality with <span class="math notranslate nohighlight">\(|w_0|\)</span> to obtain</p>
 <div class="math notranslate nohighlight">
@@ -360,8 +360,8 @@
 <div class="math notranslate nohighlight">
 \[ E(v_1,v_2)=\sum_p \left ( y_o^{(p)}-y_t^{(p)}\right )^2,\]</div>
 <p>which is the formula programmed above. Indeed, when  <span class="math notranslate nohighlight">\(y_o^{(p)}=y_t^{(p)}\)</span> (correct answer) the contribution of the point is 0, and when <span class="math notranslate nohighlight">\(y_o^{(p)}\neq y_t^{(p)}\)</span> (wrong answer) the contribution is <span class="math notranslate nohighlight">\((\pm 1)^2=1\)</span>.</p>
-<p>We repeat the simulations of chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a> to generate the labeled data sample <strong>samp2</strong> of 200 points (the sample is built with <span class="math notranslate nohighlight">\(w_0=-0.25\)</span>, <span class="math notranslate nohighlight">\(w_1=-0.52\)</span>, and <span class="math notranslate nohighlight">\(w_2=1\)</span>, which corresponds to <span class="math notranslate nohighlight">\(v_1=2.08\)</span> and <span class="math notranslate nohighlight">\(v_2=-4\)</span>, with <span class="math notranslate nohighlight">\({\rm sgn}(w_0)=-1\)</span>).</p>
-<p>We now need again the perceptron algorithm of section <a class="reference internal" href="perceptron.html#lab-pa"><span class="std std-ref">Perceptron algorithm</span></a>. In our special case, it operates on a sample of two-dimensional labeled data. For convenience, a single round of the algorithm can be collected into a function as follows:</p>
+<p>We repeat the simulations of chapter <span class="xref std std-ref">perc-lab</span> to generate the labeled data sample <strong>samp2</strong> of 200 points (the sample is built with <span class="math notranslate nohighlight">\(w_0=-0.25\)</span>, <span class="math notranslate nohighlight">\(w_1=-0.52\)</span>, and <span class="math notranslate nohighlight">\(w_2=1\)</span>, which corresponds to <span class="math notranslate nohighlight">\(v_1=2.08\)</span> and <span class="math notranslate nohighlight">\(v_2=-4\)</span>, with <span class="math notranslate nohighlight">\({\rm sgn}(w_0)=-1\)</span>).</p>
+<p>We now need again the perceptron algorithm of section <span class="xref std std-ref">lab-pa</span>. In our special case, it operates on a sample of two-dimensional labeled data. For convenience, a single round of the algorithm can be collected into a function as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">teach_perceptron</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">step</span><span class="p">):</span>
@@ -436,7 +436,7 @@
 </div>
 </div>
 <p>We note that in subsequent rounds the error gradually decreases (depending on a simulation, it can sometimes jump up if the learning speed is too large, but this is not a problem as long as we can get down to the minimum), reaching a final value  which is very small or 0 (depending on the particular instance of simulation). Therefore
-the perceptron algorithm, as we already experienced in chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a>, <strong>minimizes the error on the training sample</strong>.</p>
+the perceptron algorithm, as we already experienced in chapter <span class="xref std std-ref">perc-lab</span>, <strong>minimizes the error on the training sample</strong>.</p>
 <p>It is illuminating to look at a contour map of the error function <span class="math notranslate nohighlight">\(E(v_1, v_2)\)</span> in the vicinity of the optimal parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
