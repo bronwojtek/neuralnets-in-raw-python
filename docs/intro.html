@@ -238,6 +238,11 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/bronwojtek/neuralnets-in-raw-python/blob/master/nn_book/docs/intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         
     </div>
 </div>
@@ -340,14 +345,14 @@
 <p>In the remaining part of this section we give, in a rather dense format, a bunch of important definitions:</p>
 <p>Networks with one layer of neurons are called <strong>single-layer</strong> networks. The last layer (light blue blobs) is called the <strong>output layer</strong>. In multi-layer (more than one neuron layer) networks the neuron layers preceding the output layer (purple blobs) are called <strong>intermediate layers</strong>. If the number of layers is large (e.g. as many as 64, 128, …), we deal with the recent “ground-breaking” <strong>deep networks</strong>.</p>
 <p>Neurons in various layers do not have to function the same way, in particular the output neurons may act differently from the others.</p>
-<p>The signal from the input travels along the links (edges, synaptic connections), indicated with arrows, to the neurons in subsequent layers. In feed-forward networks, as the one in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, it can only move forward (from left to right in the figure): from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going backward to preceding layers, or parallel propagation among the neurons of the same layer, are allowed. This would be a <strong>recurrent</strong> feature that we touch upon in section <a class="reference internal" href="som.html#lat-lab"><span class="std std-ref">Lateral inhibition</span></a>.</p>
+<p>The signal from the input travels along the links (edges, synaptic connections), indicated with arrows, to the neurons in subsequent layers. In feed-forward networks, as the one in <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, it can only move forward (from left to right in the figure): from the input to the first neuron layer, from the first to the second, and so on until the output is reached. No going backward to preceding layers, or parallel propagation among the neurons of the same layer, are allowed. This would be a <strong>recurrent</strong> feature that we touch upon in section <span class="xref std std-ref">lat-lab</span>.</p>
 <p>As we describe in detail in the following chapters, the traveling signal is appropriately <strong>processed</strong> by the neurons, hence the device carries out a computation: input is being transformed into output.</p>
 <p>In the sample network of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a> each neuron from a preceding layer is connected to each neuron in the following layer. Such ANNs are called <strong>fully connected</strong>.</p>
 <div class="figure align-default" id="ffnn-fig">
 <a class="reference internal image-reference" href="../_images/feed_f.png"><img alt="../_images/feed_f.png" src="../_images/feed_f.png" style="width: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">A sample feed-foward fully connected artificial neural network. The colored blobs represent the neurons, and the edges indicate the synaptic connections. The signal propagates starting from the input (black dots), via the neurons in subsequent intermediate (hidden) layers (purple blobs), to the output layer (light blue blobs). The strength of the connections is controled by weights (hyperparameters) assigned to the edges.</span><a class="headerlink" href="#ffnn-fig" title="Permalink to this image">¶</a></p>
 </div>
-<p>As we will discuss in greater detail shortly, each edge (synaptic connection) in the network has a certain “strength” described with a number called <strong>weight</strong> (the weights are also termed <strong>hyperparameters</strong>). Even very small fully connected networks, such as the one of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, have very many connections (here 30), hence contain a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact very complex multi-parametric systems. Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter <a class="reference internal" href="mcp.html#mcp-lab"><span class="std std-ref">MCP Neuron</span></a>.</p>
+<p>As we will discuss in greater detail shortly, each edge (synaptic connection) in the network has a certain “strength” described with a number called <strong>weight</strong> (the weights are also termed <strong>hyperparameters</strong>). Even very small fully connected networks, such as the one of <a class="reference internal" href="#ffnn-fig"><span class="std std-numref">Fig. 3</span></a>, have very many connections (here 30), hence contain a lot of hyperparameters. Thus, while sometimes looking innocuously, ANNs are in fact very complex multi-parametric systems. Moreover, a crucial feature here is an inherent nonlinearity of the neuron responses, as we discuss in chapter <span class="xref std std-ref">MCP-lab</span>.</p>
 </div>
 <div class="section" id="why-python">
 <h2>Why Python<a class="headerlink" href="#why-python" title="Permalink to this headline">¶</a></h2>
@@ -363,7 +368,7 @@
 <div class="section" id="imported-packages">
 <h3>Imported packages<a class="headerlink" href="#imported-packages" title="Permalink to this headline">¶</a></h3>
 <p>Throughout this course we use some standard Python library packages for the numerics, plotting, etc. As stressed, we do not use any libraries specifically dedicated to neural networks. Each lecture’s notebook starts with the inclusion of some of these libraries:</p>
-<div class="cell docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>              <span class="c1"># numerical</span>
 <span class="kn">import</span> <span class="nn">statistics</span> <span class="k">as</span> <span class="nn">st</span>         <span class="c1"># statistics</span>
@@ -379,25 +384,27 @@
 </div>
 <div class="admonition-neural-package admonition">
 <p class="admonition-title"><strong>neural</strong> package</p>
-<p>Functions created during this course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a>.</p>
+<p>Functions created during this course which are of repeated use, are placed in the private library package <strong>neural</strong>, described in appendix <span class="xref std std-ref">app-lab</span>.</p>
 </div>
-<p>Assuming the package is in the relative subdirectory <strong>lib_nn</strong>, it is imported in the following way:</p>
-<div class="cell docutils container">
+<p>For compatibility with Google Colab, the <strong>lib_nn</strong> package is imported in the following way:</p>
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>                  <span class="c1"># system </span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> <span class="c1"># path to the lecture&#39;s package</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span> 
 
-<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span>        <span class="c1"># import the lecture&#39;s package</span>
+<span class="n">isdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s1">&#39;lib_nn&#39;</span><span class="p">)</span> <span class="c1"># check whether &#39;lib_nn&#39; exists</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">isdir</span><span class="p">:</span>
+   <span class="o">!</span>git clone https://github.com/bronwojtek/lib_nn.git # cloning the library from github
+
+<span class="kn">import</span> <span class="nn">sys</span>                     
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> 
+
+<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span>            <span class="c1"># importing my library package</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Invoking __init__.py for neural
-</pre></div>
 </div>
-</div>
-</div>
-<p>See appendix <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">neural package</span></a> for further details.</p>
+<p>See appendix <span class="xref std std-ref">app-lab</span> for further details.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For brevity of presentation, some redundant (e.g. imports of libraries) or inessential pieces of the code are present only in the downloadable source Jupyter notebooks, and are not included/repeated in the book. This makes the text more concise and readable.</p>

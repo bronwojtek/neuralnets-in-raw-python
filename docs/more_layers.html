@@ -238,6 +238,11 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/bronwojtek/neuralnets-in-raw-python/blob/master/nn_book/docs/more_layers.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         
     </div>
 </div>
@@ -306,12 +311,12 @@
 <h2>Two layers of neurons<a class="headerlink" href="#two-layers-of-neurons" title="Permalink to this headline">¶</a></h2>
 <p>In the previous chapter we have seen that the MCP neuron with the step activation function realizes the inequality <span class="math notranslate nohighlight">\(x \cdot w=w_0+x_1 w_1 + \dots x_n w_n &gt; 0\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> in the dimensionality of the input space. It is instructive to follow up this geometric interpretation. Taking for definiteness <span class="math notranslate nohighlight">\(n=2\)</span> (the plane), the above inequality corresponds to a division into two half-planes. As we already know, the line given by the equation</p>
 <div class="math notranslate nohighlight">
-\[x \cdot w=w_0+x_1 w_1 + \dots x_n w_n = 0\]</div>
+\[w_0+x_1 w_1 + x_2 w_2 = 0\]</div>
 <p>is the <strong>dividing line</strong>.</p>
 <p>Imagine now that we have more such conditions: two, three, etc., in general <span class="math notranslate nohighlight">\(k\)</span> independent conditions. Taking a conjunction of these conditions we can build regions as shown, e.g., in <a class="reference internal" href="#regions-fig"><span class="std std-numref">Fig. 7</span></a>.</p>
 <div class="figure align-default" id="regions-fig">
 <a class="reference internal image-reference" href="../_images/regions.png"><img alt="../_images/regions.png" src="../_images/regions.png" style="width: 620px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunctions of 2, 3, or 4 inequality conditions, yielding <strong>polygons</strong>.</span><a class="headerlink" href="#regions-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Sample convex regions in the plane obtained, from left to right, with one inequality condition, and a conjunctions of 2, 3, or 4 inequality conditions, with the latter two yielding <strong>polygons</strong>.</span><a class="headerlink" href="#regions-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition-convex-region admonition">
 <p class="admonition-title">Convex region</p>
@@ -321,7 +326,7 @@
 Recall from section <a class="reference internal" href="mcp.html#bool-sec"><span class="std std-ref">Boolean functions</span></a> that we can straightforwardly build boolean functions with the help of the neural networks. In particular, we can make a conjunction of <span class="math notranslate nohighlight">\(k\)</span> conditions by taking a neuron with the weights <span class="math notranslate nohighlight">\(w_0=-1\)</span> and <span class="math notranslate nohighlight">\(1/k &lt; w_i &lt; 1/(k-1)\)</span>, where <span class="math notranslate nohighlight">\(i=1,\dots,k\)</span>. One possibility is, e.g.,</p>
 <div class="math notranslate nohighlight">
 \[w_i=\frac{1}{k-\frac{1}{2}}.\]</div>
-<p>Indeed, let <span class="math notranslate nohighlight">\(p_0=0\)</span>, and the conditions imposed by the inequalities be denoted as <span class="math notranslate nohighlight">\(p_i\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots,k\)</span>, which may take values 1 or 0 (true or false). Then</p>
+<p>Indeed, let <span class="math notranslate nohighlight">\(p_0=1\)</span>, and the conditions imposed by the inequalities be denoted as <span class="math notranslate nohighlight">\(p_i\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots,k\)</span>, which may take values 1 or 0 (true or false). Then</p>
 <div class="math notranslate nohighlight">
 \[p \cdot w =-1 + p_1 w_1 + \dots + p_k w_k = -1+\frac{p_1+\dots p_k}{k-\frac{1}{2}} &gt; 0\]</div>
 <p>if and only if all <span class="math notranslate nohighlight">\(p_i=1\)</span>, i.e. all the conditions are true.</p>

@@ -238,6 +238,11 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/bronwojtek/neuralnets-in-raw-python/blob/master/nn_book/docs/perceptron.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         
     </div>
 </div>
@@ -370,11 +375,11 @@ is used to assess if a data item has a particular feature, or not - just two pos
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  x1         x2         label
-[[0.30177711 0.36256864 1.        ]
- [0.74563557 0.63263509 0.        ]
- [0.46905767 0.66982076 1.        ]
- [0.04018207 0.20842031 1.        ]
- [0.04874155 0.21942538 1.        ]]
+[[0.42111394 0.07020499 0.        ]
+ [0.93066523 0.87466665 0.        ]
+ [0.90025472 0.34350444 0.        ]
+ [0.21285073 0.23776243 1.        ]
+ [0.06729928 0.52107458 1.        ]]
 </pre></div>
 </div>
 </div>
@@ -409,7 +414,7 @@ is used to assess if a data item has a particular feature, or not - just two pos
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_16_0.png" src="../_images/perceptron_16_0.png" />
+<img alt="../_images/perceptron_17_0.png" src="../_images/perceptron_17_0.png" />
 </div>
 </div>
 <div class="important admonition">
@@ -463,18 +468,18 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.39498232 0.30505482 0.        ]
- [0.11269714 0.95880028 1.        ]
- [0.29661374 0.11679508 0.        ]
- [0.89268244 0.35261853 0.        ]
- [0.89178862 0.25506102 0.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.45183395 0.83895895 1.        ]
+ [0.9400015  0.18976085 0.        ]
+ [0.3524696  0.12013594 0.        ]
+ [0.35971149 0.42787117 0.        ]
+ [0.47753383 0.98513982 1.        ]]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_27_0.png" src="../_images/perceptron_27_0.png" />
+<img alt="../_images/perceptron_28_0.png" src="../_images/perceptron_28_0.png" />
 </div>
 </div>
 <p>The situation is in some sense inverted now. We have obtained from somewhere the (linearly separable) data, and want to find the rule that defines the two classes. In other words, we need to draw a dividing line, which is equivalent to finding the weights of the MCP neuron of <a class="reference internal" href="mcp.html#mcp2-fig"><span class="std std-numref">Fig. 5</span></a> that would carry out the binary classification.</p>
@@ -498,11 +503,11 @@ w_0=0, \;\; w_1=-1, w_2=1.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label  answer
+1      0
+0      1
+0      0
 0      0
 1      0
-0      0
-0      1
-0      1
 </pre></div>
 </div>
 </div>
@@ -552,7 +557,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Obtained weights:
   w0     w1     w2
-[-0.517 -1.084  2.071]
+[-0.555 -1.109  2.163]
 </pre></div>
 </div>
 </div>
@@ -560,7 +565,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>The obtained weights, as we know, define the dividing line. Thus, geometrically, the algorithm produces the dividing line as drawn below, together with the training sample as plotted above.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_38_0.png" src="../_images/perceptron_38_0.png" />
+<img alt="../_images/perceptron_39_0.png" src="../_images/perceptron_39_0.png" />
 </div>
 </div>
 <p>We can see that the algorithm works! All the pink points are above the dividing line, and all the blue ones below. Let us emphasize that the dividing line, given by the equation</p>
@@ -596,7 +601,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.517 -1.084  2.071]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.555 -1.109  2.163]
 </pre></div>
 </div>
 </div>
@@ -610,7 +615,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.068 2.085 2.071]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.22  2.133 2.163]
 </pre></div>
 </div>
 </div>
@@ -651,7 +656,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of misclassified points =  12  per  10000  ( 0.1 % )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of misclassified points =  28  per  10000  ( 0.3 % )
 </pre></div>
 </div>
 </div>
@@ -659,7 +664,7 @@ If for a given point  the obtained result <span class="math notranslate nohighli
 <p>As we can see, a small number of test points are misclassified. All these points lie near the separating line.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/perceptron_53_0.png" src="../_images/perceptron_53_0.png" />
+<img alt="../_images/perceptron_54_0.png" src="../_images/perceptron_54_0.png" />
 </div>
 </div>
 <div class="note admonition">

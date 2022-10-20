@@ -238,6 +238,11 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/bronwojtek/neuralnets-in-raw-python/blob/master/nn_book/docs/memory.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         
     </div>
 </div>
@@ -439,7 +444,7 @@ v \otimes w = v w^T=
 \left ( \begin{array}{c} v_1 \\ v_2 \\v_3 \end{array}  \right ) (w_1,w_2)
 = \left ( \begin{array}{cc} v_1 w_1 &amp; v_1 w_2 \\ v_2 w_1 &amp; v_2 w_2 \\v_3 v_1 &amp; v_3 w_2 \end{array}  \right ).
 \end{split}\]</div>
-<p>(recall from algebra that we multiply “the columns by the rows”). In <strong>numpy</strong></p>
+<p>(recall from algebra that we multiply “the rows by the columns”). In <strong>numpy</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">]))</span> <span class="c1"># outer product of two vectors</span>
@@ -537,7 +542,7 @@ Let</p>
 </div>
 <div class="section" id="applying-a-filter">
 <h3>Applying a filter<a class="headerlink" href="#applying-a-filter" title="Permalink to this headline">¶</a></h3>
-<p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out or the plot of Ap (the symbol associated to A which should be a), we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
+<p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out and the plot, we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span> <span class="c1"># system library</span>
