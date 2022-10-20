@@ -543,16 +543,6 @@ Let</p>
 <div class="section" id="applying-a-filter">
 <h3>Applying a filter<a class="headerlink" href="#applying-a-filter" title="Permalink to this headline">¶</a></h3>
 <p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out and the plot, we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
-<div class="cell tag_remove-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span> <span class="c1"># system library</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;./lib_nn&#39;</span><span class="p">)</span> <span class="c1"># my path (linux, Mac OS)</span>
-
-<span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># import my library packages</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>We thus define the filter as an MCP neuron with weights <span class="math notranslate nohighlight">\(w_0=-b\)</span> and <span class="math notranslate nohighlight">\(w_1=1\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,14 +581,14 @@ Let</p>
 <p>where we can notice a “clean” symbol a. We check that it actually works perfectly well for all our associations (such perfection is not always the case):</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_47_0.png" src="../_images/memory_47_0.png" />
+<img alt="../_images/memory_46_0.png" src="../_images/memory_46_0.png" />
 </div>
 </div>
 <p>A representation of the just presented model of the heteroassociative memory in terms of a <strong>single-layer</strong> network of MCP neurons can be readily given. In the plot below we indicate all the operations, going from left to right. The input symbol is flattened. The input and output layers are fully connected with edges (not shown) connecting the input cells to the neurons in the output layer. The weights of the edges are equal to the matrix elements <span class="math notranslate nohighlight">\(M_{ij}\)</span>, indicated with symbol M. The activation function is the same for all neurons and has the form of the step function.</p>
 <p>At the bottom, we indicate the elements of the input vector, <span class="math notranslate nohighlight">\(x_i\)</span>, of the signal reaching the neuron <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(s_j=\sum_i x_i M_{ij}\)</span>, and the final output <span class="math notranslate nohighlight">\(y_j=f(s_j)\)</span>.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_49_0.png" src="../_images/memory_49_0.png" />
+<img alt="../_images/memory_48_0.png" src="../_images/memory_48_0.png" />
 </div>
 </div>
 <div class="note admonition">
@@ -632,7 +622,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After multiplying the flattened symbol with matrix Ma, reshaping, and filtering (all steps as in the heteroassociative case) we properly get back the original symbols (except for Y, which was not associated with anything).</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_57_0.png" src="../_images/memory_57_0.png" />
+<img alt="../_images/memory_56_0.png" src="../_images/memory_56_0.png" />
 </div>
 </div>
 </div>
@@ -655,7 +645,7 @@ It should be the symbol associated to the input.</p></li>
 <p>After this destruction, the input symbols look like this:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_62_0.png" src="../_images/memory_62_0.png" />
+<img alt="../_images/memory_61_0.png" src="../_images/memory_61_0.png" />
 </div>
 </div>
 </div>
@@ -678,7 +668,7 @@ It should be the symbol associated to the input.</p></li>
 <p>which yields</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_67_0.png" src="../_images/memory_67_0.png" />
+<img alt="../_images/memory_66_0.png" src="../_images/memory_66_0.png" />
 </div>
 </div>
 <p>After filtering with <span class="math notranslate nohighlight">\(b=0.9\)</span> we obtain back the original symbols:</p>
@@ -696,7 +686,7 @@ It should be the symbol associated to the input.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_69_0.png" src="../_images/memory_69_0.png" />
+<img alt="../_images/memory_68_0.png" src="../_images/memory_68_0.png" />
 </div>
 </div>
 <p>The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism.</p>
