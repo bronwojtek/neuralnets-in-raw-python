@@ -1,15 +1,16 @@
 format: jb-book
 root: docs/index
 chapters:
-- file: docs/intro
-- file: docs/mcp
-- file: docs/memory
-- file: docs/perceptron
-- file: docs/more_layers
-- file: docs/backprop
-- file: docs/interpol
-- file: docs/rectification
-- file: docs/unsupervised
-- file: docs/som
-- file: docs/conclusion
-- file: docs/appendix
+# - file: docs/index.md
+- file: docs/intro.ipynb
+- file: docs/mcp.ipynb
+- file: docs/memory.ipynb
+- file: docs/perceptron.ipynb
+- file: docs/more_layers.ipynb
+- file: docs/backprop.ipynb
+- file: docs/interpol.ipynb
+- file: docs/rectification.ipynb
+- file: docs/unsupervised.ipynb
+- file: docs/som.ipynb
+- file: docs/conclusion.ipynb
+- file: docs/appendix.ipynb

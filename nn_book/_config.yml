@@ -42,7 +42,7 @@ repository:
 launch_buttons:
 #  notebook_interface: classic #jupyterlab
   binderhub_url: https://mybinder.org
-#  colab_url: https://colab.research.google.com
+  colab_url: https://colab.research.google.com
 
 
 # LaTeX settings
