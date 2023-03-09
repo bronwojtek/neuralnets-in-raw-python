@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Models of memory &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +32,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Perceptron" href="perceptron.html" />
     <link rel="prev" title="MCP Neuron" href="mcp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +80,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/koh.png" class="logo" alt="logo">
       
       
@@ -83,7 +93,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
@@ -192,7 +202,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -250,12 +260,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#heteroassociative-memory">
@@ -314,14 +324,81 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Models of memory</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heteroassociative-memory">
+   Heteroassociative memory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pair-associations">
+     Pair associations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory-matrix">
+     Memory matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-a-filter">
+     Applying a filter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoassociative-memory">
+   Autoassociative memory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#self-associations">
+     Self-associations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distorting-the-image">
+     Distorting the image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restoring-the-symbols">
+     Restoring the symbols
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="models-of-memory">
+  <section class="tex2jax_ignore mathjax_ignore" id="models-of-memory">
 <h1>Models of memory<a class="headerlink" href="#models-of-memory" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="heteroassociative-memory">
+<section id="heteroassociative-memory">
 <span id="het-lab"></span><h2>Heteroassociative memory<a class="headerlink" href="#heteroassociative-memory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pair-associations">
+<section id="pair-associations">
 <h3>Pair associations<a class="headerlink" href="#pair-associations" title="Permalink to this headline">¶</a></h3>
 <p>We now pass to further illustrations of elementary capabilities of ANNs, describing two very simple models of memory based on linear algebra, supplemented with (nonlinear) filtering. Speaking of memory here, a word of caution is in place. We have rather simplistic tools in mind here, which are far from the actual complex and hitherto not comprehended memory mechanism operating in our brain. The present understanding is that these mechanism involve feed-back, which goes beyond the considered feed-forward networks.</p>
 <p>The first considered model concerns the so called <strong>heterassociative</strong> memory, where some objects (here graphic bitmap symbols) are joined in pairs. In particular, we take the set of five graphical symbols, {A, a, I, i, Y}, and define two pair associations: A <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> a and I <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> i, that is between different (hetero) symbols. Y remains unassociated.</p>
@@ -430,8 +507,8 @@
 </div>
 </div>
 <p>It is clear that one can use the scalar product as a measure of similarity between the symbols. For the following method to work, the symbols should not be too similar, as then they could be “confused”.</p>
-</div>
-<div class="section" id="memory-matrix">
+</section>
+<section id="memory-matrix">
 <h3>Memory matrix<a class="headerlink" href="#memory-matrix" title="Permalink to this headline">¶</a></h3>
 <p>The next algebraic concept we need is the <strong>outer product</strong>. For two vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>, it is defined as <span class="math notranslate nohighlight">\(v w^T = v \otimes w\)</span> (as opposed to the scalar product, where <span class="math notranslate nohighlight">\(w^T v = w \cdot v\)</span>). Here <span class="math notranslate nohighlight">\(T\)</span> denotes transposition. The result is a matrix with the number of rows equal to the length of <span class="math notranslate nohighlight">\(v\)</span>, and the number of columns equal to the length of <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>For example, with</p>
@@ -539,8 +616,8 @@ Let</p>
 </div>
 </div>
 <p>We should be able to see in the above picture the sequence a, A, i, I, and nothing particular in the association of Y. We almost do, but the situation is not perfect due to the nonorthogonality error discussed above.</p>
-</div>
-<div class="section" id="applying-a-filter">
+</section>
+<section id="applying-a-filter">
 <h3>Applying a filter<a class="headerlink" href="#applying-a-filter" title="Permalink to this headline">¶</a></h3>
 <p>The result improves greatly when a filter is applied to the above pixel maps. Looking at the above print out and the plot, we note that we should get rid of the “faint shadows”, and leave only the pixels of sufficient strength, which should then acquire the value 1. In other words, pixels below a bias (threshold) <span class="math notranslate nohighlight">\(b\)</span> should be reset to 0, and those above or equal to <span class="math notranslate nohighlight">\(b\)</span> should be reset to 1. This can be neatly accomplished with our <strong>neuron</strong> function from Sec. <a class="reference internal" href="mcp.html#mcp-p-lab"><span class="std std-ref">MCP neuron in Python</span></a>. This function has been placed in the library <strong>neural</strong> (see <a class="reference internal" href="appendix.html#app-lab"><span class="std std-ref">Appendix</span></a>), which we now read in:</p>
 <p>We thus define the filter as an MCP neuron with weights <span class="math notranslate nohighlight">\(w_0=-b\)</span> and <span class="math notranslate nohighlight">\(w_1=1\)</span>:</p>
@@ -604,11 +681,11 @@ Let</p>
 It should be the symbol associated to the input.</p></li>
 </ol>
 </div>
-</div>
-</div>
-<div class="section" id="autoassociative-memory">
+</section>
+</section>
+<section id="autoassociative-memory">
 <h2>Autoassociative memory<a class="headerlink" href="#autoassociative-memory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="self-associations">
+<section id="self-associations">
 <h3>Self-associations<a class="headerlink" href="#self-associations" title="Permalink to this headline">¶</a></h3>
 <p>The autoassociative memory model is in close analogy to the case of the heteroassociatine memory, but now the symbol is associated <strong>with itself</strong>. Why we do such a thing will become clear shortly, when we consider distorted input. We thus define the association matrix as follows:</p>
 <div class="cell docutils container">
@@ -625,19 +702,21 @@ It should be the symbol associated to the input.</p></li>
 <img alt="../_images/memory_56_0.png" src="../_images/memory_56_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="distorting-the-image">
+</section>
+<section id="distorting-the-image">
 <h3>Distorting the image<a class="headerlink" href="#distorting-the-image" title="Permalink to this headline">¶</a></h3>
-<p>Now imagine that the original image gets partially destroyed, with some pixels randomly altered from 1 to 0 and vice versa.</p>
+<p>Now imagine that the original image gets partially destroyed, with some pixels randomly altered from 1 to 0 and vice versa. We create a working copy of the original symbols, and next randomly alter some number of pixels (here 8):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ne</span><span class="o">=</span><span class="mi">12</span>   <span class="c1"># number of alterations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span>                 <span class="c1"># copy of symbols</span>
 
-<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sym</span><span class="p">:</span>                     <span class="c1"># loop over symbols</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ne</span><span class="p">):</span>           <span class="c1"># loop over alteratons</span>
-        <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="c1"># random position in row</span>
-        <span class="n">j</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="c1"># random position in column</span>
-        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>           <span class="c1"># trick to switch 1 and 0</span>
+<span class="n">ne</span><span class="o">=</span><span class="mi">8</span>                              <span class="c1"># number of alterations</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sym2</span><span class="p">:</span>                    <span class="c1"># loop over symbols</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ne</span><span class="p">):</span>           <span class="c1"># loop over alterations</span>
+        <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="c1"># random row</span>
+        <span class="n">j</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="c1"># random column</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>           <span class="c1"># trick to switch between 1 and 0</span>
 </pre></div>
 </div>
 </div>
@@ -648,17 +727,28 @@ It should be the symbol associated to the input.</p></li>
 <img alt="../_images/memory_61_0.png" src="../_images/memory_61_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="restoring-the-symbols">
+</section>
+<section id="restoring-the-symbols">
 <h3>Restoring the symbols<a class="headerlink" href="#restoring-the-symbols" title="Permalink to this headline">¶</a></h3>
-<p>We next apply our model of the autoassociative memory to all the “destroyed” symbols:</p>
+<p>We next apply our model of the autoassociative memory to all the “destroyed” symbols (which are first flattened):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ap</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fA</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ap</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fa</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">Ip</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fI</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ip</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fi</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">Yp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fY</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fA2</span><span class="o">=</span><span class="n">sym2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">fa2</span><span class="o">=</span><span class="n">sym2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">fi2</span><span class="o">=</span><span class="n">sym2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">fI2</span><span class="o">=</span><span class="n">sym2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">fY2</span><span class="o">=</span><span class="n">sym2</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ap</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fA2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ap</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fa2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">Ip</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fI2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ip</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fi2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">Yp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ma</span><span class="p">,</span><span class="n">fY2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="n">symp</span><span class="o">=</span><span class="p">[</span><span class="n">Ap</span><span class="p">,</span><span class="n">ap</span><span class="p">,</span><span class="n">Ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">Yp</span><span class="p">]</span> 
 </pre></div>
@@ -668,10 +758,10 @@ It should be the symbol associated to the input.</p></li>
 <p>which yields</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/memory_66_0.png" src="../_images/memory_66_0.png" />
+<img alt="../_images/memory_67_0.png" src="../_images/memory_67_0.png" />
 </div>
 </div>
-<p>After filtering with <span class="math notranslate nohighlight">\(b=0.9\)</span> we obtain back the original symbols:</p>
+<p>After filtering with <span class="math notranslate nohighlight">\(b=0.8\)</span> we obtain back the original symbols:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -679,17 +769,17 @@ It should be the symbol associated to the input.</p></li>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>     
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>  
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>       
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">symp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mf">0.9</span><span class="p">))</span> <span class="c1"># plot filtered symbol</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">symp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mf">0.8</span><span class="p">))</span> <span class="c1"># plot filtered symbol</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/memory_68_0.png" src="../_images/memory_68_0.png" />
+<img alt="../_images/memory_69_0.png" src="../_images/memory_69_0.png" />
 </div>
 </div>
-<p>The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism.</p>
+<p>The application of the algorithm can thus decipher a “destroyed” text, or, more generally, provide an error correction mechanism. The method works when there are not too many alterations.</p>
 <div class="note admonition">
 <p class="admonition-title">Summary of the model of the autooassociative memory</p>
 <ol class="simple">
@@ -707,15 +797,15 @@ certain number of pixels randomly distorted.</p></li>
 <p class="admonition-title">Important</p>
 <p>Message: ANNs with one layer of MPC neurons can serve as very simple models of memory!</p>
 </div>
-<p>Note, however, that we constructed the memory matrices algebraically, externally, so to speak. Hence, the network has not really learned the associations from experience. There are ways to do it, but they require more advanced methods (see, e.g., <span id="id1">[<a class="reference internal" href="conclusion.html#id11">FS91</a>]</span>), similar to those covered in the following parts of these lectures.</p>
+<p>Note, however, that we constructed the memory matrices algebraically, externally, so to speak. Hence, the network has not really learned the associations from experience. There are ways to do it, but they require more advanced methods (see, e.g., <span id="id1">[<a class="reference internal" href="conclusion.html#id11" title="James A. Freeman and David M. Skapura. Neural Networks: Algorithms, Applications, and Programming Techniques (Computation and Neural Systems Series). Addison-Wesley, 1991. ISBN 9780201513769.">FS91</a>]</span>), similar to those covered in the following parts of these lectures.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An implementation of the discussed memory models in Mathematica is provided in
-<span id="id2">[<a class="reference internal" href="conclusion.html#id10">Fre93</a>]</span> (<a class="reference external" href="https://library.wolfram.com/infocenter/Books/3485">https://library.wolfram.com/infocenter/Books/3485</a>) and in the already mentioned lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>.</p>
+<span id="id2">[<a class="reference internal" href="conclusion.html#id10" title="James A. Freeman. Simulating Neural Networks with Mathematica. Addison-Wesley Professional, 1993. ISBN 9780201566291.">Fre93</a>]</span> (<a class="reference external" href="https://library.wolfram.com/infocenter/Books/3485">https://library.wolfram.com/infocenter/Books/3485</a>) and in the already mentioned lectures by <a class="reference external" href="http://vision.psych.umn.edu/users/kersten/kersten-lab/courses/Psy5038WF2014/IntroNeuralSyllabus.html">Daniel Kersten</a>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="exercises">
+</section>
+</section>
+<section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -727,8 +817,8 @@ certain number of pixels randomly distorted.</p></li>
 </ul>
 <p>Discuss your findings and the limitations of the models.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -752,33 +842,41 @@ certain number of pixels randomly distorted.</p></li>
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="mcp.html" title="previous page">MCP Neuron</a>
-    <a class='right-next' id="next-link" href="perceptron.html" title="next page">Perceptron</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="mcp.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MCP Neuron</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="perceptron.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Perceptron</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Wojciech Broniowski<br/>
-        
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Wojciech Broniowski<br/>
+    
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Back propagation &#8212; Explaining neural networks in raw Python: lectures in Jupyter</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +32,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="shortcut icon" href="../_static/koh.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Interpolation" href="interpol.html" />
     <link rel="prev" title="More layers" href="more_layers.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +80,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/koh.png" class="logo" alt="logo">
       
       
@@ -83,7 +93,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
@@ -192,7 +202,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -250,12 +260,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#minimizing-the-error">
@@ -307,15 +317,75 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Back propagation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#minimizing-the-error">
+   Minimizing the error
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-activation-function">
+   Continuous activation function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steepest-descent">
+   Steepest descent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backprop-algorithm">
+   Backprop algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-for-backprop">
+     Code for backprop
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-with-the-circle">
+   Example with the circle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-remarks">
+   General remarks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="back-propagation">
+  <section class="tex2jax_ignore mathjax_ignore" id="back-propagation">
 <h1>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter we show in detail  how to carry out supervised learning for multilayer classifiers discussed in chapter <a class="reference internal" href="more_layers.html#more-lab"><span class="std std-ref">More layers</span></a>. Since the method is based on minimizing the number of erroneous answers on a test sample, we begin with a thorough discussion of the problem of error minimization in our setup.</p>
-<div class="section" id="minimizing-the-error">
+<section id="minimizing-the-error">
 <h2>Minimizing the error<a class="headerlink" href="#minimizing-the-error" title="Permalink to this headline">¶</a></h2>
-<p>Recall that in our example with points on the plane from chapter <span class="xref std std-ref">perc-lab</span>, the condition for the pink points was given by the inequality</p>
+<p>Recall that in our example with points on the plane from chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a>, the condition for the pink points was given by the inequality</p>
 <p><span class="math notranslate nohighlight">\(w_0+w_1 x_1 + w_2 x_2 &gt; 0\)</span>.</p>
 <p>We have already briefly mentioned the equivalence class related to dividing this inequality with a positive constant <span class="math notranslate nohighlight">\(c\)</span>. In general, at least one of the weights in the condition must be nonzero to have a nontrivial condition. Suppose or definiteness that <span class="math notranslate nohighlight">\(w_0 \neq 0\)</span> (other cases may be treated analogously). Then we can divide both sides of the inequality with <span class="math notranslate nohighlight">\(|w_0|\)</span> to obtain</p>
 <div class="math notranslate nohighlight">
@@ -360,8 +430,8 @@
 <div class="math notranslate nohighlight">
 \[ E(v_1,v_2)=\sum_p \left ( y_o^{(p)}-y_t^{(p)}\right )^2,\]</div>
 <p>which is the formula programmed above. Indeed, when  <span class="math notranslate nohighlight">\(y_o^{(p)}=y_t^{(p)}\)</span> (correct answer) the contribution of the point is 0, and when <span class="math notranslate nohighlight">\(y_o^{(p)}\neq y_t^{(p)}\)</span> (wrong answer) the contribution is <span class="math notranslate nohighlight">\((\pm 1)^2=1\)</span>.</p>
-<p>We repeat the simulations of chapter <span class="xref std std-ref">perc-lab</span> to generate the labeled data sample <strong>samp2</strong> of 200 points (the sample is built with <span class="math notranslate nohighlight">\(w_0=-0.25\)</span>, <span class="math notranslate nohighlight">\(w_1=-0.52\)</span>, and <span class="math notranslate nohighlight">\(w_2=1\)</span>, which corresponds to <span class="math notranslate nohighlight">\(v_1=2.08\)</span> and <span class="math notranslate nohighlight">\(v_2=-4\)</span>, with <span class="math notranslate nohighlight">\({\rm sgn}(w_0)=-1\)</span>).</p>
-<p>We now need again the perceptron algorithm of section <span class="xref std std-ref">lab-pa</span>. In our special case, it operates on a sample of two-dimensional labeled data. For convenience, a single round of the algorithm can be collected into a function as follows:</p>
+<p>We repeat the simulations of chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a> to generate the labeled data sample <strong>samp2</strong> of 200 points (the sample is built with <span class="math notranslate nohighlight">\(w_0=-0.25\)</span>, <span class="math notranslate nohighlight">\(w_1=-0.52\)</span>, and <span class="math notranslate nohighlight">\(w_2=1\)</span>, which corresponds to <span class="math notranslate nohighlight">\(v_1=2.08\)</span> and <span class="math notranslate nohighlight">\(v_2=-4\)</span>, with <span class="math notranslate nohighlight">\({\rm sgn}(w_0)=-1\)</span>).</p>
+<p>We now need again the perceptron algorithm of section <a class="reference internal" href="perceptron.html#lab-pa"><span class="std std-ref">Perceptron algorithm</span></a>. In our special case, it operates on a sample of two-dimensional labeled data. For convenience, a single round of the algorithm can be collected into a function as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">teach_perceptron</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">w_in</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">step</span><span class="p">):</span>
@@ -436,7 +506,7 @@
 </div>
 </div>
 <p>We note that in subsequent rounds the error gradually decreases (depending on a simulation, it can sometimes jump up if the learning speed is too large, but this is not a problem as long as we can get down to the minimum), reaching a final value  which is very small or 0 (depending on the particular instance of simulation). Therefore
-the perceptron algorithm, as we already experienced in chapter <span class="xref std std-ref">perc-lab</span>, <strong>minimizes the error on the training sample</strong>.</p>
+the perceptron algorithm, as we already experienced in chapter <a class="reference internal" href="perceptron.html#perc-lab"><span class="std std-ref">Perceptron</span></a>, <strong>minimizes the error on the training sample</strong>.</p>
 <p>It is illuminating to look at a contour map of the error function <span class="math notranslate nohighlight">\(E(v_1, v_2)\)</span> in the vicinity of the optimal parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -476,8 +546,8 @@ the perceptron algorithm, as we already experienced in chapter <span class="xref
 </div>
 </div>
 <p>The obtained minimum is inside (or close to, depending on the simulation) an elongated region of <span class="math notranslate nohighlight">\( v_1 \)</span> and <span class="math notranslate nohighlight">\( v_2\)</span> where the error vanishes.</p>
-</div>
-<div class="section" id="continuous-activation-function">
+</section>
+<section id="continuous-activation-function">
 <h2>Continuous activation function<a class="headerlink" href="#continuous-activation-function" title="Permalink to this headline">¶</a></h2>
 <p>Looking closely at the contour map above, we can see that the lines are “serrated”. This is because the error function, for an obvious reason, assumes integer values. It is therefore discontinuous and hence non-differentiable. The discontinuities originate from the discontinuous activation function, i.e. the step function. Having in mind the techniques we will get to know soon, it is advantageous to use continuous activation functions. Historically, the so-called <strong>sigmoid</strong></p>
 <div class="math notranslate nohighlight">
@@ -620,8 +690,8 @@ s/T = (w_0 + w_1 x_1 + w_2 x_2) / T = w_0 / T + w_1 / T \, x_1 + w_2 / T \, x_2 
 <p class="admonition-title">Note</p>
 <p>As we carry out more and more iterations, we notice that the magnitude of weights becomes lager and lager, while the error naturally gets smaller. The reason is following: our data sample is separable, so in the case when the step function is used for activation, it is possible to separate the sample with the dividing line and get down with the error all the way to zero. In the case of the sigmoid, there is always some (tiny) contribution to the error, as the values of the function are in the range (0,1). As we have discussed above, in the sigmoid, whose argument is <span class="math notranslate nohighlight">\( (w_0 + w_1 x_1 + w_2 x_2) / T\)</span>, increasing the weights is equivalent to scaling down the temperature <span class="math notranslate nohighlight">\(T\)</span>. Then, ultimately, the sigmoid approaches the step function, and the error tends to zero. Precisely this behavior is seen in the simulations above.</p>
 </div>
-</div>
-<div class="section" id="steepest-descent">
+</section>
+<section id="steepest-descent">
 <h2>Steepest descent<a class="headerlink" href="#steepest-descent" title="Permalink to this headline">¶</a></h2>
 <p>The reason of carrying out the above simulations was to drive the reader into conclusion that the issue of optimizing the weights can be reduced to a generic problem of minimizing a multi-variable function. This is a standard (though in general difficult) problem in mathematical analysis and numerical methods. Issues associated with finding the minimum of multivariable functions are well known:</p>
 <ul class="simple">
@@ -725,13 +795,13 @@ the true value (label) <span class="math notranslate nohighlight">\( y_t ^ {(p)}
 </div>
 </div>
 <p>To summarize the development up to now, we have shown that one can teach a single-layer perceptron (single MCP neuron) efficiently with the help of the steepest descent method, minimizing the error function generated with the test sample. In the next section we generalize this idea to any multi-layer feed-forward ANN.</p>
-</div>
-<div class="section" id="backprop-algorithm">
+</section>
+<section id="backprop-algorithm">
 <span id="bpa-lab"></span><h2>Backprop algorithm<a class="headerlink" href="#backprop-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The material of this section is absolutely <strong>crucial</strong> for understanding of the idea of training neural networks via supervised learning. At the same time, it can be quite difficult for a reader less familiar with mathematical analysis, as there appear derivations and formulas with rich notation. However, we could not find a way to present the material in a simpler way than below, keeping the necessary rigor.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12">BH69</a>]</span> for updating the weights of a multi-layer perceptron. It uses just two ingredients:</p>
+<p>The formulas we derive step by step here constitute the famous <strong>back propagation algorithm (backprop)</strong> <span id="id1">[<a class="reference internal" href="conclusion.html#id12" title="A. E. Bryson and Y.-C. Ho. Applied optimal control: Optimization, estimation, and control. Waltham, Mass: Blaisdell Pub. Co., 1969.">BH69</a>]</span> for updating the weights of a multi-layer perceptron. It uses just two ingredients:</p>
 <ul class="simple">
 <li><p>the <strong>chain rule</strong> for computing the derivative of a composite function, already used above, and</p></li>
 <li><p>the <strong>steepest descent method</strong>, explained in the previous lecture.</p></li>
@@ -823,7 +893,7 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <p><span class="math notranslate nohighlight">\(D_{\alpha_l}^{l}=2 (y_{o,\alpha_l}-y_{t,\alpha_l})\, f_l'(s_{\alpha_l}^{l})\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(D_{\alpha_j}^{j}= \sum_{\alpha_{j+1}} D_{\alpha_{j+1}}^{j+1}\, w_{\alpha_j \alpha_{j+1}}^{j+1} \, f_j'(s_{\alpha_j}^{j}), ~~~~ j=l-1,l-2,\dots,1\)</span>.</p>
 <p>This is not infrequent, as for many applications one selects different activation function for the intermediate and the output layers.</p>
-<div class="section" id="code-for-backprop">
+<section id="code-for-backprop">
 <h3>Code for backprop<a class="headerlink" href="#code-for-backprop" title="Permalink to this headline">¶</a></h3>
 <p>Next, we present a simple code that carries out the backprop algorithm. It is a straightforward implementation of the formulas derived above. In the code, we keep as much as we can the notation from the above derivation.</p>
 <p>The code has 12 lines only, not counting the comments!</p>
@@ -862,9 +932,9 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="example-with-the-circle">
+</section>
+</section>
+<section id="example-with-the-circle">
 <span id="circ-lab"></span><h2>Example with the circle<a class="headerlink" href="#example-with-the-circle" title="Permalink to this headline">¶</a></h2>
 <p>We illustrate the code on the example of a binary classifier of points inside a circle.</p>
 <div class="cell docutils container">
@@ -1009,8 +1079,8 @@ x_{0}^{1} w_{0 \alpha_{2}}^{2} \dots
 <img alt="../_images/backprop_73_0.png" src="../_images/backprop_73_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="general-remarks">
+</section>
+<section id="general-remarks">
 <h2>General remarks<a class="headerlink" href="#general-remarks" title="Permalink to this headline">¶</a></h2>
 <p>There are some more important and general observations to be made:</p>
 <div class="admonition note">
@@ -1026,8 +1096,8 @@ size of the training sample, in particular near the boundary.</p></li>
 <li><p>Finally, different activation functions may be used to improve performance (see the following lectures).</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="exercises">
+</section>
+<section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <div class="warning admonition">
 <p class="admonition-title"><span class="math notranslate nohighlight">\(~\)</span></p>
@@ -1046,7 +1116,7 @@ size of the training sample, in particular near the boundary.</p></li>
 <li><p>If the network has a lot of neurons and connections, little signal flows through each synapse, hence the network is resistant to a small random damage. This is what happens in the brain, which is constantly “damaged” (cosmic rays, alcohol, …). Besides, such a network after destruction can be (already with a smaller number of connections) retrained. Take your trained network from problem 3. and remove one of its <strong>weak</strong> connections (first, find it by inspecting the weights), setting the corresponding weight to 0. Test this damaged network on a test sample and draw conclusions.</p></li>
 <li><p><strong>Scaling weights in back propagation.</strong>
 A disadvantage of using the sigmoid in the backprop algorithm is a very slow update of weights in layers distant from the output layer (the closer to the beginning of the network, the slower). A remedy here is a re-scaling of the weights, where the learning speed in the layers, counting from the back, is successively increased by a certain factor. We remember that successive derivatives contribute factors of the form <span class="math notranslate nohighlight">\( \sigma '(s) = \sigma (s) [1- \sigma (s)] = y (1-y) \)</span> to the update rate, where <span class="math notranslate nohighlight">\( y \)</span> is in the range <span class="math notranslate nohighlight">\( (0, 1) \)</span>. Thus the value of <span class="math notranslate nohighlight">\( y (1-y \)</span> cannot exceed 1/4, and in the subsequent layers (counting from the back) the product <span class="math notranslate nohighlight">\( [y (1-y] ^ n \le 1/4 ^ n\)</span>.
-To prevent this “shrinking”, the learning rate can be multiplied by compensating factors <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
+To prevent this “shrinking”, the learning rate can be multiplied by compensating factors <span class="math notranslate nohighlight">\( 4 ^ n \)</span>: <span class="math notranslate nohighlight">\( 4, 16, 64, 256, ... \)</span>.  Another heuristic argument <span id="id2">[<a class="reference internal" href="conclusion.html#id13" title="A. K. Rigler, J. M. Irvine, and Thomas P. Vogl. Rescaling of variables in back propagation learning. Neural Networks, 4(2):225–229, 1991. URL: https://doi.org/10.1016/0893-6080(91)90006-Q, doi:10.1016/0893-6080(91)90006-Q.">RIV91</a>]</span> suggests even faster growing factors of the form <span class="math notranslate nohighlight">\( 6 ^ n \)</span>: <span class="math notranslate nohighlight">\( 6, 36, 216, 1296, ... \)</span></p>
 <ul class="simple">
 <li><p>Enter the above two recipes into the code for backprop.</p></li>
 <li><p>Check if they indeed improve the algorithm performance for deeper networks, for instance for the circle point classifier, etc.</p></li>
@@ -1063,8 +1133,8 @@ where <span class="math notranslate nohighlight">\(m\)</span> numbers the iterat
 {\left \| \nabla F (x^{(m)}) - \nabla F (x^{(m-1)}) \right \| ^ {2}}.
 \]</div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1088,33 +1158,41 @@ where <span class="math notranslate nohighlight">\(m\)</span> numbers the iterat
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="more_layers.html" title="previous page">More layers</a>
-    <a class='right-next' id="next-link" href="interpol.html" title="next page">Interpolation</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="more_layers.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">More layers</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="interpol.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Interpolation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Wojciech Broniowski<br/>
-        
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Wojciech Broniowski<br/>
+    
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
